@@ -1,0 +1,15 @@
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/tigersheets-reporting-worksheet/build
+[1/4] Building CXX object CMakeFiles/native_formula_core.dir/workspace/tiger-sheets/src/formula_editor.cpp.o
+[2/4] Linking CXX static library libnative_formula_core.a
+[3/4] Building CXX object CMakeFiles/native_platform_tests.dir/workspace/tiger-sheets/tests/native_platform_tests.cpp.o
+[4/4] Linking CXX executable native_platform_tests
+[1/2] Building CXX object CMakeFiles/native_platform_tests.dir/workspace/tiger-sheets/tests/native_platform_tests.cpp.o
+[2/2] Linking CXX executable native_platform_tests
+[1/2] Building CXX object CMakeFiles/native_platform_tests.dir/workspace/tiger-sheets/tests/native_platform_tests.cpp.o
+[2/2] Linking CXX executable native_platform_tests
+[1/2] Building CXX object CMakeFiles/native_platform_tests.dir/workspace/tiger-sheets/tests/native_platform_tests.cpp.o
+[2/2] Linking CXX executable native_platform_tests

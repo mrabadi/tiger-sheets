@@ -1,0 +1,10 @@
+PASS developmentIdentity
+PASS relativeRuntimePathsAndResolvedLibraries
+PASS extractedAppLaunch
+PASS packagedWorkerExecutes
+PASS disabledMacrosPreserveWorkbook
+PASS launcher
+PASS icons
+PASS sourceAndLicenses
+PASS aptDependencyResolution
+SHA256 ca64f2def1d90e36bb6437f8c7985c3b6d871500d929b53745cb994724c26f3d

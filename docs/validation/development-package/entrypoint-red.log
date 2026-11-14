@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_named_development_config_keeps_the_release_config_separate (__main__.PackagingTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/tiger-sheets/tests/packaging_tests.py", line 15, in test_named_development_config_keeps_the_release_config_separate
+    self.assertTrue(template.is_file(), 'provide a named development-package configuration for local installers')
+AssertionError: False is not true : provide a named development-package configuration for local installers
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)

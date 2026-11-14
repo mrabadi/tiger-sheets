@@ -1,0 +1,3 @@
+Command: build-release/worksheet_validation_ooxml_tests
+Exit: 1
+FAILED: Cannot save worksheet rename/deletion while validation or conditional-format formulas are opaque.

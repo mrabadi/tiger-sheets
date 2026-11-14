@@ -1,0 +1,51 @@
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/tigersheets-reporting-worksheet/asan
+[1/22] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/grid.cpp.o
+[2/22] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/session.cpp.o
+[3/22] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/references.cpp.o
+[4/22] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot_ownership.cpp.o
+[5/22] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/calculation.cpp.o
+[6/22] Building CXX object CMakeFiles/chart_core.dir/workspace/tiger-sheets/src/chart.cpp.o
+[7/22] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot.cpp.o
+[8/22] Linking CXX static library libworksheet_core.a
+[9/22] Building CXX object CMakeFiles/chart_core.dir/workspace/tiger-sheets/src/chart_editor.cpp.o
+[10/22] Linking CXX static library libchart_core.a
+[11/22] Building CXX object CMakeFiles/chart_tests.dir/workspace/tiger-sheets/tests/chart_tests.cpp.o
+[12/22] Linking CXX executable chart_tests
+[13/22] Building CXX object CMakeFiles/chart_editor_tests.dir/workspace/tiger-sheets/tests/chart_editor_tests.cpp.o
+[14/22] Linking CXX executable chart_editor_tests
+[15/22] Building CXX object CMakeFiles/printing_core.dir/workspace/tiger-sheets/src/printing.cpp.o
+[16/22] Linking CXX static library libprinting_core.a
+[17/22] Building CXX object CMakeFiles/worksheet_view_core.dir/workspace/tiger-sheets/src/worksheet_view.cpp.o
+[18/22] Linking CXX static library libworksheet_view_core.a
+[19/22] Building CXX object CMakeFiles/printing_tests.dir/workspace/tiger-sheets/tests/printing_tests.cpp.o
+[20/22] Linking CXX executable printing_tests
+[21/22] Building CXX object CMakeFiles/worksheet_entry_tests.dir/workspace/tiger-sheets/tests/worksheet_entry_tests.cpp.o
+[22/22] Linking CXX executable worksheet_entry_tests
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+/usr/include/c++/11/optional:279:12: runtime error: load of value 65, which is not a valid value for type 'bool'
+This plugin does not support propagateSizeHints()
+/usr/include/c++/11/optional:279:12: runtime error: load of value 120, which is not a valid value for type 'bool'

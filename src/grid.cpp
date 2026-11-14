@@ -1,0 +1,224 @@
+#include "tigersheets/grid.hpp"
+#include "tigersheets/references.hpp"
+#include "tigersheets/formatting.hpp"
+#include "tigersheets/selection_statistics.hpp"
+#include <QColor>
+#include <QFont>
+#include <QLocale>
+#include <QRegularExpression>
+#include <QDate>
+#include <QTime>
+#include <QUuid>
+#include <cmath>
+#include <algorithm>
+#include <charconv>
+#include <QElapsedTimer>
+#include <QPointer>
+#include <QTimer>
+namespace tigersheets {
+namespace {
+QString numberText(double value,const Json& style,bool date1904){return QString::fromStdString(formattedValue(value,style,date1904));}
+std::optional<double> numericLiteral(const std::string& input){
+ if(input.empty()||input[0]=='\''||input[0]=='=')return std::nullopt;double number=0;const auto parsed=std::from_chars(input.data(),input.data()+input.size(),number);bool okay=parsed.ec==std::errc()&&parsed.ptr==input.data()+input.size();if(!okay)number=QString::fromStdString(input).toDouble(&okay);return okay&&std::isfinite(number)?std::optional<double>(number):std::nullopt;
+}
+bool percentageFormat(std::string_view format){
+ bool quoted=false;for(std::size_t i=0;i<format.size();++i){const char ch=format[i];if(ch=='"'){quoted=!quoted;continue;}if(quoted)continue;if(ch=='\\'||ch=='_'||ch=='*'){if(i+1<format.size())++i;continue;}if(ch=='['){while(i+1<format.size()&&format[i+1]!=']')++i;if(i+1<format.size())++i;continue;}if(ch=='%')return true;}return false;
+}
+const Json* previewCell(const Json& book,const QString& sheet,int row,int col){
+ const auto id=sheet.toStdString();for(const auto& entry:book.at("sheets"))if(entry.at("id")==id){const auto& cells=entry.at("cells").get_ref<const Json::array_t&>();const auto coordinate=std::pair{row+1,col+1};const auto found=std::lower_bound(cells.begin(),cells.end(),coordinate,[](const Json& cell,const auto& point){return std::pair{cell.at("row").get<int>(),cell.at("col").get<int>()}<point;});return found!=cells.end()&&found->at("row")==row+1&&found->at("col")==col+1?&*found:nullptr;}return nullptr;
+}
+const Json* mergedOverlap(const Json& book,const std::string& id,int row1,int col1,int row2,int col2){for(const auto& sheet:book.at("sheets"))if(sheet.at("id")==id&&sheet.contains("mergedRanges"))for(const auto& merge:sheet.at("mergedRanges"))if(merge.at("row1")<=row2&&merge.at("row2")>=row1&&merge.at("col1")<=col2&&merge.at("col2")>=col1)return &merge;return nullptr;}
+}
+WorksheetModel::WorksheetModel(WorkbookSession& s,QObject*p):QAbstractTableModel(p),session_(s),clipboardOwner_(QUuid::createUuid().toString()){refresh();}
+WorksheetModel::~WorksheetModel(){previewView_=nullptr;}
+int WorksheetModel::rowCount(const QModelIndex& p)const{return p.isValid()?0:MaxRows;}
+int WorksheetModel::columnCount(const QModelIndex& p)const{return p.isValid()?0:MaxColumns;}
+QString WorksheetModel::sheetId()const{return sheet_;}
+void WorksheetModel::setSheetId(QString id){if(id.isEmpty())clipboardOwner_=QUuid::createUuid().toString();sheet_=id;if(previewView_){readOnly_=true;loadSnapshot(*previewView_);}else refresh();}
+void WorksheetModel::refresh(){
+ previewView_=nullptr;preview_.reset();readOnly_=false;loadSnapshot(session_.snapshotView());
+}
+void WorksheetModel::showPreview(const Json& candidate){previewView_=nullptr;preview_=candidate;previewView_=&*preview_;readOnly_=true;loadSnapshot(*previewView_);}
+void WorksheetModel::showPreviewView(const Json& candidate){const bool owned=preview_&&&candidate==&*preview_;previewView_=nullptr;if(!owned)preview_.reset();previewView_=&candidate;readOnly_=true;loadSnapshot(candidate);}
+void WorksheetModel::loadSnapshot(const Json& book){
+ const auto settings=book.value("settings",Json::object());date1904_=settings.is_object()&&settings.contains("date1904")&&settings["date1904"].is_boolean()&&settings["date1904"].get<bool>();cells_.clear();values_.clear();valueTypes_.clear();valuesCurrent_=false;displayRevision_=book.value("revision",std::uint64_t{});
+ const auto id=sheet_.toStdString();const bool present=std::any_of(book.at("sheets").begin(),book.at("sheets").end(),[&](const Json& sheet){return sheet.at("id")==id;});if(!present)sheet_=book.at("sheets").empty()?QString():QString::fromStdString(book.at("sheets")[0].at("id").get<std::string>());
+ emit dataChanged(index(0,0),index(MaxRows-1,MaxColumns-1));
+}
+QString WorksheetModel::raw(int row,int col)const{const auto* cell=previewView_?previewCell(*previewView_,sheet_,row,col):session_.cellAt(sheet_.toStdString(),row+1,col+1);return cell?QString::fromStdString(cell->value("input",std::string())):QString();}
+std::optional<double> WorksheetModel::numericValue(int row,int col)const{
+ if(row<0||col<0||row>=MaxRows||col>=MaxColumns)return std::nullopt;
+ if(valuesCurrent_){const auto cached=values_.find({row,col});if(cached!=values_.end()){const auto type=valueTypes_.find({row,col});if(!cached->second.is_number()||(type!=valueTypes_.end()&&type->second=="error"))return std::nullopt;const auto number=cached->second.get<double>();return std::isfinite(number)?std::optional<double>(number):std::nullopt;}}
+ const auto* cell=previewView_?previewCell(*previewView_,sheet_,row,col):session_.cellAt(sheet_.toStdString(),row+1,col+1);return cell?numericLiteral(cell->at("input").get_ref<const std::string&>()):std::nullopt;
+}
+void WorksheetModel::setCalculated(const Json& result){
+ if(result.value("revision",std::uint64_t{})!=displayRevision_)return;
+ int firstRow=MaxRows,lastRow=-1,firstCol=MaxColumns,lastCol=-1;auto affected=[&](const auto& key){firstRow=std::min(firstRow,key.first);lastRow=std::max(lastRow,key.first);firstCol=std::min(firstCol,key.second);lastCol=std::max(lastCol,key.second);};for(const auto& [key,value]:values_){static_cast<void>(value);affected(key);}
+ const auto iteration=result.find("iteration");const bool converged=iteration==result.end()||!iteration->is_object()||iteration->value("converged",true);valuesCurrent_=result.value("status",std::string("ok"))=="ok"&&converged;values_.clear();valueTypes_.clear();
+ const auto cache=result.find(result.contains("displayValues")?"displayValues":"values");if(valuesCurrent_&&cache!=result.end())for(const auto& value:*cache)if(value.value("sheet",std::string())==sheet_.toStdString()){const auto key=std::pair{value.at("row").get<int>()-1,value.at("col").get<int>()-1};values_[key]=value.at("value");valueTypes_[key]=value.value("type",std::string());affected(key);}
+ if(lastRow>=firstRow)emit dataChanged(index(firstRow,firstCol),index(lastRow,lastCol));
+}
+QVariant WorksheetModel::data(const QModelIndex&i,int role)const{
+ if(!i.isValid())return {};
+ if(role==Qt::EditRole)return raw(i.row(),i.column());
+ if(role==Qt::DisplayRole){
+  if(property("showFormulas").toBool()){const auto input=raw(i.row(),i.column());if(input.startsWith('='))return input;}
+  auto style=cellStyle(i.row(),i.column());
+  auto v=values_.find({i.row(),i.column()});
+  if(v!=values_.end()){if(v->second.is_number())return numberText(v->second.get<double>(),style,date1904_);if(v->second.is_boolean())return v->second.get<bool>()?QString("TRUE"):QString("FALSE");if(v->second.is_string())return QString::fromStdString(v->second.get<std::string>());}
+  auto text=raw(i.row(),i.column());if(text.startsWith("'")){text.remove(0,1);return text;}bool ok=false;double number=text.toDouble(&ok);if(ok)return numberText(number,style,date1904_);return text;
+ }
+ auto style=cellStyle(i.row(),i.column());
+ if(role==Qt::BackgroundRole&&style.contains("fill")&&!style.at("fill").get_ref<const std::string&>().empty())return QColor(QString::fromStdString(style["fill"].get<std::string>()));
+ if(role==Qt::ForegroundRole&&style.contains("color")&&!style.at("color").get_ref<const std::string&>().empty())return QColor(QString::fromStdString(style["color"].get<std::string>()));
+ if(role==Qt::FontRole){QFont f(QString::fromStdString(style.value("fontFamily",std::string("Calibri"))),style.value("fontSize",11));f.setBold(style.value("bold",false));f.setItalic(style.value("italic",false));f.setUnderline(style.value("underline",false));return f;}
+ if(role==Qt::TextAlignmentRole){auto alignment=style.value("alignment",std::string());if(alignment=="left")return int(Qt::AlignLeft|Qt::AlignVCenter);if(alignment=="center")return int(Qt::AlignHCenter|Qt::AlignVCenter);if(alignment=="right")return int(Qt::AlignRight|Qt::AlignVCenter);bool ok=false;raw(i.row(),i.column()).toDouble(&ok);auto v=values_.find({i.row(),i.column()});return int((ok||(v!=values_.end()&&v->second.is_number())?Qt::AlignRight:Qt::AlignLeft)|Qt::AlignVCenter);}
+ return {};
+}
+QVariant WorksheetModel::headerData(int s,Qt::Orientation o,int role)const{if(role!=Qt::DisplayRole)return {};return o==Qt::Horizontal?QVariant(QString::fromStdString(columnName(s+1))):QVariant(s+1);}
+Qt::ItemFlags WorksheetModel::flags(const QModelIndex&i)const{return i.isValid()?Qt::ItemIsEnabled|Qt::ItemIsSelectable|(readOnly_?Qt::NoItemFlags:Qt::ItemIsEditable):Qt::NoItemFlags;}
+Json WorksheetModel::cellStyle(int row,int col)const{const auto* cell=previewView_?previewCell(*previewView_,sheet_,row,col):session_.cellAt(sheet_.toStdString(),row+1,col+1);return cell?cell->value("style",Json::object()):Json::object();}
+Json WorksheetModel::copyRange(int r1,int c1,int r2,int c2)const{
+ if(r1<0||c1<0||r2<r1||c2<c1||r2>=MaxRows||c2>=MaxColumns||static_cast<long long>(r2-r1+1)*(c2-c1+1)>1000000)return nullptr;
+ Json result={{"sourceRow",r1},{"sourceCol",c1},{"sourceHasMerges",mergedOverlap(workbookView(),sheet_.toStdString(),r1+1,c1+1,r2+1,c2+1)!=nullptr},{"cells",Json::array()}};
+ for(int r=r1;r<=r2;++r){Json row=Json::array();for(int c=c1;c<=c2;++c){Json cell={{"input",raw(r,c).toStdString()},{"style",cellStyle(r,c)}};auto value=values_.find({r,c});if(valuesCurrent_&&value!=values_.end()){cell["value"]=value->second;cell["valueType"]=valueTypes_.at({r,c});}row.push_back(cell);}result["cells"].push_back(row);}
+ return result;
+}
+Json WorksheetModel::cutRange(int r1,int c1,int r2,int c2)const{auto clip=copyRange(r1,c1,r2,c2);if(!clip.is_null()){clip["cut"]=true;clip["sourceSheet"]=sheet_.toStdString();clip["sourceOwner"]=clipboardOwner_.toStdString();clip["sourceRevision"]=displayRevision_;}return clip;}
+bool WorksheetModel::pasteRange(int row,int col,const Json& clip,const std::string& mode,bool skipBlanks,int targetRows,int targetColumns){
+ error_.clear();
+ if(!clip.is_object()||!clip.contains("cells")||!clip["cells"].is_array())return false;
+ if(clip.value("cut",false)){if(mode!="all"||skipBlanks){error_="Use ordinary Paste to move cut cells, or Copy before using Paste Special.";return false;}return moveRange(row,col,clip);}
+ const int sourceRows=static_cast<int>(clip.at("cells").size());int sourceColumns=0;for(const auto& line:clip.at("cells")){if(!line.is_array())return false;sourceColumns=std::max(sourceColumns,static_cast<int>(line.size()));}
+ const int requestedRows=mode=="transpose"?targetColumns:targetRows,requestedColumns=mode=="transpose"?targetRows:targetColumns;
+ if(sourceRows>0&&sourceColumns>0&&(requestedRows>sourceRows||requestedColumns>sourceColumns)){
+  const int rows=std::max(sourceRows,requestedRows),columns=std::max(sourceColumns,requestedColumns);
+  if(requestedRows<sourceRows||requestedColumns<sourceColumns||rows%sourceRows||columns%sourceColumns||static_cast<std::int64_t>(rows)*columns>1000000){error_="The destination must contain whole copies of the source range (at most 1,000,000 cells).";return false;}
+  for(const auto& line:clip.at("cells"))if(line.size()!=static_cast<std::size_t>(sourceColumns)){error_="Select a rectangular clipboard range before repeating Paste.";return false;}
+  Json expanded=clip;expanded["cells"]=Json::array();for(int r=0;r<rows;++r){Json line=Json::array();for(int c=0;c<columns;++c){auto cell=clip.at("cells")[r%sourceRows][c%sourceColumns];const auto input=cell.value("input",std::string());if(input.starts_with('='))cell["input"]=shiftFormula(input,r-r%sourceRows,c-c%sourceColumns);line.push_back(std::move(cell));}expanded["cells"].push_back(std::move(line));}
+  return pasteRange(row,col,expanded,mode,skipBlanks);
+ }
+ if(clip.value("sourceHasMerges",false)&&mode!="values"&&mode!="formats"){error_="Unmerge the copied source cells before ordinary, formula or transpose paste. Paste Values or Formats can be used instead.";return false;}
+ std::size_t targetCells=0,sourceWidth=0;for(const auto& line:clip.at("cells")){if(!line.is_array())return false;targetCells+=line.size();sourceWidth=std::max(sourceWidth,line.size());}
+ const bool transpose=mode=="transpose";
+ if(targetCells&&mode!="formats"){
+  const auto height=transpose?sourceWidth:clip.at("cells").size(),width=transpose?clip.at("cells").size():sourceWidth;
+  if(row<0||row>=MaxRows||col<0||col>=MaxColumns||height>static_cast<std::size_t>(MaxRows-row)||width>static_cast<std::size_t>(MaxColumns-col))return false;
+  if(const auto* merge=mergedOverlap(workbookView(),sheet_.toStdString(),row+1,col+1,row+static_cast<int>(height),col+static_cast<int>(width));merge&&(targetCells!=1||height!=1||width!=1||merge->at("row1")!=row+1||merge->at("col1")!=col+1)){error_="Unmerge the destination cells before pasting multiple values or writing inside a merged area. A single cell can be pasted into the upper-left merged cell.";return false;}
+ }
+ Json ops=Json::array();
+ for(size_t r=0;r<clip["cells"].size();++r){const auto& source=clip["cells"][r];if(!source.is_array())return false;
+  for(size_t c=0;c<source.size();++c){const auto& cell=source[c];auto input=cell.value("input",std::string());if(skipBlanks&&input.empty())continue;
+   const int tr=row+static_cast<int>(transpose?c:r),tc=col+static_cast<int>(transpose?r:c);
+   if(tr<0||tr>=MaxRows||tc<0||tc>=MaxColumns)return false;
+   if(mode=="formats"){ops.push_back({{"type","set_style"},{"sheet",sheet_.toStdString()},{"row",tr+1},{"col",tc+1},{"style",cell.value("style",Json::object())},{"replace",true}});continue;}
+   if(mode=="values"&&!cell.contains("value")&&!input.empty()&&input[0]=='='){error_="Calculate the source cells before using Paste Values.";return false;}
+   if(mode=="values"&&cell.contains("value")){const auto& v=cell["value"];input=v.is_null()?std::string():v.is_string()?(cell.value("valueType",std::string())=="error"?v.get<std::string>():"'"+v.get<std::string>()):v.is_boolean()?(v.get<bool>()?"TRUE":"FALSE"):v.dump();}
+   else if(!input.empty()&&input[0]=='=')input=shiftFormula(input,tr-clip.value("sourceRow",row)-static_cast<int>(r),tc-clip.value("sourceCol",col)-static_cast<int>(c));
+   Json op={{"type","set_cell"},{"sheet",sheet_.toStdString()},{"row",tr+1},{"col",tc+1},{"input",input}};
+   if(mode=="all"||transpose){op["style"]=cell.value("style",Json::object());op["replaceStyle"]=true;}
+   ops.push_back(op);
+  }
+ }
+ return apply(ops);
+}
+bool WorksheetModel::moveRange(int row,int col,const Json& clip){
+ try{
+  const auto book=session_.snapshot();if(clip.value("sourceOwner",std::string())!=clipboardOwner_.toStdString()||clip.value("sourceRevision",std::uint64_t{})!=book.at("revision").get<std::uint64_t>())throw std::runtime_error("The cut source changed or belongs to another workbook. Cut the cells again.");
+  const auto sourceId=clip.at("sourceSheet").get<std::string>(),targetId=sheet_.toStdString();std::string sourceName,targetName;
+  for(const auto& sheet:book.at("sheets")){if(sheet.at("id")==sourceId)sourceName=sheet.at("name").get<std::string>();if(sheet.at("id")==targetId)targetName=sheet.at("name").get<std::string>();}
+  if(sourceName.empty()||targetName.empty())throw std::runtime_error("The cut source or destination worksheet is unavailable.");
+  const auto& cells=clip.at("cells");if(cells.empty()||!cells[0].is_array()||cells[0].empty())throw std::runtime_error("The cut range is empty.");
+  const int height=static_cast<int>(cells.size()),width=static_cast<int>(cells[0].size()),sr=clip.at("sourceRow"),sc=clip.at("sourceCol");
+  if(row<0||col<0||row+height>MaxRows||col+width>MaxColumns||sr<0||sc<0||sr+height>MaxRows||sc+width>MaxColumns)throw std::runtime_error("The moved range exceeds worksheet bounds.");
+  if(mergedOverlap(book,sourceId,sr+1,sc+1,sr+height,sc+width))throw std::runtime_error("Unmerge the source cells before moving them; merged-cell moves are not supported.");
+  if(const auto* merge=mergedOverlap(book,targetId,row+1,col+1,row+height,col+width);merge&&(height!=1||width!=1||merge->at("row1")!=row+1||merge->at("col1")!=col+1))throw std::runtime_error("Unmerge the destination cells before moving multiple values or writing inside a merged area. A single cell can be moved into the upper-left merged cell.");
+  auto inside=[](int r,int c,int top,int left,int h,int w){return r>=top&&r<top+h&&c>=left&&c<left+w;};
+  auto protectedRange=[&](const Json& range,const std::string& defaultSheet){if(!range.is_object()||!range.contains("row1")||!range.contains("row2")||!range.contains("col1")||!range.contains("col2"))return false;const auto id=range.value("sheet",defaultSheet);const int r1=range.at("row1"),r2=range.at("row2"),c1=range.at("col1"),c2=range.at("col2");return (id==sourceId&&r1<=sr+height&&r2>=sr+1&&c1<=sc+width&&c2>=sc+1)||(id==targetId&&r1<=row+height&&r2>=row+1&&c1<=col+width&&c2>=col+1);};
+  for(const auto& chart:book.value("charts",Json::array()))if(protectedRange(chart.value("range",Json::object()),chart.value("sheet",std::string())))throw std::runtime_error("The move intersects a chart data range. Adjust the chart source before moving these cells.");
+  for(const auto& pivot:book.value("pivots",Json::array()))if(pivot.value("version",0)==1&&(protectedRange(pivot.value("source",Json::object()),std::string())||protectedRange(pivot.value("output",Json::object()),std::string())))throw std::runtime_error("The move intersects a PivotTable source or report. Adjust the report or source before moving these cells.");
+  auto rewrite=[&](const std::string& formula,const std::string& sheet,bool moved){return moveFormulaReferences(formula,sheet,sourceName,targetName,sr+1,sc+1,sr+height,sc+width,row-sr,col-sc,moved);};
+  Json ops=Json::array();
+  for(int r=0;r<height;++r){if(!cells[r].is_array()||static_cast<int>(cells[r].size())!=width)throw std::runtime_error("The cut clipboard is not rectangular.");for(int c=0;c<width;++c)ops.push_back({{"type","set_cell"},{"sheet",sourceId},{"row",sr+r+1},{"col",sc+c+1},{"input",""},{"style",Json::object()},{"replaceStyle",true}});}
+  for(int r=0;r<height;++r)for(int c=0;c<width;++c){const auto& cell=cells[r][c];auto input=cell.value("input",std::string());if(!input.empty()&&input[0]=='=')input=rewrite(input,sourceName,true);ops.push_back({{"type","set_cell"},{"sheet",targetId},{"row",row+r+1},{"col",col+c+1},{"input",input},{"style",cell.value("style",Json::object())},{"replaceStyle",true}});}
+  for(const auto& sheet:book.at("sheets")){const auto id=sheet.at("id").get<std::string>(),name=sheet.at("name").get<std::string>();for(const auto& cell:sheet.at("cells")){const int r=cell.at("row").get<int>()-1,c=cell.at("col").get<int>()-1;if((id==sourceId&&inside(r,c,sr,sc,height,width))||(id==targetId&&inside(r,c,row,col,height,width)))continue;const auto input=cell.value("input",std::string());if(!input.empty()&&input[0]=='='){auto revised=rewrite(input,name,false);if(revised!=input)ops.push_back({{"type","set_cell"},{"sheet",id},{"row",r+1},{"col",c+1},{"input",revised}});}}}
+  auto names=book.value("names",Json::object());const auto originalNames=names;for(auto& name:names)if(name.is_string())name=rewrite(name.get<std::string>(),"",false);if(names!=originalNames)ops.push_back({{"type","set_metadata"},{"key","names"},{"value",names}});
+  return apply(ops);
+ }catch(const std::exception& error){error_=QString::fromUtf8(error.what());return false;}
+}
+QString WorksheetModel::lastError()const{return error_;}
+const Json& WorksheetModel::workbookView()const noexcept{return previewView_?*previewView_:session_.snapshotView();}
+Json WorksheetModel::calculatedSnapshot()const{Json result={{"revision",displayRevision_},{"status",valuesCurrent_?"ok":"stale"},{"values",Json::array()}};if(valuesCurrent_)for(const auto& [key,value]:values_)result["values"].push_back({{"sheet",sheet_.toStdString()},{"row",key.first+1},{"col",key.second+1},{"type",valueTypes_.at(key)},{"value",value}});return result;}
+bool WorksheetModel::sortRange(int r1,int c1,int r2,int c2,bool ascending){
+ error_.clear();const auto clip=copyRange(r1,c1,r2,c2);if(clip.is_null()||r1>=r2){error_="Select a bounded rectangular range with at least two data rows.";return false;}
+ if(clip.value("sourceHasMerges",false)){error_="Unmerge the selected cells before sorting; merged ranges cannot be sorted safely.";return false;}
+ struct Row {int source;Json cells,key;int kind;};std::vector<Row> rows;
+ for(int r=r1;r<=r2;++r){auto cells=clip["cells"][r-r1];const auto& cell=cells[0];const auto input=cell["input"].get<std::string>();Json key;
+  if(cell.contains("value"))key=cell["value"];
+  else if(!input.empty()&&input[0]=='='){error_="Calculate the sort column before sorting.";return false;}
+  else if(input.empty())key=nullptr;
+  else if(input[0]=='\'')key=input.substr(1);
+  else{bool ok=false;const double number=QString::fromStdString(input).toDouble(&ok);if(ok)key=number;else if(QString::fromStdString(input).compare("TRUE",Qt::CaseInsensitive)==0)key=true;else if(QString::fromStdString(input).compare("FALSE",Qt::CaseInsensitive)==0)key=false;else key=input;}
+  const int kind=key.is_null()||(key.is_string()&&key=="")?4:cell.value("valueType",std::string())=="error"?3:key.is_number()?0:key.is_string()?1:2;rows.push_back({r,std::move(cells),std::move(key),kind});
+ }
+ std::stable_sort(rows.begin(),rows.end(),[ascending](const Row& a,const Row& b){if(a.kind==4||b.kind==4)return a.kind<b.kind;int order=0;if(a.kind!=b.kind)order=a.kind<b.kind?-1:1;else if(a.key.is_string())order=QString::compare(QString::fromStdString(a.key.get<std::string>()),QString::fromStdString(b.key.get<std::string>()),Qt::CaseInsensitive);else order=a.key<b.key?-1:a.key>b.key?1:0;return ascending?order<0:order>0;});
+ Json ops=Json::array();for(std::size_t r=0;r<rows.size();++r)for(int c=c1;c<=c2;++c){const auto& source=rows[r];const auto& cell=source.cells[c-c1];auto input=cell["input"].get<std::string>();if(!input.empty()&&input[0]=='=')input=shiftFormula(input,r1+static_cast<int>(r)-source.source,0);ops.push_back({{"type","set_cell"},{"sheet",sheet_.toStdString()},{"row",r1+static_cast<int>(r)+1},{"col",c+1},{"input",input},{"style",cell["style"]},{"replaceStyle",true}});}
+ return apply(ops);
+}
+bool WorksheetModel::apply(const Json& ops){
+ error_.clear();if(readOnly_){error_="Accept or discard the preview before editing cells.";return false;}const auto revision=session_.snapshotView().at("revision").get<std::uint64_t>();std::string error;
+ if(!session_.apply(revision,ops,&error)){error_=QString::fromStdString(error);return false;}const auto& book=session_.snapshotView();if(book.at("revision")==revision)return true;
+ const auto& change=session_.lastChange();if(change.value("structure",true))refresh();else{displayRevision_=book.at("revision");valuesCurrent_=false;const auto settings=book.value("settings",Json::object());date1904_=settings.is_object()&&settings.contains("date1904")&&settings["date1904"].is_boolean()&&settings["date1904"].get<bool>();
+  for(const auto& range:change.at("sheets"))if(range.at("sheet")==sheet_.toStdString()){const int r1=range.at("row1").get<int>()-1,r2=range.at("row2").get<int>()-1,c1=range.at("col1").get<int>()-1,c2=range.at("col2").get<int>()-1;auto value=values_.lower_bound({r1,0});while(value!=values_.end()&&value->first.first<=r2){if(value->first.second>=c1&&value->first.second<=c2){valueTypes_.erase(value->first);value=values_.erase(value);}else ++value;}emit dataChanged(index(r1,c1),index(r2,c2));}
+ }
+ if(onChanged)onChanged();return true;
+}
+bool WorksheetModel::setData(const QModelIndex&i,const QVariant&v,int role){
+ if(!i.isValid()||role!=Qt::EditRole)return false;
+ const auto text=v.toString();Json operation={{"type","set_cell"},{"sheet",sheet_.toStdString()},{"row",i.row()+1},{"col",i.column()+1},{"input",text.toStdString()}};
+ const auto trimmed=text.trimmed();if(trimmed.endsWith('%')){
+  bool okay=false;const double number=trimmed.chopped(1).trimmed().toDouble(&okay)/100.0;
+  if(okay&&std::isfinite(number)){
+   char buffer[128];const auto converted=std::to_chars(buffer,buffer+sizeof(buffer),number);if(converted.ec!=std::errc())return false;operation["input"]=std::string(buffer,converted.ptr);
+   const auto style=cellStyle(i.row(),i.column());const auto format=style.value("numberFormat",std::string("General"));
+   if(!percentageFormat(format)){const int decimal=static_cast<int>(trimmed.indexOf('.'));const auto digits=decimal<0?0:std::min(12,static_cast<int>(trimmed.size())-decimal-2);operation["style"]={{"numberFormat",digits>0?"0."+std::string(digits,'0')+"%":"0%"}};}
+  }
+ }else if(percentageFormat(cellStyle(i.row(),i.column()).value("numberFormat",std::string()))){
+  bool okay=false;const double number=trimmed.toDouble(&okay);if(okay&&std::isfinite(number)&&std::abs(number)>=1.0){char buffer[128];const auto converted=std::to_chars(buffer,buffer+sizeof(buffer),number/100.0);if(converted.ec!=std::errc())return false;operation["input"]=std::string(buffer,converted.ptr);}
+ }
+ return apply(Json::array({std::move(operation)}));
+}
+struct SelectionStatistics::Job {
+ QPointer<WorksheetModel> model;
+ const Json::array_t* cells=nullptr;
+ std::size_t cursor=0;
+ std::map<std::pair<int,int>,Json>::const_iterator value;
+ std::uint64_t revision=0;
+ QString sheet;
+ int top,left,bottom,right;
+ SelectionTotals totals;
+ std::function<bool()> current;
+ std::function<void(SelectionTotals)> complete;
+ QMetaObject::Connection changed,destroyed;
+};
+SelectionStatistics::SelectionStatistics(QObject* parent):QObject(parent){}
+SelectionStatistics::~SelectionStatistics(){cancel();}
+void SelectionStatistics::cancel(){if(job_){QObject::disconnect(job_->changed);QObject::disconnect(job_->destroyed);job_.reset();}}
+void SelectionStatistics::start(WorksheetModel& model,int top,int left,int bottom,int right,std::function<bool()> current,std::function<void(SelectionTotals)> complete){
+ cancel();if(top<0||left<0||bottom<top||right<left||bottom>=MaxRows||right>=MaxColumns)throw std::invalid_argument("Invalid selection statistics range");if(current&&!current())return;
+ if(static_cast<std::uint64_t>(bottom-top+1)*(right-left+1)<=4096){SelectionTotals totals;for(int row=top;row<=bottom;++row)for(int col=left;col<=right;++col)if(const auto number=model.numericValue(row,col)){totals.sum+=*number;++totals.count;}if((!current||current())&&complete)complete(totals);return;}
+ auto job=std::make_shared<Job>();job->model=&model;job->revision=model.workbookView().at("revision");job->sheet=model.sheet_;job->top=top;job->left=left;job->bottom=bottom;job->right=right;job->current=std::move(current);job->complete=std::move(complete);job->value=model.values_.cbegin();for(const auto& sheet:model.workbookView().at("sheets"))if(sheet.at("id")==job->sheet.toStdString()){job->cells=&sheet.at("cells").get_ref<const Json::array_t&>();break;}
+ job_=job;job->changed=connect(&model,&QAbstractItemModel::dataChanged,this,[this]{cancel();});job->destroyed=connect(&model,&QObject::destroyed,this,[this]{cancel();});QTimer::singleShot(0,this,[this,job]{advance(job);});
+}
+void SelectionStatistics::advance(const std::shared_ptr<Job>& job){
+ if(job_!=job)return;auto* model=job->model.data();if(!model||model->sheet_!=job->sheet||model->workbookView().at("revision")!=job->revision||(job->current&&!job->current())){cancel();return;}
+ QElapsedTimer elapsed;elapsed.start();std::size_t visited=0;const auto valueEnd=model->values_.cend();
+ while((job->cells&&job->cursor<job->cells->size())||job->value!=valueEnd){
+  const auto source=job->cells&&job->cursor<job->cells->size()?&job->cells->at(job->cursor):nullptr;const auto sourcePoint=source?std::pair{source->at("row").get<int>()-1,source->at("col").get<int>()-1}:std::pair{MaxRows,MaxColumns};const auto valuePoint=job->value!=valueEnd?job->value->first:std::pair{MaxRows,MaxColumns};const auto point=std::min(sourcePoint,valuePoint);
+  if(point.first>=job->top&&point.first<=job->bottom&&point.second>=job->left&&point.second<=job->right){std::optional<double> number;if(model->valuesCurrent_&&point==valuePoint){const auto type=model->valueTypes_.find(point);if(job->value->second.is_number()&&(type==model->valueTypes_.end()||type->second!="error")){const auto value=job->value->second.get<double>();if(std::isfinite(value))number=value;}}else if(point==sourcePoint)number=numericLiteral(source->at("input").get_ref<const std::string&>());if(number){job->totals.sum+=*number;++job->totals.count;}}
+  if(point==sourcePoint)++job->cursor;if(point==valuePoint)++job->value;
+  if(++visited>=512||elapsed.elapsed()>=4){QTimer::singleShot(0,this,[this,job]{advance(job);});return;}
+ }
+ auto complete=std::move(job->complete);const auto totals=job->totals;cancel();if(complete)complete(totals);
+}
+}

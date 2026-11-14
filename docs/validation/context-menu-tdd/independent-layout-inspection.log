@@ -1,0 +1,6 @@
+Native fixture creation and two save/reopen cycles passed; ordinary forecast recalculated to120 in TigerSheets.
+/workspace/tiger-sheets/docs/validation/context-menu-fixtures/native-layout.xlsx
+/workspace/tiger-sheets/docs/validation/context-menu-fixtures/native-layout-resaved.xlsx
+native-layout.xlsx: independent ZIP/XML and openpyxl inspection passed
+native-layout-resaved.xlsx: independent ZIP/XML and openpyxl inspection passed
+Validation record: /workspace/tiger-sheets/docs/validation/context-menu-tdd/independent-layout-inspection.json

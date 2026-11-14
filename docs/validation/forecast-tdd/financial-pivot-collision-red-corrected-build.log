@@ -1,0 +1,4 @@
+ninja: Entering directory `build-release'
+[0/2] Re-checking globbed directories...
+[1/2] Building CXX object CMakeFiles/financial_pivot_collision_tests.dir/tests/financial_pivot_collision_tests.cpp.o
+[2/2] Linking CXX executable financial_pivot_collision_tests

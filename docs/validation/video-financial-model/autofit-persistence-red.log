@@ -1,0 +1,8 @@
+Provenance: Exact command, exit status and output transcribed from this task's recorded tool response.
+This file was preserved after the run; it is not a new execution or a copied /tmp shell log.
+Execution chunk: caeabc
+Working directory: /workspace/tiger-sheets
+Command: QT_QPA_PLATFORM=offscreen build-release/worksheet_autofit_ui_tests
+Exit status: 1
+Output:
+FAILED: header auto-fit persists the fitted column width in the workbook

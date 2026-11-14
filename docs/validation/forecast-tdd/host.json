@@ -1,0 +1,6 @@
+{
+  "referenceMachineMatch": false,
+  "buildType": "Release",
+  "nativeUiVerification": "Qt offscreen; sandbox cannot connect to inherited X11 display; no new native Wayland qualification",
+  "environmentDetails": "Host identity and machine configuration redacted for public source distribution"
+}

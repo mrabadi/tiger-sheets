@@ -1,0 +1,46 @@
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/tigersheets-reporting-worksheet/build
+[1/5] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/calculation.cpp.o
+[2/5] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot.cpp.o
+[3/5] Linking CXX static library libworksheet_core.a
+[4/5] Building CXX object CMakeFiles/selection_statistics_tests.dir/workspace/tiger-sheets/tests/selection_statistics_tests.cpp.o
+FAILED: CMakeFiles/selection_statistics_tests.dir/workspace/tiger-sheets/tests/selection_statistics_tests.cpp.o
+/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_TESTCASE_BUILDDIR=\"/tmp/tigersheets-reporting-worksheet/build\" -DQT_TESTCASE_SOURCEDIR=\"/tmp/tigersheets-reporting-worksheet\" -DQT_TESTLIB_LIB -DQT_WIDGETS_LIB -I/workspace/tiger-sheets/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtTest -fPIE -fPIC -std=gnu++20 -MD -MT CMakeFiles/selection_statistics_tests.dir/workspace/tiger-sheets/tests/selection_statistics_tests.cpp.o -MF CMakeFiles/selection_statistics_tests.dir/workspace/tiger-sheets/tests/selection_statistics_tests.cpp.o.d -o CMakeFiles/selection_statistics_tests.dir/workspace/tiger-sheets/tests/selection_statistics_tests.cpp.o -c /workspace/tiger-sheets/tests/selection_statistics_tests.cpp
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp: In function ‘void {anonymous}::sparseNumericValues()’:
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp:15:16: error: ‘class tigersheets::WorksheetModel’ has no member named ‘numericValue’
+   15 |  require(model.numericValue(0,0)==42&&model.numericValue(5,0)==.25&&model.numericValue(6,0)==5&&model.numericValue(7,0)==6&&model.numericValue(8,0)==7,"selection values merge sparse numeric inputs, parsed literals, formulas and spills");
+      |                ^~~~~~~~~~~~
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp:15:45: error: ‘class tigersheets::WorksheetModel’ has no member named ‘numericValue’
+   15 |  require(model.numericValue(0,0)==42&&model.numericValue(5,0)==.25&&model.numericValue(6,0)==5&&model.numericValue(7,0)==6&&model.numericValue(8,0)==7,"selection values merge sparse numeric inputs, parsed literals, formulas and spills");
+      |                                             ^~~~~~~~~~~~
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp:15:75: error: ‘class tigersheets::WorksheetModel’ has no member named ‘numericValue’
+   15 |  require(model.numericValue(0,0)==42&&model.numericValue(5,0)==.25&&model.numericValue(6,0)==5&&model.numericValue(7,0)==6&&model.numericValue(8,0)==7,"selection values merge sparse numeric inputs, parsed literals, formulas and spills");
+      |                                                                           ^~~~~~~~~~~~
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp:15:103: error: ‘class tigersheets::WorksheetModel’ has no member named ‘numericValue’
+   15 |  require(model.numericValue(0,0)==42&&model.numericValue(5,0)==.25&&model.numericValue(6,0)==5&&model.numericValue(7,0)==6&&model.numericValue(8,0)==7,"selection values merge sparse numeric inputs, parsed literals, formulas and spills");
+      |                                                                                                       ^~~~~~~~~~~~
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp:15:131: error: ‘class tigersheets::WorksheetModel’ has no member named ‘numericValue’
+   15 |  require(model.numericValue(0,0)==42&&model.numericValue(5,0)==.25&&model.numericValue(6,0)==5&&model.numericValue(7,0)==6&&model.numericValue(8,0)==7,"selection values merge sparse numeric inputs, parsed literals, formulas and spills");
+      |                                                                                                                                   ^~~~~~~~~~~~
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp:16:46: error: ‘class tigersheets::WorksheetModel’ has no member named ‘numericValue’
+   16 |  for(const auto row:{1,2,3,4})require(!model.numericValue(row,0),"selection totals exclude quoted numeric text, booleans, errors and blanks");require(!model.numericValue(8,1)&&!model.numericValue(9,1),"selection totals exclude quoted empty and formula-looking text");
+      |                                              ^~~~~~~~~~~~
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp:16:158: error: ‘class tigersheets::WorksheetModel’ has no member named ‘numericValue’
+   16 |  for(const auto row:{1,2,3,4})require(!model.numericValue(row,0),"selection totals exclude quoted numeric text, booleans, errors and blanks");require(!model.numericValue(8,1)&&!model.numericValue(9,1),"selection totals exclude quoted empty and formula-looking text");
+      |                                                                                                                                                              ^~~~~~~~~~~~
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp:16:184: error: ‘class tigersheets::WorksheetModel’ has no member named ‘numericValue’
+   16 |  for(const auto row:{1,2,3,4})require(!model.numericValue(row,0),"selection totals exclude quoted numeric text, booleans, errors and blanks");require(!model.numericValue(8,1)&&!model.numericValue(9,1),"selection totals exclude quoted empty and formula-looking text");
+      |                                                                                                                                                                                        ^~~~~~~~~~~~
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp:17:69: error: ‘class tigersheets::WorksheetModel’ has no member named ‘numericValue’
+   17 |  model.setData(model.index(6,0),"=8+9",Qt::EditRole);require(!model.numericValue(6,0)&&model.numericValue(0,0)==42,"stale formula values are omitted while literal numeric input remains available");model.setCalculated({{"revision",session.snapshotView().at("revision")},{"status","not_converged"},{"values",Json::array()}});require(!model.numericValue(7,0),"failed calculation removes prior numeric spill selection values");
+      |                                                                     ^~~~~~~~~~~~
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp:17:94: error: ‘class tigersheets::WorksheetModel’ has no member named ‘numericValue’
+   17 |  model.setData(model.index(6,0),"=8+9",Qt::EditRole);require(!model.numericValue(6,0)&&model.numericValue(0,0)==42,"stale formula values are omitted while literal numeric input remains available");model.setCalculated({{"revision",session.snapshotView().at("revision")},{"status","not_converged"},{"values",Json::array()}});require(!model.numericValue(7,0),"failed calculation removes prior numeric spill selection values");
+      |                                                                                              ^~~~~~~~~~~~
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp:17:339: error: ‘class tigersheets::WorksheetModel’ has no member named ‘numericValue’
+   17 |  model.setData(model.index(6,0),"=8+9",Qt::EditRole);require(!model.numericValue(6,0)&&model.numericValue(0,0)==42,"stale formula values are omitted while literal numeric input remains available");model.setCalculated({{"revision",session.snapshotView().at("revision")},{"status","not_converged"},{"values",Json::array()}});require(!model.numericValue(7,0),"failed calculation removes prior numeric spill selection values");
+      |                                                                                                                                                                                                                                                                                                                                                   ^~~~~~~~~~~~
+ninja: build stopped: subcommand failed.

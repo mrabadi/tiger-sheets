@@ -1,0 +1,51 @@
+{
+  "calculationMs": [
+    833.21953,
+    827.502505,
+    845.559429
+  ],
+  "cells": 100000,
+  "formulas": 20000,
+  "inputMeasurement": "WorksheetModel::setData; excludes rendering and desktop recovery checkpoint",
+  "modelEditBelow50ms": false,
+  "modelEditMs": [
+    399.675764,
+    390.701263,
+    383.250358,
+    377.864681,
+    392.425131,
+    422.456195,
+    428.823037,
+    401.427545,
+    403.216065,
+    390.374576,
+    391.783341
+  ],
+  "modelEditP95Ms": 428.823037,
+  "ordinaryCalculationBelow1000ms": true,
+  "referenceMachineMatch": false,
+  "sheets": 20
+}
+	Command being timed: "build-release/performance_benchmark 100000 docs/validation/performance-release-100k.json"
+	User time (seconds): 7.38
+	System time (seconds): 0.39
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.82
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 599320
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 208756
+	Voluntary context switches: 2
+	Involuntary context switches: 1733
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

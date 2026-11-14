@@ -1,0 +1,2 @@
+{"elapsedMs":2180,"longestUiDispatchMs":451.783916,"sourceCells":100000}
+Preparing and publishing a report must keep cancellation and UI dispatch below 100 ms

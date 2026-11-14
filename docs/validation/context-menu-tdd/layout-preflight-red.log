@@ -1,0 +1,4 @@
+tests/worksheet_layout_ooxml_tests.cpp: In function ‘int main()’:
+tests/worksheet_layout_ooxml_tests.cpp:15:2: error: ‘preflightWorksheetStructure’ was not declared in this scope
+   15 |  preflightWorksheetStructure(twice,twice.workbook.at("sheets")[0].at("id"));
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,67 @@
+{
+  "status": "failed",
+  "commands": [
+    {
+      "argv": [
+        "dpkg-deb",
+        "-f",
+        "/workspace/tiger-sheets/build-release/tiger-sheets_0.2.0~dev.1_amd64.deb"
+      ],
+      "returncode": 0,
+      "stdout": "Architecture: amd64\nDepends: qt6-qpa-plugins, qt6-wayland, libc6 (>= 2.34), libgcc-s1 (>= 4.2), libpugixml1v5 (>= 1.11), libqt6core6 (>= 6.2.0), libqt6gui6 (>= 6.1.2), libqt6printsupport6 (>= 6.1.2), libqt6widgets6 (>= 6.1.2), libseccomp2 (>= 0.0.0~20120605), libsqlite3-0 (>= 3.8.7), libstdc++6 (>= 12), libzip4 (>= 1.0)\nDescription: TigerSheets development build\n Local TigerSheets development build. Excel and VBA compatibility is incomplete; this package is for local evaluation.\nMaintainer: TigerSheets contributors\nPackage: tiger-sheets\nPriority: optional\nSection: math\nVersion: 0.2.0~dev.1\nInstalled-Size: 227688\n\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/workspace/tiger-sheets/build-release/tiger-sheets_0.2.0~dev.1_amd64.deb",
+        "/tmp/tigersheets-package-verify-q44bwu9q/stage"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "readelf",
+        "-d",
+        "/tmp/tigersheets-package-verify-q44bwu9q/stage/usr/bin/tiger-sheets"
+      ],
+      "returncode": 0,
+      "stdout": "\nDynamic section at offset 0x1326830 contains 40 entries:\n  Tag        Type                         Name/Value\n 0x0000000000000001 (NEEDED)             Shared library: [libzip.so.4]\n 0x0000000000000001 (NEEDED)             Shared library: [libpugixml.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libpagmo.so.9]\n 0x0000000000000001 (NEEDED)             Shared library: [libsqlite3.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libQt6PrintSupport.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libQt6Widgets.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libQt6Gui.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libQt6Core.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]\n 0x000000000000001d (RUNPATH)            Library runpath: [$ORIGIN/../lib/tiger-sheets]\n 0x000000000000000c (INIT)               0x138000\n 0x000000000000000d (FINI)               0xec1810\n 0x0000000000000019 (INIT_ARRAY)         0x11dea08\n 0x000000000000001b (INIT_ARRAYSZ)       1392 (bytes)\n 0x000000000000001a (FINI_ARRAY)         0x11def78\n 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)\n 0x000000006ffffef5 (GNU_HASH)           0x3d8\n 0x0000000000000005 (STRTAB)             0xa518\n 0x0000000000000006 (SYMTAB)             0x7f8\n 0x000000000000000a (STRSZ)              59890 (bytes)\n 0x000000000000000b (SYMENT)             24 (bytes)\n 0x0000000000000015 (DEBUG)              0x0\n 0x0000000000000003 (PLTGOT)             0x1327af0\n 0x0000000000000002 (PLTRELSZ)           24288 (bytes)\n 0x0000000000000014 (PLTREL)             RELA\n 0x0000000000000017 (JMPREL)             0x131438\n 0x0000000000000007 (RELA)               0x1a048\n 0x0000000000000008 (RELASZ)             1143792 (bytes)\n 0x0000000000000009 (RELAENT)            24 (bytes)\n 0x000000000000001e (FLAGS)              BIND_NOW\n 0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE\n 0x000000006ffffffe (VERNEED)            0x19c28\n 0x000000006fffffff (VERNEEDNUM)         9\n 0x000000006ffffff0 (VERSYM)             0x18f0a\n 0x000000006ffffff9 (RELACOUNT)          46156\n 0x0000000000000000 (NULL)               0x0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ldd",
+        "/tmp/tigersheets-package-verify-q44bwu9q/stage/usr/bin/tiger-sheets"
+      ],
+      "returncode": 0,
+      "stdout": "\tlinux-vdso.so.1 (0x00007ffc31e35000)\n\tlibzip.so.4 => /lib/x86_64-linux-gnu/libzip.so.4 (0x000076a0e478d000)\n\tlibpugixml.so.1 => /lib/x86_64-linux-gnu/libpugixml.so.1 (0x000076a0e33c4000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000076a0e32dd000)\n\tlibpagmo.so.9 => /tmp/tigersheets-package-verify-q44bwu9q/stage/usr/bin/../lib/tiger-sheets/libpagmo.so.9 (0x000076a0e1e00000)\n\tlibsqlite3.so.0 => /lib/x86_64-linux-gnu/libsqlite3.so.0 (0x000076a0e3190000)\n\tlibQt6PrintSupport.so.6 => /lib/x86_64-linux-gnu/libQt6PrintSupport.so.6 (0x000076a0e1d7f000)\n\tlibQt6Widgets.so.6 => /lib/x86_64-linux-gnu/libQt6Widgets.so.6 (0x000076a0e1600000)\n\tlibQt6Gui.so.6 => /lib/x86_64-linux-gnu/libQt6Gui.so.6 (0x000076a0e0e00000)\n\tlibQt6Core.so.6 => /lib/x86_64-linux-gnu/libQt6Core.so.6 (0x000076a0e0800000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x000076a0e0400000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000076a0e476b000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000076a0e0000000)\n\t/lib64/ld-linux-x86-64.so.2 (0x000076a0e47ca000)\n\tlibbz2.so.1.0 => /lib/x86_64-linux-gnu/libbz2.so.1.0 (0x000076a0e317d000)\n\tlibcrypto.so.3 => /lib/x86_64-linux-gnu/libcrypto.so.3 (0x000076a0dfa00000)\n\tlibz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x000076a0e3161000)\n\tlibboost_serialization.so.1.74.0 => /tmp/tigersheets-package-verify-q44bwu9q/stage/usr/bin/../lib/tiger-sheets/libboost_serialization.so.1.74.0 (0x000076a0e0d45000)\n\tlibtbb.so.12 => /tmp/tigersheets-package-verify-q44bwu9q/stage/usr/bin/../lib/tiger-sheets/libtbb.so.12 (0x000076a0e15ac000)\n\tlibEGL.so.1 => /lib/x86_64-linux-gnu/libEGL.so.1 (0x000076a0e314e000)\n\tlibfontconfig.so.1 => /lib/x86_64-linux-gnu/libfontconfig.so.1 (0x000076a0e07b6000)\n\tlibX11.so.6 => /lib/x86_64-linux-gnu/libX11.so.6 (0x000076a0e0676000)\n\tlibglib-2.0.so.0 => /lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x000076a0e02c5000)\n\tlibQt6DBus.so.6 => /lib/x86_64-linux-gnu/libQt6DBus.so.6 (0x000076a0dff28000)\n\tlibxkbcommon.so.0 => /lib/x86_64-linux-gnu/libxkbcommon.so.0 (0x000076a0e062f000)\n\tlibGLX.so.0 => /lib/x86_64-linux-gnu/libGLX.so.0 (0x000076a0e0291000)\n\tlibOpenGL.so.0 => /lib/x86_64-linux-gnu/libOpenGL.so.0 (0x000076a0e0265000)\n\tlibpng16.so.16 => /lib/x86_64-linux-gnu/libpng16.so.16 (0x000076a0e022a000)\n\tlibharfbuzz.so.0 => /lib/x86_64-linux-gnu/libharfbuzz.so.0 (0x000076a0dfe59000)\n\tlibmd4c.so.0 => /lib/x86_64-linux-gnu/libmd4c.so.0 (0x000076a0e313c000)\n\tlibfreetype.so.6 => /lib/x86_64-linux-gnu/libfreetype.so.6 (0x000076a0df938000)\n\tlibicui18n.so.70 => /lib/x86_64-linux-gnu/libicui18n.so.70 (0x000076a0df600000)\n\tlibicuuc.so.70 => /lib/x86_64-linux-gnu/libicuuc.so.70 (0x000076a0df405000)\n\tlibzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x000076a0df336000)\n\tlibdouble-conversion.so.3 => /lib/x86_64-linux-gnu/libdouble-conversion.so.3 (0x000076a0e1d6a000)\n\tlibb2.so.1 => /lib/x86_64-linux-gnu/libb2.so.1 (0x000076a0e158e000)\n\tlibpcre2-16.so.0 => /lib/x86_64-linux-gnu/libpcre2-16.so.0 (0x000076a0df2ac000)\n\tlibGLdispatch.so.0 => /lib/x86_64-linux-gnu/libGLdispatch.so.0 (0x000076a0df1f4000)\n\tlibexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x000076a0df1c2000)\n\tlibuuid.so.1 => /lib/x86_64-linux-gnu/libuuid.so.1 (0x000076a0e3133000)\n\tlibxcb.so.1 => /lib/x86_64-linux-gnu/libxcb.so.1 (0x000076a0df198000)\n\tlibpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x000076a0df122000)\n\tlibdbus-1.so.3 => /lib/x86_64-linux-gnu/libdbus-1.so.3 (0x000076a0df0d4000)\n\tlibgraphite2.so.3 => /lib/x86_64-linux-gnu/libgraphite2.so.3 (0x000076a0df0ac000)\n\tlibbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x000076a0e0d37000)\n\tlibicudata.so.70 => /lib/x86_64-linux-gnu/libicudata.so.70 (0x000076a0dd400000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x000076a0df062000)\n\tlibXau.so.6 => /lib/x86_64-linux-gnu/libXau.so.6 (0x000076a0e0d31000)\n\tlibXdmcp.so.6 => /lib/x86_64-linux-gnu/libXdmcp.so.6 (0x000076a0dfe51000)\n\tlibsystemd.so.0 => /lib/x86_64-linux-gnu/libsystemd.so.0 (0x000076a0dd339000)\n\tlibbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x000076a0df03f000)\n\tlibbsd.so.0 => /lib/x86_64-linux-gnu/libbsd.so.0 (0x000076a0df027000)\n\tliblzma.so.5 => /lib/x86_64-linux-gnu/liblzma.so.5 (0x000076a0dd30e000)\n\tliblz4.so.1 => /lib/x86_64-linux-gnu/liblz4.so.1 (0x000076a0dd2ee000)\n\tlibcap.so.2 => /lib/x86_64-linux-gnu/libcap.so.2 (0x000076a0dfe46000)\n\tlibgcrypt.so.20 => /lib/x86_64-linux-gnu/libgcrypt.so.20 (0x000076a0dd1ae000)\n\tlibmd.so.0 => /lib/x86_64-linux-gnu/libmd.so.0 (0x000076a0dd1a1000)\n\tlibgpg-error.so.0 => /lib/x86_64-linux-gnu/libgpg-error.so.0 (0x000076a0dd17b000)\n",
+      "stderr": ""
+    }
+  ],
+  "limitations": [
+    "Private extraction uses this Ubuntu host and its installed runtime libraries; it is not a clean VM install.",
+    "The desktop version probe uses Qt offscreen. Native keyboard and accessibility evidence is recorded separately."
+  ],
+  "package": "/workspace/tiger-sheets/build-release/tiger-sheets_0.2.0~dev.1_amd64.deb",
+  "sha256": "23da00ebe644b846647cfdef92bb732c741374dbc5878c4a217232c9d0ae631b",
+  "control": {
+    "Architecture": "amd64",
+    "Depends": "qt6-qpa-plugins, qt6-wayland, libc6 (>= 2.34), libgcc-s1 (>= 4.2), libpugixml1v5 (>= 1.11), libqt6core6 (>= 6.2.0), libqt6gui6 (>= 6.1.2), libqt6printsupport6 (>= 6.1.2), libqt6widgets6 (>= 6.1.2), libseccomp2 (>= 0.0.0~20120605), libsqlite3-0 (>= 3.8.7), libstdc++6 (>= 12), libzip4 (>= 1.0)",
+    "Description": "TigerSheets development build\n Local TigerSheets development build. Excel and VBA compatibility is incomplete; this package is for local evaluation.",
+    "Maintainer": "TigerSheets contributors",
+    "Package": "tiger-sheets",
+    "Priority": "optional",
+    "Section": "math",
+    "Version": "0.2.0~dev.1",
+    "Installed-Size": "227688"
+  },
+  "manifest": "passed",
+  "binaries": {
+    "usr/bin/tiger-sheets": "dc9d6d1a65f461842d33e46a01243007d4ebd58d61b5c1133104052e21fd5cc3"
+  },
+  "error": "Staged app resolved pagmo outside its bundled runtime directory"
+}

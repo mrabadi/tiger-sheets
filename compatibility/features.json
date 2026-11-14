@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {"id":"native-workspace","scope":"required"},
+    {"id":"reference-transformations","scope":"required"},
+    {"id":"clipboard-paste-special","scope":"required"},
+    {"id":"xlsx-preservation","scope":"required"},
+    {"id":"xlsm-authoring","scope":"required"},
+    {"id":"csv","scope":"required"},
+    {"id":"charts-all-local-families","scope":"required"},
+    {"id":"pivot-tables-and-charts","scope":"required"},
+    {"id":"sensitivity-tables","scope":"required"},
+    {"id":"goal-seek","scope":"required"},
+    {"id":"solver-lp-mip-nonlinear-evolutionary","scope":"required"},
+    {"id":"scenario-manager","scope":"required"},
+    {"id":"iterative-circular-models","scope":"required"},
+    {"id":"local-workbook-links","scope":"required"},
+    {"id":"vba-runtime-and-object-model","scope":"required"},
+    {"id":"vba-editor-recorder-debugger-userforms","scope":"required"},
+    {"id":"vba-events-and-udfs","scope":"required"},
+    {"id":"codex-preview-transactions","scope":"required"},
+    {"id":"recovery-and-atomic-save","scope":"required"},
+    {"id":"performance-budgets","scope":"required"},
+    {"id":"ubuntu-accessibility-and-packaging","scope":"required"}
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "identities": {
+    "include/tigersheets/financial_model_pane.hpp": {
+      "sha256": "33899f9a4acaf162258918f8dd3d1061b576ec5424ca26280d0d06a5548df432",
+      "bytes": 1251
+    },
+    "src/financial_model_pane.cpp": {
+      "sha256": "3a818cc8a984b3b6b2a1c61f6fa77c209ffaea8b6e35409a1a26542b15b12466",
+      "bytes": 54299
+    },
+    "tests/financial_model_pane_tests.cpp": {
+      "sha256": "d6e59d2b0d7d5df35c49c21ec1c8e845c1470a8b77fb4373157233a07956788e",
+      "bytes": 21844
+    },
+    "src/iteration_controls.cpp": {
+      "sha256": "249eac9a7063b8078cea33dd2fe07ddc60119700ff7c191b1273c92be30e5f09",
+      "bytes": 4759
+    },
+    "include/tigersheets/iteration_controls.hpp": {
+      "sha256": "67566d35ae329aa823f5c0c15659056d48c161f367df84f144b0a3e29ce5e870",
+      "bytes": 613
+    },
+    "docs/validation/forecast-tdd/ui-sanitizer.log": {
+      "sha256": "ba9c7fa4fa8c4a779f0afb3184ddebc7738d9c486e7c5629c3f700b20c5299ca",
+      "bytes": 128
+    },
+    "docs/validation/forecast-tdd/ui-stale-status-green.log": {
+      "sha256": "ba9c7fa4fa8c4a779f0afb3184ddebc7738d9c486e7c5629c3f700b20c5299ca",
+      "bytes": 128
+    },
+    "docs/validation/forecast-tdd/ui-keyboard-verify.log": {
+      "sha256": "ba9c7fa4fa8c4a779f0afb3184ddebc7738d9c486e7c5629c3f700b20c5299ca",
+      "bytes": 128
+    },
+    "tests/financial_acceptance_tests.cpp": {
+      "sha256": "1f2f80bd77a773a826058128868affa8db59803e85e68848e0060ede8b2046af",
+      "bytes": 12715
+    },
+    "tests/financial_acceptance_inspector.py": {
+      "sha256": "560762574c428f7f892ea5c0e485358394aa602caf3dca7b570599d691d423e6",
+      "bytes": 9076
+    },
+    "docs/validation/forecast-tdd/acceptance.log": {
+      "sha256": "8ac1a4259c2e002fce120290e2b6255e30fc0e4363e17e45fd332be28f5e1f28",
+      "bytes": 226
+    },
+    "docs/validation/forecast-tdd/acceptance-independent.json": {
+      "sha256": "0e11f546083282fde1c72f64f8544c7a389d38b6708cea8c3bc52c4ebd603580",
+      "bytes": 1072
+    },
+    "/tmp/tigersheets-financial-pane/tests": {
+      "sha256": "5e07f71d00a56941a8750cdce62ecb445c00564751384157770e89556a21674b",
+      "bytes": 1721440
+    },
+    "/tmp/tigersheets-financial-pane-asan/tests": {
+      "sha256": "bf072c3ae8554bbbe66536b59bd3759df70a612b3e95d7d6877a7e4a45e2b976",
+      "bytes": 14751944
+    },
+    "/tmp/tigersheets-financial-acceptance": {
+      "sha256": "26db0971541f96223249d20373bb3155e7c07f38215a92accf5202c1fe484020",
+      "bytes": 27139008
+    }
+  },
+  "boundary": "Pane objects/test and iteration widget instrumented; system Qt uninstrumented. Native application/worker broad run is parent-coordinated."
+}

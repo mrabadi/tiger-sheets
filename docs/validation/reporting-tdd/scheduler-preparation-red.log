@@ -1,0 +1,30 @@
+[0/2] Re-checking globbed directories...
+[1/2] Re-running CMake...
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/tiger-sheets/build-release
+[0/2] Re-checking globbed directories...
+[1/11] Building CXX object CMakeFiles/tigersheets_calculation.dir/src/calculation.cpp.o
+[2/11] Linking CXX static library libtigersheets_calculation.a
+[3/11] Building CXX object CMakeFiles/tigersheets_charts.dir/src/chart.cpp.o
+[4/11] Building CXX object CMakeFiles/tigersheets_charts.dir/src/chart_editor.cpp.o
+[5/11] Linking CXX static library libtigersheets_charts.a
+[6/11] Building CXX object CMakeFiles/tigersheets_scheduler.dir/src/calculation_scheduler.cpp.o
+[7/11] Building CXX object CMakeFiles/tigersheets_vba.dir/src/vba.cpp.o
+[8/11] Linking CXX static library libtigersheets_vba.a
+[9/11] Linking CXX static library libtigersheets_scheduler.a
+[10/11] Building CXX object CMakeFiles/scheduler_preparation_tests.dir/tests/scheduler_preparation_tests.cpp.o
+FAILED: CMakeFiles/scheduler_preparation_tests.dir/tests/scheduler_preparation_tests.cpp.o
+/usr/bin/c++ -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/workspace/tiger-sheets/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -O3 -DNDEBUG -fPIC -std=c++20 -MD -MT CMakeFiles/scheduler_preparation_tests.dir/tests/scheduler_preparation_tests.cpp.o -MF CMakeFiles/scheduler_preparation_tests.dir/tests/scheduler_preparation_tests.cpp.o.d -o CMakeFiles/scheduler_preparation_tests.dir/tests/scheduler_preparation_tests.cpp.o -c /workspace/tiger-sheets/tests/scheduler_preparation_tests.cpp
+/workspace/tiger-sheets/tests/scheduler_preparation_tests.cpp: In function ‘int main(int, char**)’:
+/workspace/tiger-sheets/tests/scheduler_preparation_tests.cpp:7:338: error: no matching function for call to ‘tigersheets::CalculationScheduler::request(std::remove_reference<nlohmann::basic_json<>&>::type, main(int, char**)::<lambda(tigersheets::Json)>)’
+    7 | int main(int argc,char** argv){QCoreApplication app(argc,argv);Json result;CalculationScheduler scheduler;scheduler.onResult=[&](Json value){result=std::move(value);};Json book={{"revision",7},{"sheets",Json::array({{{"id","s"},{"name","Sheet1"},{"cells",Json::array({{{"row",1},{"col",1},{"input","=Driver*2"}}})}}})}};scheduler.request(std::move(book),[](Json owned){if(QThread::currentThread()==QCoreApplication::instance()->thread())throw std::runtime_error("calculation preparation must run off the event loop");owned["names"]={{"Driver","7"}};owned["_tigersheetsContextGeneration"]=13;return owned;});QElapsedTimer timer;timer.start();while(result.is_null()&&timer.elapsed()<5000)app.processEvents();if(result.value("status",std::string())!="ok"||result.at("values")[0].at("value")!=14||result.value("contextGeneration",0)!=13){std::cerr<<"immutable captured inputs are prepared off-thread and results retain their linked-input generation\n";return 1;}std::cout<<"scheduler preparation passed\n";}
+      |                                                                                                                                                                                                                                                                                                                                 ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /workspace/tiger-sheets/tests/scheduler_preparation_tests.cpp:1:
+/workspace/tiger-sheets/include/tigersheets/calculation_scheduler.hpp:15:7: note: candidate: ‘void tigersheets::CalculationScheduler::request(tigersheets::Json)’
+   15 |  void request(Json workbook);
+      |       ^~~~~~~
+/workspace/tiger-sheets/include/tigersheets/calculation_scheduler.hpp:15:7: note:   candidate expects 1 argument, 2 provided
+ninja: build stopped: subcommand failed.

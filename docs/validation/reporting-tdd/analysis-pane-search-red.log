@@ -1,0 +1,8 @@
+tests/pivot_fields_pane_tests.cpp: In function ‘void {anonymous}::boundedMemberSearchPreservesHiddenSelections()’:
+tests/pivot_fields_pane_tests.cpp:22:7: error: ‘class tigersheets::PivotFieldsPane’ has no member named ‘memberSearchRequested’
+   22 |  pane.memberSearchRequested=[&](QString field,QString query){if(field=="Region"&&query=="Case99999"){searched=true;pane.setMemberResults(field,Json::array({{{"type","string"},{"value","Case99999"}}}),100000);}};
+      |       ^~~~~~~~~~~~~~~~~~~~~
+tests/pivot_fields_pane_tests.cpp: In lambda function:
+tests/pivot_fields_pane_tests.cpp:22:121: error: ‘class tigersheets::PivotFieldsPane’ has no member named ‘setMemberResults’
+   22 |  pane.memberSearchRequested=[&](QString field,QString query){if(field=="Region"&&query=="Case99999"){searched=true;pane.setMemberResults(field,Json::array({{{"type","string"},{"value","Case99999"}}}),100000);}};
+      |                                                                                                                         ^~~~~~~~~~~~~~~~

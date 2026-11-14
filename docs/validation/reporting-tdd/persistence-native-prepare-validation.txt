@@ -1,0 +1,101 @@
+Native report preparation optimization — 2026-11-11
+
+Verified RED: tests/prepared_native_tests.cpp allocationAndAtomicHistory, old release core:
+  native report preparation must retain the owned source allocation without cloning
+Evidence: persistence-native-prepare-red.log
+
+Exact-capacity stage attribution, optimized g++ -O2 local harness, 100000 records x10 fields:
+  Before: constructor2604.10ms; genericApply3770.02ms; factory6592.88ms;
+          source allocation retained=false; generic root retirement592.74ms.
+  After: constructor89.86ms; genericApply863.45ms; factory214.49ms;
+         source allocation retained=true; generic root retirement584.08ms.
+Evidence: persistence-native-prepare-profile-{red,green}.log
+The fixture has 1,000,000 data cells plus ten headers, no formulas; these numbers isolate
+preparation and do not qualify the complete desktop creation target or the earlier
+mixed/formula-rich headless pipeline. The original separate full desktop result was
+24,472ms; a new actual desktop qualification must follow all frontend/worker changes.
+
+Canonical validation RED: optional `prepared_native_tests canonical` measured3860.30ms,
+failed requirement<1000ms. GREEN114.77ms. This measured threshold is optional and is
+not a timing assertion in the normal CTest run.
+Evidence: persistence-canonical-{red,green}.log
+
+Implementation:
+- Fully validate each input, style, address and metadata. Ordered canonical cells take
+  one linear pass. Unsorted input is still sorted, then checked for duplicate addresses.
+- In factory only, after source validation, a bounded same-anchor native replacement
+  can temporarily move immutable other-sheet cell arrays out of the generic clone/diff.
+  Destination cells, all metadata and existing pivot guards remain present for checking.
+  Scope restoration returns the same source allocation on failure and before publication.
+- Generic fallback covers moves, foreign operations and owner cells outside the destination.
+- No change to transaction, undo, revision, recovery or native validation formats.
+
+Focused GREEN release CTests: session_tests, session_foundation_tests, session_lookup_tests,
+prepared_session_tests, prepared_native_tests, pivot_conversion_tests (6/6,0.61s).
+Evidence: persistence-prepared-focused-{build,ctest}.log
+New native tests compare exact candidate/history/recovery/undo/redo against generic apply,
+cover refresh with custom styles/unowned cells, no-op, move+cross-sheet formula rewriting,
+stray-owner fallback and explicit static conversion. They also refuse occupied output,
+invalid style/cache revision/name/native metadata/source input, and stale publication;
+explicit exception unwinding verifies full source restoration and allocation retention.
+
+Sanitizer and broader final build results are separate executed records.
+
+Additional classifier parity RED/GREEN: a non-string source pivotOwner tag must still
+be rejected by general ownership validation. The bounded path now falls back for
+malformed owner tags as well as matching owner cells. Evidence:
+persistence-native-owner-{red,green}.log. The previous ASan/UBSan fixture run passed
+all lifetime/restoration cases (detect_leaks=0); it preceded this additional
+non-string-owner conditional. Evidence: persistence-native-prepare-asan.log.
+
+Native new-worksheet Undo/Redo allocation cycle:
+RED exact1m: Undo897.22ms / Redo721.27ms; both source allocations replaced.
+Evidence: persistence-native-history-red.log.
+The guarded history path preserves arrays only for stable worksheet identities
+untouched by a bounded whole-sheet insertion/removal/metadata patch. Any interior
+worksheet edit or unsupported patch operation uses the general patch path. Original
+arrays and top-level removed/replaced metadata remain owned until success, and
+exception unwinding restores the complete original workbook. Patch and recovery
+payload formats stay unchanged. Tests cover multiple new worksheets, source-cell
+edit fallback and failed patch restoration of both source and cache metadata.
+
+Source-retention GREEN: Undo212.51ms / Redo67.57ms (same allocation retained).
+Evidence: persistence-native-history-profile-green.log. This was an allocation
+qualification, not a latency qualification. The next explicit<100 ms RED measured
+Undo298.04ms / Redo97.09ms under concurrent sanitizer builds. A further bounded
+metadata projection avoided redundant cache cloning, but the loaded timing attempt
+still failed: Undo192.13ms / Redo80.60ms. Evidence:
+persistence-native-history-latency-{red,attempt-1}.log.
+A quiet release-binary measurement follows the final build; no<100 ms Undo claim
+is established by those loaded attempts.
+
+Final executed validation, all production sources frozen:
+  cmake --build build-release -j2
+  ctest --test-dir build-release --output-on-failure -j2 --output-junit <absolute-log-path>
+Result: all 109 build steps succeeded;82/82 CTests passed,0 failed,22.96 s.
+Evidence: persistence-performance-final-build.log;
+persistence-performance-final-ctest.log; persistence-performance-final-ctest.xml.
+Final binary sizes/SHA256: persistence-performance-final-identities.json.
+Actual app version: TigerSheets 0.2.0~dev.1 (the log retains exact spaced CLI output).
+Actual default full-release CPack executed and refused with RELEASE BLOCKED/exit1;
+this remains the intended guard while full Excel/VBA acceptance is incomplete.
+Evidence: persistence-performance-final-{app-version,release-gate}.log.
+
+QUIET final release-binary native new-sheet Undo/Redo measurement:
+  build-release/prepared_native_tests history
+  Undo 126.438 ms; Redo 35.537 ms; original source allocation retained in both.
+  Process exit1: explicit<100 ms Undo/Redo qualification FAILED because Undo 126.438 ms.
+Evidence: persistence-native-history-quiet-final.log.
+The full source-cloning regression is fixed; this bounded implementation still
+incurs cache-metadata removal/destruction work, and does not establish<100 ms Undo
+for this capacity. No timing threshold was relaxed and no further product edits
+followed the final normal build/test record.
+
+Latest focused ASan+UBSan extension includes the current Session/history projection,
+prepared_native_tests semantics/allocation/rollback cases, source-cache pure pivot,
+native-worker protocol and MainWindow calculation-capture lifetime tests. All passed
+with detect_leaks=0. Evidence: analysis-current-native-prepared-sanitizer.log;
+analysis-current-cache-{pivot,worker,lifetime}-sanitizer.log;
+analysis-current-cache-sanitizer-identities.json.
+Final Rust bridge 4 tests and copied pinned engine 2767 unit + 23 doc tests pass;
+8 engine tests remain ignored. Final evidence owned by analysis peer.

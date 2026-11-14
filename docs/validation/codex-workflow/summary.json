@@ -1,0 +1,73 @@
+{
+  "generatedUtc": "2026-11-11T22:28:58.215937+00:00",
+  "developmentVersion": "0.1.0~dev.2",
+  "platform": "Linux; host-specific system details redacted",
+  "optimized": {
+    "tests": 43,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "record": "ctest-release.xml"
+  },
+  "sanitizers": {
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "record": "ctest-sanitizer.xml"
+  },
+  "sanitizerOptions": {
+    "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+  },
+  "sourceSha256": {
+    "CMakeLists.txt": "09ff5d353709749b68a82a47561992ea17769015cbdb3e0efacb59a8d26046b2",
+    "cmake/CPackGate.cmake.in": "d15a1a718e0d18e65acf812c7a8a734d428980090a33dd30590be68627272581",
+    "include/tigersheets/codex.hpp": "2d0c82a26a7511b7ecc254fb5b2602fc43fba8bd622cc6ab30ca1f730f63ee63",
+    "include/tigersheets/codex_controls.hpp": "19ebc32e2ef6b93190aad40eacffea9597acadb100b3fa05d4aa6a7e9116143c",
+    "include/tigersheets/workbook_tools.hpp": "5faf3ee947e8657d72ed9452057114fc953019e591e51dec9e76ae79649fe324",
+    "src/codex.cpp": "434146a6dcc3bd8c967900cdf5318c2445becdcba6d2f23b5cb5187bfa926689",
+    "src/codex_controls.cpp": "bd133ff689a7583d97bb396992e27cb9b0afce1de162d851b98bc21f4253be11",
+    "src/workbook_tools.cpp": "9626bd178ea5e27d208f4b05d7645f511d8cdd082af1309dd7ca5b05154a10ec",
+    "src/main_window.cpp": "f4e34a19078623d4b77bef49673c42b86534dc13bb119f42581b7332ab978687",
+    "schemas/workbook.v1.json": "1ae2c80044df765b776bb7c19a2a502526f623db2a1940834d7b8655f6deffc3",
+    "tests/codex_tests.cpp": "ea0b15c3819f34c08d5e8e0b3442d45190130134fe31f163d95b67e31af5dd34",
+    "tests/codex_controls_tests.cpp": "0d97b07e3e5509a0ece3f88e28878ef3acc1752933cda9f6126ea1c1afa458be",
+    "tests/codex_workspace_tests.cpp": "76b0dcadc25a2f3673afcea0536c06b986377b8ddef7f4743308310b12e15072",
+    "tests/codex_panel_integration_tests.cpp": "241c9830f3bd67e03fc01d6c8c760feec44e8a7a620b9a9669aaacdb03153a6b",
+    "tests/codex_financial_workflow_tests.cpp": "4d9f7b29c4a45c9f954e55f902f1e277fd91317bda5dc7b422f958043e00e0a1",
+    "tests/workbook_tools_tests.cpp": "4c64b862b772ae49852a88d214e1b77e913816eba4a773331f74d2edcdc04c97"
+  },
+  "buildBinarySha256": "8b9b09971d437b6692741c39d6db07c96aab8297c8d27aab0c4249ab47e31146",
+  "verification": {
+    "realQtMainWindow": true,
+    "deterministicFakeAppServer": true,
+    "liveAuthenticatedModel": false,
+    "newModelControlsSendWireValues": true,
+    "pendingForecastCalculatedReadback": true,
+    "sequentialDataAndChartPreviewsRetained": true,
+    "acceptOneUndo": true,
+    "nativeChartEditing": true,
+    "xlsxReopen": true,
+    "existingChartsPreserved": true,
+    "invalidChartAndMacroEnablementRejected": true,
+    "visualInspection": true
+  },
+  "artifacts": [
+    "settings-panel.png",
+    "financial-workflow.png",
+    "Cedar-Ridge-Analytics.xlsx"
+  ],
+  "packageAudit": "package-audit.json",
+  "notes": [
+    "Live model inference was not run. Scripted tool calls test the desktop/protocol/workbook integration.",
+    "LeakSanitizer fails under environment ptrace restrictions; ASan/UBSan were rerun with leak detection disabled.",
+    "The fake process log reader was corrected to wait for complete NDJSON records after larger schemas exposed a partial-read race.",
+    "The original complete Excel release contract remains unqualified; this is a development installer."
+  ],
+  "independentOpenXmlCheck": {
+    "checks": 8,
+    "failures": 0,
+    "record": "independent-xlsx.json"
+  }
+}

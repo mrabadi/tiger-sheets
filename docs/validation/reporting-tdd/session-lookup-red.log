@@ -1,0 +1,2 @@
+{"checksum":499815000,"lookupMs":3824.498293,"lookups":10000,"populatedCells":100000}
+sparse lookup must use random-access binary search, without linear iterator traversal

@@ -1,0 +1,7 @@
+Command: cmake --build build-release --target worksheet_validation_tests -j2
+Exit: 0
+[1/5] Building CXX object CMakeFiles/tigersheets_validation.dir/src/worksheet_validation.cpp.o
+[2/5] Linking CXX static library libtigersheets_validation.a
+[3/5] Building CXX object CMakeFiles/tigersheets_core.dir/src/session.cpp.o
+[4/5] Linking CXX static library libtigersheets_core.a
+[5/5] Linking CXX executable worksheet_validation_tests

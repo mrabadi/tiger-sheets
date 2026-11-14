@@ -1,0 +1,5 @@
+[1/4] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot_ownership.cpp.o
+[2/4] Linking CXX static library libworksheet_core.a
+[3/4] Building CXX object CMakeFiles/scheduler_tests.dir/workspace/tiger-sheets/tests/scheduler_tests.cpp.o
+[4/4] Linking CXX executable scheduler_tests
+FAILED: worker must publish a compact formula/spill display cache while retaining complete typed calculation values

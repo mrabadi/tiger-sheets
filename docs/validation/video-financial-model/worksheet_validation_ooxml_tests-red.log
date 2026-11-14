@@ -1,0 +1,3 @@
+Command: /tmp/worksheet_validation_ooxml_tests (fresh C++ source; existing CMake compilation/link flags)
+Exit: 1
+FAILED: native list data validation must survive XLSX save/reopen

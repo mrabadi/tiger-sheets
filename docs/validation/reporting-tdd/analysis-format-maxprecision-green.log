@@ -1,0 +1,14 @@
+   Compiling ironcalc_base v0.9.1 (/tmp/tigersheets-final-engine-VU7KwD)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 11.64s
+     Running unittests src/lib.rs (/tmp/tigersheets-ironcalc-conformance-v0.9.1/target/debug/deps/ironcalc_base-12b03fbe7e8f6c7d)
+
+running 6 tests
+test test::test_number_format::test_wrong_locale ... ok
+test test::test_number_format::test_large_integer_display_precision ... ok
+test test::test_number_format::test_maximum_zeros ... ok
+test test::test_number_format::test_simple_format ... ok
+test test::test_number_format::test_decimal_display_half_away ... ok
+test test::test_number_format::test_leading_comma_text ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 2769 filtered out; finished in 0.01s
+

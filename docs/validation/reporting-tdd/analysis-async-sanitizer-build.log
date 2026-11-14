@@ -1,0 +1,13 @@
+ninja: Entering directory `/tmp/tigersheets-reporting-worksheet/asan'
+[1/2] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/calculation.cpp.o
+[2/2] Linking CXX static library libworksheet_core.a
+Compiling src/main_window.cpp
+Compiling src/codex.cpp
+Compiling src/workbook_tools.cpp
+Compiling src/snapshot_capture.cpp
+Compiling tests/codex_host_tool_tests.cpp
+Compiling tests/codex_financial_workflow_tests.cpp
+Compiling tests/prepared_session_tests.cpp
+Compiling tests/snapshot_capture_tests.cpp
+Recompiling final source src/main_window.cpp
+Recompiling final source tests/manual_calculation_tests.cpp

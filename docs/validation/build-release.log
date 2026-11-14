@@ -1,0 +1,13 @@
+[0/2] Re-checking globbed directories...
+[1/12] Building CXX object CMakeFiles/ooxml_tests.dir/tests/ooxml_tests.cpp.o
+[2/12] Building CXX object CMakeFiles/tigersheets_io.dir/src/ooxml.cpp.o
+[3/12] Linking CXX static library libtigersheets_io.a
+[4/12] Linking CXX executable csv_tests
+[5/12] Linking CXX executable ooxml_tests
+[6/12] Linking CXX executable robustness_mutation_tests
+[7/12] Linking CXX executable workbook_links_tests
+[8/12] Linking CXX executable tiger-sheets
+[9/12] Linking CXX executable workspace_tests
+[10/12] Linking CXX executable workbook_ui_links_tests
+[11/12] Linking CXX executable preview_ui_tests
+[12/12] Linking CXX executable financial_model_tests

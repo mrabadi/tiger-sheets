@@ -1,0 +1,11 @@
+functions: 215 required entries without passing evidence
+shortcuts: 190 required entries without passing evidence
+features: 21 required entries without passing evidence
+RELEASE BLOCKED: functions:ACCRINT, functions:ACCRINTM, functions:AMORDEGRC, functions:AMORLINC, functions:AREAS, functions:ARRAYTOTEXT, functions:ASC, functions:AVERAGEA, functions:BAHTTEXT, functions:BESSELI, functions:BESSELJ, functions:BESSELK, functions:BESSELY, functions:BETADIST, functions:BETAINV, functions:BINOMDIST, functions:BINOM.DIST.RANGE, functions:BINOM.INV, functions:BYCOL, functions:BYROW ...
+
+CMake Error at cmake/ReleasePackageGate.cmake:12 (message):
+  RELEASE BLOCKED: compatibility acceptance evidence is incomplete.
+Call Stack (most recent call first):
+  build-release/CPackGate.cmake:13 (include)
+
+

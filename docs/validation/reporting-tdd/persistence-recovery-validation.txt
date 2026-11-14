@@ -1,0 +1,54 @@
+Recovery implementation and evidence (2026-11-11)
+
+Session: takeRecoveryDelta() moves an ordered array of version1 transaction
+ envelopes {baseRevision,revision,patch,changes}. Every successful commit records
+ the redo payload; undo/redo record the actual inverse/forward payload. Pending
+ commits accumulate; previews produce no delta until accepted. No workbook copy
+ or JSON serialization is performed by this drain or driver append.
+
+SQLite schema3: checkpoints retain immutable original snapshot/source/path and
+ integrity digest. recovery_heads binds the initial revision and durable tail.
+ recovery_journal stores ordered revision deltas with previous hash and SHA256.
+ recovery_bases contains compacted snapshots separately, so compaction never
+ updates the row holding the original ZIP bytes. Append and compaction are
+ transactions; original v1/v2 snapshot and source bytes survive migration.
+
+RecoveryDriver: one current document actor, FIFO worker owns SQLite and applies
+ deltas. seed holds a moved canonical base and shared source bytes; clean seeds
+ create no recovery record. First append serializes the base once; subsequent
+ edits append deltas. Worker compacts at 128 transactions or16MiB journal bytes.
+ erase removes durable state but keeps the actor as a new base. Replacing the
+ identity releases the old actor. onDurable/onError callbacks run on the owner
+ thread. flush is an ordered barrier and reports unresolved document failures.
+
+Verified RED->GREEN:
+ recovery-session-*         pending, undo/redo, preview acceptance delta hooks
+ recovery-journal-*         source-once base + ordered replay + compaction
+ recovery-integrity-*       consistent corrupt diagnosis for missing middle
+ recovery-background-*      FIFO driver, invisible seed, callbacks, flush/error
+ recovery-source-once-*     trigger forbids any UPDATE to original package row
+
+Additional passing verification: recovery-crash-green.log
+ v1 and v2 migration, binary source/path, future schema refusal, failed migration
+ rollback, source/snapshot/path corruption, missing/altered head/middle/tail,
+ out-of-order batch rollback, child process exits inside uncommitted head/tail
+ change, injected head update failure, injected compaction delete failure.
+
+These tests establish application journal ordering/atomicity and error reporting.
+ They do not simulate a physical power cut, disk firmware failure or corrupt RAM.
+
+Follow-up bounded cycles:
+ recovery-persist-*         explicit persist(seed) stores current dirty state and
+ source without inventing a revision (CSV export/recovered document use).
+ recovery-shared-identity-* live actor recreates another window's erased record
+ atomically, without overwriting a foreign changed revision. checkpointIfMissing
+ performs its absence/revision check under BEGIN IMMEDIATE before actor mutation.
+ recovery-shared-initialization-red.log exposed simultaneous fresh database WAL
+ setup; schema initialization now serializes within the process and a three-
+ worker regression passes. Driver holds only one actor, releasing the old large
+ canonical state when a new document is seeded.
+
+Sanitizer: initial instrumented assertions passed; LeakSanitizer terminated with
+ its explicit 'does not work under ptrace' environment diagnostic. Final ASan+
+ UBSan run disables leak detection only; see recovery-final-asan-* logs. Leak
+ detection is not qualified by this environment.

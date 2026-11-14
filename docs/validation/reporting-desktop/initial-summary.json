@@ -1,0 +1,49 @@
+{
+  "hardware": {"redacted": true, "reason": "Host-specific configuration omitted from public evidence"},
+  "referenceMachineMatch": false,
+  "backend": "Qt offscreen, forced viewport repaint",
+  "stages": {
+    "publication": {
+      "command": [
+        "/workspace/tiger-sheets/build-release/reporting_publication_tests",
+        "100000"
+      ],
+      "binarySha256": "f2d793e5f2dc6d1fbf260694b6130613f5c700480c06ed896dd8f0eb37aba771",
+      "status": "failed",
+      "error": "/workspace/tiger-sheets/build-release/reporting_publication_tests exited 1; inspect /workspace/tiger-sheets/docs/validation/reporting-desktop/initial-publication.log"
+    },
+    "input": {
+      "command": [
+        "/workspace/tiger-sheets/build-release/reporting_input_benchmark",
+        "100000"
+      ],
+      "binarySha256": "8df681c1036e2a8c0b6d52cfdce165c623a06713f55a6164495e86c3a2f3e79f",
+      "status": "failed",
+      "error": "/workspace/tiger-sheets/build-release/reporting_input_benchmark exited 1; inspect /workspace/tiger-sheets/docs/validation/reporting-desktop/initial-input.log"
+    },
+    "recalculation-100k": {
+      "command": [
+        "/workspace/tiger-sheets/build-release/performance_benchmark",
+        "100000",
+        "/workspace/tiger-sheets/docs/validation/reporting-desktop/initial-recalculation-100k.json"
+      ],
+      "binarySha256": "c8c1bd886d651733115148bb42b8503116da247fb5e90df075d940650c9f79fe",
+      "wallSeconds": 2.3587394669884816,
+      "sampledProcessTreePeakRssKiB": 270848,
+      "sampleIntervalMs": 25,
+      "status": "passed"
+    },
+    "stress-1m": {
+      "command": [
+        "/workspace/tiger-sheets/build-release/performance_benchmark",
+        "1000000",
+        "/workspace/tiger-sheets/docs/validation/reporting-desktop/initial-stress-1m.json"
+      ],
+      "binarySha256": "c8c1bd886d651733115148bb42b8503116da247fb5e90df075d940650c9f79fe",
+      "wallSeconds": 9.068212206999306,
+      "sampledProcessTreePeakRssKiB": 2450352,
+      "sampleIntervalMs": 25,
+      "status": "passed"
+    }
+  }
+}

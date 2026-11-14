@@ -1,0 +1,20 @@
+/workspace/tiger-sheets/src/report_worker_main.cpp: In function ‘int main(int, char**)’:
+/workspace/tiger-sheets/src/report_worker_main.cpp:42:3: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   42 |   if(cancelled)throw std::runtime_error("Report refresh cancelled");phase=1;
+      |   ^~
+/workspace/tiger-sheets/src/report_worker_main.cpp:42:69: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   42 |   if(cancelled)throw std::runtime_error("Report refresh cancelled");phase=1;
+      |                                                                     ^~~~~
+/workspace/tiger-sheets/src/report_worker_main.cpp:50:3: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   50 |   if(calculated.value("status",std::string())!="ok")throw std::runtime_error("Report source calculation did not converge or is unsupported");phase=3;
+      |   ^~
+/workspace/tiger-sheets/src/report_worker_main.cpp:50:142: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   50 |   if(calculated.value("status",std::string())!="ok")throw std::runtime_error("Report source calculation did not converge or is unsupported");phase=3;
+      |                                                                                                                                              ^~~~~
+/workspace/tiger-sheets/src/report_worker.cpp: In member function ‘virtual std::basic_streambuf<char>::int_type tigersheets::{anonymous}::InputBuffer::underflow()’:
+/workspace/tiger-sheets/src/report_worker.cpp:43:3: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   43 |   if(cancelled_)throw std::runtime_error("Report job cancelled");file_.read(data_,sizeof(data_));const auto count=file_.gcount();if(count==0)return traits_type::eof();setg(data_,data_,data_+count);return traits_type::to_int_type(*gptr());
+      |   ^~
+/workspace/tiger-sheets/src/report_worker.cpp:43:66: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   43 |   if(cancelled_)throw std::runtime_error("Report job cancelled");file_.read(data_,sizeof(data_));const auto count=file_.gcount();if(count==0)return traits_type::eof();setg(data_,data_,data_+count);return traits_type::to_int_type(*gptr());
+      |                                                                  ^~~~~

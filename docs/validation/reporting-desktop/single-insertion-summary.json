@@ -1,0 +1,18 @@
+{
+  "hardware": {"redacted": true, "reason": "Host-specific configuration omitted from public evidence"},
+  "referenceMachineMatch": false,
+  "backend": "Qt offscreen, forced viewport repaint",
+  "stages": {
+    "input": {
+      "command": [
+        "/workspace/tiger-sheets/build-release/reporting_input_benchmark",
+        "100000"
+      ],
+      "binarySha256": "89818b48e470ef570e54de45ae9b5d734cf04c235072fe5984828f48a64c8d7e",
+      "wallSeconds": 7.782176517997868,
+      "sampledProcessTreePeakRssKiB": 2222380,
+      "sampleIntervalMs": 25,
+      "status": "passed"
+    }
+  }
+}

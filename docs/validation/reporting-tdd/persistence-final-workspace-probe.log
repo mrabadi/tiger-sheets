@@ -1,0 +1,4 @@
+This plugin does not support propagateSizeHints()
+PROBE recovery records=2
+PROBE id="{6e80e8be-8189-462d-9fd5-5b2d6e244d84}" revision=1 first="=10+20" sourcePath="/tmp/tigersheets-workspace-recovery-probe-gDkkea/model.xlsx" bytes=2037
+PROBE id="{746e4fe7-bc8a-4961-a753-0d1dbf03aa05}" revision=1 first="=42" sourcePath="/tmp/tigersheets-workspace-recovery-probe-gDkkea/model.xlsx" bytes=2037

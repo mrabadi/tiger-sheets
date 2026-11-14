@@ -1,0 +1,30 @@
+{
+  "version": "0.3.0~dev.2",
+  "package": "/workspace/tiger-sheets/dist/tiger-sheets_0.3.0~dev.2_amd64.deb",
+  "packageBytes": 81485604,
+  "packageSha256": "dfe52879617449fed95bd22a4809e66c569317e584296464bfb7f395f32f4363",
+  "audit": {
+    "status": "passed",
+    "checks": 21,
+    "path": "/workspace/tiger-sheets/dist/tiger-sheets_0.3.0~dev.2_amd64.deb.validation.json"
+  },
+  "ctest": {
+    "passed": 123,
+    "total": 123,
+    "seconds": 37.32,
+    "path": "/workspace/tiger-sheets/docs/validation/context-menu-tdd/final-ctest.xml"
+  },
+  "sourceManifest": {
+    "files": 786,
+    "sha256": "9b02f999ee1c9d147027ed5ff49f5ad6efbf83695fb457b71a76d84dfe21b9ae"
+  },
+  "buildBinaries": {
+    "tiger-sheets": "2e1d89bfa1897768b3ca7d03eb980b7ef749af7a2106d5f01bd4a2e97e286c60",
+    "tigersheets-report-worker": "6c7926007ab1c15b4c260911e60ccd22edf5d2ecabfe3d82b6b9cca621b27a70",
+    "tigersheets-vba-worker": "70ae2bd61130d4e2e2843fdbe468dfca4e200d2232533d650284c102d5d58387"
+  },
+  "limitations": [
+    "Development build; complete Excel compatibility gate remains blocked.",
+    "No actual system installation, clean-VM, fresh native X11/Wayland, or Microsoft Excel interoperability qualification."
+  ]
+}

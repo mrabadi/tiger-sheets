@@ -1,0 +1,53 @@
+
+### /tmp/tigersheets-worksheet-clean-selection-red.log
+This plugin does not support propagateSizeHints()
+FAILED: calculation preserves caret and selection before an editor's first keystroke
+
+### /tmp/tigersheets-worksheet-clean-selection-green.log
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+Observed command exit code: 0
+
+### /tmp/tigersheets-worksheet-clean-selection-normal-suite.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+Observed command exit code: 0
+
+### /tmp/tigersheets-worksheet-clean-selection-asan-suite.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+Observed command exit code: 0

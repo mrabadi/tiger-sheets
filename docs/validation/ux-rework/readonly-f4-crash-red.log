@@ -1,0 +1,6 @@
+$ QT_QPA_PLATFORM=offscreen /tmp/tiger-readonly-review
+readonly-before=1 text==D5*(1+$B$5) modified=0
+readonly-afterF4=1 text==$D$5*(1+$B$5) modified=1
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Cannot accept the current cell edit
+process return code: -6

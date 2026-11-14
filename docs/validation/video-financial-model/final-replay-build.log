@@ -1,0 +1,4 @@
+[1/4] Building CXX object CMakeFiles/worksheet_tiled_paste_tests.dir/tests/worksheet_tiled_paste_tests.cpp.o
+[2/4] Linking CXX executable worksheet_tiled_paste_tests
+[3/4] Building CXX object CMakeFiles/video_financial_model_tests.dir/tests/video_financial_model_tests.cpp.o
+[4/4] Linking CXX executable video_financial_model_tests

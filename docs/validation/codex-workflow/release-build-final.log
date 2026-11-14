@@ -1,0 +1,18 @@
+[0/2] Re-checking globbed directories...
+[1/17] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[2/17] Linking CXX static library libtigersheets_desktop.a
+[3/17] Linking CXX executable tiger-sheets
+[4/17] Linking CXX executable workspace_tests
+[5/17] Linking CXX executable codex_controls_tests
+[6/17] Linking CXX executable codex_workspace_tests
+[7/17] Linking CXX executable codex_panel_integration_tests
+[8/17] Linking CXX executable codex_financial_workflow_tests
+[9/17] Linking CXX executable workspace_ux_tests
+[10/17] Linking CXX executable theme_tests
+[11/17] Linking CXX executable ribbon_page_tests
+[12/17] Linking CXX executable formula_workspace_tests
+[13/17] Linking CXX executable chart_workspace_tests
+[14/17] Linking CXX executable chart_interaction_tests
+[15/17] Linking CXX executable workbook_ui_links_tests
+[16/17] Linking CXX executable preview_ui_tests
+[17/17] Linking CXX executable financial_model_tests

@@ -1,0 +1,24 @@
+[1/22] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/grid.cpp.o
+[2/22] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/session.cpp.o
+[3/22] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/calculation.cpp.o
+[4/22] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot_ownership.cpp.o
+[5/22] Building CXX object CMakeFiles/session_foundation_tests.dir/workspace/tiger-sheets/tests/session_foundation_tests.cpp.o
+[6/22] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot.cpp.o
+[7/22] Linking CXX static library libworksheet_core.a
+[8/22] Linking CXX executable session_foundation_tests
+[9/22] Building CXX object CMakeFiles/chart_core.dir/workspace/tiger-sheets/src/chart.cpp.o
+[10/22] Building CXX object CMakeFiles/chart_core.dir/workspace/tiger-sheets/src/chart_editor.cpp.o
+[11/22] Linking CXX static library libchart_core.a
+[12/22] Building CXX object CMakeFiles/worksheet_io.dir/workspace/tiger-sheets/src/ooxml.cpp.o
+[13/22] Building CXX object CMakeFiles/worksheet_io.dir/workspace/tiger-sheets/src/pivot_ooxml.cpp.o
+[14/22] Linking CXX static library libworksheet_io.a
+[15/22] Building CXX object CMakeFiles/scheduler_core.dir/workspace/tiger-sheets/src/calculation_scheduler.cpp.o
+[16/22] Building CXX object CMakeFiles/scheduler_core.dir/workspace/tiger-sheets/src/vba.cpp.o
+[17/22] Linking CXX static library libscheduler_core.a
+[18/22] Building CXX object CMakeFiles/scheduler_tests.dir/workspace/tiger-sheets/tests/scheduler_tests.cpp.o
+[19/22] Building CXX object CMakeFiles/ooxml_style_performance_tests.dir/workspace/tiger-sheets/tests/ooxml_style_performance_tests.cpp.o
+[20/22] Linking CXX executable scheduler_tests
+[21/22] Building CXX object CMakeFiles/ooxml_style_performance_tests.dir/workspace/tiger-sheets/src/printing_ooxml.cpp.o
+[22/22] Linking CXX executable ooxml_style_performance_tests
+styled native save: 1485 ms for 20000 cells
+styled native save test passed

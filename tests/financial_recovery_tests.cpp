@@ -1,0 +1,10 @@
+#include "tigersheets/session.hpp"
+#include "tigersheets/financial_models.hpp"
+#include "tigersheets/recovery.hpp"
+#include <QCoreApplication>
+#include <QTemporaryDir>
+#include <iostream>
+#include <stdexcept>
+using namespace tigersheets;
+void require(bool value,const char* message){if(!value)throw std::runtime_error(message);}
+int main(int argc,char** argv){QCoreApplication app(argc,argv);QTemporaryDir dir;try{WorkbookSession session;std::string error;const Json forecast={{"version",1},{"id","f"},{"kind","forecast"},{"name","Forecast"},{"periods",2},{"drivers",Json::array({{{"name","Revenue"},{"base",100},{"growth",0.1}}})},{"output",{{"sheet","sheet-1"},{"row1",5},{"col1",1}}}};CalculationContext context;context.snapshot=session.snapshot();const auto generated=generateFinancialModel(context.snapshot,forecast,context);require(session.apply(0,financialModelOperations(context.snapshot,generated),&error),"publish report for recovery fixture");session.takeRecoveryDelta();const auto base=session.snapshot();RecoveryStore store(dir.filePath("journal.db").toStdString());store.checkpoint("finance",base,"original package","/finance.xlsx");require(session.apply(base.at("revision"),Json::array({{{"type","set_cell"},{"sheet","sheet-1"},{"row",1},{"col",1},{"input","120"}}}),&error),"change source in recovery fixture");store.append("finance",session.takeRecoveryDelta());require(store.records()[0].at("workbook")==session.snapshotView(),"durable source-edit journal retains financial report stale state");require(session.undo(),"undo source edit");store.append("finance",session.takeRecoveryDelta());require(store.records()[0].at("workbook")==session.snapshotView()&&session.snapshotView().at("financialModels")[0].at("stale")==false,"durable undo restores report freshness with exact workbook state");store.compact("finance",session.snapshot());require(store.records()[0].at("sourceBytes")=="original package","financial recovery compaction retains original package data");std::cout<<"financial recovery tests passed\n";}catch(const std::exception& error){std::cerr<<error.what()<<'\n';return 1;}}

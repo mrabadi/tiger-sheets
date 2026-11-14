@@ -1,0 +1,7 @@
+source-only refresh must retain manual removal of generated header bold
+Traceback (most recent call last):
+  File "/tmp/tigersheets-forecast-analysis/build-models.py", line 12, in <module>
+    a=shlex.split(cmds[-1].replace(': && ','').removesuffix(' && :'));a=[x for x in a if not x.startswith('CMakeFiles/'+target+'.dir/')];a[a.index('-o')+1]=str(out/'financial_models_tests');a[1:1]=[str(out/'financial_models_tests.o')]+([] if '--red' in sys.argv else [str(out/'financial_models.o')]);subprocess.run(a,cwd=b,check=True);subprocess.run([str(out/'financial_models_tests')],cwd=root,check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/tmp/tigersheets-forecast-analysis/financial_models_tests']' returned non-zero exit status 1.

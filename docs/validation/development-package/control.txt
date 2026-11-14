@@ -1,0 +1,11 @@
+Architecture: amd64
+Depends: qt6-qpa-plugins, qt6-wayland, libc6 (>= 2.34), libgcc-s1 (>= 4.2), libpugixml1v5 (>= 1.11), libqt6core6 (>= 6.2.0), libqt6gui6 (>= 6.1.2), libqt6printsupport6 (>= 6.1.2), libqt6widgets6 (>= 6.1.2), libseccomp2 (>= 0.0.0~20120605), libsqlite3-0 (>= 3.8.7), libstdc++6 (>= 12), libzip4 (>= 1.0)
+Description: TigerSheets development build
+ Local TigerSheets development build. Excel and VBA compatibility is incomplete; this package is for local evaluation.
+Maintainer: TigerSheets contributors
+Package: tiger-sheets
+Priority: optional
+Section: math
+Version: 0.1.0~dev.1
+Installed-Size: 183450
+

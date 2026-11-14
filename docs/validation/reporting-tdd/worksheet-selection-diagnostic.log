@@ -1,0 +1,3 @@
+FAILED: whole-worksheet status visits populated cells instead of the enormous blank rectangle
+Command exited with non-zero status 1
+Elapsed 5.35

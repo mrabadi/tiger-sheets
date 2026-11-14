@@ -1,0 +1,32 @@
+{
+  "reader": "openpyxl",
+  "version": "3.1.5",
+  "status": "passed",
+  "observations": [
+    {
+      "file": "chart.xlsx",
+      "anchor_type": "OneCellAnchor",
+      "column": 5,
+      "row": 1,
+      "colOff": 257175,
+      "rowOff": 180975
+    },
+    {
+      "file": "native-offset-import.xlsx",
+      "anchor_type": "OneCellAnchor",
+      "column": 5,
+      "row": 1,
+      "colOff": 257175,
+      "rowOff": 180975
+    },
+    {
+      "file": "large-offset.xlsx",
+      "anchor_type": "OneCellAnchor",
+      "column": 5,
+      "row": 1,
+      "colOff": 0,
+      "rowOff": 9525000000
+    }
+  ],
+  "microsoft_excel": "not run"
+}

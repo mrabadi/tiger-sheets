@@ -1,0 +1,6 @@
+[1/5] Building CXX object CMakeFiles/printing_ooxml_tests.dir/workspace/tiger-sheets/tests/printing_ooxml_tests.cpp.o
+[2/5] Building CXX object CMakeFiles/worksheet_io.dir/workspace/tiger-sheets/src/ooxml.cpp.o
+[3/5] Building CXX object CMakeFiles/worksheet_io.dir/workspace/tiger-sheets/src/pivot_ooxml.cpp.o
+[4/5] Linking CXX static library libworksheet_io.a
+[5/5] Linking CXX executable printing_ooxml_tests
+native printing test failed: actual workbook save must emit native print definitions

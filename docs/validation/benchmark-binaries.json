@@ -1,0 +1,7 @@
+{
+  "measurementBuild": "Release before dependency vendoring; identical locked dependency contents verified",
+  "binaries": {
+    "performance_benchmark": "87d06a403b3c0cc1670de4c3e628755bee1e4d58c98ba4df1f29071163f7af8c",
+    "tiger-sheets": "c2fb06d20917ac52842aa763186f0e0a72daec6e90884356e62d669fd8c0e239"
+  }
+}

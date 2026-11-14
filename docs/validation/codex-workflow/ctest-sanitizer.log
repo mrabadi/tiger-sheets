@@ -1,0 +1,22 @@
+Internal ctest changing into directory: /tmp/tigersheets-ux-asan
+Test project /tmp/tigersheets-ux-asan
+    Start  7: codex_tests
+1/8 Test  #7: codex_tests ......................   Passed    0.65 sec
+    Start 14: workbook_tools_tests
+2/8 Test #14: workbook_tools_tests .............   Passed    0.99 sec
+    Start 27: codex_workspace_tests
+3/8 Test #27: codex_workspace_tests ............   Passed    0.89 sec
+    Start 28: codex_controls_tests
+4/8 Test #28: codex_controls_tests .............   Passed    0.13 sec
+    Start 29: codex_panel_integration_tests
+5/8 Test #29: codex_panel_integration_tests ....   Passed    0.98 sec
+    Start 30: codex_financial_workflow_tests
+6/8 Test #30: codex_financial_workflow_tests ...   Passed    1.69 sec
+    Start 31: codex_panel_keyboard_tests
+7/8 Test #31: codex_panel_keyboard_tests .......   Passed    0.80 sec
+    Start 39: preview_ui_tests
+8/8 Test #39: preview_ui_tests .................   Passed    1.32 sec
+
+100% tests passed, 0 tests failed out of 8
+
+Total Test time (real) =   7.44 sec

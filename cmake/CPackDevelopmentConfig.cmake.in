@@ -1,0 +1,3 @@
+# Explicit local-development entry point. The normal configuration stays gated.
+include("@CMAKE_BINARY_DIR@/CPackConfig.cmake")
+set(CPACK_TIGERSHEETS_CHANNEL development)

@@ -1,0 +1,4 @@
+{"path": "/tmp/tigersheets-native-print-fixtures/authored-pivot.xlsx", "openpyxl": "3.0.9", "pivots": ["SalesReport"], "records": [2], "pivot_charts": [], "validated_chart_points": 0}
+{"path": "/tmp/tigersheets-native-print-fixtures/filtered-multi-measure.xlsx", "openpyxl": "3.0.9", "pivots": ["SalesReport"], "records": [3], "pivot_charts": [], "validated_chart_points": 0}
+{"path": "/tmp/tigersheets-native-print-fixtures/grouped-native-pivot.xlsx", "openpyxl": "3.0.9", "pivots": ["SalesReport"], "records": [3], "pivot_charts": ["xl/charts/tigersheets-chart1.xml"], "validated_chart_points": 3}
+{"path": "/tmp/tigersheets-native-print-fixtures/native-pivot-charts.xlsx", "openpyxl": "3.0.9", "pivots": ["SalesReport"], "records": [3], "pivot_charts": ["xl/charts/tigersheets-chart2.xml", "xl/charts/tigersheets-chart3.xml", "xl/charts/tigersheets-chart1.xml"], "validated_chart_points": 12}

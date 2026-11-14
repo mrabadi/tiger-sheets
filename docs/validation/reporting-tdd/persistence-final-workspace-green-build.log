@@ -1,0 +1,16 @@
+[0/2] Re-checking globbed directories...
+[1/2] Re-running CMake...
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/tiger-sheets/build-release
+[0/2] Re-checking globbed directories...
+[1/5] Building pinned offline IronCalc engine
+   Compiling ironcalc_base v0.9.1 (/workspace/tiger-sheets/third_party/ironcalc/base)
+   Compiling tigersheets_calc_bridge v0.1.0 (/workspace/tiger-sheets/rust/ironcalc_bridge)
+    Finished `release` profile [optimized] target(s) in 1m 20s
+[2/5] Building CXX object CMakeFiles/workspace_tests.dir/tests/workspace_tests.cpp.o
+[3/5] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[4/5] Linking CXX static library libtigersheets_desktop.a
+[5/5] Linking CXX executable workspace_tests

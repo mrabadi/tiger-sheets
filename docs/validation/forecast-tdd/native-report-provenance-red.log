@@ -1,0 +1,5 @@
+{"status": "generated", "success": true}
+Traceback (most recent call last):
+  File "/tmp/native-financial-provenance-red.py", line 5, in <module>
+    p=pathlib.Path(d);(p/'request.json').write_text(json.dumps(request));subprocess.run(['/tmp/tigersheets-financial-report-worker','--request',str(p/'request.json'),'--response',str(p/'response.json')],stdout=subprocess.DEVNULL,check=True);result=json.loads((p/'response.json').read_text());print(json.dumps(result['analysis']));assert result['analysis'].get('provenance')==result['definition']['provenance'],'Report review analysis must expose the calculation provenance already persisted with the report'
+AssertionError: Report review analysis must expose the calculation provenance already persisted with the report

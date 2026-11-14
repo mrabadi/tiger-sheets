@@ -1,0 +1,1 @@
+report worker test failed: Report worker did not produce a qualified result: [{"code":"report_error","message":"Pivot headers must be unique nonempty text"}]

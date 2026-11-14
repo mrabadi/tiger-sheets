@@ -1,0 +1,70 @@
+{
+  "recordedAt": "2026-11-12T01:31:33.208793+00:00",
+  "status": "PASS",
+  "sanitizers": [
+    "AddressSanitizer",
+    "UndefinedBehaviorSanitizer"
+  ],
+  "options": {
+    "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1",
+    "QT_QPA_PLATFORM": "offscreen for desktop lifetime test"
+  },
+  "qualificationBoundary": "Latest changed cache/link/worker/frontend/MainWindow/SnapshotCapture/session/native-preparation C++ sources instrumented. Rust calculation bridge, Qt and other unchanged release-library dependencies were not rebuilt with sanitizers. Leak checks disabled; no leak qualification claimed. Native prepared tests ran the default semantic/allocation cases without benchmark/performance modes.",
+  "sourceSha256": {
+    "/workspace/tiger-sheets/src/pivot.cpp": "9d6e8638137cb35226775f07bcf03ebecccbdc82c07fb89337b7ccd18853b723",
+    "/workspace/tiger-sheets/include/tigersheets/pivot.hpp": "a116dd90fba536b7c7b3b517bf7d5acdc7118a8490e56387c34eb7c32f8fdb7a",
+    "/workspace/tiger-sheets/src/workbook_links.cpp": "addc46471df38e745fb25ed7219e736ec585c826b395f6b4113a005af184f88d",
+    "/workspace/tiger-sheets/include/tigersheets/workbook_links.hpp": "b48386c2ea516db0f21d4e5cf3f7264a718df6cfc7fd9d06567494967659fc3c",
+    "/workspace/tiger-sheets/src/report_worker_main.cpp": "d596bec4202cb2e1bf05f004f739cd202770936951d730fededa3194cba25715",
+    "/workspace/tiger-sheets/src/report_worker.cpp": "dff7f10dc5608575c17bb1ccb772f57514a7ead0c13b3d5091d3baf77a33ecde",
+    "/workspace/tiger-sheets/src/main_window.cpp": "40acd9670af1e78b8ac6fefa26aaa8a7c86a2fa9eabb9df25043ce99e626ab26",
+    "/workspace/tiger-sheets/src/snapshot_capture.cpp": "c116342b9d80a788e788d882e563cfc33c46cf0bede23472f4a88eeb2034b6b5",
+    "/workspace/tiger-sheets/src/session.cpp": "f4d12631687898dea003c44d7c95461208215cf2af38c66102505ab66da6bb5d",
+    "/workspace/tiger-sheets/src/prepared_native_transaction.cpp": "e5b51b222ce43585cbafc9229b03bda778210a17b1ac6a247bfafcd06256ed96",
+    "/workspace/tiger-sheets/src/prepared_native_transaction.hpp": "6ba4253e51b1300073dd26722977e5bb36fb6db200664e167509e2295700aed0",
+    "/workspace/tiger-sheets/tests/pivot_tests.cpp": "79971bf72fee9b57cec7edfdff472934e4afcba7e0040633c7025c060a1ac86f",
+    "/workspace/tiger-sheets/tests/report_worker_tests.cpp": "07abf822675ee21be1d0b3c021c837a62440691b84e7f67d3d5eac66fa659041",
+    "/workspace/tiger-sheets/tests/reporting_snapshot_lifetime_tests.cpp": "c0de18808232e694ea1983d9bdb27a6ad56de5632a6eefc8ad58cc44b7520ce2",
+    "/workspace/tiger-sheets/tests/prepared_native_tests.cpp": "d6b61842c3e2a0a4e0bdf25cda50b9057aae6892d8d44424a7f84ba1a6a58adc"
+  },
+  "binarySha256": {
+    "/tmp/tigersheets-analysis-asan-cache/pivot_tests": "2e37fb9b47ec5f7bb9e8474d1edc081e38b145611cd332300fe3378d957ace65",
+    "/tmp/tigersheets-analysis-asan-cache/report_worker_tests": "21aa46c6a2ddc9b1c9c146b6a59b1bf3962b894e04a19887f311410564177180",
+    "/tmp/tigersheets-analysis-asan-cache/tigersheets-report-worker": "5041eb2714529cda1c6dfd2ac884bccd4e088cd925d7e8a57cdfb4bf197edbbc",
+    "/tmp/tigersheets-analysis-asan-cache/reporting_snapshot_lifetime_tests": "004587a1c6cf167b0fc54f49956f6825775a02f1f839db8b2bcb0074d6849613",
+    "/tmp/tigersheets-analysis-asan-cache/prepared_native_tests": "bcc7647575300d66364332200a68941b6acbffaa7199f3876ce4daca9d5a12d8"
+  },
+  "objectSha256": {
+    "/tmp/tigersheets-analysis-asan-cache/main_window.o": "39713bc0a5445e701d64bcaf0b82f1ab12b5ce6ba217dace3400b31328e3c6f7",
+    "/tmp/tigersheets-analysis-asan-cache/pivot.o": "d564b6877eff4bf2984ee9aadbbd811e6dd603cd7a04076421ec170a5d019c6d",
+    "/tmp/tigersheets-analysis-asan-cache/pivot_tests.o": "88e1dbf30bad8540d8fb486f27f90d6b856e548d6d6356c0de421bb5ed021c2e",
+    "/tmp/tigersheets-analysis-asan-cache/prepared_native_tests.o": "72777b973c7b4d247fc54a43f0086ea3972e7ca906da13015ed7268b3c64fd1c",
+    "/tmp/tigersheets-analysis-asan-cache/prepared_native_transaction.o": "9802cf09a892644b483e5e7233e9e493cad844e0e4eb843a0bfd82eec4c54201",
+    "/tmp/tigersheets-analysis-asan-cache/report_worker.o": "46c3015ca73bcf4981e41db6d1b28e7e9157498348b434b719ffa0791e99df13",
+    "/tmp/tigersheets-analysis-asan-cache/report_worker_main.o": "bdfb13c27adaa1efb632127103a2bc582f5f20b996edc71d0d7cff2f03940d4f",
+    "/tmp/tigersheets-analysis-asan-cache/report_worker_tests.o": "3bf8029a08e9be78d65954e65ca5aaaa678211fff1165c791b02f9be29ff0839",
+    "/tmp/tigersheets-analysis-asan-cache/reporting_snapshot_lifetime_tests.o": "b3289c6cc5973445953feee2e0d03c35161a4482063db1611e9847e1b5a1e8e1",
+    "/tmp/tigersheets-analysis-asan-cache/session.o": "31c8b5e1b24b10b8dd26deafff6b419bb5ccbce97a76351a68f50f88a2633664",
+    "/tmp/tigersheets-analysis-asan-cache/snapshot_capture.o": "d2cf7acc46f5f6aca4750f84d8facbccceb0c479c5142f4733102dd911b6cf60",
+    "/tmp/tigersheets-analysis-asan-cache/workbook_links.o": "3fe7a9611cc2111138f78d66a85d8631a032484b9448fdb37563386d0b584166"
+  },
+  "logSha256": {
+    "/workspace/tiger-sheets/docs/validation/reporting-tdd/analysis-current-cache-pivot-sanitizer.log": "a521e2e0487b2595b5b9e688def49003fd3eee2146285748fdae27efac9d81e0",
+    "/workspace/tiger-sheets/docs/validation/reporting-tdd/analysis-current-cache-worker-sanitizer.log": "8c51f93961b309fe4afeca7f82be8cc8f641445e96a29a66b942c7c55d01c8f5",
+    "/workspace/tiger-sheets/docs/validation/reporting-tdd/analysis-current-cache-lifetime-sanitizer.log": "a4b252fcb9ae054045fb701c9b9f7a7efc91f73d54b394814242125aca58abb8",
+    "/workspace/tiger-sheets/docs/validation/reporting-tdd/analysis-current-native-prepared-sanitizer.log": "95d9e25699571aba9aefc409c5d323c48956529747c1c64fc6e6a33e3b75649f",
+    "/workspace/tiger-sheets/docs/validation/reporting-tdd/analysis-current-cache-sanitizer-build.log": "2236f3bb0bbacd735b3363b3cfed2f78146d1755ffa0a0888f22f310e471024a"
+  },
+  "commands": [
+    "/tmp/tigersheets-analysis-asan-cache/pivot_tests",
+    "/tmp/tigersheets-analysis-asan-cache/report_worker_tests /tmp/tigersheets-analysis-asan-cache/tigersheets-report-worker all",
+    "/tmp/tigersheets-analysis-asan-cache/reporting_snapshot_lifetime_tests /tmp/tigersheets-analysis-asan-cache/tigersheets-report-worker",
+    "/tmp/tigersheets-analysis-asan-cache/prepared_native_tests"
+  ],
+  "buildRecipeFiles": [
+    "/tmp/tigersheets-analysis-asan-cache/build.py",
+    "/tmp/tigersheets-analysis-asan-cache/capture-final.py",
+    "/tmp/tigersheets-analysis-asan-cache/prepared-final.py"
+  ]
+}

@@ -1,0 +1,19 @@
+ninja: Entering directory `build-release'
+[0/2] Re-checking globbed directories...
+[1/17] Building CXX object CMakeFiles/tigersheets_financial_workflows.dir/src/financial_workflows.cpp.o
+[2/17] Linking CXX static library libtigersheets_financial_workflows.a
+[3/17] Building CXX object CMakeFiles/financial_workflow_tests.dir/tests/financial_workflow_tests.cpp.o
+[4/17] Building CXX object CMakeFiles/tigersheets_codex.dir/src/codex.cpp.o
+[5/17] Linking CXX executable financial_workflow_tests
+[6/17] Building CXX object CMakeFiles/tigersheets-report-worker.dir/src/report_worker_main.cpp.o
+[7/17] Building CXX object CMakeFiles/financial_recovery_tests.dir/tests/financial_recovery_tests.cpp.o
+[8/17] Linking CXX executable financial_recovery_tests
+[9/17] Building CXX object CMakeFiles/tigersheets_workbook_tools.dir/src/workbook_tools.cpp.o
+[10/17] Linking CXX static library libtigersheets_workbook_tools.a
+[11/17] Linking CXX static library libtigersheets_codex.a
+[12/17] Linking CXX executable tigersheets-report-worker
+[13/17] Linking CXX executable financial_workspace_tests
+[14/17] Linking CXX executable financial_ui_job_tests
+[15/17] Linking CXX executable financial_csv_tests
+[16/17] Building CXX object CMakeFiles/native_financial_worker_tests.dir/tests/native_financial_worker_tests.cpp.o
+[17/17] Linking CXX executable native_financial_worker_tests

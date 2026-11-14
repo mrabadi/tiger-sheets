@@ -1,0 +1,3 @@
+Command: /tmp/worksheet_validation_tests percent (fresh test; existing CMake flags/archive)
+Exit: 1
+FAILED: percent source literals stay numeric while a new calculation is pending

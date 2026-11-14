@@ -1,0 +1,92 @@
+Internal ctest changing into directory: /workspace/tiger-sheets/build-release
+Test project /workspace/tiger-sheets/build-release
+      Start  1: analysis_tests
+ 1/43 Test  #1: analysis_tests ...................   Passed    0.00 sec
+      Start  2: branding_tests
+ 2/43 Test  #2: branding_tests ...................   Passed   10.11 sec
+      Start  3: release_gate_tests
+ 3/43 Test  #3: release_gate_tests ...............   Passed    0.05 sec
+      Start  4: packaging_tests
+ 4/43 Test  #4: packaging_tests ..................   Passed    0.14 sec
+      Start  5: dependency_bootstrap_tests
+ 5/43 Test  #5: dependency_bootstrap_tests .......   Passed    0.53 sec
+      Start  6: compatibility_catalog_tests
+ 6/43 Test  #6: compatibility_catalog_tests ......   Passed    0.06 sec
+      Start  7: codex_tests
+ 7/43 Test  #7: codex_tests ......................   Passed    0.41 sec
+      Start  8: recovery_tests
+ 8/43 Test  #8: recovery_tests ...................   Passed    0.12 sec
+      Start  9: calculation_tests
+ 9/43 Test  #9: calculation_tests ................   Passed    0.01 sec
+      Start 10: formula_catalog_tests
+10/43 Test #10: formula_catalog_tests ............   Passed    0.03 sec
+      Start 11: session_tests
+11/43 Test #11: session_tests ....................   Passed    0.01 sec
+      Start 12: ooxml_tests
+12/43 Test #12: ooxml_tests ......................   Passed    0.05 sec
+      Start 13: csv_tests
+13/43 Test #13: csv_tests ........................   Passed    0.00 sec
+      Start 14: workbook_tools_tests
+14/43 Test #14: workbook_tools_tests .............   Passed    0.03 sec
+      Start 15: references_tests
+15/43 Test #15: references_tests .................   Passed    0.00 sec
+      Start 16: formula_editor_tests
+16/43 Test #16: formula_editor_tests .............   Passed    0.41 sec
+      Start 17: worksheet_entry_tests
+17/43 Test #17: worksheet_entry_tests ............   Passed    0.22 sec
+      Start 18: workbook_links_tests
+18/43 Test #18: workbook_links_tests .............   Passed    0.02 sec
+      Start 19: grid_tests
+19/43 Test #19: grid_tests .......................   Passed    0.02 sec
+      Start 20: printing_tests
+20/43 Test #20: printing_tests ...................   Passed    0.18 sec
+      Start 21: chart_tests
+21/43 Test #21: chart_tests ......................   Passed    0.04 sec
+      Start 22: chart_editor_tests
+22/43 Test #22: chart_editor_tests ...............   Passed    0.05 sec
+      Start 23: vba_tests
+23/43 Test #23: vba_tests ........................   Passed    0.01 sec
+      Start 24: robustness_mutation_tests
+24/43 Test #24: robustness_mutation_tests ........   Passed    0.14 sec
+      Start 25: solver_tests
+25/43 Test #25: solver_tests .....................   Passed    0.38 sec
+      Start 26: workspace_tests
+26/43 Test #26: workspace_tests ..................   Passed    0.74 sec
+      Start 27: codex_workspace_tests
+27/43 Test #27: codex_workspace_tests ............   Passed    0.24 sec
+      Start 28: codex_controls_tests
+28/43 Test #28: codex_controls_tests .............   Passed    0.04 sec
+      Start 29: codex_panel_integration_tests
+29/43 Test #29: codex_panel_integration_tests ....   Passed    0.30 sec
+      Start 30: codex_financial_workflow_tests
+30/43 Test #30: codex_financial_workflow_tests ...   Passed    0.62 sec
+      Start 31: codex_panel_keyboard_tests
+31/43 Test #31: codex_panel_keyboard_tests .......   Passed    0.29 sec
+      Start 32: workspace_ux_tests
+32/43 Test #32: workspace_ux_tests ...............   Passed    1.81 sec
+      Start 33: formula_workspace_tests
+33/43 Test #33: formula_workspace_tests ..........   Passed    1.58 sec
+      Start 34: theme_tests
+34/43 Test #34: theme_tests ......................   Passed    0.04 sec
+      Start 35: ribbon_page_tests
+35/43 Test #35: ribbon_page_tests ................   Passed    0.06 sec
+      Start 36: chart_workspace_tests
+36/43 Test #36: chart_workspace_tests ............   Passed    1.15 sec
+      Start 37: chart_interaction_tests
+37/43 Test #37: chart_interaction_tests ..........   Passed    1.35 sec
+      Start 38: workbook_ui_links_tests
+38/43 Test #38: workbook_ui_links_tests ..........   Passed    0.21 sec
+      Start 39: preview_ui_tests
+39/43 Test #39: preview_ui_tests .................   Passed    0.41 sec
+      Start 40: financial_model_tests
+40/43 Test #40: financial_model_tests ............   Passed    0.24 sec
+      Start 41: modeling_ui_tests
+41/43 Test #41: modeling_ui_tests ................   Passed    0.18 sec
+      Start 42: scheduler_tests
+42/43 Test #42: scheduler_tests ..................   Passed    0.06 sec
+      Start 43: vba_worker_tests
+43/43 Test #43: vba_worker_tests .................   Passed    0.07 sec
+
+100% tests passed, 0 tests failed out of 43
+
+Total Test time (real) =  22.43 sec

@@ -1,0 +1,2 @@
+Qt platform: wayland
+FAILED: standalone closing fixture focuses its active editor

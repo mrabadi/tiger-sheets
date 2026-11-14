@@ -1,0 +1,235 @@
+{
+  "status": "passed",
+  "commands": [
+    {
+      "argv": [
+        "dpkg-deb",
+        "-f",
+        "/workspace/tiger-sheets/build-release/tiger-sheets_0.2.0~dev.1_amd64.deb"
+      ],
+      "returncode": 0,
+      "stdout": "Architecture: amd64\nDepends: qt6-qpa-plugins, qt6-wayland, libc6 (>= 2.34), libgcc-s1 (>= 4.2), libpugixml1v5 (>= 1.11), libqt6core6 (>= 6.2.0), libqt6gui6 (>= 6.1.2), libqt6printsupport6 (>= 6.1.2), libqt6widgets6 (>= 6.1.2), libseccomp2 (>= 0.0.0~20120605), libsqlite3-0 (>= 3.8.7), libstdc++6 (>= 12), libzip4 (>= 1.0)\nDescription: TigerSheets development build\n Local TigerSheets development build. Excel and VBA compatibility is incomplete; this package is for local evaluation.\nMaintainer: TigerSheets contributors\nPackage: tiger-sheets\nPriority: optional\nSection: math\nVersion: 0.2.0~dev.1\nInstalled-Size: 227688\n\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/workspace/tiger-sheets/build-release/tiger-sheets_0.2.0~dev.1_amd64.deb",
+        "/tmp/tigersheets-package-verify-2wuwp4by/stage"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "readelf",
+        "-d",
+        "/tmp/tigersheets-package-verify-2wuwp4by/stage/usr/bin/tiger-sheets"
+      ],
+      "returncode": 0,
+      "stdout": "\nDynamic section at offset 0x1326830 contains 40 entries:\n  Tag        Type                         Name/Value\n 0x0000000000000001 (NEEDED)             Shared library: [libzip.so.4]\n 0x0000000000000001 (NEEDED)             Shared library: [libpugixml.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libpagmo.so.9]\n 0x0000000000000001 (NEEDED)             Shared library: [libsqlite3.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libQt6PrintSupport.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libQt6Widgets.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libQt6Gui.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libQt6Core.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]\n 0x000000000000001d (RUNPATH)            Library runpath: [$ORIGIN/../lib/tiger-sheets]\n 0x000000000000000c (INIT)               0x138000\n 0x000000000000000d (FINI)               0xec1810\n 0x0000000000000019 (INIT_ARRAY)         0x11dea08\n 0x000000000000001b (INIT_ARRAYSZ)       1392 (bytes)\n 0x000000000000001a (FINI_ARRAY)         0x11def78\n 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)\n 0x000000006ffffef5 (GNU_HASH)           0x3d8\n 0x0000000000000005 (STRTAB)             0xa518\n 0x0000000000000006 (SYMTAB)             0x7f8\n 0x000000000000000a (STRSZ)              59890 (bytes)\n 0x000000000000000b (SYMENT)             24 (bytes)\n 0x0000000000000015 (DEBUG)              0x0\n 0x0000000000000003 (PLTGOT)             0x1327af0\n 0x0000000000000002 (PLTRELSZ)           24288 (bytes)\n 0x0000000000000014 (PLTREL)             RELA\n 0x0000000000000017 (JMPREL)             0x131438\n 0x0000000000000007 (RELA)               0x1a048\n 0x0000000000000008 (RELASZ)             1143792 (bytes)\n 0x0000000000000009 (RELAENT)            24 (bytes)\n 0x000000000000001e (FLAGS)              BIND_NOW\n 0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE\n 0x000000006ffffffe (VERNEED)            0x19c28\n 0x000000006fffffff (VERNEEDNUM)         9\n 0x000000006ffffff0 (VERSYM)             0x18f0a\n 0x000000006ffffff9 (RELACOUNT)          46156\n 0x0000000000000000 (NULL)               0x0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ldd",
+        "/tmp/tigersheets-package-verify-2wuwp4by/stage/usr/bin/tiger-sheets"
+      ],
+      "returncode": 0,
+      "stdout": "\tlinux-vdso.so.1 (0x00007ffeea14b000)\n\tlibzip.so.4 => /lib/x86_64-linux-gnu/libzip.so.4 (0x000076089bb86000)\n\tlibpugixml.so.1 => /lib/x86_64-linux-gnu/libpugixml.so.1 (0x000076089a7c4000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000076089a6dd000)\n\tlibpagmo.so.9 => /tmp/tigersheets-package-verify-2wuwp4by/stage/usr/bin/../lib/tiger-sheets/libpagmo.so.9 (0x0000760899200000)\n\tlibsqlite3.so.0 => /lib/x86_64-linux-gnu/libsqlite3.so.0 (0x000076089a590000)\n\tlibQt6PrintSupport.so.6 => /lib/x86_64-linux-gnu/libQt6PrintSupport.so.6 (0x000076089917f000)\n\tlibQt6Widgets.so.6 => /lib/x86_64-linux-gnu/libQt6Widgets.so.6 (0x0000760898a00000)\n\tlibQt6Gui.so.6 => /lib/x86_64-linux-gnu/libQt6Gui.so.6 (0x0000760898200000)\n\tlibQt6Core.so.6 => /lib/x86_64-linux-gnu/libQt6Core.so.6 (0x0000760897c00000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x0000760897800000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000076089bb64000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000760897400000)\n\t/lib64/ld-linux-x86-64.so.2 (0x000076089bbc3000)\n\tlibbz2.so.1.0 => /lib/x86_64-linux-gnu/libbz2.so.1.0 (0x000076089a57d000)\n\tlibcrypto.so.3 => /lib/x86_64-linux-gnu/libcrypto.so.3 (0x0000760896e00000)\n\tlibz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x000076089a561000)\n\tlibboost_serialization.so.1.74.0 => /tmp/tigersheets-package-verify-2wuwp4by/stage/usr/bin/../lib/tiger-sheets/libboost_serialization.so.1.74.0 (0x0000760898145000)\n\tlibtbb.so.12 => /tmp/tigersheets-package-verify-2wuwp4by/stage/usr/bin/../lib/tiger-sheets/libtbb.so.12 (0x00007608989ac000)\n\tlibEGL.so.1 => /lib/x86_64-linux-gnu/libEGL.so.1 (0x000076089a54c000)\n\tlibfontconfig.so.1 => /lib/x86_64-linux-gnu/libfontconfig.so.1 (0x0000760897bb6000)\n\tlibX11.so.6 => /lib/x86_64-linux-gnu/libX11.so.6 (0x0000760897a76000)\n\tlibglib-2.0.so.0 => /lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x00007608976c5000)\n\tlibQt6DBus.so.6 => /lib/x86_64-linux-gnu/libQt6DBus.so.6 (0x0000760897328000)\n\tlibxkbcommon.so.0 => /lib/x86_64-linux-gnu/libxkbcommon.so.0 (0x0000760897a2f000)\n\tlibGLX.so.0 => /lib/x86_64-linux-gnu/libGLX.so.0 (0x0000760897691000)\n\tlibOpenGL.so.0 => /lib/x86_64-linux-gnu/libOpenGL.so.0 (0x0000760897665000)\n\tlibpng16.so.16 => /lib/x86_64-linux-gnu/libpng16.so.16 (0x000076089762a000)\n\tlibharfbuzz.so.0 => /lib/x86_64-linux-gnu/libharfbuzz.so.0 (0x0000760897259000)\n\tlibmd4c.so.0 => /lib/x86_64-linux-gnu/libmd4c.so.0 (0x000076089a536000)\n\tlibfreetype.so.6 => /lib/x86_64-linux-gnu/libfreetype.so.6 (0x0000760896d38000)\n\tlibicui18n.so.70 => /lib/x86_64-linux-gnu/libicui18n.so.70 (0x0000760896a00000)\n\tlibicuuc.so.70 => /lib/x86_64-linux-gnu/libicuuc.so.70 (0x0000760896805000)\n\tlibzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x0000760896736000)\n\tlibdouble-conversion.so.3 => /lib/x86_64-linux-gnu/libdouble-conversion.so.3 (0x000076089916a000)\n\tlibb2.so.1 => /lib/x86_64-linux-gnu/libb2.so.1 (0x000076089898e000)\n\tlibpcre2-16.so.0 => /lib/x86_64-linux-gnu/libpcre2-16.so.0 (0x00007608966ac000)\n\tlibGLdispatch.so.0 => /lib/x86_64-linux-gnu/libGLdispatch.so.0 (0x00007608965f4000)\n\tlibexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x00007608965c2000)\n\tlibuuid.so.1 => /lib/x86_64-linux-gnu/libuuid.so.1 (0x000076089813c000)\n\tlibxcb.so.1 => /lib/x86_64-linux-gnu/libxcb.so.1 (0x0000760896598000)\n\tlibpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x0000760896522000)\n\tlibdbus-1.so.3 => /lib/x86_64-linux-gnu/libdbus-1.so.3 (0x00007608964d4000)\n\tlibgraphite2.so.3 => /lib/x86_64-linux-gnu/libgraphite2.so.3 (0x00007608964ac000)\n\tlibbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x000076089812e000)\n\tlibicudata.so.70 => /lib/x86_64-linux-gnu/libicudata.so.70 (0x0000760894800000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x0000760896462000)\n\tlibXau.so.6 => /lib/x86_64-linux-gnu/libXau.so.6 (0x0000760897253000)\n\tlibXdmcp.so.6 => /lib/x86_64-linux-gnu/libXdmcp.so.6 (0x000076089724b000)\n\tlibsystemd.so.0 => /lib/x86_64-linux-gnu/libsystemd.so.0 (0x0000760894739000)\n\tlibbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x000076089643f000)\n\tlibbsd.so.0 => /lib/x86_64-linux-gnu/libbsd.so.0 (0x0000760896427000)\n\tliblzma.so.5 => /lib/x86_64-linux-gnu/liblzma.so.5 (0x000076089470e000)\n\tliblz4.so.1 => /lib/x86_64-linux-gnu/liblz4.so.1 (0x00007608946ee000)\n\tlibcap.so.2 => /lib/x86_64-linux-gnu/libcap.so.2 (0x00007608946e3000)\n\tlibgcrypt.so.20 => /lib/x86_64-linux-gnu/libgcrypt.so.20 (0x00007608945a3000)\n\tlibmd.so.0 => /lib/x86_64-linux-gnu/libmd.so.0 (0x0000760894596000)\n\tlibgpg-error.so.0 => /lib/x86_64-linux-gnu/libgpg-error.so.0 (0x0000760894570000)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "readelf",
+        "-d",
+        "/tmp/tigersheets-package-verify-2wuwp4by/stage/usr/libexec/tigersheets/tigersheets-report-worker"
+      ],
+      "returncode": 0,
+      "stdout": "\nDynamic section at offset 0xb8f558 contains 34 entries:\n  Tag        Type                         Name/Value\n 0x0000000000000001 (NEEDED)             Shared library: [libQt6Core.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libzip.so.4]\n 0x0000000000000001 (NEEDED)             Shared library: [libpugixml.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]\n 0x000000000000000c (INIT)               0x110000\n 0x000000000000000d (FINI)               0x890fe8\n 0x0000000000000019 (INIT_ARRAY)         0xa4cbd8\n 0x000000000000001b (INIT_ARRAYSZ)       32 (bytes)\n 0x000000000000001a (FINI_ARRAY)         0xa4cbf8\n 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)\n 0x000000006ffffef5 (GNU_HASH)           0x3d8\n 0x0000000000000005 (STRTAB)             0x32e0\n 0x0000000000000006 (SYMTAB)             0x598\n 0x000000000000000a (STRSZ)              12532 (bytes)\n 0x000000000000000b (SYMENT)             24 (bytes)\n 0x0000000000000015 (DEBUG)              0x0\n 0x0000000000000003 (PLTGOT)             0xb907b8\n 0x0000000000000002 (PLTRELSZ)           5352 (bytes)\n 0x0000000000000014 (PLTREL)             RELA\n 0x0000000000000017 (JMPREL)             0x10e2b8\n 0x0000000000000007 (RELA)               0x6ab0\n 0x0000000000000008 (RELASZ)             1079304 (bytes)\n 0x0000000000000009 (RELAENT)            24 (bytes)\n 0x000000000000001e (FLAGS)              BIND_NOW\n 0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE\n 0x000000006ffffffe (VERNEED)            0x67a0\n 0x000000006fffffff (VERNEEDNUM)         6\n 0x000000006ffffff0 (VERSYM)             0x63d4\n 0x000000006ffffff9 (RELACOUNT)          44668\n 0x0000000000000000 (NULL)               0x0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ldd",
+        "/tmp/tigersheets-package-verify-2wuwp4by/stage/usr/libexec/tigersheets/tigersheets-report-worker"
+      ],
+      "returncode": 0,
+      "stdout": "\tlinux-vdso.so.1 (0x00007fff760d2000)\n\tlibQt6Core.so.6 => /lib/x86_64-linux-gnu/libQt6Core.so.6 (0x000075bed2e00000)\n\tlibzip.so.4 => /lib/x86_64-linux-gnu/libzip.so.4 (0x000075bed40a0000)\n\tlibpugixml.so.1 => /lib/x86_64-linux-gnu/libpugixml.so.1 (0x000075bed4064000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x000075bed2a00000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000075bed2d19000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000075bed4042000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000075bed2600000)\n\t/lib64/ld-linux-x86-64.so.2 (0x000075bed40dd000)\n\tlibicui18n.so.70 => /lib/x86_64-linux-gnu/libicui18n.so.70 (0x000075bed2200000)\n\tlibicuuc.so.70 => /lib/x86_64-linux-gnu/libicuuc.so.70 (0x000075bed2005000)\n\tlibzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x000075bed3331000)\n\tlibglib-2.0.so.0 => /lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x000075bed28c5000)\n\tlibz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x000075bed4024000)\n\tlibdouble-conversion.so.3 => /lib/x86_64-linux-gnu/libdouble-conversion.so.3 (0x000075bed400f000)\n\tlibb2.so.1 => /lib/x86_64-linux-gnu/libb2.so.1 (0x000075bed3ff1000)\n\tlibpcre2-16.so.0 => /lib/x86_64-linux-gnu/libpcre2-16.so.0 (0x000075bed2c8f000)\n\tlibbz2.so.1.0 => /lib/x86_64-linux-gnu/libbz2.so.1.0 (0x000075bed3fde000)\n\tlibcrypto.so.3 => /lib/x86_64-linux-gnu/libcrypto.so.3 (0x000075bed1a00000)\n\tlibicudata.so.70 => /lib/x86_64-linux-gnu/libicudata.so.70 (0x000075becfc00000)\n\tlibpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x000075bed284f000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x000075bed2c45000)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "readelf",
+        "-d",
+        "/tmp/tigersheets-package-verify-2wuwp4by/stage/usr/libexec/tigersheets/tigersheets-vba-worker"
+      ],
+      "returncode": 0,
+      "stdout": "\nDynamic section at offset 0x1aa948 contains 32 entries:\n  Tag        Type                         Name/Value\n 0x0000000000000001 (NEEDED)             Shared library: [libseccomp.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]\n 0x000000000000000c (INIT)               0x14000\n 0x000000000000000d (FINI)               0x153bc8\n 0x0000000000000019 (INIT_ARRAY)         0x1a49e0\n 0x000000000000001b (INIT_ARRAYSZ)       24 (bytes)\n 0x000000000000001a (FINI_ARRAY)         0x1a49f8\n 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)\n 0x000000006ffffef5 (GNU_HASH)           0x3d8\n 0x0000000000000005 (STRTAB)             0x22d0\n 0x0000000000000006 (SYMTAB)             0x548\n 0x000000000000000a (STRSZ)              6982 (bytes)\n 0x000000000000000b (SYMENT)             24 (bytes)\n 0x0000000000000015 (DEBUG)              0x0\n 0x0000000000000003 (PLTGOT)             0x1abb88\n 0x0000000000000002 (PLTRELSZ)           2136 (bytes)\n 0x0000000000000014 (PLTREL)             RELA\n 0x0000000000000017 (JMPREL)             0x12ac0\n 0x0000000000000007 (RELA)               0x4330\n 0x0000000000000008 (RELASZ)             59280 (bytes)\n 0x0000000000000009 (RELAENT)            24 (bytes)\n 0x000000000000001e (FLAGS)              BIND_NOW\n 0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE\n 0x000000006ffffffe (VERNEED)            0x4090\n 0x000000006fffffff (VERNEEDNUM)         5\n 0x000000006ffffff0 (VERSYM)             0x3e16\n 0x000000006ffffff9 (RELACOUNT)          2232\n 0x0000000000000000 (NULL)               0x0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ldd",
+        "/tmp/tigersheets-package-verify-2wuwp4by/stage/usr/libexec/tigersheets/tigersheets-vba-worker"
+      ],
+      "returncode": 0,
+      "stdout": "\tlinux-vdso.so.1 (0x00007fff2fdbb000)\n\tlibseccomp.so.2 => /lib/x86_64-linux-gnu/libseccomp.so.2 (0x00007a6630da7000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007a6630a00000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007a6630cc0000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007a6630ca0000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007a6630600000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007a6630f95000)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "desktop-file-validate",
+        "/tmp/tigersheets-package-verify-2wuwp4by/stage/usr/share/applications/tiger-sheets.desktop"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "qmake6",
+        "-query",
+        "QT_INSTALL_PLUGINS"
+      ],
+      "returncode": 0,
+      "stdout": "/usr/lib/x86_64-linux-gnu/qt6/plugins\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ldd",
+        "/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqxcb.so"
+      ],
+      "returncode": 0,
+      "stdout": "\tlinux-vdso.so.1 (0x00007ffed414f000)\n\tlibQt6XcbQpa.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6XcbQpa.so.6 (0x0000793e0347e000)\n\tlibQt6Gui.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6Gui.so.6 (0x0000793e02c00000)\n\tlibQt6Core.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6Core.so.6 (0x0000793e02600000)\n\tlibstdc++.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libstdc++.so.6 (0x0000793e02200000)\n\tlibc.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libc.so.6 (0x0000793e01e00000)\n\tlibxcb-icccm.so.4 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb-icccm.so.4 (0x0000793e03475000)\n\tlibxcb-image.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb-image.so.0 (0x0000793e0346f000)\n\tlibxcb-keysyms.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb-keysyms.so.1 (0x0000793e0346a000)\n\tlibxcb-randr.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb-randr.so.0 (0x0000793e03457000)\n\tlibxcb-render.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb-render.so.0 (0x0000793e03446000)\n\tlibxcb-render-util.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb-render-util.so.0 (0x0000793e0343f000)\n\tlibxcb-shape.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb-shape.so.0 (0x0000793e0343a000)\n\tlibxcb-shm.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb-shm.so.0 (0x0000793e03435000)\n\tlibxcb-sync.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb-sync.so.1 (0x0000793e0342b000)\n\tlibxcb.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb.so.1 (0x0000793e03401000)\n\tlibxcb-xfixes.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb-xfixes.so.0 (0x0000793e033f5000)\n\tlibxcb-xkb.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb-xkb.so.1 (0x0000793e033d7000)\n\tlibxkbcommon.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxkbcommon.so.0 (0x0000793e03390000)\n\tlibglib-2.0.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libglib-2.0.so.0 (0x0000793e024c5000)\n\tlibX11-xcb.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libX11-xcb.so.1 (0x0000793e02bfb000)\n\tlibX11.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libX11.so.6 (0x0000793e020c0000)\n\tlibSM.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libSM.so.6 (0x0000793e02bf0000)\n\tlibICE.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libICE.so.6 (0x0000793e02bd3000)\n\tlibxcb-xinput.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxcb-xinput.so.0 (0x0000793e02baf000)\n\tlibxkbcommon-x11.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxkbcommon-x11.so.0 (0x0000793e02ba4000)\n\tlibm.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libm.so.6 (0x0000793e01d19000)\n\tlibgcc_s.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libgcc_s.so.1 (0x0000793e02b82000)\n\tlibEGL.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libEGL.so.1 (0x0000793e02b6f000)\n\tlibfontconfig.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libfontconfig.so.1 (0x0000793e0247b000)\n\tlibQt6DBus.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6DBus.so.6 (0x0000793e01c41000)\n\tlibGLX.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libGLX.so.0 (0x0000793e02b3b000)\n\tlibOpenGL.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libOpenGL.so.0 (0x0000793e0244f000)\n\tlibpng16.so.16 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libpng16.so.16 (0x0000793e02085000)\n\tlibharfbuzz.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libharfbuzz.so.0 (0x0000793e01b72000)\n\tlibmd4c.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libmd4c.so.0 (0x0000793e0243d000)\n\tlibfreetype.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libfreetype.so.6 (0x0000793e01aaa000)\n\tlibz.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libz.so.1 (0x0000793e02069000)\n\tlibicui18n.so.70 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libicui18n.so.70 (0x0000793e01600000)\n\tlibicuuc.so.70 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libicuuc.so.70 (0x0000793e01405000)\n\tlibzstd.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libzstd.so.1 (0x0000793e019db000)\n\tlibdouble-conversion.so.3 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libdouble-conversion.so.3 (0x0000793e02054000)\n\tlibb2.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libb2.so.1 (0x0000793e02036000)\n\tlibpcre2-16.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libpcre2-16.so.0 (0x0000793e01951000)\n\t/lib64/ld-linux-x86-64.so.2 (0x0000793e0352b000)\n\tlibxcb-util.so.1 => /lib/x86_64-linux-gnu/libxcb-util.so.1 (0x0000793e02434000)\n\tlibXau.so.6 => /lib/x86_64-linux-gnu/libXau.so.6 (0x0000793e02b2f000)\n\tlibXdmcp.so.6 => /lib/x86_64-linux-gnu/libXdmcp.so.6 (0x0000793e0242c000)\n\tlibpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x0000793e0138f000)\n\tlibuuid.so.1 => /lib/x86_64-linux-gnu/libuuid.so.1 (0x0000793e0202d000)\n\tlibbsd.so.0 => /lib/x86_64-linux-gnu/libbsd.so.0 (0x0000793e01377000)\n\tlibGLdispatch.so.0 => /lib/x86_64-linux-gnu/libGLdispatch.so.0 (0x0000793e012bf000)\n\tlibexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x0000793e0128d000)\n\tlibdbus-1.so.3 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libdbus-1.so.3 (0x0000793e0123f000)\n\tlibgraphite2.so.3 => /lib/x86_64-linux-gnu/libgraphite2.so.3 (0x0000793e01217000)\n\tlibbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x0000793e01209000)\n\tlibicudata.so.70 => /lib/x86_64-linux-gnu/libicudata.so.70 (0x0000793dff400000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x0000793e011bf000)\n\tlibmd.so.0 => /lib/x86_64-linux-gnu/libmd.so.0 (0x0000793e011b2000)\n\tlibsystemd.so.0 => /lib/x86_64-linux-gnu/libsystemd.so.0 (0x0000793e010eb000)\n\tlibbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x0000793e010c8000)\n\tliblzma.so.5 => /lib/x86_64-linux-gnu/liblzma.so.5 (0x0000793e0109d000)\n\tliblz4.so.1 => /lib/x86_64-linux-gnu/liblz4.so.1 (0x0000793e0107d000)\n\tlibcap.so.2 => /lib/x86_64-linux-gnu/libcap.so.2 (0x0000793e01072000)\n\tlibgcrypt.so.20 => /lib/x86_64-linux-gnu/libgcrypt.so.20 (0x0000793dff2c0000)\n\tlibgpg-error.so.0 => /lib/x86_64-linux-gnu/libgpg-error.so.0 (0x0000793e0104c000)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ldd",
+        "/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqwayland-egl.so"
+      ],
+      "returncode": 0,
+      "stdout": "\tlinux-vdso.so.1 (0x00007ffc6877d000)\n\tlibQt6WaylandEglClientHwIntegration.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6WaylandEglClientHwIntegration.so.6 (0x000076b0e1036000)\n\tlibQt6WaylandClient.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6WaylandClient.so.6 (0x000076b0e0f61000)\n\tlibQt6Gui.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6Gui.so.6 (0x000076b0e0600000)\n\tlibQt6Core.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6Core.so.6 (0x000076b0e0000000)\n\tlibstdc++.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libstdc++.so.6 (0x000076b0dfc00000)\n\tlibc.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libc.so.6 (0x000076b0df800000)\n\tlibEGL.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libEGL.so.1 (0x000076b0e0f4c000)\n\tlibwayland-client.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libwayland-client.so.0 (0x000076b0e0f3b000)\n\tlibwayland-egl.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libwayland-egl.so.1 (0x000076b0e0f36000)\n\tlibQt6OpenGL.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6OpenGL.so.6 (0x000076b0e0e8e000)\n\tlibOpenGL.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libOpenGL.so.0 (0x000076b0e0e62000)\n\tlibwayland-cursor.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libwayland-cursor.so.0 (0x000076b0e0e58000)\n\tlibxkbcommon.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxkbcommon.so.0 (0x000076b0e0e11000)\n\tlibfontconfig.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libfontconfig.so.1 (0x000076b0e0dc7000)\n\tlibX11.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libX11.so.6 (0x000076b0dfec0000)\n\tlibglib-2.0.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libglib-2.0.so.0 (0x000076b0dfac5000)\n\tlibQt6DBus.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6DBus.so.6 (0x000076b0df728000)\n\tlibGLX.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libGLX.so.0 (0x000076b0e0d91000)\n\tlibpng16.so.16 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libpng16.so.16 (0x000076b0e05c5000)\n\tlibharfbuzz.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libharfbuzz.so.0 (0x000076b0df659000)\n\tlibmd4c.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libmd4c.so.0 (0x000076b0e05b3000)\n\tlibfreetype.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libfreetype.so.6 (0x000076b0df591000)\n\tlibz.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libz.so.1 (0x000076b0e0597000)\n\tlibm.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libm.so.6 (0x000076b0df4aa000)\n\tlibgcc_s.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libgcc_s.so.1 (0x000076b0e0577000)\n\tlibicui18n.so.70 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libicui18n.so.70 (0x000076b0df000000)\n\tlibicuuc.so.70 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libicuuc.so.70 (0x000076b0dee05000)\n\tlibzstd.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libzstd.so.1 (0x000076b0df3db000)\n\tlibdouble-conversion.so.3 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libdouble-conversion.so.3 (0x000076b0e0562000)\n\tlibb2.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libb2.so.1 (0x000076b0e0544000)\n\tlibpcre2-16.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libpcre2-16.so.0 (0x000076b0dfe36000)\n\t/lib64/ld-linux-x86-64.so.2 (0x000076b0e104e000)\n\tlibGLdispatch.so.0 => /lib/x86_64-linux-gnu/libGLdispatch.so.0 (0x000076b0ded4d000)\n\tlibffi.so.8 => /lib/x86_64-linux-gnu/libffi.so.8 (0x000076b0e0535000)\n\tlibexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x000076b0dfa76000)\n\tlibuuid.so.1 => /lib/x86_64-linux-gnu/libuuid.so.1 (0x000076b0dfe2d000)\n\tlibxcb.so.1 => /lib/x86_64-linux-gnu/libxcb.so.1 (0x000076b0dfa4c000)\n\tlibpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x000076b0df365000)\n\tlibdbus-1.so.3 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libdbus-1.so.3 (0x000076b0decff000)\n\tlibgraphite2.so.3 => /lib/x86_64-linux-gnu/libgraphite2.so.3 (0x000076b0df33d000)\n\tlibbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x000076b0dfa3e000)\n\tlibicudata.so.70 => /lib/x86_64-linux-gnu/libicudata.so.70 (0x000076b0dd000000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x000076b0decb5000)\n\tlibXau.so.6 => /lib/x86_64-linux-gnu/libXau.so.6 (0x000076b0dfa38000)\n\tlibXdmcp.so.6 => /lib/x86_64-linux-gnu/libXdmcp.so.6 (0x000076b0dfa30000)\n\tlibsystemd.so.0 => /lib/x86_64-linux-gnu/libsystemd.so.0 (0x000076b0dcf39000)\n\tlibbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x000076b0dec92000)\n\tlibbsd.so.0 => /lib/x86_64-linux-gnu/libbsd.so.0 (0x000076b0dec7a000)\n\tliblzma.so.5 => /lib/x86_64-linux-gnu/liblzma.so.5 (0x000076b0dec4f000)\n\tliblz4.so.1 => /lib/x86_64-linux-gnu/liblz4.so.1 (0x000076b0dec2f000)\n\tlibcap.so.2 => /lib/x86_64-linux-gnu/libcap.so.2 (0x000076b0df332000)\n\tlibgcrypt.so.20 => /lib/x86_64-linux-gnu/libgcrypt.so.20 (0x000076b0dcdf9000)\n\tlibmd.so.0 => /lib/x86_64-linux-gnu/libmd.so.0 (0x000076b0dec22000)\n\tlibgpg-error.so.0 => /lib/x86_64-linux-gnu/libgpg-error.so.0 (0x000076b0dcdd3000)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ldd",
+        "/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqwayland-generic.so"
+      ],
+      "returncode": 0,
+      "stdout": "\tlinux-vdso.so.1 (0x00007ffc287f3000)\n\tlibQt6WaylandClient.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6WaylandClient.so.6 (0x00007769bb7f7000)\n\tlibQt6Gui.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6Gui.so.6 (0x00007769bb000000)\n\tlibQt6Core.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6Core.so.6 (0x00007769baa00000)\n\tlibstdc++.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libstdc++.so.6 (0x00007769ba600000)\n\tlibc.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libc.so.6 (0x00007769ba200000)\n\tlibwayland-client.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libwayland-client.so.0 (0x00007769bb7e4000)\n\tlibwayland-cursor.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libwayland-cursor.so.0 (0x00007769bb7da000)\n\tlibxkbcommon.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxkbcommon.so.0 (0x00007769bb793000)\n\tlibEGL.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libEGL.so.1 (0x00007769bafed000)\n\tlibfontconfig.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libfontconfig.so.1 (0x00007769bafa3000)\n\tlibX11.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libX11.so.6 (0x00007769ba8c0000)\n\tlibglib-2.0.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libglib-2.0.so.0 (0x00007769ba4c5000)\n\tlibQt6DBus.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6DBus.so.6 (0x00007769ba128000)\n\tlibGLX.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libGLX.so.0 (0x00007769baf6f000)\n\tlibOpenGL.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libOpenGL.so.0 (0x00007769baf43000)\n\tlibpng16.so.16 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libpng16.so.16 (0x00007769ba885000)\n\tlibharfbuzz.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libharfbuzz.so.0 (0x00007769ba059000)\n\tlibmd4c.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libmd4c.so.0 (0x00007769baf31000)\n\tlibfreetype.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libfreetype.so.6 (0x00007769b9f91000)\n\tlibz.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libz.so.1 (0x00007769ba869000)\n\tlibm.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libm.so.6 (0x00007769b9eaa000)\n\tlibgcc_s.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libgcc_s.so.1 (0x00007769ba849000)\n\tlibicui18n.so.70 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libicui18n.so.70 (0x00007769b9a00000)\n\tlibicuuc.so.70 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libicuuc.so.70 (0x00007769b9805000)\n\tlibzstd.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libzstd.so.1 (0x00007769b9ddb000)\n\tlibdouble-conversion.so.3 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libdouble-conversion.so.3 (0x00007769ba834000)\n\tlibb2.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libb2.so.1 (0x00007769ba4a7000)\n\tlibpcre2-16.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libpcre2-16.so.0 (0x00007769b9d51000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007769bb8d4000)\n\tlibffi.so.8 => /lib/x86_64-linux-gnu/libffi.so.8 (0x00007769ba47d000)\n\tlibGLdispatch.so.0 => /lib/x86_64-linux-gnu/libGLdispatch.so.0 (0x00007769b974d000)\n\tlibexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x00007769ba44b000)\n\tlibuuid.so.1 => /lib/x86_64-linux-gnu/libuuid.so.1 (0x00007769ba442000)\n\tlibxcb.so.1 => /lib/x86_64-linux-gnu/libxcb.so.1 (0x00007769b9723000)\n\tlibpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007769b96ad000)\n\tlibdbus-1.so.3 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libdbus-1.so.3 (0x00007769b965f000)\n\tlibgraphite2.so.3 => /lib/x86_64-linux-gnu/libgraphite2.so.3 (0x00007769b9637000)\n\tlibbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x00007769ba434000)\n\tlibicudata.so.70 => /lib/x86_64-linux-gnu/libicudata.so.70 (0x00007769b7a00000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x00007769b79b6000)\n\tlibXau.so.6 => /lib/x86_64-linux-gnu/libXau.so.6 (0x00007769ba82c000)\n\tlibXdmcp.so.6 => /lib/x86_64-linux-gnu/libXdmcp.so.6 (0x00007769ba42c000)\n\tlibsystemd.so.0 => /lib/x86_64-linux-gnu/libsystemd.so.0 (0x00007769b78ef000)\n\tlibbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x00007769b78cc000)\n\tlibbsd.so.0 => /lib/x86_64-linux-gnu/libbsd.so.0 (0x00007769b9d39000)\n\tliblzma.so.5 => /lib/x86_64-linux-gnu/liblzma.so.5 (0x00007769b78a1000)\n\tliblz4.so.1 => /lib/x86_64-linux-gnu/liblz4.so.1 (0x00007769b7881000)\n\tlibcap.so.2 => /lib/x86_64-linux-gnu/libcap.so.2 (0x00007769b962c000)\n\tlibgcrypt.so.20 => /lib/x86_64-linux-gnu/libgcrypt.so.20 (0x00007769b7741000)\n\tlibmd.so.0 => /lib/x86_64-linux-gnu/libmd.so.0 (0x00007769b961f000)\n\tlibgpg-error.so.0 => /lib/x86_64-linux-gnu/libgpg-error.so.0 (0x00007769b771b000)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ldd",
+        "/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqoffscreen.so"
+      ],
+      "returncode": 0,
+      "stdout": "\tlinux-vdso.so.1 (0x00007ffd5bbcf000)\n\tlibX11.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libX11.so.6 (0x000071c6bbf60000)\n\tlibQt6Gui.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6Gui.so.6 (0x000071c6bb600000)\n\tlibGLX.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libGLX.so.0 (0x000071c6bbf2c000)\n\tlibOpenGL.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libOpenGL.so.0 (0x000071c6bbf00000)\n\tlibQt6Core.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6Core.so.6 (0x000071c6bb000000)\n\tlibstdc++.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libstdc++.so.6 (0x000071c6bac00000)\n\tlibc.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libc.so.6 (0x000071c6ba800000)\n\tlibxcb.so.1 => /lib/x86_64-linux-gnu/libxcb.so.1 (0x000071c6bbeb7000)\n\tlibEGL.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libEGL.so.1 (0x000071c6bbea4000)\n\tlibfontconfig.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libfontconfig.so.1 (0x000071c6bbe58000)\n\tlibglib-2.0.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libglib-2.0.so.0 (0x000071c6baec5000)\n\tlibQt6DBus.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libQt6DBus.so.6 (0x000071c6bab28000)\n\tlibxkbcommon.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libxkbcommon.so.0 (0x000071c6bbe11000)\n\tlibpng16.so.16 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libpng16.so.16 (0x000071c6bbdd6000)\n\tlibharfbuzz.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libharfbuzz.so.0 (0x000071c6bb531000)\n\tlibmd4c.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libmd4c.so.0 (0x000071c6bbdc2000)\n\tlibfreetype.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libfreetype.so.6 (0x000071c6baa60000)\n\tlibz.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libz.so.1 (0x000071c6bbda6000)\n\tlibm.so.6 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libm.so.6 (0x000071c6ba719000)\n\tlibgcc_s.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libgcc_s.so.1 (0x000071c6baea5000)\n\tlibGLdispatch.so.0 => /lib/x86_64-linux-gnu/libGLdispatch.so.0 (0x000071c6ba661000)\n\tlibicui18n.so.70 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libicui18n.so.70 (0x000071c6ba200000)\n\tlibicuuc.so.70 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libicuuc.so.70 (0x000071c6ba005000)\n\tlibzstd.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libzstd.so.1 (0x000071c6ba592000)\n\tlibdouble-conversion.so.3 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libdouble-conversion.so.3 (0x000071c6bbd8f000)\n\tlibb2.so.1 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libb2.so.1 (0x000071c6bae87000)\n\tlibpcre2-16.so.0 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libpcre2-16.so.0 (0x000071c6b9f7b000)\n\t/lib64/ld-linux-x86-64.so.2 (0x000071c6bc0bb000)\n\tlibXau.so.6 => /lib/x86_64-linux-gnu/libXau.so.6 (0x000071c6bae81000)\n\tlibXdmcp.so.6 => /lib/x86_64-linux-gnu/libXdmcp.so.6 (0x000071c6bae79000)\n\tlibexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x000071c6bae47000)\n\tlibuuid.so.1 => /lib/x86_64-linux-gnu/libuuid.so.1 (0x000071c6bae3e000)\n\tlibpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x000071c6b9f05000)\n\tlibdbus-1.so.3 => /usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/../../../libdbus-1.so.3 (0x000071c6ba544000)\n\tlibgraphite2.so.3 => /lib/x86_64-linux-gnu/libgraphite2.so.3 (0x000071c6baa38000)\n\tlibbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x000071c6bae30000)\n\tlibicudata.so.70 => /lib/x86_64-linux-gnu/libicudata.so.70 (0x000071c6b8200000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x000071c6b9ebb000)\n\tlibbsd.so.0 => /lib/x86_64-linux-gnu/libbsd.so.0 (0x000071c6b9ea3000)\n\tlibsystemd.so.0 => /lib/x86_64-linux-gnu/libsystemd.so.0 (0x000071c6b8139000)\n\tlibbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x000071c6b9e80000)\n\tlibmd.so.0 => /lib/x86_64-linux-gnu/libmd.so.0 (0x000071c6baa2b000)\n\tliblzma.so.5 => /lib/x86_64-linux-gnu/liblzma.so.5 (0x000071c6b9e55000)\n\tliblz4.so.1 => /lib/x86_64-linux-gnu/liblz4.so.1 (0x000071c6b9e35000)\n\tlibcap.so.2 => /lib/x86_64-linux-gnu/libcap.so.2 (0x000071c6ba539000)\n\tlibgcrypt.so.20 => /lib/x86_64-linux-gnu/libgcrypt.so.20 (0x000071c6b7ff9000)\n\tlibgpg-error.so.0 => /lib/x86_64-linux-gnu/libgpg-error.so.0 (0x000071c6b7fd3000)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/tmp/tigersheets-package-verify-2wuwp4by/stage/usr/bin/tiger-sheets",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout": "TigerSheets 0.2.0~dev.1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/tmp/tigersheets-package-verify-2wuwp4by/stage/usr/libexec/tigersheets/tigersheets-report-worker",
+        "--request",
+        "/tmp/tigersheets-package-verify-2wuwp4by/request.json",
+        "--response",
+        "/tmp/tigersheets-package-verify-2wuwp4by/response.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"stage\":\"Reading report inputs\",\"type\":\"progress\",\"version\":1}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/tmp/tigersheets-package-verify-2wuwp4by/stage/usr/libexec/tigersheets/tigersheets-vba-worker",
+        "--stdio"
+      ],
+      "returncode": 0,
+      "stdout": "{\"diagnostics\":[\"Macros are disabled for this workbook\"],\"status\":\"disabled\",\"variables\":{},\"version\":1,\"workbook\":{\"revision\":0,\"sheets\":[{\"cells\":[{\"col\":1,\"input\":\"Region\",\"row\":1},{\"col\":2,\"input\":\"Sales\",\"row\":1},{\"col\":1,\"input\":\"East\",\"row\":2},{\"col\":2,\"input\":\"10\",\"row\":2}],\"id\":\"data\",\"name\":\"Data\"},{\"cells\":[],\"id\":\"report\",\"name\":\"Report\"}]}}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dpkg-query",
+        "-W",
+        "-f=${Version}",
+        "tiger-sheets"
+      ],
+      "returncode": 0,
+      "stdout": "0.1.0~dev.2",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dpkg",
+        "--compare-versions",
+        "0.2.0~dev.1",
+        "gt",
+        "0.1.0~dev.2"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "apt-get",
+        "--simulate",
+        "-o",
+        "Debug::NoLocking=1",
+        "install",
+        "/workspace/tiger-sheets/build-release/tiger-sheets_0.2.0~dev.1_amd64.deb"
+      ],
+      "returncode": 0,
+      "stdout": "NOTE: This is only a simulation!\n      apt-get needs root privileges for real execution.\n      Keep also in mind that locking is deactivated,\n      so don't depend on the relevance to the real current situation!\nReading package lists...\nBuilding dependency tree...\nReading state information...\nThe following packages were automatically installed and are no longer required:\n  libfwupd2 libfwupdplugin5 libgcab-1.0-0 libsmbios-c2\n  python3-proton-vpn-local-agent python3-proton-vpn-network-manager\nUse 'apt autoremove' to remove them.\nThe following packages will be upgraded:\n  tiger-sheets\n1 upgraded, 0 newly installed, 0 to remove and 32 not upgraded.\nInst tiger-sheets [0.1.0~dev.2] (0.2.0~dev.1 local-deb [amd64])\nConf tiger-sheets (0.2.0~dev.1 local-deb [amd64])\n",
+      "stderr": ""
+    }
+  ],
+  "limitations": [
+    "Private extraction uses this Ubuntu host and its installed runtime libraries; it is not a clean VM install.",
+    "The desktop version probe uses Qt offscreen. Native keyboard and accessibility evidence is recorded separately."
+  ],
+  "package": "/workspace/tiger-sheets/build-release/tiger-sheets_0.2.0~dev.1_amd64.deb",
+  "sha256": "23da00ebe644b846647cfdef92bb732c741374dbc5878c4a217232c9d0ae631b",
+  "control": {
+    "Architecture": "amd64",
+    "Depends": "qt6-qpa-plugins, qt6-wayland, libc6 (>= 2.34), libgcc-s1 (>= 4.2), libpugixml1v5 (>= 1.11), libqt6core6 (>= 6.2.0), libqt6gui6 (>= 6.1.2), libqt6printsupport6 (>= 6.1.2), libqt6widgets6 (>= 6.1.2), libseccomp2 (>= 0.0.0~20120605), libsqlite3-0 (>= 3.8.7), libstdc++6 (>= 12), libzip4 (>= 1.0)",
+    "Description": "TigerSheets development build\n Local TigerSheets development build. Excel and VBA compatibility is incomplete; this package is for local evaluation.",
+    "Maintainer": "TigerSheets contributors",
+    "Package": "tiger-sheets",
+    "Priority": "optional",
+    "Section": "math",
+    "Version": "0.2.0~dev.1",
+    "Installed-Size": "227688"
+  },
+  "manifest": "passed",
+  "binaries": {
+    "usr/bin/tiger-sheets": "dc9d6d1a65f461842d33e46a01243007d4ebd58d61b5c1133104052e21fd5cc3",
+    "usr/libexec/tigersheets/tigersheets-report-worker": "5b85e0b92300a3978720687281b79ed288703306fbf3062cda92a9b544a99e5b",
+    "usr/libexec/tigersheets/tigersheets-vba-worker": "8278008f3a3ffd4b68caad3cf69b034ec8b2669db35026f197b74e782f50ebd1"
+  },
+  "qt_platform_plugins": [
+    "/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqxcb.so",
+    "/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqwayland-egl.so",
+    "/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqwayland-generic.so",
+    "/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqoffscreen.so"
+  ],
+  "installed_version": "0.1.0~dev.2",
+  "upgrade_simulation": "passed (no package changes performed)"
+}

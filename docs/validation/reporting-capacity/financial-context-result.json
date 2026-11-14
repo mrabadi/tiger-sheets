@@ -1,0 +1,1096 @@
+{
+  "cells": [
+    {
+      "col": 1,
+      "input": "'Department",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 2,
+      "input": "'1 / Total net cash",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 3,
+      "input": "'1 / Average net cash",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 4,
+      "input": "'1 / Minimum net cash",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 5,
+      "input": "'1 / Maximum net cash",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 6,
+      "input": "'2 / Total net cash",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 7,
+      "input": "'2 / Average net cash",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 8,
+      "input": "'2 / Minimum net cash",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 9,
+      "input": "'2 / Maximum net cash",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 10,
+      "input": "'Grand Total / Total net cash",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 11,
+      "input": "'Grand Total / Average net cash",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 12,
+      "input": "'Grand Total / Minimum net cash",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 13,
+      "input": "'Grand Total / Maximum net cash",
+      "pivotOwner": "financial-context",
+      "row": 1
+    },
+    {
+      "col": 1,
+      "input": "'Finance",
+      "pivotOwner": "financial-context",
+      "row": 2
+    },
+    {
+      "col": 2,
+      "input": "6110.0",
+      "pivotOwner": "financial-context",
+      "row": 2,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 3,
+      "input": "1222.0",
+      "pivotOwner": "financial-context",
+      "row": 2,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 4,
+      "input": "997.0",
+      "pivotOwner": "financial-context",
+      "row": 2,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 5,
+      "input": "1447.0",
+      "pivotOwner": "financial-context",
+      "row": 2,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 6,
+      "input": "2444.0",
+      "pivotOwner": "financial-context",
+      "row": 2,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 7,
+      "input": "1222.0",
+      "pivotOwner": "financial-context",
+      "row": 2,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 8,
+      "input": "1072.0",
+      "pivotOwner": "financial-context",
+      "row": 2,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 9,
+      "input": "1372.0",
+      "pivotOwner": "financial-context",
+      "row": 2,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 10,
+      "input": "8554.0",
+      "pivotOwner": "financial-context",
+      "row": 2,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 11,
+      "input": "1222.0",
+      "pivotOwner": "financial-context",
+      "row": 2,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 12,
+      "input": "997.0",
+      "pivotOwner": "financial-context",
+      "row": 2,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 13,
+      "input": "1447.0",
+      "pivotOwner": "financial-context",
+      "row": 2,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 1,
+      "input": "'Operations",
+      "pivotOwner": "financial-context",
+      "row": 3
+    },
+    {
+      "col": 2,
+      "input": "6085.0",
+      "pivotOwner": "financial-context",
+      "row": 3,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 3,
+      "input": "1217.0",
+      "pivotOwner": "financial-context",
+      "row": 3,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 4,
+      "input": "1022.0",
+      "pivotOwner": "financial-context",
+      "row": 3,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 5,
+      "input": "1397.0",
+      "pivotOwner": "financial-context",
+      "row": 3,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 6,
+      "input": "2644.0",
+      "pivotOwner": "financial-context",
+      "row": 3,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 7,
+      "input": "1322.0",
+      "pivotOwner": "financial-context",
+      "row": 3,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 8,
+      "input": "1172.0",
+      "pivotOwner": "financial-context",
+      "row": 3,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 9,
+      "input": "1472.0",
+      "pivotOwner": "financial-context",
+      "row": 3,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 10,
+      "input": "8729.0",
+      "pivotOwner": "financial-context",
+      "row": 3,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 11,
+      "input": "1247.0",
+      "pivotOwner": "financial-context",
+      "row": 3,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 12,
+      "input": "1022.0",
+      "pivotOwner": "financial-context",
+      "row": 3,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 13,
+      "input": "1472.0",
+      "pivotOwner": "financial-context",
+      "row": 3,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 1,
+      "input": "'Sales",
+      "pivotOwner": "financial-context",
+      "row": 4
+    },
+    {
+      "col": 2,
+      "input": "6135.0",
+      "pivotOwner": "financial-context",
+      "row": 4,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 3,
+      "input": "1227.0",
+      "pivotOwner": "financial-context",
+      "row": 4,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 4,
+      "input": "1047.0",
+      "pivotOwner": "financial-context",
+      "row": 4,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 5,
+      "input": "1422.0",
+      "pivotOwner": "financial-context",
+      "row": 4,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 6,
+      "input": "1272.0",
+      "pivotOwner": "financial-context",
+      "row": 4,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 7,
+      "input": "1272.0",
+      "pivotOwner": "financial-context",
+      "row": 4,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 8,
+      "input": "1272.0",
+      "pivotOwner": "financial-context",
+      "row": 4,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 9,
+      "input": "1272.0",
+      "pivotOwner": "financial-context",
+      "row": 4,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 10,
+      "input": "7407.0",
+      "pivotOwner": "financial-context",
+      "row": 4,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 11,
+      "input": "1234.5",
+      "pivotOwner": "financial-context",
+      "row": 4,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 12,
+      "input": "1047.0",
+      "pivotOwner": "financial-context",
+      "row": 4,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 13,
+      "input": "1422.0",
+      "pivotOwner": "financial-context",
+      "row": 4,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 1,
+      "input": "'Grand Total",
+      "pivotOwner": "financial-context",
+      "row": 5
+    },
+    {
+      "col": 2,
+      "input": "18330.0",
+      "pivotOwner": "financial-context",
+      "row": 5,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 3,
+      "input": "1222.0",
+      "pivotOwner": "financial-context",
+      "row": 5,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 4,
+      "input": "997.0",
+      "pivotOwner": "financial-context",
+      "row": 5,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 5,
+      "input": "1447.0",
+      "pivotOwner": "financial-context",
+      "row": 5,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 6,
+      "input": "6360.0",
+      "pivotOwner": "financial-context",
+      "row": 5,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 7,
+      "input": "1272.0",
+      "pivotOwner": "financial-context",
+      "row": 5,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 8,
+      "input": "1072.0",
+      "pivotOwner": "financial-context",
+      "row": 5,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 9,
+      "input": "1472.0",
+      "pivotOwner": "financial-context",
+      "row": 5,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 10,
+      "input": "24690.0",
+      "pivotOwner": "financial-context",
+      "row": 5,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 11,
+      "input": "1234.5",
+      "pivotOwner": "financial-context",
+      "row": 5,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 12,
+      "input": "997.0",
+      "pivotOwner": "financial-context",
+      "row": 5,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    },
+    {
+      "col": 13,
+      "input": "1472.0",
+      "pivotOwner": "financial-context",
+      "row": 5,
+      "style": {
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    }
+  ],
+  "contextGeneration": 42,
+  "definition": {
+    "cache": {
+      "contextGeneration": 42,
+      "fields": [
+        {
+          "items": [
+            {
+              "type": "string",
+              "value": "Finance"
+            },
+            {
+              "type": "string",
+              "value": "Operations"
+            },
+            {
+              "type": "string",
+              "value": "Sales"
+            }
+          ],
+          "name": "Department",
+          "numberFormat": "General"
+        },
+        {
+          "items": [
+            {
+              "type": "number",
+              "value": 997.0
+            },
+            {
+              "type": "number",
+              "value": 1022.0
+            },
+            {
+              "type": "number",
+              "value": 1047.0
+            },
+            {
+              "type": "number",
+              "value": 1072.0
+            },
+            {
+              "type": "number",
+              "value": 1097.0
+            },
+            {
+              "type": "number",
+              "value": 1122.0
+            },
+            {
+              "type": "number",
+              "value": 1147.0
+            },
+            {
+              "type": "number",
+              "value": 1172.0
+            },
+            {
+              "type": "number",
+              "value": 1197.0
+            },
+            {
+              "type": "number",
+              "value": 1222.0
+            },
+            {
+              "type": "number",
+              "value": 1247.0
+            },
+            {
+              "type": "number",
+              "value": 1272.0
+            },
+            {
+              "type": "number",
+              "value": 1297.0
+            },
+            {
+              "type": "number",
+              "value": 1322.0
+            },
+            {
+              "type": "number",
+              "value": 1347.0
+            },
+            {
+              "type": "number",
+              "value": 1372.0
+            },
+            {
+              "type": "number",
+              "value": 1397.0
+            },
+            {
+              "type": "number",
+              "value": 1422.0
+            },
+            {
+              "type": "number",
+              "value": 1447.0
+            },
+            {
+              "type": "number",
+              "value": 1472.0
+            }
+          ],
+          "name": "Net cash",
+          "numberFormat": "\"$\"#,##0.00"
+        },
+        {
+          "items": [
+            {
+              "type": "number",
+              "value": 45292.0
+            },
+            {
+              "type": "number",
+              "value": 45323.0
+            },
+            {
+              "type": "number",
+              "value": 45354.0
+            },
+            {
+              "type": "number",
+              "value": 45385.0
+            }
+          ],
+          "name": "Date",
+          "numberFormat": "yyyy-mm-dd"
+        }
+      ],
+      "records": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          2,
+          5,
+          1
+        ],
+        [
+          0,
+          6,
+          2
+        ],
+        [
+          1,
+          7,
+          3
+        ],
+        [
+          2,
+          8,
+          0
+        ],
+        [
+          0,
+          9,
+          1
+        ],
+        [
+          1,
+          10,
+          2
+        ],
+        [
+          2,
+          11,
+          3
+        ],
+        [
+          0,
+          12,
+          0
+        ],
+        [
+          1,
+          13,
+          1
+        ],
+        [
+          2,
+          14,
+          2
+        ],
+        [
+          0,
+          15,
+          3
+        ],
+        [
+          1,
+          16,
+          0
+        ],
+        [
+          2,
+          17,
+          1
+        ],
+        [
+          0,
+          18,
+          2
+        ],
+        [
+          1,
+          19,
+          3
+        ]
+      ],
+      "sourceRevision": 0
+    },
+    "columnGrandTotals": true,
+    "columns": [
+      {
+        "field": "Date",
+        "group": "quarter"
+      }
+    ],
+    "filters": [],
+    "id": "financial-context",
+    "layout": {
+      "columnKeys": [
+        [
+          {
+            "type": "number",
+            "value": 1
+          }
+        ],
+        [
+          {
+            "type": "number",
+            "value": 2
+          }
+        ]
+      ],
+      "columnTotals": [
+        {
+          "type": "number",
+          "value": 18330.0
+        },
+        {
+          "type": "number",
+          "value": 1222.0
+        },
+        {
+          "type": "number",
+          "value": 997.0
+        },
+        {
+          "type": "number",
+          "value": 1447.0
+        },
+        {
+          "type": "number",
+          "value": 6360.0
+        },
+        {
+          "type": "number",
+          "value": 1272.0
+        },
+        {
+          "type": "number",
+          "value": 1072.0
+        },
+        {
+          "type": "number",
+          "value": 1472.0
+        }
+      ],
+      "data": [
+        [
+          {
+            "type": "number",
+            "value": 6110.0
+          },
+          {
+            "type": "number",
+            "value": 1222.0
+          },
+          {
+            "type": "number",
+            "value": 997.0
+          },
+          {
+            "type": "number",
+            "value": 1447.0
+          },
+          {
+            "type": "number",
+            "value": 2444.0
+          },
+          {
+            "type": "number",
+            "value": 1222.0
+          },
+          {
+            "type": "number",
+            "value": 1072.0
+          },
+          {
+            "type": "number",
+            "value": 1372.0
+          }
+        ],
+        [
+          {
+            "type": "number",
+            "value": 6085.0
+          },
+          {
+            "type": "number",
+            "value": 1217.0
+          },
+          {
+            "type": "number",
+            "value": 1022.0
+          },
+          {
+            "type": "number",
+            "value": 1397.0
+          },
+          {
+            "type": "number",
+            "value": 2644.0
+          },
+          {
+            "type": "number",
+            "value": 1322.0
+          },
+          {
+            "type": "number",
+            "value": 1172.0
+          },
+          {
+            "type": "number",
+            "value": 1472.0
+          }
+        ],
+        [
+          {
+            "type": "number",
+            "value": 6135.0
+          },
+          {
+            "type": "number",
+            "value": 1227.0
+          },
+          {
+            "type": "number",
+            "value": 1047.0
+          },
+          {
+            "type": "number",
+            "value": 1422.0
+          },
+          {
+            "type": "number",
+            "value": 1272.0
+          },
+          {
+            "type": "number",
+            "value": 1272.0
+          },
+          {
+            "type": "number",
+            "value": 1272.0
+          },
+          {
+            "type": "number",
+            "value": 1272.0
+          }
+        ]
+      ],
+      "grandTotals": [
+        {
+          "type": "number",
+          "value": 24690.0
+        },
+        {
+          "type": "number",
+          "value": 1234.5
+        },
+        {
+          "type": "number",
+          "value": 997.0
+        },
+        {
+          "type": "number",
+          "value": 1472.0
+        }
+      ],
+      "rowKeys": [
+        [
+          {
+            "type": "string",
+            "value": "Finance"
+          }
+        ],
+        [
+          {
+            "type": "string",
+            "value": "Operations"
+          }
+        ],
+        [
+          {
+            "type": "string",
+            "value": "Sales"
+          }
+        ]
+      ],
+      "rowTotals": [
+        [
+          {
+            "type": "number",
+            "value": 8554.0
+          },
+          {
+            "type": "number",
+            "value": 1222.0
+          },
+          {
+            "type": "number",
+            "value": 997.0
+          },
+          {
+            "type": "number",
+            "value": 1447.0
+          }
+        ],
+        [
+          {
+            "type": "number",
+            "value": 8729.0
+          },
+          {
+            "type": "number",
+            "value": 1247.0
+          },
+          {
+            "type": "number",
+            "value": 1022.0
+          },
+          {
+            "type": "number",
+            "value": 1472.0
+          }
+        ],
+        [
+          {
+            "type": "number",
+            "value": 7407.0
+          },
+          {
+            "type": "number",
+            "value": 1234.5
+          },
+          {
+            "type": "number",
+            "value": 1047.0
+          },
+          {
+            "type": "number",
+            "value": 1422.0
+          }
+        ]
+      ]
+    },
+    "name": "FinancialCashReport",
+    "output": {
+      "col1": 1,
+      "col2": 13,
+      "row1": 1,
+      "row2": 5,
+      "sheet": "report"
+    },
+    "provenance": {
+      "allowCachedLinks": false,
+      "diagnostics": [],
+      "links": [
+        {
+          "name": "FinanceDrivers.xlsx",
+          "path": "/never-read/FinanceDrivers.xlsx",
+          "state": "retained"
+        }
+      ]
+    },
+    "rowGrandTotals": true,
+    "rows": [
+      {
+        "field": "Department"
+      }
+    ],
+    "source": {
+      "col1": 1,
+      "col2": 3,
+      "row1": 1,
+      "row2": 21,
+      "sheet": "source"
+    },
+    "stale": false,
+    "values": [
+      {
+        "aggregate": "sum",
+        "field": "Net cash",
+        "name": "Total net cash",
+        "numberFormat": "\"$\"#,##0.00"
+      },
+      {
+        "aggregate": "average",
+        "field": "Net cash",
+        "name": "Average net cash",
+        "numberFormat": "\"$\"#,##0.00"
+      },
+      {
+        "aggregate": "min",
+        "field": "Net cash",
+        "name": "Minimum net cash",
+        "numberFormat": "\"$\"#,##0.00"
+      },
+      {
+        "aggregate": "max",
+        "field": "Net cash",
+        "name": "Maximum net cash",
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    ],
+    "version": 1
+  },
+  "diagnostics": [],
+  "revision": 0,
+  "status": "ok",
+  "version": 1
+}

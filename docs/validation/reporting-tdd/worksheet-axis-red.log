@@ -1,0 +1,7 @@
+[1/6] Building CXX object CMakeFiles/references_tests.dir/workspace/tiger-sheets/tests/references_tests.cpp.o
+[2/6] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/grid.cpp.o
+[3/6] Linking CXX static library libworksheet_core.a
+[4/6] Linking CXX executable references_tests
+[5/6] Linking CXX executable grid_tests
+[6/6] Linking CXX executable worksheet_correctness_tests
+FAILED: copying whole-axis ranges rebases only unlocked endpoints

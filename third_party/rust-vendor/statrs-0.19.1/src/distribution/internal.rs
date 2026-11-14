@@ -1,0 +1,680 @@
+use num_traits::Num;
+
+/// Implements univariate function bisection searching for criteria
+/// ```text
+/// smallest k such that f(k) >= z
+/// ```
+/// Evaluates to `None` if
+/// - provided interval has lower bound greater than upper bound
+/// - function found not semi-monotone on the provided interval containing `z`
+///
+/// Evaluates to `Some(k)`, where `k` satisfies the search criteria
+pub fn integral_bisection_search<K: Num + Clone, T: Num + PartialOrd>(
+    f: impl Fn(&K) -> T,
+    z: T,
+    lb: K,
+    ub: K,
+) -> Option<K> {
+    if !(f(&lb)..=f(&ub)).contains(&z) {
+        return None;
+    }
+    let two = K::one() + K::one();
+    let mut lb = lb;
+    let mut ub = ub;
+    loop {
+        let mid = (lb.clone() + ub.clone()) / two.clone();
+        if !(f(&lb)..=f(&ub)).contains(&f(&mid)) {
+            return None; // f found not monotone on interval
+        } else if f(&lb) == z {
+            return Some(lb);
+        } else if f(&ub) == z || (lb.clone() + K::one()) == ub {
+            return Some(ub); // found or no more integers between
+        } else if f(&mid) >= z {
+            ub = mid;
+        } else {
+            lb = mid;
+        }
+    }
+}
+
+/// Quantile `F^{-1}(p)` for a continuous distribution supported on `(0, ∞)`
+/// whose cdf has no closed-form inverse, found with a safeguarded Newton–Raphson
+/// step (Numerical Recipes' `rtsafe`); `cdf`, `sf` and `pdf` are the
+/// distribution's own functions and `p` must lie strictly inside `(0, 1)`.
+///
+/// The bracket `[low, high]` is kept as an invariant and only ever tightened, so
+/// a Newton step that is non-finite, would leave the bracket, or is not shrinking
+/// at least as fast as a bisection falls back to bisection; the iterate can never
+/// escape the support — the guard that keeps a quantile sitting against a
+/// boundary from diverging to NaN (cf. Gamma in #382) — and the bracket is halved
+/// often enough to reach the root within the iteration budget. In the upper half
+/// the survival function is inverted rather than the cdf: as `cdf` saturates to
+/// one it can no longer resolve a deep upper-tail quantile, whereas `sf` stays
+/// well conditioned there.
+pub fn newton_raphson_quantile(
+    p: f64,
+    cdf: impl Fn(f64) -> f64,
+    sf: impl Fn(f64) -> f64,
+    pdf: impl Fn(f64) -> f64,
+) -> f64 {
+    // Bracket the quantile within a factor of two, `cdf(low) <= p <= cdf(high)`,
+    // by walking a unit interval out toward it. Moving *both* ends keeps the
+    // bracket tight when the quantile is far from 1 (deep in either tail), so the
+    // Newton phase starts close and converges in a handful of steps rather than
+    // bisecting the whole span.
+    let mut low = 1.0;
+    let mut high = 2.0;
+    while cdf(low) > p {
+        high = low;
+        low /= 2.0;
+    }
+    while cdf(high) < p {
+        low = high;
+        high *= 2.0;
+    }
+
+    // Solve `sf(x) = 1 - p` in the upper half and `cdf(x) = p` otherwise; either
+    // way the residual is increasing in `x` with derivative `pdf(x)`.
+    let upper = p > 0.5;
+    let target = if upper { 1.0 - p } else { p };
+
+    // A *relative* accuracy target: quantiles span many orders of magnitude, so
+    // an absolute tolerance (as in `prec::convergence`) is meaningless deep in a
+    // tail where the quantile itself is far smaller than that tolerance.
+    let accuracy = crate::prec::DEFAULT_RELATIVE_ACC;
+    const MAX_ITERATIONS: usize = 100;
+    let mut x = (low + high) / 2.0;
+    let mut last_step = high - low;
+    for _ in 0..MAX_ITERATIONS {
+        let residual = if upper {
+            target - sf(x)
+        } else {
+            cdf(x) - target
+        };
+        let newton = x - residual / pdf(x);
+        // A full Newton step below the relative tolerance means we have
+        // converged; accept it before the bracket bookkeeping below, which would
+        // otherwise reject a converged step that has rounded onto the very
+        // endpoint we are about to move to `x`.
+        if (newton - x).abs() <= accuracy * x.abs() {
+            return newton;
+        }
+        // Tighten the bracket by the sign of the (increasing) residual.
+        if residual >= 0.0 {
+            high = x;
+        } else {
+            low = x;
+        }
+        // Take the Newton step only while it stays strictly inside the bracket
+        // *and* shrinks at least as fast as a bisection would, else bisect. The
+        // second half of that test is what bounds the iteration count: a tail
+        // where the step is merely linear — the inverse gamma's `exp(-b/x)`
+        // advances `b/x` by one per step regardless of how far the root is —
+        // otherwise creeps toward the root and runs out of iterations short of
+        // it, e.g. `InverseGamma(1, 1).inverse_cdf(1e-200)` off by 4%.
+        let step = (newton - x).abs();
+        if newton.is_finite() && newton > low && newton < high && 2.0 * step <= last_step {
+            x = newton;
+            last_step = step;
+        } else {
+            last_step = (high - low) / 2.0;
+            x = low + last_step;
+        }
+    }
+    x
+}
+
+#[cfg(test)]
+macro_rules! testing_boiler {
+    ($($arg_name:ident: $arg_ty:ty),+; $dist:ty; $dist_err:ty) => {
+        #[cfg(not(feature = "std"))]
+        #[allow(unused)]
+        fn make_param_text($($arg_name: $arg_ty),+) -> &'static str {
+            "(params N/A)"
+        }
+
+        #[cfg(feature = "std")]
+        #[allow(unused)]
+        fn make_param_text($($arg_name: $arg_ty),+) -> String {
+            // ""
+            let mut param_text = String::new();
+
+            // "shape=10.0, rate=NaN, "
+            $(
+                param_text.push_str(
+                    &format!(
+                        "{}={:?}, ",
+                        stringify!($arg_name),
+                        $arg_name,
+                    )
+                );
+            )+
+
+            // "shape=10.0, rate=NaN" (removes trailing comma and whitespace)
+            param_text.pop();
+            param_text.pop();
+
+            param_text
+        }
+
+        /// Creates and returns a distribution with the given parameters,
+        /// panicking if `::new` fails.
+        fn create_ok($($arg_name: $arg_ty),+) -> $dist {
+            match <$dist>::new($($arg_name),+) {
+                Ok(d) => d,
+                Err(e) => panic!(
+                    "{}::new was expected to succeed, but failed for {} with error: '{}'",
+                    stringify!($dist),
+                    make_param_text($($arg_name),+),
+                    e
+                )
+            }
+        }
+
+        /// Returns the error when creating a distribution with the given parameters,
+        /// panicking if `::new` succeeds.
+        #[allow(dead_code)]
+        fn create_err($($arg_name: $arg_ty),+) -> $dist_err {
+            match <$dist>::new($($arg_name),+) {
+                Err(e) => e,
+                Ok(d) => panic!(
+                    "{}::new was expected to fail, but succeeded for {} with result: {:?}",
+                    stringify!($dist),
+                    make_param_text($($arg_name),+),
+                    d
+                )
+            }
+        }
+
+        /// Creates a distribution with the given parameters, calls the `get_fn`
+        /// function with the new distribution and returns the result of `get_fn`.
+        ///
+        /// Panics if `::new` fails.
+        fn create_and_get<F, T>($($arg_name: $arg_ty),+, get_fn: F) -> T
+        where
+            F: Fn($dist) -> T,
+        {
+            let n = create_ok($($arg_name),+);
+            get_fn(n)
+        }
+
+        /// Creates a distribution with the given parameters, calls the `get_fn`
+        /// function with the new distribution and compares the result of `get_fn`
+        /// to `expected` exactly.
+        ///
+        /// Panics if `::new` fails.
+        #[allow(dead_code)]
+        fn test_exact<F, T>($($arg_name: $arg_ty),+, expected: T, get_fn: F)
+        where
+            F: Fn($dist) -> T,
+            T: ::core::cmp::PartialEq + ::core::fmt::Debug
+        {
+            let x = create_and_get($($arg_name),+, get_fn);
+            if x != expected {
+                panic!(
+                    "Expected {:?}, got {:?} for {}",
+                    expected,
+                    x,
+                    make_param_text($($arg_name),+)
+                );
+            }
+        }
+
+        /// Gets a value for the given parameters by calling `create_and_get`
+        /// and compares it to `expected`.
+        ///
+        /// Allows relative error of up to [`crate::prec::DEFAULT_RELATIVE_ACC`].
+        ///
+        /// Panics if `::new` fails.
+        #[allow(dead_code)]
+        fn test_relative<F>($($arg_name: $arg_ty),+, expected: f64, get_fn: F)
+        where
+            F: Fn($dist) -> f64,
+        {
+            let x = create_and_get($($arg_name),+, get_fn);
+            let max_relative = $crate::prec::DEFAULT_RELATIVE_ACC;
+
+            if !$crate::prec::relative_eq!(expected, x, max_relative = max_relative) {
+                panic!(
+                    "Expected {:?} to be almost equal to {:?} (max. relative error of {:?}), but wasn't for {}",
+                    x,
+                    expected,
+                    max_relative,
+                    make_param_text($($arg_name),+)
+                );
+            }
+        }
+
+        /// Gets a value for the given parameters by calling `create_and_get`
+        /// and compares it to `expected`.
+        ///
+        /// Allows absolute error of up to `acc`.
+        ///
+        /// Panics if `::new` fails.
+        #[allow(dead_code)]
+        fn test_absolute<F>($($arg_name: $arg_ty),+, expected: f64, acc: f64, get_fn: F)
+        where
+            F: Fn($dist) -> f64,
+        {
+            let x = create_and_get($($arg_name),+, get_fn);
+
+            // abs_diff_eq! cannot handle infinities, so we manually accept them here
+            if expected.is_infinite() && x == expected {
+                return;
+            }
+
+            if !$crate::prec::abs_diff_eq!(expected, x, epsilon = acc) {
+                panic!(
+                    "Expected {:?} to be almost equal to {:?} (max. absolute error of {:?}), but wasn't for {}",
+                    x,
+                    expected,
+                    acc,
+                    make_param_text($($arg_name),+)
+                );
+            }
+        }
+
+        /// Purposely fails creating a distribution with the given
+        /// parameters and compares the returned error to `expected`.
+        ///
+        /// Panics if `::new` succeeds.
+        #[allow(dead_code)]
+        fn test_create_err($($arg_name: $arg_ty),+, expected: $dist_err)
+        {
+            let err = create_err($($arg_name),+);
+            if err != expected {
+                panic!(
+                    "{}::new was expected to fail with error {:?}, but failed with error {:?} for {}",
+                    stringify!($dist),
+                    expected,
+                    err,
+                    make_param_text($($arg_name),+)
+                )
+            }
+        }
+
+        /// Gets a value for the given parameters by calling `create_and_get`
+        /// and asserts that it is [`NAN`].
+        ///
+        /// Panics if `::new` fails.
+        #[allow(dead_code)]
+        fn test_is_nan<F>($($arg_name: $arg_ty),+, get_fn: F)
+        where
+            F: Fn($dist) -> f64
+        {
+            let x = create_and_get($($arg_name),+, get_fn);
+            assert!(x.is_nan());
+        }
+
+        /// Gets a value for the given parameters by calling `create_and_get`
+        /// and asserts that it is [`None`].
+        ///
+        /// Panics if `::new` fails.
+        #[allow(dead_code)]
+        fn test_none<F, T>($($arg_name: $arg_ty),+, get_fn: F)
+        where
+            F: Fn($dist) -> Option<T>,
+            T: ::core::fmt::Debug,
+        {
+            let x = create_and_get($($arg_name),+, get_fn);
+
+            if let Some(inner) = x {
+                panic!(
+                    "Expected None, got {:?} for {}",
+                    inner,
+                    make_param_text($($arg_name),+)
+                )
+            }
+        }
+
+        /// Asserts that associated error type is Send and Sync
+        #[test]
+        fn test_error_is_sync_send() {
+            fn assert_sync_send<T: Sync + Send>() {}
+            assert_sync_send::<$dist_err>();
+        }
+    };
+}
+
+#[cfg(test)]
+pub(super) use testing_boiler;
+
+/// Utility functions for testing implementations of distributions.
+#[cfg(test)]
+pub(super) mod density_util {
+    use crate::distribution::{Continuous, ContinuousCDF, Discrete, DiscreteCDF};
+    use crate::prec;
+
+    enum CheckContinuousError {
+        LnPdf { x: f64 },
+        PdfStep { x: f64, _sum: f64 },
+    }
+
+    /// cdf should be the integral of the pdf
+    fn check_integrate_pdf_is_cdf<D: ContinuousCDF<f64, f64> + Continuous<f64, f64>>(
+        dist: &D,
+        x_min: f64,
+        x_max: f64,
+        step: f64,
+    ) -> Result<f64, CheckContinuousError> {
+        let mut prev_x = x_min;
+        let mut prev_density = dist.pdf(x_min);
+        let mut sum = 0.0;
+
+        loop {
+            let x = prev_x + step;
+            let density = dist.pdf(x);
+
+            assert!(density >= 0.0);
+
+            let ln_density = dist.ln_pdf(x);
+            if ln_density.is_finite()
+                && !prec::abs_diff_eq!(density.ln(), ln_density, epsilon = 1e-10)
+            {
+                return Err(CheckContinuousError::LnPdf { x });
+            }
+
+            // trapezoidal rule
+            sum += (prev_density + density) * step / 2.0;
+
+            let cdf = dist.cdf(x);
+            if !prec::abs_diff_eq!(sum, cdf, epsilon = 1e-3) {
+                return Err(CheckContinuousError::PdfStep { x, _sum: sum });
+            }
+
+            if x >= x_max {
+                break;
+            } else {
+                prev_x = x;
+                prev_density = density;
+            }
+        }
+
+        Ok(sum)
+    }
+
+    /// cdf should be the sum of the pmf
+    fn check_sum_pmf_is_cdf<D: DiscreteCDF<u64, f64> + Discrete<u64, f64>>(dist: &D, x_max: u64) {
+        let mut sum = 0.0;
+
+        // go slightly beyond x_max to test for off-by-one errors
+        for i in 0..x_max + 3 {
+            let prob = dist.pmf(i);
+
+            assert!(prob >= 0.0);
+            assert!(prob <= 1.0);
+
+            sum += prob;
+
+            if i == x_max {
+                assert!(sum > 0.99);
+            }
+
+            prec::assert_abs_diff_eq!(sum, dist.cdf(i), epsilon = 1e-10);
+            // assert_almost_eq!(sum, dist.cdf(i as f64), 1e-10);
+            // assert_almost_eq!(sum, dist.cdf(i as f64 + 0.1), 1e-10);
+            // assert_almost_eq!(sum, dist.cdf(i as f64 + 0.5), 1e-10);
+            // assert_almost_eq!(sum, dist.cdf(i as f64 + 0.9), 1e-10);
+        }
+
+        assert!(
+            sum > 0.99 && sum <= 1.001,
+            "sum should be close to 1, but is {sum}"
+        );
+    }
+
+    /// pdf should be derivative of cdf
+    fn check_derivative_of_cdf_is_pdf<D: ContinuousCDF<f64, f64> + Continuous<f64, f64>>(
+        dist: &D,
+        x_min: f64,
+        x_max: f64,
+        step: f64,
+    ) -> Result<(), f64> {
+        const DELTA: f64 = 1e-12;
+        const DX: f64 = 2.0 * DELTA;
+        let mut prev_x = x_min;
+
+        loop {
+            let x = prev_x + step;
+            let x_ahead = x + DELTA;
+            let x_behind = x - DELTA;
+            let density = dist.pdf(x);
+
+            let d_cdf = dist.cdf(x_ahead) - dist.cdf(x_behind);
+
+            if !prec::abs_diff_eq!(d_cdf, DX * density, epsilon = 1e-11) {
+                return Err(x);
+            }
+
+            if x >= x_max {
+                break;
+            } else {
+                prev_x = x;
+            }
+        }
+
+        Ok(())
+    }
+
+    /// Does a series of checks that all continuous distributions must obey.
+    /// 99% of the probability mass should be between x_min and x_max or the finite
+    /// difference of cdf should be near to the pdf for much of the support.
+    pub fn check_continuous_distribution<D: ContinuousCDF<f64, f64> + Continuous<f64, f64>>(
+        dist: &D,
+        x_min: f64,
+        x_max: f64,
+    ) {
+        assert_eq!(dist.pdf(f64::NEG_INFINITY), 0.0);
+        assert_eq!(dist.pdf(f64::INFINITY), 0.0);
+        assert_eq!(dist.ln_pdf(f64::NEG_INFINITY), f64::NEG_INFINITY);
+        assert_eq!(dist.ln_pdf(f64::INFINITY), f64::NEG_INFINITY);
+        assert_eq!(dist.cdf(f64::NEG_INFINITY), 0.0);
+        assert_eq!(dist.cdf(f64::INFINITY), 1.0);
+
+        let integrate_res =
+            check_integrate_pdf_is_cdf(dist, x_min, x_max, (x_max - x_min) / 100000.0);
+        let diff_res =
+            check_derivative_of_cdf_is_pdf(dist, x_min, x_max, (x_max - x_min) / 100000.0);
+        match integrate_res {
+            // if integration failed along the way...
+            Err(CheckContinuousError::LnPdf { x })
+            | Err(CheckContinuousError::PdfStep { x, .. }) => {
+                // then check if differentiation fails along the way
+                if let Err(diff_err_x) = diff_res {
+                    panic!(
+                        "integration mismatched around x = {x} \n\
+                        and derivative insufficiently close at x={diff_err_x}"
+                    )
+                }
+                // otherwise: passes differentiation test
+            }
+            // if integration is close but not at endpoint (surprising!)...
+            Ok(sum) if !prec::abs_diff_eq!(sum, 1.0, epsilon = 1e-3) => {
+                // then check if differentiation fails along the way
+                if let Err(diff_err_x) = diff_res {
+                    panic!(
+                        "integration summed to {sum}, insufficiently close to 1.0 \n\
+                        and derivative insufficiently close at x={diff_err_x}"
+                    )
+                }
+            }
+            // passes integration test
+            _ => (),
+        }
+    }
+
+    /// Does a series of checks that all positive discrete distributions must
+    /// obey.
+    /// 99% of the probability mass should be between 0 and x_max (inclusive).
+    pub fn check_discrete_distribution<D: DiscreteCDF<u64, f64> + Discrete<u64, f64>>(
+        dist: &D,
+        x_max: u64,
+    ) {
+        // assert_eq!(dist.cdf(f64::NEG_INFINITY), 0.0);
+        // assert_eq!(dist.cdf(-10.0), 0.0);
+        // assert_eq!(dist.cdf(-1.0), 0.0);
+        // assert_eq!(dist.cdf(-0.01), 0.0);
+        // assert_eq!(dist.cdf(f64::INFINITY), 1.0);
+
+        check_sum_pmf_is_cdf(dist, x_max);
+    }
+}
+
+#[cfg(test)]
+mod test {
+
+    #[cfg(feature = "std")]
+    #[test]
+    fn test_integer_bisection() {
+        use super::integral_bisection_search;
+        fn search(z: usize, data: &[usize]) -> Option<usize> {
+            integral_bisection_search(|idx: &usize| data[*idx], z, 0, data.len() - 1)
+        }
+
+        let needle = 3;
+        let data = (0..5)
+            .map(|n| if n >= needle { n + 1 } else { n })
+            .collect::<Vec<_>>();
+
+        for i in 0..(data.len()) {
+            assert_eq!(search(data[i], &data), Some(i),)
+        }
+        {
+            let infimum = search(needle, &data);
+            let found_element = search(needle + 1, &data); // 4 > needle && member of range
+            assert_eq!(found_element, Some(needle));
+            assert_eq!(infimum, found_element)
+        }
+    }
+
+    #[cfg(feature = "std")]
+    #[test]
+    fn test_newton_raphson_quantile() {
+        use super::newton_raphson_quantile;
+        // Exponential(λ) has the closed-form quantile -ln(1 - p)/λ, so it is an
+        // exact oracle for the shared solver across both tails.
+        for lambda in [0.5f64, 1.0, 4.0] {
+            let cdf = |x: f64| -(-lambda * x).exp_m1();
+            let sf = |x: f64| (-lambda * x).exp();
+            let pdf = |x: f64| lambda * (-lambda * x).exp();
+            for p in [
+                1e-12,
+                1e-8,
+                1e-4,
+                1e-2,
+                0.25,
+                0.5,
+                0.75,
+                0.99,
+                1.0 - 1e-6,
+                1.0 - 1e-12,
+            ] {
+                let got = newton_raphson_quantile(p, cdf, sf, pdf);
+                let want = -(-p).ln_1p() / lambda; // -ln(1 - p)/λ, accurate in both tails
+                assert!(
+                    (got - want).abs() <= 1e-12 * want,
+                    "Exp({lambda}).inverse_cdf({p}) = {got}, want {want}"
+                );
+            }
+        }
+    }
+
+    pub mod boiler_tests {
+        use crate::distribution::{Beta, BetaError};
+        use crate::statistics::*;
+
+        testing_boiler!(shape_a: f64, shape_b: f64; Beta; BetaError);
+
+        #[test]
+        fn create_ok_success() {
+            let b = create_ok(0.8, 1.2);
+            assert_eq!(b.shape_a(), 0.8);
+            assert_eq!(b.shape_b(), 1.2);
+        }
+
+        #[test]
+        #[should_panic]
+        fn create_err_failure() {
+            create_err(0.8, 1.2);
+        }
+
+        #[test]
+        fn create_err_success() {
+            let err = create_err(-0.5, 1.2);
+            assert_eq!(err, BetaError::ShapeAInvalid);
+        }
+
+        #[test]
+        #[should_panic]
+        fn create_ok_failure() {
+            create_ok(-0.5, 1.2);
+        }
+
+        #[test]
+        fn test_exact_success() {
+            test_exact(1.5, 1.5, 0.5, |dist| dist.mode().unwrap());
+        }
+
+        #[test]
+        #[should_panic]
+        fn test_exact_failure() {
+            test_exact(1.2, 1.4, 0.333333333333, |dist| dist.mode().unwrap());
+        }
+
+        #[test]
+        fn test_relative_success() {
+            test_relative(1.2, 1.4, 0.333333333333, |dist| dist.mode().unwrap());
+        }
+
+        #[test]
+        #[should_panic]
+        fn test_relative_failure() {
+            test_relative(1.2, 1.4, 0.333, |dist| dist.mode().unwrap());
+        }
+
+        #[test]
+        fn test_absolute_success() {
+            test_absolute(1.2, 1.4, 0.333333333333, 1e-12, |dist| dist.mode().unwrap());
+        }
+
+        #[test]
+        #[should_panic]
+        fn test_absolute_failure() {
+            test_absolute(1.2, 1.4, 0.333333333333, 1e-15, |dist| dist.mode().unwrap());
+        }
+
+        #[test]
+        fn test_create_err_success() {
+            test_create_err(0.0, 0.5, BetaError::ShapeAInvalid);
+        }
+
+        #[test]
+        #[should_panic]
+        fn test_create_err_failure() {
+            test_create_err(0.0, 0.5, BetaError::ShapeBInvalid);
+        }
+
+        #[test]
+        fn test_is_nan_success() {
+            // Not sure that any Beta API can return a NaN, so we force the issue
+            test_is_nan(0.8, 1.2, |_| f64::NAN);
+        }
+
+        #[test]
+        #[should_panic]
+        fn test_is_nan_failure() {
+            test_is_nan(0.8, 1.2, |dist| dist.mean().unwrap());
+        }
+
+        #[test]
+        fn test_is_none_success() {
+            test_none(0.5, 1.2, |dist| dist.mode());
+        }
+
+        #[test]
+        #[should_panic]
+        fn test_is_none_failure() {
+            test_none(0.8, 1.2, |dist| dist.mean());
+        }
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "redoMs": 80.604825,
+  "redoSourceAllocationRetained": true,
+  "sourceCells": 1000000,
+  "undoMs": 192.12765,
+  "undoSourceAllocationRetained": true
+}
+one-million-cell native undo and redo must each dispatch in under100ms on this host

@@ -1,0 +1,35 @@
+Exact capacity baseline (2026-11-11)
+
+Command: python3 tests/run_reporting_capacity_benchmark.py --records 100000
+         --output docs/validation/reporting-capacity
+Result: exit 0; reporting-capacity.json validationPassed=true.
+
+The source is A1:J100001: 100000 records, 10 nonempty headers, 1000000 data-cell
+positions, 985714 nonempty inputs, 14286 intentional blanks, 10000 formulas. Independent
+scalar reference loops validate every intersection and row/column/grand total for
+sum, average, count, max plus an independent minimum report. Typed booleans, escaped
+numeric text, blanks, quarter grouping, filtering, formatting, refresh and undo are
+checked. A 20-row fixture composes enabled VBA UDF calculation with a frozen retained
+link. It does not qualify exporting authored VBA source into native XLSM.
+
+The real report worker took 11716 ms (creation including validation 12919 ms). Current-source
+full calculation 10544 ms + generation 2114 ms. Filter generation 1826 ms and commit 7287 ms;
+no-op refresh/apply 136 ms; undo 132 ms. Native saves 24029/31830 ms, reopens 10216/15008 ms.
+Save and recovery durability are measured separately. Original source recovery
+capture 6344 ms; first delta apply/enqueue 98 ms and durability 2609 ms; subsequent
+apply/enqueue 0.18 ms and durability 4.69 ms. These are measured results, not claims
+that the intended 10-second refresh threshold or 16-GiB reference host has been qualified.
+
+Pipeline sampled process-tree peak 4686968 KiB, 142.0 seconds wall time. Host-specific
+configuration is redacted. JSON retains exact binary SHA256 hashes and all metric boundaries. Independent validation runs are separately
+measured (not included in pipeline wall/RSS).
+
+Both retained 7.5-MiB XLSX artifacts were independently inspected with lxml+openpyxl 3.0.9:
+2 native PivotTables each retaining 100000 cache records; 3 native line/column/bar
+PivotCharts; 960 cached numeric chart points verified against rendered worksheet
+cells per file. ZIP names, relationships, typed shared-item indices, grouped cache
+record widths and exact current basename PivotChart associations are checked.
+This does not qualify actual Microsoft Excel refresh/interoperability.
+
+Generated empty recovery SQLite files were removed after successful validation;
+two XLSX fixtures, financial result and machine-readable report remain available.

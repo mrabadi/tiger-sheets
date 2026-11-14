@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "reader": "openpyxl",
+  "nativeListRules": 3,
+  "forecastMonths": 15,
+  "finalDisplayedFinancialCellsComparedWithDecimalOracle": 75,
+  "recordedReplayStates": 38,
+  "finalAssumptions": [
+    0.15,
+    0.15,
+    0.15
+  ],
+  "scope": "XLSX formulas, typed inputs, native list validation, formatting, and recorded UI text; Microsoft Excel execution and original palette RGB are unverified."
+}

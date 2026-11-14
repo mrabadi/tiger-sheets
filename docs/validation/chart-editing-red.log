@@ -1,0 +1,63 @@
+
+### /tmp/tigersheets-chart-selection-red.log
+FAILED: clicking a chart selects it for keyboard editing
+
+### /tmp/tigersheets-chart-state-red.log
+Consolidate compiler generated dependencies of target chart_tests
+[ 33%] Building CXX object CMakeFiles/chart_tests.dir/workspace/tiger-sheets/tests/chart_tests.cpp.o
+/workspace/tiger-sheets/tests/chart_tests.cpp: In function ‘int main(int, char**)’:
+/workspace/tiger-sheets/tests/chart_tests.cpp:15:17: error: ‘class tigersheets::ChartWidget’ has no member named ‘isSelected’
+   15 |  if(!selectable.isSelected()){std::cerr<<"FAILED: chart click exposes selected state\n";return 1;}
+      |                 ^~~~~~~~~~
+/workspace/tiger-sheets/tests/chart_tests.cpp:17:16: error: ‘class tigersheets::ChartWidget’ has no member named ‘isSelected’
+   17 |  if(selectable.isSelected()){std::cerr<<"FAILED: Escape clears chart selection\n";return 1;}
+      |                ^~~~~~~~~~
+gmake[3]: *** [CMakeFiles/chart_tests.dir/build.make:76: CMakeFiles/chart_tests.dir/workspace/tiger-sheets/tests/chart_tests.cpp.o] Error 1
+gmake[2]: *** [CMakeFiles/Makefile2:83: CMakeFiles/chart_tests.dir/all] Error 2
+gmake[1]: *** [CMakeFiles/Makefile2:90: CMakeFiles/chart_tests.dir/rule] Error 2
+gmake: *** [Makefile:124: chart_tests] Error 2
+
+### /tmp/tigersheets-chart-drag-red.log
+commits=0 actual=60,70 before=0,0 after=0,0
+FAILED: chart dragging preserves grab offset and commits one relative move
+
+### /tmp/tigersheets-chart-cancel-red.log
+FAILED: Escape cancels a chart gesture without committing or losing selection
+
+### /tmp/tigersheets-chart-resize-red.log
+FAILED: selected chart corner resizes with fixed opposite anchor and one commit
+
+### /tmp/tigersheets-chart-keyboard-red.log
+FAILED: selected chart Delete requests chart deletion without clearing worksheet cells
+
+### /tmp/tigersheets-chart-edit-actions-red.log
+FAILED: double-click selects and requests chart editing without leaving an active drag
+
+### /tmp/tigersheets-chart-release-red.log
+FAILED: chart release commits its final pointer position when move events are compressed
+
+### /tmp/tigersheets-chart-editor-cancel-red.log
+[ 50%] Building CXX object CMakeFiles/chart_editor_tests.dir/workspace/tiger-sheets/tests/chart_editor_tests.cpp.o
+[100%] Linking CXX executable chart_editor_tests
+/usr/bin/ld: CMakeFiles/chart_editor_tests.dir/workspace/tiger-sheets/tests/chart_editor_tests.cpp.o: in function `main':
+chart_editor_tests.cpp:(.text+0x3802): undefined reference to `tigersheets::ChartEditorDialog::ChartEditorDialog(nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > const&, nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > const&, QWidget*, tigersheets::ChartEditAction)'
+/usr/bin/ld: chart_editor_tests.cpp:(.text+0x395d): undefined reference to `tigersheets::ChartEditorDialog::resultSpecification[abi:cxx11]() const'
+/usr/bin/ld: CMakeFiles/chart_editor_tests.dir/workspace/tiger-sheets/tests/chart_editor_tests.cpp.o: in function `tigersheets::ChartEditorDialog::~ChartEditorDialog()':
+chart_editor_tests.cpp:(.text._ZN11tigersheets17ChartEditorDialogD2Ev[_ZN11tigersheets17ChartEditorDialogD5Ev]+0x13): undefined reference to `vtable for tigersheets::ChartEditorDialog'
+/usr/bin/ld: chart_editor_tests.cpp:(.text._ZN11tigersheets17ChartEditorDialogD2Ev[_ZN11tigersheets17ChartEditorDialogD5Ev]+0x25): undefined reference to `vtable for tigersheets::ChartEditorDialog'
+collect2: error: ld returned 1 exit status
+gmake[3]: *** [CMakeFiles/chart_editor_tests.dir/build.make:103: chart_editor_tests] Error 1
+gmake[2]: *** [CMakeFiles/Makefile2:111: CMakeFiles/chart_editor_tests.dir/all] Error 2
+gmake[1]: *** [CMakeFiles/Makefile2:118: CMakeFiles/chart_editor_tests.dir/rule] Error 2
+gmake: *** [Makefile:137: chart_editor_tests] Error 2
+
+### /tmp/tigersheets-chart-editor-edit-red.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+FAILED: chart editor exposes type, worksheet and A1 range fields
+
+### /tmp/tigersheets-chart-editor-validation-red.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+FAILED: invalid chart range must remain editable with a useful error: A1:A4

@@ -1,0 +1,2 @@
+Cached sheet switch ms: 253.793
+FAILED: switching to a sheet with current cached results must not synchronously recalculate100000 inputs

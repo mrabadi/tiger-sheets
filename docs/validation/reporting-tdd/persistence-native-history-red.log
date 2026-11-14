@@ -1,0 +1,8 @@
+{
+  "redoMs": 721.273698,
+  "redoSourceAllocationRetained": false,
+  "sourceCells": 1000000,
+  "undoMs": 897.220438,
+  "undoSourceAllocationRetained": false
+}
+native report undo and redo must retain the untouched million-cell source allocation

@@ -1,0 +1,36 @@
+F..E.E.
+======================================================================
+ERROR: test_packaged_financial_solver_requires_qualified_math_and_constant_changes (__main__.ManifestTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/tiger-sheets/tests/development_package_validation_tests.py", line 82, in test_packaged_financial_solver_requires_qualified_math_and_constant_changes
+    MODULE.validate_financial_smoke(valid)
+AttributeError: module 'development_package_validation' has no attribute 'validate_financial_smoke'
+
+======================================================================
+ERROR: test_report_worker_checks_its_own_relative_solver_loader_path (__main__.ManifestTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/tiger-sheets/tests/development_package_validation_tests.py", line 68, in test_report_worker_checks_its_own_relative_solver_loader_path
+    MODULE.validate_solver_runtime(self.stage, worker, dynamic, linkage)
+AttributeError: module 'development_package_validation' has no attribute 'validate_solver_runtime'
+
+======================================================================
+FAIL: test_complete_development_manifest (__main__.ManifestTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/tiger-sheets/tests/development_package_validation_tests.py", line 41, in test_complete_development_manifest
+    self.assertEqual(MODULE.validate_manifest(self.stage, self.fields), [])
+AssertionError: Lists differ: ["Version must be 0.2.0~dev.1, received '0.3.0~dev.1'"] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+"Version must be 0.2.0~dev.1, received '0.3.0~dev.1'"
+
+- ["Version must be 0.2.0~dev.1, received '0.3.0~dev.1'"]
++ []
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.094s
+
+FAILED (failures=1, errors=2)

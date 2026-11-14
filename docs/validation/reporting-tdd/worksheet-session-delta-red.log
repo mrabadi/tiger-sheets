@@ -1,0 +1,9 @@
+/usr/bin/ld: /tmp/ccjWueiE.o: in function `deltaHistory()':
+session_foundation_tests.cpp:(.text+0x1e90): undefined reference to `tigersheets::WorkbookSession::historyBytes() const'
+/usr/bin/ld: session_foundation_tests.cpp:(.text+0x1f05): undefined reference to `tigersheets::WorkbookSession::lastChange[abi:cxx11]() const'
+/usr/bin/ld: session_foundation_tests.cpp:(.text+0x1f7e): undefined reference to `tigersheets::WorkbookSession::lastChange[abi:cxx11]() const'
+/usr/bin/ld: session_foundation_tests.cpp:(.text+0x1ff4): undefined reference to `tigersheets::WorkbookSession::lastChange[abi:cxx11]() const'
+/usr/bin/ld: session_foundation_tests.cpp:(.text+0x20cf): undefined reference to `tigersheets::WorkbookSession::lastChange[abi:cxx11]() const'
+/usr/bin/ld: session_foundation_tests.cpp:(.text+0x26f2): undefined reference to `tigersheets::WorkbookSession::historyBytes() const'
+/usr/bin/ld: session_foundation_tests.cpp:(.text+0x3065): undefined reference to `tigersheets::WorkbookSession::historyBytes() const'
+collect2: error: ld returned 1 exit status

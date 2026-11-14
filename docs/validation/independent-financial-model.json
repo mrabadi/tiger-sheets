@@ -1,0 +1,733 @@
+{
+  "generated_utc": "2026-11-11T15:48:50.058795+00:00",
+  "status": "passed_with_limitations",
+  "independent_tools": {
+    "python": "3.12.14",
+    "python_executable": "/home/developer/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "openpyxl": "3.1.5",
+    "pdftotext_version": {
+      "argv": [
+        "/usr/bin/pdftotext",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "pdftotext version 22.02.0\nCopyright 2005-2022 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011 Glyph & Cog, LLC\n"
+    }
+  },
+  "inputs": {
+    "xlsx": {
+      "path": "/workspace/tiger-sheets/build-release/fixtures/financial-model.xlsx",
+      "bytes": 5674,
+      "sha256": "6d686852bf2512541fd17c239cafe1e8f170920bd16fa6cdd359e4ac33f4b7ff"
+    },
+    "csv": {
+      "path": "/workspace/tiger-sheets/build-release/fixtures/financial-model.csv",
+      "bytes": 1334,
+      "sha256": "ae4fa7d3b9712cdbfeaecef3cbff663f2c45de4b14fd0a5e7fb2f01bcd579c6a"
+    },
+    "pdf": {
+      "path": "/workspace/tiger-sheets/build-release/fixtures/financial-model.pdf",
+      "bytes": 29772,
+      "sha256": "8b536d8956ce2262eec5457fe19f723d2b1412e115583f19eced88157f9e967f"
+    }
+  },
+  "checks": [
+    {
+      "name": "one native worksheet",
+      "passed": true,
+      "details": [
+        "Sheet1"
+      ]
+    },
+    {
+      "name": "all 45 native formulas retain expected references",
+      "passed": true,
+      "details": {
+        "actual_count": 45,
+        "expected_count": 45
+      }
+    },
+    {
+      "name": "CSV contains numeric formula results",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "CSV forecast and DCF agree with independent Decimal cash-flow arithmetic",
+      "passed": true,
+      "details": {
+        "cells_checked": 47,
+        "absolute_tolerance": "0.000001"
+      }
+    },
+    {
+      "name": "input percentage style",
+      "passed": true,
+      "details": {
+        "number_format": "0.0%",
+        "bold": false,
+        "font_size": 11.0,
+        "font_rgb": "FF286a9e",
+        "fill_rgb": "00000000",
+        "horizontal_alignment": null
+      }
+    },
+    {
+      "name": "forecast header style",
+      "passed": true,
+      "details": {
+        "number_format": "General",
+        "bold": true,
+        "font_size": 11.0,
+        "font_rgb": "FFffffff",
+        "fill_rgb": "FF245648",
+        "horizontal_alignment": "right"
+      }
+    },
+    {
+      "name": "enterprise value style",
+      "passed": true,
+      "details": {
+        "number_format": "$#,##0",
+        "bold": true,
+        "font_size": 14.0,
+        "font_rgb": null,
+        "fill_rgb": "FFdfece3",
+        "horizontal_alignment": null
+      }
+    },
+    {
+      "name": "native column chart has two correctly linked series",
+      "passed": true,
+      "details": [
+        {
+          "class": "BarChart",
+          "type": "col",
+          "title": "Revenue & EBITDA forecast",
+          "series": [
+            {
+              "title_reference": "'Sheet1'!$B$20",
+              "categories_reference": "'Sheet1'!$A$21:$A$25",
+              "values_reference": "'Sheet1'!$B$21:$B$25",
+              "values_cache_present": false
+            },
+            {
+              "title_reference": "'Sheet1'!$C$20",
+              "categories_reference": "'Sheet1'!$A$21:$A$25",
+              "values_reference": "'Sheet1'!$C$21:$C$25",
+              "values_cache_present": false
+            }
+          ],
+          "anchor_zero_based": {
+            "row": 12,
+            "col": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "PDF independently parses and renders",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "PDF is one page",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "PDF exposes the displayed valuation and model sections",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "current PDF render matches manually reviewed image",
+      "passed": true,
+      "details": {
+        "render_sha256": "b37c4b47dd46ec1c7bce83aa8aefd46d42409d62236b88047591e8eb825e6224",
+        "reviewed_sha256": "b37c4b47dd46ec1c7bce83aa8aefd46d42409d62236b88047591e8eb825e6224"
+      }
+    },
+    {
+      "name": "fixture bytes remained unchanged during verification",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "limitations": [
+    "Microsoft Excel was not run; native Excel opening, recalculation, chart rendering and keyboard/VBA interoperability remain unverified.",
+    "openpyxl loads formula definitions and chart/style structures but does not calculate formulas.",
+    "XLSX formula caches are absent (including D12); consumers need recalculation. The workbook requests fullCalcOnLoad.",
+    "XLSX has no explicit native column widths; the application's adjusted screen widths are not encoded in this fixture.",
+    "Manual PDF review shows a legible cell table and chart-data table, but the native chart graphic is absent from the PDF.",
+    "pdftotext loses some ligature characters; the rendered PDF text is legible.",
+    "System /usr/bin Poppler was used because the bundled pdfinfo binary requires unavailable GLIBC_2.38."
+  ],
+  "xlsx": {
+    "sheet_names": [
+      "Sheet1"
+    ],
+    "dimensions": "A1:I25",
+    "formulas": {
+      "E5": "=D5*(1+$B$5)",
+      "F5": "=E5*(1+$B$5)",
+      "G5": "=F5*(1+$B$5)",
+      "H5": "=G5*(1+$B$5)",
+      "I5": "=H5*(1+$B$5)",
+      "D6": "=D5*$B$6",
+      "E6": "=E5*$B$6",
+      "F6": "=F5*$B$6",
+      "G6": "=G5*$B$6",
+      "H6": "=H5*$B$6",
+      "I6": "=I5*$B$6",
+      "E7": "=D7*(1+$B$7)",
+      "F7": "=E7*(1+$B$7)",
+      "G7": "=F7*(1+$B$7)",
+      "H7": "=G7*(1+$B$7)",
+      "I7": "=H7*(1+$B$7)",
+      "D8": "=D6-D7",
+      "E8": "=E6-E7",
+      "F8": "=F6-F7",
+      "G8": "=G6-G7",
+      "H8": "=H6-H7",
+      "I8": "=I6-I7",
+      "D9": "=D8*$B$8",
+      "E9": "=E8*$B$8",
+      "F9": "=F8*$B$8",
+      "G9": "=G8*$B$8",
+      "H9": "=H8*$B$8",
+      "I9": "=I8*$B$8",
+      "D10": "=D8-D9",
+      "E10": "=E8-E9",
+      "F10": "=F8-F9",
+      "G10": "=G8-G9",
+      "H10": "=H8-H9",
+      "I10": "=I8-I9",
+      "D12": "=NPV($B$9,E10:I10)+(I10*(1+$B$10)/($B$9-$B$10))/(1+$B$9)^5",
+      "B21": "=E5",
+      "C21": "=E8",
+      "B22": "=F5",
+      "C22": "=F8",
+      "B23": "=G5",
+      "C23": "=G8",
+      "B24": "=H5",
+      "C24": "=H8",
+      "B25": "=I5",
+      "C25": "=I8"
+    },
+    "formula_caches": {
+      "E5": null,
+      "F5": null,
+      "G5": null,
+      "H5": null,
+      "I5": null,
+      "D6": null,
+      "E6": null,
+      "F6": null,
+      "G6": null,
+      "H6": null,
+      "I6": null,
+      "E7": null,
+      "F7": null,
+      "G7": null,
+      "H7": null,
+      "I7": null,
+      "D8": null,
+      "E8": null,
+      "F8": null,
+      "G8": null,
+      "H8": null,
+      "I8": null,
+      "D9": null,
+      "E9": null,
+      "F9": null,
+      "G9": null,
+      "H9": null,
+      "I9": null,
+      "D10": null,
+      "E10": null,
+      "F10": null,
+      "G10": null,
+      "H10": null,
+      "I10": null,
+      "D12": null,
+      "B21": null,
+      "C21": null,
+      "B22": null,
+      "C22": null,
+      "B23": null,
+      "C23": null,
+      "B24": null,
+      "C24": null,
+      "B25": null,
+      "C25": null
+    },
+    "fullCalcOnLoad": true,
+    "explicit_column_widths": {},
+    "styles": {
+      "B5": {
+        "number_format": "0.0%",
+        "bold": false,
+        "font_size": 11.0,
+        "font_rgb": "FF286a9e",
+        "fill_rgb": "00000000",
+        "horizontal_alignment": null
+      },
+      "D4": {
+        "number_format": "General",
+        "bold": true,
+        "font_size": 11.0,
+        "font_rgb": "FFffffff",
+        "fill_rgb": "FF245648",
+        "horizontal_alignment": "right"
+      },
+      "D8": {
+        "number_format": "#,##0",
+        "bold": true,
+        "font_size": 11.0,
+        "font_rgb": null,
+        "fill_rgb": "FFedf4ec",
+        "horizontal_alignment": null
+      },
+      "D12": {
+        "number_format": "$#,##0",
+        "bold": true,
+        "font_size": 14.0,
+        "font_rgb": null,
+        "fill_rgb": "FFdfece3",
+        "horizontal_alignment": null
+      }
+    },
+    "charts": [
+      {
+        "class": "BarChart",
+        "type": "col",
+        "title": "Revenue & EBITDA forecast",
+        "series": [
+          {
+            "title_reference": "'Sheet1'!$B$20",
+            "categories_reference": "'Sheet1'!$A$21:$A$25",
+            "values_reference": "'Sheet1'!$B$21:$B$25",
+            "values_cache_present": false
+          },
+          {
+            "title_reference": "'Sheet1'!$C$20",
+            "categories_reference": "'Sheet1'!$A$21:$A$25",
+            "values_reference": "'Sheet1'!$C$21:$C$25",
+            "values_cache_present": false
+          }
+        ],
+        "anchor_zero_based": {
+          "row": 12,
+          "col": 3
+        }
+      }
+    ],
+    "openpyxl_warnings": []
+  },
+  "csv": {
+    "row_count": 25,
+    "column_counts": [
+      9
+    ],
+    "DCF_cell": "D12",
+    "DCF_raw_numeric": "6.301151123557135e+06",
+    "numeric_comparisons": [
+      {
+        "cell": "D5",
+        "csv": "1e+06",
+        "independent_decimal": "1000000",
+        "absolute_difference": "0",
+        "passed": true
+      },
+      {
+        "cell": "D6",
+        "csv": "650000",
+        "independent_decimal": "650000.00",
+        "absolute_difference": "0.00",
+        "passed": true
+      },
+      {
+        "cell": "D7",
+        "csv": "300000",
+        "independent_decimal": "300000",
+        "absolute_difference": "0",
+        "passed": true
+      },
+      {
+        "cell": "D8",
+        "csv": "350000",
+        "independent_decimal": "350000.00",
+        "absolute_difference": "0.00",
+        "passed": true
+      },
+      {
+        "cell": "D9",
+        "csv": "87500",
+        "independent_decimal": "87500.0000",
+        "absolute_difference": "0.0000",
+        "passed": true
+      },
+      {
+        "cell": "D10",
+        "csv": "262500",
+        "independent_decimal": "262500.0000",
+        "absolute_difference": "0.0000",
+        "passed": true
+      },
+      {
+        "cell": "E5",
+        "csv": "1.12e+06",
+        "independent_decimal": "1120000.00",
+        "absolute_difference": "0.00",
+        "passed": true
+      },
+      {
+        "cell": "E6",
+        "csv": "728000",
+        "independent_decimal": "728000.0000",
+        "absolute_difference": "0.0000",
+        "passed": true
+      },
+      {
+        "cell": "E7",
+        "csv": "318000",
+        "independent_decimal": "318000.00",
+        "absolute_difference": "0.00",
+        "passed": true
+      },
+      {
+        "cell": "E8",
+        "csv": "410000",
+        "independent_decimal": "410000.0000",
+        "absolute_difference": "0.0000",
+        "passed": true
+      },
+      {
+        "cell": "E9",
+        "csv": "102500",
+        "independent_decimal": "102500.000000",
+        "absolute_difference": "0.000000",
+        "passed": true
+      },
+      {
+        "cell": "E10",
+        "csv": "307500",
+        "independent_decimal": "307500.000000",
+        "absolute_difference": "0.000000",
+        "passed": true
+      },
+      {
+        "cell": "F5",
+        "csv": "1.2544000000000002e+06",
+        "independent_decimal": "1254400.0000",
+        "absolute_difference": "2E-10",
+        "passed": true
+      },
+      {
+        "cell": "F6",
+        "csv": "815360.0000000002",
+        "independent_decimal": "815360.000000",
+        "absolute_difference": "2E-10",
+        "passed": true
+      },
+      {
+        "cell": "F7",
+        "csv": "337080",
+        "independent_decimal": "337080.0000",
+        "absolute_difference": "0.0000",
+        "passed": true
+      },
+      {
+        "cell": "F8",
+        "csv": "478280.00000000023",
+        "independent_decimal": "478280.000000",
+        "absolute_difference": "2.3E-10",
+        "passed": true
+      },
+      {
+        "cell": "F9",
+        "csv": "119570.00000000006",
+        "independent_decimal": "119570.00000000",
+        "absolute_difference": "6E-11",
+        "passed": true
+      },
+      {
+        "cell": "F10",
+        "csv": "358710.0000000002",
+        "independent_decimal": "358710.00000000",
+        "absolute_difference": "2E-10",
+        "passed": true
+      },
+      {
+        "cell": "G5",
+        "csv": "1.4049280000000005e+06",
+        "independent_decimal": "1404928.000000",
+        "absolute_difference": "5E-10",
+        "passed": true
+      },
+      {
+        "cell": "G6",
+        "csv": "913203.2000000003",
+        "independent_decimal": "913203.20000000",
+        "absolute_difference": "3E-10",
+        "passed": true
+      },
+      {
+        "cell": "G7",
+        "csv": "357304.80000000005",
+        "independent_decimal": "357304.800000",
+        "absolute_difference": "5E-11",
+        "passed": true
+      },
+      {
+        "cell": "G8",
+        "csv": "555898.4000000003",
+        "independent_decimal": "555898.40000000",
+        "absolute_difference": "3E-10",
+        "passed": true
+      },
+      {
+        "cell": "G9",
+        "csv": "138974.60000000006",
+        "independent_decimal": "138974.6000000000",
+        "absolute_difference": "6E-11",
+        "passed": true
+      },
+      {
+        "cell": "G10",
+        "csv": "416923.80000000016",
+        "independent_decimal": "416923.8000000000",
+        "absolute_difference": "1.6E-10",
+        "passed": true
+      },
+      {
+        "cell": "H5",
+        "csv": "1.5735193600000006e+06",
+        "independent_decimal": "1573519.36000000",
+        "absolute_difference": "6E-10",
+        "passed": true
+      },
+      {
+        "cell": "H6",
+        "csv": "1.0227875840000004e+06",
+        "independent_decimal": "1022787.5840000000",
+        "absolute_difference": "4E-10",
+        "passed": true
+      },
+      {
+        "cell": "H7",
+        "csv": "378743.08800000005",
+        "independent_decimal": "378743.08800000",
+        "absolute_difference": "5E-11",
+        "passed": true
+      },
+      {
+        "cell": "H8",
+        "csv": "644044.4960000003",
+        "independent_decimal": "644044.4960000000",
+        "absolute_difference": "3E-10",
+        "passed": true
+      },
+      {
+        "cell": "H9",
+        "csv": "161011.12400000007",
+        "independent_decimal": "161011.124000000000",
+        "absolute_difference": "7.0E-11",
+        "passed": true
+      },
+      {
+        "cell": "H10",
+        "csv": "483033.3720000002",
+        "independent_decimal": "483033.372000000000",
+        "absolute_difference": "2.00E-10",
+        "passed": true
+      },
+      {
+        "cell": "I5",
+        "csv": "1.7623416832000008e+06",
+        "independent_decimal": "1762341.6832000000",
+        "absolute_difference": "8E-10",
+        "passed": true
+      },
+      {
+        "cell": "I6",
+        "csv": "1.1455220940800007e+06",
+        "independent_decimal": "1145522.094080000000",
+        "absolute_difference": "7.00E-10",
+        "passed": true
+      },
+      {
+        "cell": "I7",
+        "csv": "401467.67328000005",
+        "independent_decimal": "401467.6732800000",
+        "absolute_difference": "5E-11",
+        "passed": true
+      },
+      {
+        "cell": "I8",
+        "csv": "744054.4208000007",
+        "independent_decimal": "744054.420800000000",
+        "absolute_difference": "7.00E-10",
+        "passed": true
+      },
+      {
+        "cell": "I9",
+        "csv": "186013.60520000017",
+        "independent_decimal": "186013.60520000000000",
+        "absolute_difference": "1.7000E-10",
+        "passed": true
+      },
+      {
+        "cell": "I10",
+        "csv": "558040.8156000006",
+        "independent_decimal": "558040.81560000000000",
+        "absolute_difference": "6.0000E-10",
+        "passed": true
+      },
+      {
+        "cell": "D12",
+        "csv": "6.301151123557135e+06",
+        "independent_decimal": "6301151.1235571340755412881633768185233249095007172",
+        "absolute_difference": "9.244587118366231814766750904992828E-10",
+        "passed": true
+      },
+      {
+        "cell": "B21",
+        "csv": "1.12e+06",
+        "independent_decimal": "1120000.00",
+        "absolute_difference": "0.00",
+        "passed": true
+      },
+      {
+        "cell": "C21",
+        "csv": "410000",
+        "independent_decimal": "410000.0000",
+        "absolute_difference": "0.0000",
+        "passed": true
+      },
+      {
+        "cell": "B22",
+        "csv": "1.2544000000000002e+06",
+        "independent_decimal": "1254400.0000",
+        "absolute_difference": "2E-10",
+        "passed": true
+      },
+      {
+        "cell": "C22",
+        "csv": "478280.00000000023",
+        "independent_decimal": "478280.000000",
+        "absolute_difference": "2.3E-10",
+        "passed": true
+      },
+      {
+        "cell": "B23",
+        "csv": "1.4049280000000005e+06",
+        "independent_decimal": "1404928.000000",
+        "absolute_difference": "5E-10",
+        "passed": true
+      },
+      {
+        "cell": "C23",
+        "csv": "555898.4000000003",
+        "independent_decimal": "555898.40000000",
+        "absolute_difference": "3E-10",
+        "passed": true
+      },
+      {
+        "cell": "B24",
+        "csv": "1.5735193600000006e+06",
+        "independent_decimal": "1573519.36000000",
+        "absolute_difference": "6E-10",
+        "passed": true
+      },
+      {
+        "cell": "C24",
+        "csv": "644044.4960000003",
+        "independent_decimal": "644044.4960000000",
+        "absolute_difference": "3E-10",
+        "passed": true
+      },
+      {
+        "cell": "B25",
+        "csv": "1.7623416832000008e+06",
+        "independent_decimal": "1762341.6832000000",
+        "absolute_difference": "8E-10",
+        "passed": true
+      },
+      {
+        "cell": "C25",
+        "csv": "744054.4208000007",
+        "independent_decimal": "744054.420800000000",
+        "absolute_difference": "7.00E-10",
+        "passed": true
+      }
+    ]
+  },
+  "independent_cash_flow": {
+    "assumptions": {
+      "revenue_growth": "0.12",
+      "gross_margin": "0.65",
+      "expense_growth": "0.06",
+      "tax_rate": "0.25",
+      "discount_rate": "0.1",
+      "terminal_growth": "0.025",
+      "base_revenue": "1000000",
+      "base_operating_expenses": "300000"
+    },
+    "forecast_fcf": [
+      "307500.000000",
+      "358710.00000000",
+      "416923.8000000000",
+      "483033.372000000000",
+      "558040.81560000000000"
+    ],
+    "discounted_fcf": "1565658.7557978528540648614414067593495228219632291",
+    "terminal_value": "7626557.81320000000000",
+    "discounted_terminal_value": "4735492.3677592812214764267219700591738020875374881",
+    "enterprise_value": "6301151.1235571340755412881633768185233249095007172"
+  },
+  "pdf": {
+    "pdfinfo": {
+      "argv": [
+        "/usr/bin/pdfinfo",
+        "/workspace/tiger-sheets/build-release/fixtures/financial-model.pdf"
+      ],
+      "exit_code": 0,
+      "stdout": "Title:           \nCreator:         \nProducer:        Qt 6.2.4\nCreationDate:    Wed Nov 11 09:48:49 2026 CST\nCustom Metadata: no\nMetadata Stream: no\nTagged:          no\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       595 x 842 pts (A4)\nPage rot:        0\nFile size:       29772 bytes\nOptimized:       no\nPDF version:     1.4\n",
+      "stderr": ""
+    },
+    "pdftotext": {
+      "argv": [
+        "/usr/bin/pdftotext",
+        "-layout",
+        "/workspace/tiger-sheets/build-release/fixtures/financial-model.pdf",
+        "-"
+      ],
+      "exit_code": 0,
+      "stdout": "FINANCIAL MODEL\nOpera ng forecast & valua on\n\n\nASSUMPTIONS                                                                          2025A       2026E       2027E       2028E       2029E       2030E\nRevenue growth                             12.0% Revenue                          1,000,000   1,120,000   1,254,400   1,404,928   1,573,519   1,762,342\nGross margin                               65.0% Gross pro\ufb01t                        650,000    728,000     815,360     913,203    1,022,788   1,145,522\nExpense growth                              6.0% Opera ng expenses                  300,000    318,000     337,080     357,305     378,743     401,468\nTax rate                                   25.0% EBITDA                             350,000    410,000     478,280     555,898     644,044     744,054\nDiscount rate                              10.0% Taxes                               87,500    102,500     119,570     138,975     161,011     186,014\nTerminal growth                             2.5% Free cash \ufb02ow                      262,500    307,500     358,710     416,924     483,033     558,041\n\n\n                                                   Enterprise value             $6,301,151\n\nMODEL GUIDE\nBlue cells are inputs\nChange assump ons\nto update the forecast.\n\n\nCHART DATA\nYear                             Revenue           EBITDA\n                          2026         1,120,000                      410,000\n                          2027         1,254,400                      478,280\n                          2028         1,404,928                      555,898\n                          2029         1,573,519                      644,044\n                          2030         1,762,342                      744,054\n\f",
+      "stderr": ""
+    },
+    "render": {
+      "argv": [
+        "/usr/bin/pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-scale-to",
+        "1800",
+        "-png",
+        "/workspace/tiger-sheets/build-release/fixtures/financial-model.pdf",
+        "/tmp/tigersheets-independent-financial-model-page1"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "render_path": "/tmp/tigersheets-independent-financial-model-page1.png",
+    "render_sha256": "b37c4b47dd46ec1c7bce83aa8aefd46d42409d62236b88047591e8eb825e6224",
+    "manually_reviewed": true,
+    "manual_visual_notes": "Legible labels, assumptions, forecast, valuation and chart data; no obvious overlap or clipping. Chart graphic not printed."
+  }
+}

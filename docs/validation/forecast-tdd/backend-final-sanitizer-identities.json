@@ -1,0 +1,43 @@
+{
+  "completedUtc": "2026-11-12T14:50:42.007265+00:00",
+  "result": "passed",
+  "files": {
+    "src/financial_models.cpp": {
+      "sha256": "046e5cc7a7243c3a95c8fbd282d42f76656f5b392a603c5bd530ba4abadbe9d7",
+      "mtimeNs": 1794494811957828218
+    },
+    "tests/financial_models_tests.cpp": {
+      "sha256": "7e2edc728270af0a0b4be285487d3c8b74a084091c168f867f97cea3df676620",
+      "mtimeNs": 1794494783508450095
+    },
+    "/tmp/tigersheets-forecast-sanitizer/financial_models-final.o": {
+      "sha256": "452889e7dcba10ebdb8be573d5c19b6f6d22df6e0606788bef852ca4834f84be",
+      "mtimeNs": 1794495006675703104
+    },
+    "/tmp/tigersheets-forecast-sanitizer/backend-final": {
+      "sha256": "10767027036058bd740036e1bf8af6040f0cf77bf4d8218df0984a387bbd196b",
+      "mtimeNs": 1794495027045028518
+    },
+    "build-release/libtigersheets_calculation.a": {
+      "sha256": "5e89c95f42e07aadc6bb5d09ccebd780908fcb297af271abb2b0dc7f6126365e",
+      "mtimeNs": 1794492468620120385
+    },
+    "build-release/libtigersheets_pivot.a": {
+      "sha256": "53680b187df4fbfd0f0769ea5e22705eb145cdec64e364735bd7ef7ec9540471",
+      "mtimeNs": 1794446920877231266
+    },
+    "build-release/libtigersheets_formatter.a": {
+      "sha256": "42979e4f232ab59061862bb69fe7b7fb345af1de138a3fcf2c493dee6858b2cc",
+      "mtimeNs": 1794443551493543223
+    },
+    "build-release/libtigersheets_references.a": {
+      "sha256": "d919e6e13419a925d9ba76c5adb29b18c8794285af7f790a9341eac02d3d7bf2",
+      "mtimeNs": 1794439171862985950
+    },
+    "rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a": {
+      "sha256": "6584e06cf9be92f23d8e73d20a0901d3f61335ccd5c14441044f5277e08978b1",
+      "mtimeNs": 1794445947461337474
+    }
+  },
+  "boundary": "Final financial_models.cpp and focused tests ASan+UBSan instrumented; linked release calculation/pivot/reference/formatter/Rust dependencies not instrumented. Leak detection disabled to isolate memory/undefined-behavior findings."
+}

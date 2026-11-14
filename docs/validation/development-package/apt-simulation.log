@@ -1,0 +1,36 @@
+NOTE: This is only a simulation!
+      apt-get needs root privileges for real execution.
+      Keep also in mind that locking is deactivated,
+      so don't depend on the relevance to the real current situation!
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  libfwupd2 libfwupdplugin5 libgcab-1.0-0 libsmbios-c2
+  python3-proton-vpn-local-agent python3-proton-vpn-network-manager
+Use 'apt autoremove' to remove them.
+The following additional packages will be installed:
+  libqt6waylandclient6 libqt6waylandcompositor6
+  libqt6waylandeglclienthwintegration6
+  libqt6waylandeglcompositorhwintegration6 libqt6wlshellintegration6
+  qt6-wayland
+The following NEW packages will be installed:
+  libqt6waylandclient6 libqt6waylandcompositor6
+  libqt6waylandeglclienthwintegration6
+  libqt6waylandeglcompositorhwintegration6 libqt6wlshellintegration6
+  qt6-wayland tiger-sheets
+0 upgraded, 7 newly installed, 0 to remove and 32 not upgraded.
+Inst libqt6waylandclient6 (6.2.4-1 Ubuntu:22.04/jammy [amd64])
+Inst libqt6waylandcompositor6 (6.2.4-1 Ubuntu:22.04/jammy [amd64])
+Inst libqt6waylandeglclienthwintegration6 (6.2.4-1 Ubuntu:22.04/jammy [amd64])
+Inst libqt6waylandeglcompositorhwintegration6 (6.2.4-1 Ubuntu:22.04/jammy [amd64])
+Inst libqt6wlshellintegration6 (6.2.4-1 Ubuntu:22.04/jammy [amd64])
+Inst qt6-wayland (6.2.4-1 Ubuntu:22.04/jammy [amd64])
+Inst tiger-sheets (0.1.0~dev.1 local-deb [amd64])
+Conf libqt6waylandclient6 (6.2.4-1 Ubuntu:22.04/jammy [amd64])
+Conf libqt6waylandcompositor6 (6.2.4-1 Ubuntu:22.04/jammy [amd64])
+Conf libqt6waylandeglclienthwintegration6 (6.2.4-1 Ubuntu:22.04/jammy [amd64])
+Conf libqt6waylandeglcompositorhwintegration6 (6.2.4-1 Ubuntu:22.04/jammy [amd64])
+Conf libqt6wlshellintegration6 (6.2.4-1 Ubuntu:22.04/jammy [amd64])
+Conf qt6-wayland (6.2.4-1 Ubuntu:22.04/jammy [amd64])
+Conf tiger-sheets (0.1.0~dev.1 local-deb [amd64])

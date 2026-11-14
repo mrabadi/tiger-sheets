@@ -1,0 +1,1 @@
+FAILED: shrinking a report must not retain unchanged source cells through shifted array-index patches

@@ -1,0 +1,5 @@
+[1/4] Linking CXX executable references_tests
+[2/4] Linking CXX executable grid_tests
+[3/4] Building CXX object CMakeFiles/worksheet_correctness_tests.dir/workspace/tiger-sheets/tests/worksheet_correctness_tests.cpp.o
+[4/4] Linking CXX executable worksheet_correctness_tests
+FAILED: Paste Values must refuse an uncached formula instead of pasting a live formula

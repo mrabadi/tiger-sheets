@@ -1,0 +1,30 @@
+# Native VBA editor and worker TDD evidence
+
+The requested tdd:tdd workflow is used. No Superpowers workflow is used.
+
+The initial worker test failed on the deliberately missing vba_ui.hpp public interface. The implementation passed actual QProcess execution of a supported Sub in a separate executable, preservation of the authoritative workbook until acceptance, and killing a long-running worker with its whole candidate discarded.
+
+The native editor test then failed at link time because vbaCommand was deliberately absent. A Qt source/module editor with explicit enablement, procedure selection and Run/Stop passed actual-helper execution, candidate acceptance as one transaction and one Undo restoring the previous cells. Opening the editor does not mutate the document.
+
+A regression that deleted the editor from model.onChanged while the accepted macro callback unwound reproduced SIGSEGV (exit 139). The callback now checks a QPointer after model acceptance, and Run/enable/close paths guard lifetime after metadata notifications. Its final check is recorded after the related verification below.
+
+The helper accepts one versioned JSON request and returns one JSON result, with a 16 MiB request/response limit. It installs memory/CPU/file-size/descriptor limits, no-new-privileges and seccomp before reading or parsing source. The filter denies file opening/mutation, network socket operations, process execution/creation and several kernel escape surfaces. It receives an allowlisted environment and no shell command. Stop kills the worker; failures and cancellation return the original workbook. GUI acceptance additionally checks the captured revision and rejects results after document changes or during a Codex preview.
+
+The editor labels the supported subset and native VBA project-save restriction. Edited source lives in the semantic recovery metadata; the OOXML writer rejects authored/edited module export until real MS-OVBA authoring is implemented. Imported project bytes remain preserved, with source extraction explicitly unavailable. The separate recorder supports the cell-edit subset described below.
+
+The teardown regression then passed against the same real worker/editor test. A second regression failed `closing unedited editor does not author a module`; explicit dirty-state tracking prevents an open/close from synthesizing a default draft or blocking file save. That same executable passed after the fix. Run explicitly records a used draft; ordinary editor navigation remains unchanged.
+
+
+A workbook-replacement regression produced a completed old worker result with the same revision as a different new workbook. It failed `old macro cannot bind to replacement workbook with same revision`. GUI acceptance now compares the entire captured semantic base as well as revision and preview state. The same real-worker regression passed.
+
+Recorder RED began with the deliberately missing MacroRecorder symbol. The first GREEN recorded committed cell/formula and direct-style differences as actual Worksheets(...).Range(...).Formula/style assignments and replayed them through runMacro. A native `vba.record` integration test then failed `native macro recorder command`; the nonmodal Start/Stop dialog passed committed model edits, creation of executable module source, default disabled macros and restoration of the original change callback. Closing an active recorder discards the unfinished recording; Stop retains its source in the workbook's recovery metadata. It observes committed cell differences rather than selection changes or previews. Worksheet creation/deletion/rename/reorder explicitly ends the recording.
+
+Subsequent RED/GREEN examples covered multiline CR/LF and quoted cell strings (Chr escapes keep the VBA statement structure intact), underline/font color/alignment/wrap, and clearing fill/font colors with native ColorIndex resets. Other recorded direct styles are bold, italic, font family/size, fill and number format. This is a cell recorder, not a complete application-action recorder. Native project authoring remains blocked by the OOXML writer.
+
+Numeric native enum mappings were checked against [Microsoft XlHAlign](https://learn.microsoft.com/en-us/office/vba/api/excel.xlhalign) and [XlColorIndex](https://learn.microsoft.com/en-us/office/vba/api/excel.xlcolorindex). No COM or office-suite process is used.
+
+The build-tree helper is beside the application executable. The installed helper is `/usr/libexec/tigersheets/tigersheets-vba-worker`; the application resolves `../libexec/tigersheets/tigersheets-vba-worker` from its executable directory. The helper has a production memory limit and should be tested without AddressSanitizer, whose virtual address reservations exceed that limit. Sanitized host tests can use the ordinary helper executable.
+
+Quoted worksheet names reproduced `recorded quoted worksheet name selects the exact worksheet`; the runtime now decodes doubled VBA quotes before resolving worksheet identity. Repeat recording reproduced `repeated recordings use distinct executable procedure names`; the recorder selects the next available procedure name and rejects user-chosen collisions. Both regressions passed in the focused real-worker/editor/recorder executable. `-Wall -Wextra -Wpedantic -Werror` syntax checks passed for vba_ui.cpp, vba.cpp and vba_worker_main.cpp.
+
+Final related verification: the separate Debug CMake build passed vba_worker_tests and vba_tests against the production helper. A separate AddressSanitizer+UBSan build passed those same host/core tests after placing the ordinary production helper beside the sanitized GUI test executable. The first sanitized attempt selected an instrumented helper and failed editor acceptance because the helper's 768 MiB address-space limit rejects ASan's address-space reservations; this was a test-build setup limitation, not a reason to relax the production sandbox. LeakSanitizer alone is disabled in this environment because ptrace is unavailable (`ASAN_OPTIONS=detect_leaks=0`).

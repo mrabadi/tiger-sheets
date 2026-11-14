@@ -1,0 +1,25 @@
+F
+======================================================================
+FAIL: test_development_deb_is_installable_and_clearly_labeled (__main__.PackagingTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/tiger-sheets/tests/packaging_tests.py", line 37, in test_development_deb_is_installable_and_clearly_labeled
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : functions: 497 required entries without passing evidence
+shortcuts: 190 required entries without passing evidence
+features: 21 required entries without passing evidence
+RELEASE BLOCKED: functions:ABS, functions:ACCRINT, functions:ACCRINTM, functions:ACOS, functions:ACOSH, functions:ACOT, functions:ACOTH, functions:AGGREGATE, functions:ADDRESS, functions:AMORDEGRC, functions:AMORLINC, functions:AND, functions:ARABIC, functions:AREAS, functions:ARRAYTOTEXT, functions:ASC, functions:ASIN, functions:ASINH, functions:ATAN, functions:ATAN2 ...
+
+CMake Error at /workspace/tiger-sheets/cmake/ReleasePackageGate.cmake:12 (message):
+  RELEASE BLOCKED: compatibility acceptance evidence is incomplete.
+Call Stack (most recent call first):
+  /tmp/tiger-development-package-horuej0y/gate.cmake:3 (include)
+
+
+CPack Error: Cannot initialize the generator DEB
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.054s
+
+FAILED (failures=1)

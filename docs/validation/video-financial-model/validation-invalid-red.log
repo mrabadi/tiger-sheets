@@ -1,0 +1,3 @@
+Command: build-release/worksheet_validation_tests invalid
+Exit: 1
+FAILED: invalid validation must reject the entire transaction

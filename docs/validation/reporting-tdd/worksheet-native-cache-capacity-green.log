@@ -1,0 +1,8 @@
+[1/6] Building CXX object CMakeFiles/printing_ooxml_tests.dir/workspace/tiger-sheets/tests/printing_ooxml_tests.cpp.o
+[2/6] Building CXX object CMakeFiles/printing_ooxml_tests.dir/workspace/tiger-sheets/src/printing_ooxml.cpp.o
+[3/6] Building CXX object CMakeFiles/worksheet_io.dir/workspace/tiger-sheets/src/pivot_ooxml.cpp.o
+[4/6] Linking CXX static library libworksheet_io.a
+[5/6] Linking CXX executable native_pivot_tests
+[6/6] Linking CXX executable printing_ooxml_tests
+native pivot tests passed
+native printing tests passed

@@ -1,0 +1,62 @@
+{
+  "buildPrefix": ".deps/solvers/prefix",
+  "networkAtRuntime": false,
+  "libraries": [
+    {
+      "name": "HiGHS",
+      "version": "1.15.1",
+      "license": "MIT",
+      "url": "https://codeload.github.com/ERGO-Code/HiGHS/tar.gz/refs/tags/v1.15.1",
+      "sha256": "a840d269dff2fafb371dd247df13ad5e026d7ce3b35ad3dc1eedd59bf0c2fb16",
+      "role": "LP and mixed-integer linear optimization",
+      "cmakeTarget": "highs::highs"
+    },
+    {
+      "name": "NLopt",
+      "version": "2.11.0",
+      "license": "MIT (NLOPT_LUKSAN=OFF)",
+      "url": "https://codeload.github.com/stevengj/nlopt/tar.gz/refs/tags/v2.11.0",
+      "sha256": "53e552d83e9294d67db37f0f4a23f15933a9ef698485301a18b98b40004cf0de",
+      "role": "COBYLA continuous nonlinear optimization",
+      "cmakeTarget": "NLopt::nlopt",
+      "requiredBuildOptions": {
+        "NLOPT_LUKSAN": "OFF"
+      }
+    },
+    {
+      "name": "pagmo",
+      "version": "2.20.0",
+      "license": "LGPL-3.0-or-later",
+      "url": "https://codeload.github.com/esa/pagmo2/tar.gz/refs/tags/v2.20.0",
+      "sha256": "8d684e9a3667dcccc844489083906c35aba7610594c5fce0f4eccce9c2264f4d",
+      "role": "Improved Harmony Search for nonlinear mixed-integer evolutionary optimization",
+      "cmakeTarget": "Pagmo::pagmo",
+      "linkage": "shared",
+      "requiredBuildOptions": {
+        "PAGMO_BUILD_STATIC_LIBRARY": "OFF",
+        "PAGMO_WITH_NLOPT": "OFF",
+        "PAGMO_WITH_EIGEN3": "OFF",
+        "PAGMO_WITH_IPOPT": "OFF",
+        "CMAKE_INSTALL_RPATH": "$ORIGIN"
+      }
+    },
+    {
+      "name": "oneTBB",
+      "version": "2021.5.0",
+      "license": "Apache-2.0",
+      "url": "https://codeload.github.com/oneapi-src/oneTBB/tar.gz/refs/tags/v2021.5.0",
+      "sha256": "e5b57537c741400cf6134b428fc1689a649d7d38d9bb9c1b6d64f092ea28178a",
+      "role": "pagmo runtime dependency",
+      "linkage": "shared"
+    },
+    {
+      "name": "Boost.Serialization",
+      "version": "1.74.0",
+      "license": "BSL-1.0",
+      "url": "https://codeload.github.com/boostorg/serialization/tar.gz/refs/tags/boost-1.74.0",
+      "sha256": "159cfd8bcc1004683ec788ef9e70ef836cd1402c57979b2a558257ab9615ce13",
+      "role": "pagmo runtime dependency; matches Ubuntu Boost 1.74 headers",
+      "linkage": "shared"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+{"path": "/workspace/tiger-sheets/docs/validation/reporting-tdd/fixtures/authored-pivot.xlsx", "openpyxl": "3.0.9", "pivots": ["SalesReport"], "records": [2], "pivot_charts": []}
+{"path": "/workspace/tiger-sheets/docs/validation/reporting-tdd/fixtures/filtered-multi-measure.xlsx", "openpyxl": "3.0.9", "pivots": ["SalesReport"], "records": [3], "pivot_charts": []}
+{"path": "/workspace/tiger-sheets/docs/validation/reporting-tdd/fixtures/native-pivot-charts.xlsx", "openpyxl": "3.0.9", "pivots": ["SalesReport"], "records": [3], "pivot_charts": ["xl/charts/tigersheets-chart2.xml", "xl/charts/tigersheets-chart3.xml", "xl/charts/tigersheets-chart1.xml"]}

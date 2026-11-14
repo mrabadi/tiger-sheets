@@ -1,0 +1,13 @@
+F....
+======================================================================
+FAIL: test_development_deb_is_installable_and_clearly_labeled (__main__.PackagingTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/tiger-sheets/tests/packaging_tests.py", line 56, in test_development_deb_is_installable_and_clearly_labeled
+    self.assertIn('Version: 0.2.0~dev.1', fields)
+AssertionError: 'Version: 0.2.0~dev.1' not found in 'Package: tiger-sheets\nVersion: 0.2.0~dev.2\nDescription: TigerSheets development build\n Local TigerSheets development build. Excel and VBA compatibility is incomplete; this package is for local evaluation.\n'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.125s
+
+FAILED (failures=1)

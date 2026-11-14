@@ -1,0 +1,9 @@
+[1/4] Building CXX object CMakeFiles/selection_statistics_tests.dir/workspace/tiger-sheets/tests/selection_statistics_tests.cpp.o
+FAILED: CMakeFiles/selection_statistics_tests.dir/workspace/tiger-sheets/tests/selection_statistics_tests.cpp.o
+/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_TESTCASE_BUILDDIR=\"/tmp/tigersheets-reporting-worksheet/build\" -DQT_TESTCASE_SOURCEDIR=\"/tmp/tigersheets-reporting-worksheet\" -DQT_TESTLIB_LIB -DQT_WIDGETS_LIB -I/workspace/tiger-sheets/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtTest -fPIE -fPIC -std=gnu++20 -MD -MT CMakeFiles/selection_statistics_tests.dir/workspace/tiger-sheets/tests/selection_statistics_tests.cpp.o -MF CMakeFiles/selection_statistics_tests.dir/workspace/tiger-sheets/tests/selection_statistics_tests.cpp.o.d -o CMakeFiles/selection_statistics_tests.dir/workspace/tiger-sheets/tests/selection_statistics_tests.cpp.o -c /workspace/tiger-sheets/tests/selection_statistics_tests.cpp
+/workspace/tiger-sheets/tests/selection_statistics_tests.cpp:3:10: fatal error: tigersheets/selection_statistics.hpp: No such file or directory
+    3 | #include "tigersheets/selection_statistics.hpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+[2/4] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot_ownership.cpp.o
+ninja: build stopped: subcommand failed.

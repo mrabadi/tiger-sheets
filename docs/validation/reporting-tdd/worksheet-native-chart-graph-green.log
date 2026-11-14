@@ -1,0 +1,6 @@
+[1/5] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot_ownership.cpp.o
+[2/5] Linking CXX static library libworksheet_core.a
+[3/5] Building CXX object CMakeFiles/worksheet_io.dir/workspace/tiger-sheets/src/ooxml.cpp.o
+[4/5] Linking CXX static library libworksheet_io.a
+[5/5] Linking CXX executable native_pivot_tests
+native pivot tests passed

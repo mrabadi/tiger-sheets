@@ -1,0 +1,10 @@
+/workspace/tiger-sheets/tests/financial_model_pane_tests.cpp:1:10: fatal error: tigersheets/financial_model_pane.hpp: No such file or directory
+    1 | #include "tigersheets/financial_model_pane.hpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+Traceback (most recent call last):
+  File "/tmp/tigersheets-financial-pane-build.py", line 7, in <module>
+    subprocess.run(['g++','-std=c++20','-O1','-fPIC','-I'+str(root/'include'),*flags,*map(str,sources),'-lQt6Widgets','-lQt6Gui','-lQt6Core','-o',str(private/'tests')],check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['g++', '-std=c++20', '-O1', '-fPIC', '-I/workspace/tiger-sheets/include', '-DQT_CORE_LIB', '-DQT_GUI_LIB', '-DQT_WIDGETS_LIB', '-I/usr/include/x86_64-linux-gnu/qt6', '-I/usr/include/x86_64-linux-gnu/qt6/QtCore', '-I/usr/include/x86_64-linux-gnu/qt6/QtGui', '-I/usr/include/x86_64-linux-gnu/qt6/QtWidgets', '-I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++', '/workspace/tiger-sheets/tests/financial_model_pane_tests.cpp', '-lQt6Widgets', '-lQt6Gui', '-lQt6Core', '-o', '/tmp/tigersheets-financial-pane/tests']' returned non-zero exit status 1.

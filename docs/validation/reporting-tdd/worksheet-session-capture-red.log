@@ -1,0 +1,7 @@
+/usr/bin/ld: /tmp/ccp7HFKU.o: in function `capture()':
+session_foundation_tests.cpp:(.text+0x2dc): undefined reference to `tigersheets::WorkbookSession::captureSnapshot[abi:cxx11]() const'
+/usr/bin/ld: session_foundation_tests.cpp:(.text+0x917): undefined reference to `tigersheets::WorkbookSession::snapshotView[abi:cxx11]() const'
+/usr/bin/ld: session_foundation_tests.cpp:(.text+0x9bc): undefined reference to `tigersheets::WorkbookSession::cellAt[abi:cxx11](std::basic_string_view<char, std::char_traits<char> >, int, int) const'
+/usr/bin/ld: session_foundation_tests.cpp:(.text+0xa06): undefined reference to `tigersheets::WorkbookSession::cellAt[abi:cxx11](std::basic_string_view<char, std::char_traits<char> >, int, int) const'
+/usr/bin/ld: session_foundation_tests.cpp:(.text+0xab0): undefined reference to `tigersheets::WorkbookSession::cellAt[abi:cxx11](std::basic_string_view<char, std::char_traits<char> >, int, int) const'
+collect2: error: ld returned 1 exit status

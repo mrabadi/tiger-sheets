@@ -1,0 +1,12 @@
+[0/2] Re-checking globbed directories...
+[1/10] Building CXX object CMakeFiles/tigersheets_capture.dir/src/snapshot_capture.cpp.o
+[2/10] Linking CXX static library libtigersheets_capture.a
+[3/10] Linking CXX executable snapshot_capture_tests
+[4/10] Building CXX object CMakeFiles/tigersheets_charts.dir/src/chart.cpp.o
+[5/10] Linking CXX static library libtigersheets_charts.a
+[6/10] Linking CXX executable vba_draft_workspace_tests
+[7/10] Linking CXX executable workbook_ui_links_tests
+[8/10] Building CXX object CMakeFiles/tigersheets-report-worker.dir/src/report_worker_main.cpp.o
+[9/10] Linking CXX executable tigersheets-report-worker
+[10/10] Linking CXX executable reporting_workspace_tests
+snapshot capture tests passed

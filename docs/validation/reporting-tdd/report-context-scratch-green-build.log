@@ -1,0 +1,19 @@
+[0/2] Re-checking globbed directories...
+[1/18] Building CXX object CMakeFiles/tigersheets_pivot.dir/src/pivot_ownership.cpp.o
+[2/18] Linking CXX static library libtigersheets_pivot.a
+[3/18] Building CXX object CMakeFiles/tigersheets_recovery.dir/src/recovery.cpp.o
+[4/18] Linking CXX static library libtigersheets_recovery.a
+[5/18] Building CXX object CMakeFiles/tigersheets_io.dir/src/ooxml.cpp.o
+[6/18] Building CXX object CMakeFiles/tigersheets_io.dir/src/pivot_ooxml.cpp.o
+[7/18] Linking CXX static library libtigersheets_io.a
+[8/18] Building CXX object CMakeFiles/tigersheets-report-worker.dir/src/report_worker_main.cpp.o
+[9/18] Building CXX object CMakeFiles/tigersheets_workbook_tools.dir/src/workbook_tools.cpp.o
+[10/18] Linking CXX static library libtigersheets_workbook_tools.a
+[11/18] Linking CXX executable tigersheets-report-worker
+[12/18] Building CXX object CMakeFiles/reporting_workspace_tests.dir/tests/reporting_workspace_tests.cpp.o
+[13/18] Building CXX object CMakeFiles/reporting_calculation_ui_tests.dir/tests/reporting_calculation_ui_tests.cpp.o
+[14/18] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[15/18] Linking CXX static library libtigersheets_desktop.a
+[16/18] Linking CXX executable reporting_workspace_tests
+[17/18] Linking CXX executable reporting_calculation_ui_tests
+[18/18] Linking CXX executable codex_financial_workflow_tests

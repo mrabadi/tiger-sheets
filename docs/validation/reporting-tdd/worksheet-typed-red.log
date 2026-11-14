@@ -1,0 +1,14 @@
+src/grid.cpp: In function ‘QString tigersheets::{anonymous}::numberText(double, const Json&, bool)’:
+src/grid.cpp:26:2: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   26 |  if(value<0&&sections.size()>1)section=sections[1];if(value==0&&sections.size()>2)section=sections[2];
+      |  ^~
+src/grid.cpp:26:52: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   26 |  if(value<0&&sections.size()>1)section=sections[1];if(value==0&&sections.size()>2)section=sections[2];
+      |                                                    ^~
+src/grid.cpp:34:2: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   34 |  if(percent)text+='%';if(parentheses)text='('+text+')';return text;
+      |  ^~
+src/grid.cpp:34:23: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   34 |  if(percent)text+='%';if(parentheses)text='('+text+')';return text;
+      |                       ^~
+FAILED: Paste Values must preserve text beginning equals instead of evaluating it

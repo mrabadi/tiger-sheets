@@ -1,0 +1,19 @@
+[0/2] Re-checking globbed directories...
+[1/5] Building CXX object CMakeFiles/tigersheets_pivot.dir/src/pivot_ownership.cpp.o
+[2/5] Linking CXX static library libtigersheets_pivot.a
+[3/5] Building pinned offline IronCalc engine
+FAILED: ../rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a /workspace/tiger-sheets/rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a
+cd /workspace/tiger-sheets && /usr/bin/cmake -E env PATH=/tmp/tigersheets-toolchain/cargo/bin:/home/developer/.codex/tmp/arg0/codex-arg0VBNXEp:/home/developer/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/developer/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources CARGO_HOME=/tmp/tigersheets-toolchain/cargo RUSTUP_HOME=/tmp/tigersheets-toolchain/rustup /tmp/tigersheets-toolchain/cargo/bin/cargo build --offline --locked --release --manifest-path /workspace/tiger-sheets/rust/ironcalc_bridge/Cargo.toml
+   Compiling ironcalc_base v0.9.1 (/workspace/tiger-sheets/third_party/ironcalc/base)
+   Compiling tigersheets_calc_bridge v0.1.0 (/workspace/tiger-sheets/rust/ironcalc_bridge)
+error[E0609]: no field `external_reference_function` on type `Model<'_>`
+   --> src/lib.rs:216:15
+    |
+216 |         model.external_reference_function=Some(Arc::new(move |measure,reference,args| {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^ unknown field
+    |
+    = note: available fields are: `filtered_rows`, `external_function`, `workbook`, `parsed_formulas`
+
+For more information about this error, try `rustc --explain E0609`.
+error: could not compile `tigersheets_calc_bridge` (lib) due to 1 previous error
+ninja: build stopped: subcommand failed.

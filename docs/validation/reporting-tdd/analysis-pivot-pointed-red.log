@@ -1,0 +1,4 @@
+tests/pivot_reference_tests.cpp: In function ‘void pointedFormulas()’:
+tests/pivot_reference_tests.cpp:27:10: error: ‘pivotReferenceFormula’ was not declared in this scope
+   27 |  require(pivotReferenceFormula(snapshot,"r",6,6)==prefix+",\"Date (year)\",2024,\"Date (quarter)\",1,\"Date (month)\",1,\"Region\",\"East\")","clicked intersection identifies caption, absolute anchor and grouped row/column items");
+      |          ^~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,4495 @@
+{
+  "cases": [
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=ABS(-3)",
+      "id": "abs.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.5707963267948966,
+      "expected": 1.5707963267948966,
+      "formula": "=ACOS(0)",
+      "id": "acos.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.0,
+      "expected": 0,
+      "formula": "=ACOSH(1)",
+      "id": "acosh.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.7853981633974483,
+      "expected": 0.7853981633974483,
+      "formula": "=ACOT(1)",
+      "id": "acot.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.5493061443340549,
+      "expected": 0.5493061443340549,
+      "formula": "=ACOTH(2)",
+      "id": "acoth.basic",
+      "passed": true
+    },
+    {
+      "actual": 14.0,
+      "expected": 14,
+      "formula": "=ARABIC(\"XIV\")",
+      "id": "arabic.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.5235987755982989,
+      "expected": 0.5235987755982988,
+      "formula": "=ASIN(0.5)",
+      "id": "asin.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.881373587019543,
+      "expected": 0.881373587019543,
+      "formula": "=ASINH(1)",
+      "id": "asinh.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.7853981633974483,
+      "expected": 0.7853981633974483,
+      "formula": "=ATAN(1)",
+      "id": "atan.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.7853981633974483,
+      "expected": 0.7853981633974483,
+      "formula": "=ATAN2(1,1)",
+      "id": "atan2.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.5493061443340548,
+      "expected": 0.5493061443340548,
+      "formula": "=ATANH(0.5)",
+      "id": "atanh.basic",
+      "passed": true
+    },
+    {
+      "actual": "F",
+      "expected": "F",
+      "formula": "=BASE(15,16)",
+      "id": "base.basic",
+      "passed": true
+    },
+    {
+      "actual": 4.0,
+      "expected": 4,
+      "formula": "=CEILING(2.5,2)",
+      "id": "ceiling.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=CEILING.MATH(2.5)",
+      "id": "ceiling.math.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=CEILING.PRECISE(2.5)",
+      "id": "ceiling.precise.basic",
+      "passed": true
+    },
+    {
+      "actual": 10.0,
+      "expected": 10,
+      "formula": "=COMBIN(5,2)",
+      "id": "combin.basic",
+      "passed": true
+    },
+    {
+      "actual": 6.0,
+      "expected": 6,
+      "formula": "=COMBINA(3,2)",
+      "id": "combina.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=COS(0)",
+      "id": "cos.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=COSH(0)",
+      "id": "cosh.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0000000000000002,
+      "expected": 1,
+      "formula": "=COT(PI()/4)",
+      "id": "cot.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.3130352854993312,
+      "expected": 1.3130352854993315,
+      "formula": "=COTH(1)",
+      "id": "coth.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=CSC(PI()/2)",
+      "id": "csc.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.8509181282393216,
+      "expected": 0.8509181282393216,
+      "formula": "=CSCH(1)",
+      "id": "csch.basic",
+      "passed": true
+    },
+    {
+      "actual": 255.0,
+      "expected": 255,
+      "formula": "=DECIMAL(\"FF\",16)",
+      "id": "decimal.basic",
+      "passed": true
+    },
+    {
+      "actual": 180.0,
+      "expected": 180,
+      "formula": "=DEGREES(PI())",
+      "id": "degrees.basic",
+      "passed": true
+    },
+    {
+      "actual": 4.0,
+      "expected": 4,
+      "formula": "=EVEN(3)",
+      "id": "even.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.718281828459045,
+      "expected": 2.718281828459045,
+      "formula": "=EXP(1)",
+      "id": "exp.basic",
+      "passed": true
+    },
+    {
+      "actual": 120.0,
+      "expected": 120,
+      "formula": "=FACT(5)",
+      "id": "fact.basic",
+      "passed": true
+    },
+    {
+      "actual": 48.0,
+      "expected": 48,
+      "formula": "=FACTDOUBLE(6)",
+      "id": "factdouble.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.0,
+      "expected": 2,
+      "formula": "=FLOOR(3.7,2)",
+      "id": "floor.basic",
+      "passed": true
+    },
+    {
+      "actual": -4.0,
+      "expected": -4,
+      "formula": "=FLOOR.MATH(-3.2)",
+      "id": "floor.math.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=FLOOR.PRECISE(3.2)",
+      "id": "floor.precise.basic",
+      "passed": true
+    },
+    {
+      "actual": 6.0,
+      "expected": 6,
+      "formula": "=GCD(18,24)",
+      "id": "gcd.basic",
+      "passed": true
+    },
+    {
+      "actual": -4.0,
+      "expected": -4,
+      "formula": "=INT(-3.2)",
+      "id": "int.basic",
+      "passed": true
+    },
+    {
+      "actual": 6.0,
+      "expected": 6,
+      "formula": "=ISO.CEILING(4.3,2)",
+      "id": "iso.ceiling.basic",
+      "passed": true
+    },
+    {
+      "actual": 12.0,
+      "expected": 12,
+      "formula": "=LCM(3,4)",
+      "id": "lcm.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=LN(EXP(1))",
+      "id": "ln.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.0,
+      "expected": 2,
+      "formula": "=LOG(100,10)",
+      "id": "log.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=LOG10(1000)",
+      "id": "log10.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=MOD(-3,2)",
+      "id": "mod.basic",
+      "passed": true
+    },
+    {
+      "actual": 9.0,
+      "expected": 9,
+      "formula": "=MROUND(10,3)",
+      "id": "mround.basic",
+      "passed": true
+    },
+    {
+      "actual": 10.0,
+      "expected": 10,
+      "formula": "=MULTINOMIAL(2,3)",
+      "id": "multinomial.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=ODD(2)",
+      "id": "odd.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.141592653589793,
+      "expected": 3.141592653589793,
+      "formula": "=PI()",
+      "id": "pi.basic",
+      "passed": true
+    },
+    {
+      "actual": 256.0,
+      "expected": 256,
+      "formula": "=POWER(2,8)",
+      "id": "power.basic",
+      "passed": true
+    },
+    {
+      "actual": 24.0,
+      "expected": 24,
+      "formula": "=PRODUCT(2,3,4)",
+      "id": "product.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=QUOTIENT(10,3)",
+      "id": "quotient.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.141592653589793,
+      "expected": 3.141592653589793,
+      "formula": "=RADIANS(180)",
+      "id": "radians.basic",
+      "passed": true
+    },
+    {
+      "actual": "XIV",
+      "expected": "XIV",
+      "formula": "=ROMAN(14)",
+      "id": "roman.basic",
+      "passed": true
+    },
+    {
+      "actual": 12.35,
+      "expected": 12.35,
+      "formula": "=ROUND(12.345,2)",
+      "id": "round.basic",
+      "passed": true
+    },
+    {
+      "actual": -1.2,
+      "expected": -1.2,
+      "formula": "=ROUNDDOWN(-1.29,1)",
+      "id": "rounddown.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.3,
+      "expected": 1.3,
+      "formula": "=ROUNDUP(1.21,1)",
+      "id": "roundup.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=SEC(0)",
+      "id": "sec.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=SECH(0)",
+      "id": "sech.basic",
+      "passed": true
+    },
+    {
+      "actual": -1.0,
+      "expected": -1,
+      "formula": "=SIGN(-12)",
+      "id": "sign.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=SIN(PI()/2)",
+      "id": "sin.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.1752011936438014,
+      "expected": 1.1752011936438014,
+      "formula": "=SINH(1)",
+      "id": "sinh.basic",
+      "passed": true
+    },
+    {
+      "actual": 9.0,
+      "expected": 9,
+      "formula": "=SQRT(81)",
+      "id": "sqrt.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.7724538509055159,
+      "expected": 1.7724538509055159,
+      "formula": "=SQRTPI(1)",
+      "id": "sqrtpi.basic",
+      "passed": true
+    },
+    {
+      "actual": 6.0,
+      "expected": 6,
+      "formula": "=SUM(1,2,3)",
+      "id": "sum.basic",
+      "passed": true
+    },
+    {
+      "actual": 11.0,
+      "expected": 11,
+      "formula": "=SUMPRODUCT({1,2},{3,4})",
+      "id": "sumproduct.basic",
+      "passed": true
+    },
+    {
+      "actual": 25.0,
+      "expected": 25,
+      "formula": "=SUMSQ(3,4)",
+      "id": "sumsq.basic",
+      "passed": true
+    },
+    {
+      "actual": -20.0,
+      "expected": -20,
+      "formula": "=SUMX2MY2({1,2},{3,4})",
+      "id": "sumx2my2.basic",
+      "passed": true
+    },
+    {
+      "actual": 30.0,
+      "expected": 30,
+      "formula": "=SUMX2PY2({1,2},{3,4})",
+      "id": "sumx2py2.basic",
+      "passed": true
+    },
+    {
+      "actual": 8.0,
+      "expected": 8,
+      "formula": "=SUMXMY2({1,2},{3,4})",
+      "id": "sumxmy2.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.0,
+      "expected": 0,
+      "formula": "=TAN(0)",
+      "id": "tan.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.0,
+      "expected": 0,
+      "formula": "=TANH(0)",
+      "id": "tanh.basic",
+      "passed": true
+    },
+    {
+      "actual": -3.0,
+      "expected": -3,
+      "formula": "=TRUNC(-3.9)",
+      "id": "trunc.basic",
+      "passed": true
+    },
+    {
+      "actual": false,
+      "expected": false,
+      "formula": "=AND(TRUE,FALSE)",
+      "id": "and.basic",
+      "passed": true
+    },
+    {
+      "actual": false,
+      "expected": false,
+      "formula": "=FALSE()",
+      "id": "false.basic",
+      "passed": true
+    },
+    {
+      "actual": "yes",
+      "expected": "yes",
+      "formula": "=IF(2>1,\"yes\",1/0)",
+      "id": "if.basic",
+      "passed": true
+    },
+    {
+      "actual": "n/a",
+      "expected": "n/a",
+      "formula": "=IFERROR(1/0,\"n/a\")",
+      "id": "iferror.basic",
+      "passed": true
+    },
+    {
+      "actual": "missing",
+      "expected": "missing",
+      "formula": "=IFNA(NA(),\"missing\")",
+      "id": "ifna.basic",
+      "passed": true
+    },
+    {
+      "actual": "yes",
+      "expected": "yes",
+      "formula": "=IFS(1>2,\"no\",1<2,\"yes\")",
+      "id": "ifs.basic",
+      "passed": true
+    },
+    {
+      "actual": 12.0,
+      "expected": 12,
+      "formula": "=LET(x,4,x*3)",
+      "id": "let.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=LAMBDA(x,x+1)(2)",
+      "id": "lambda.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=NOT(FALSE)",
+      "id": "not.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=OR(FALSE,TRUE)",
+      "id": "or.basic",
+      "passed": true
+    },
+    {
+      "actual": "two",
+      "expected": "two",
+      "formula": "=SWITCH(2,1,\"one\",2,\"two\",\"other\")",
+      "id": "switch.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=TRUE()",
+      "id": "true.basic",
+      "passed": true
+    },
+    {
+      "actual": false,
+      "expected": false,
+      "formula": "=XOR(TRUE,TRUE,FALSE)",
+      "id": "xor.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=AVERAGE(A1:A5)",
+      "id": "average.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.2,
+      "expected": 1.2,
+      "formula": "=AVEDEV(A1:A5)",
+      "id": "avedev.basic",
+      "passed": true
+    },
+    {
+      "actual": 5.0,
+      "expected": 5,
+      "formula": "=COUNT(A1:A5)",
+      "id": "count.basic",
+      "passed": true
+    },
+    {
+      "actual": 5.0,
+      "expected": 5,
+      "formula": "=COUNTA(A1:A5)",
+      "id": "counta.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=COUNTBLANK(A1:A6)",
+      "id": "countblank.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=COUNTIF(A1:A5,\">2\")",
+      "id": "countif.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.0,
+      "expected": 2,
+      "formula": "=COUNTIFS(A1:A5,\">2\",A1:A5,\"<5\")",
+      "id": "countifs.basic",
+      "passed": true
+    },
+    {
+      "actual": 4.0,
+      "expected": 4,
+      "formula": "=LARGE(A1:A5,2)",
+      "id": "large.basic",
+      "passed": true
+    },
+    {
+      "actual": 5.0,
+      "expected": 5,
+      "formula": "=MAX(A1:A5)",
+      "id": "max.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=MEDIAN(A1:A5)",
+      "id": "median.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=MIN(A1:A5)",
+      "id": "min.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.0,
+      "expected": 2,
+      "formula": "=SMALL(A1:A5,2)",
+      "id": "small.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.5811388300841898,
+      "expected": 1.5811388300841898,
+      "formula": "=STDEV.S(A1:A5)",
+      "id": "stdev.s.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.4142135623730951,
+      "expected": 1.4142135623730951,
+      "formula": "=STDEV.P(A1:A5)",
+      "id": "stdev.p.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.5811388300841898,
+      "expected": 1.5811388300841898,
+      "formula": "=STDEV(A1:A5)",
+      "id": "stdev.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.4142135623730951,
+      "expected": 1.4142135623730951,
+      "formula": "=STDEVP(A1:A5)",
+      "id": "stdevp.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.5,
+      "expected": 2.5,
+      "formula": "=VAR.S(A1:A5)",
+      "id": "var.s.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.0,
+      "expected": 2,
+      "formula": "=VAR.P(A1:A5)",
+      "id": "var.p.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.5,
+      "expected": 2.5,
+      "formula": "=VAR(A1:A5)",
+      "id": "var.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.0,
+      "expected": 2,
+      "formula": "=VARP(A1:A5)",
+      "id": "varp.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=PERCENTILE.INC(A1:A5,0.5)",
+      "id": "percentile.inc.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=PERCENTILE.EXC(A1:A5,0.5)",
+      "id": "percentile.exc.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.5,
+      "expected": 0.5,
+      "formula": "=PERCENTRANK.INC(A1:A5,3)",
+      "id": "percentrank.inc.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=QUARTILE.INC(A1:A5,2)",
+      "id": "quartile.inc.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=RANK.EQ(3,A1:A5)",
+      "id": "rank.eq.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=RANK.AVG(3,A1:A5)",
+      "id": "rank.avg.basic",
+      "passed": true
+    },
+    {
+      "actual": 15.0,
+      "expected": 15,
+      "formula": "=SUBTOTAL(9,A1:A5)",
+      "id": "subtotal.basic",
+      "passed": true
+    },
+    {
+      "actual": 15.0,
+      "expected": 15,
+      "formula": "=AGGREGATE(9,0,A1:A5)",
+      "id": "aggregate.basic",
+      "passed": true
+    },
+    {
+      "actual": 9.0,
+      "expected": 9,
+      "formula": "=SUMIF(A1:A5,\">3\")",
+      "id": "sumif.basic",
+      "passed": true
+    },
+    {
+      "actual": 9.0,
+      "expected": 9,
+      "formula": "=SUMIFS(A1:A5,A1:A5,\">3\")",
+      "id": "sumifs.basic",
+      "passed": true
+    },
+    {
+      "actual": 4.5,
+      "expected": 4.5,
+      "formula": "=AVERAGEIF(A1:A5,\">3\")",
+      "id": "averageif.basic",
+      "passed": true
+    },
+    {
+      "actual": 4.5,
+      "expected": 4.5,
+      "formula": "=AVERAGEIFS(A1:A5,A1:A5,\">3\")",
+      "id": "averageifs.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=MAXIFS(A1:A5,A1:A5,\"<4\")",
+      "id": "maxifs.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=MINIFS(A1:A5,A1:A5,\">2\")",
+      "id": "minifs.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.5,
+      "expected": 0.5,
+      "formula": "=BETA.DIST(0.5,1,1,TRUE)",
+      "id": "beta.dist.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.49999999999999956,
+      "expected": 0.5,
+      "formula": "=BETA.INV(0.5,1,1)",
+      "id": "beta.inv.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.375,
+      "expected": 0.375,
+      "formula": "=BINOM.DIST(2,4,0.5,FALSE)",
+      "id": "binom.dist.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.0,
+      "expected": 0,
+      "formula": "=CHISQ.DIST(0,2,TRUE)",
+      "id": "chisq.dist.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.19599639845400538,
+      "expected": 0.195996398454,
+      "formula": "=CONFIDENCE.NORM(0.05,1,100)",
+      "id": "confidence.norm.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.0,
+      "expected": 0,
+      "formula": "=EXPON.DIST(0,1,TRUE)",
+      "id": "expon.dist.basic",
+      "passed": true
+    },
+    {
+      "actual": 24.000000000000114,
+      "expected": 24,
+      "formula": "=GAMMA(5)",
+      "id": "gamma.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.1780538303479506,
+      "expected": 3.1780538303479458,
+      "formula": "=GAMMALN(5)",
+      "id": "gammaln.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.0,
+      "expected": 0,
+      "formula": "=GAUSS(0)",
+      "id": "gauss.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.5,
+      "expected": 0.5,
+      "formula": "=NORM.DIST(0,0,1,TRUE)",
+      "id": "norm.dist.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.0,
+      "expected": 0,
+      "formula": "=NORM.INV(0.5,0,1)",
+      "id": "norm.inv.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.5,
+      "expected": 0.5,
+      "formula": "=NORM.S.DIST(0,TRUE)",
+      "id": "norm.s.dist.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.0,
+      "expected": 0,
+      "formula": "=NORM.S.INV(0.5)",
+      "id": "norm.s.inv.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.3989422804014327,
+      "expected": 0.3989422804014327,
+      "formula": "=PHI(0)",
+      "id": "phi.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.36787944117144233,
+      "expected": 0.36787944117144233,
+      "formula": "=POISSON.DIST(0,1,FALSE)",
+      "id": "poisson.dist.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.5,
+      "expected": 2.5,
+      "formula": "=STANDARDIZE(10,5,2)",
+      "id": "standardize.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.0,
+      "expected": 0,
+      "formula": "=WEIBULL.DIST(0,1,1,TRUE)",
+      "id": "weibull.dist.basic",
+      "passed": true
+    },
+    {
+      "actual": 45292.0,
+      "expected": 45292,
+      "formula": "=DATE(2024,1,1)",
+      "id": "date.basic",
+      "passed": true
+    },
+    {
+      "actual": 29.0,
+      "expected": 29,
+      "formula": "=DAY(DATE(2024,2,29))",
+      "id": "day.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=DAYS(DATE(2024,1,2),DATE(2024,1,1))",
+      "id": "days.basic",
+      "passed": true
+    },
+    {
+      "actual": 30.0,
+      "expected": 30,
+      "formula": "=DAYS360(DATE(2024,1,1),DATE(2024,2,1))",
+      "id": "days360.basic",
+      "passed": true
+    },
+    {
+      "actual": 45351.0,
+      "expected": 45351,
+      "formula": "=EDATE(DATE(2024,1,31),1)",
+      "id": "edate.basic",
+      "passed": true
+    },
+    {
+      "actual": 45351.0,
+      "expected": 45351,
+      "formula": "=EOMONTH(DATE(2024,1,1),1)",
+      "id": "eomonth.basic",
+      "passed": true
+    },
+    {
+      "actual": 12.0,
+      "expected": 12,
+      "formula": "=HOUR(TIME(12,30,15))",
+      "id": "hour.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=ISOWEEKNUM(DATE(2024,1,1))",
+      "id": "isoweeknum.basic",
+      "passed": true
+    },
+    {
+      "actual": 30.0,
+      "expected": 30,
+      "formula": "=MINUTE(TIME(12,30,15))",
+      "id": "minute.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.0,
+      "expected": 2,
+      "formula": "=MONTH(DATE(2024,2,1))",
+      "id": "month.basic",
+      "passed": true
+    },
+    {
+      "actual": 5.0,
+      "expected": 5,
+      "formula": "=NETWORKDAYS(DATE(2024,1,1),DATE(2024,1,5))",
+      "id": "networkdays.basic",
+      "passed": true
+    },
+    {
+      "actual": 5.0,
+      "expected": 5,
+      "formula": "=NETWORKDAYS.INTL(DATE(2024,1,1),DATE(2024,1,7),1)",
+      "id": "networkdays.intl.basic",
+      "passed": true
+    },
+    {
+      "actual": 15.0,
+      "expected": 15,
+      "formula": "=SECOND(TIME(12,30,15))",
+      "id": "second.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.5,
+      "expected": 0.5,
+      "formula": "=TIME(12,0,0)",
+      "id": "time.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.5,
+      "expected": 0.5,
+      "formula": "=TIMEVALUE(\"12:00\")",
+      "id": "timevalue.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=WEEKDAY(DATE(2024,1,1),2)",
+      "id": "weekday.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=WEEKNUM(DATE(2024,1,1),2)",
+      "id": "weeknum.basic",
+      "passed": true
+    },
+    {
+      "actual": 45299.0,
+      "expected": 45299,
+      "formula": "=WORKDAY(DATE(2024,1,1),5)",
+      "id": "workday.basic",
+      "passed": true
+    },
+    {
+      "actual": 2024.0,
+      "expected": 2024,
+      "formula": "=YEAR(DATE(2024,1,1))",
+      "id": "year.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=DATEDIF(DATE(2024,1,1),DATE(2025,1,1),\"Y\")",
+      "id": "datedif.basic",
+      "passed": true
+    },
+    {
+      "actual": "A",
+      "expected": "A",
+      "formula": "=CHAR(65)",
+      "id": "char.basic",
+      "passed": true
+    },
+    {
+      "actual": "abc",
+      "expected": "abc",
+      "formula": "=CLEAN(CHAR(9)&\"abc\")",
+      "id": "clean.basic",
+      "passed": true
+    },
+    {
+      "actual": 65.0,
+      "expected": 65,
+      "formula": "=CODE(\"A\")",
+      "id": "code.basic",
+      "passed": true
+    },
+    {
+      "actual": "Tiger",
+      "expected": "Tiger",
+      "formula": "=CONCAT(\"Ti\",\"ger\")",
+      "id": "concat.basic",
+      "passed": true
+    },
+    {
+      "actual": "Tiger",
+      "expected": "Tiger",
+      "formula": "=CONCATENATE(\"Ti\",\"ger\")",
+      "id": "concatenate.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=EXACT(\"A\",\"A\")",
+      "id": "exact.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=FIND(\"g\",\"Tiger\")",
+      "id": "find.basic",
+      "passed": true
+    },
+    {
+      "actual": "1234.5",
+      "expected": "1234.5",
+      "formula": "=FIXED(1234.5,1,TRUE)",
+      "id": "fixed.basic",
+      "passed": true
+    },
+    {
+      "actual": "Ti",
+      "expected": "Ti",
+      "formula": "=LEFT(\"Tiger\",2)",
+      "id": "left.basic",
+      "passed": true
+    },
+    {
+      "actual": 5.0,
+      "expected": 5,
+      "formula": "=LEN(\"Tiger\")",
+      "id": "len.basic",
+      "passed": true
+    },
+    {
+      "actual": "tiger",
+      "expected": "tiger",
+      "formula": "=LOWER(\"TIGER\")",
+      "id": "lower.basic",
+      "passed": true
+    },
+    {
+      "actual": "ige",
+      "expected": "ige",
+      "formula": "=MID(\"Tiger\",2,3)",
+      "id": "mid.basic",
+      "passed": true
+    },
+    {
+      "actual": 1234.5,
+      "expected": 1234.5,
+      "formula": "=NUMBERVALUE(\"1.234,5\",\",\",\".\")",
+      "id": "numbervalue.basic",
+      "passed": true
+    },
+    {
+      "actual": "Tiger Sheets",
+      "expected": "Tiger Sheets",
+      "formula": "=PROPER(\"tiger sheets\")",
+      "id": "proper.basic",
+      "passed": true
+    },
+    {
+      "actual": "Liger",
+      "expected": "Liger",
+      "formula": "=REPLACE(\"Tiger\",1,1,\"L\")",
+      "id": "replace.basic",
+      "passed": true
+    },
+    {
+      "actual": "ababab",
+      "expected": "ababab",
+      "formula": "=REPT(\"ab\",3)",
+      "id": "rept.basic",
+      "passed": true
+    },
+    {
+      "actual": "ger",
+      "expected": "ger",
+      "formula": "=RIGHT(\"Tiger\",3)",
+      "id": "right.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=SEARCH(\"GE\",\"Tiger\")",
+      "id": "search.basic",
+      "passed": true
+    },
+    {
+      "actual": "b-b",
+      "expected": "b-b",
+      "formula": "=SUBSTITUTE(\"aa-aa\",\"aa\",\"b\")",
+      "id": "substitute.basic",
+      "passed": true
+    },
+    {
+      "actual": "abc",
+      "expected": "abc",
+      "formula": "=T(\"abc\")",
+      "id": "t.basic",
+      "passed": true
+    },
+    {
+      "actual": "12.5%",
+      "expected": "12.5%",
+      "formula": "=TEXT(0.125,\"0.0%\")",
+      "id": "text.basic",
+      "passed": true
+    },
+    {
+      "actual": "two",
+      "expected": "two",
+      "formula": "=TEXTAFTER(\"one/two\",\"/\")",
+      "id": "textafter.basic",
+      "passed": true
+    },
+    {
+      "actual": "one",
+      "expected": "one",
+      "formula": "=TEXTBEFORE(\"one/two\",\"/\")",
+      "id": "textbefore.basic",
+      "passed": true
+    },
+    {
+      "actual": "a,b",
+      "expected": "a,b",
+      "formula": "=TEXTJOIN(\",\",TRUE,{\"a\",\"b\"})",
+      "id": "textjoin.basic",
+      "passed": true
+    },
+    {
+      "actual": "a b",
+      "expected": "a b",
+      "formula": "=TRIM(\" a  b \")",
+      "id": "trim.basic",
+      "passed": true
+    },
+    {
+      "actual": "A",
+      "expected": "A",
+      "formula": "=UNICHAR(65)",
+      "id": "unichar.basic",
+      "passed": true
+    },
+    {
+      "actual": 65.0,
+      "expected": 65,
+      "formula": "=UNICODE(\"A\")",
+      "id": "unicode.basic",
+      "passed": true
+    },
+    {
+      "actual": "TIGER",
+      "expected": "TIGER",
+      "formula": "=UPPER(\"tiger\")",
+      "id": "upper.basic",
+      "passed": true
+    },
+    {
+      "actual": 12.5,
+      "expected": 12.5,
+      "formula": "=VALUE(\"12.5\")",
+      "id": "value.basic",
+      "passed": true
+    },
+    {
+      "actual": "12.5",
+      "expected": "12.5",
+      "formula": "=VALUETOTEXT(12.5)",
+      "id": "valuetotext.basic",
+      "passed": true
+    },
+    {
+      "actual": 5.0,
+      "expected": 5,
+      "formula": "=BIN2DEC(101)",
+      "id": "bin2dec.basic",
+      "passed": true
+    },
+    {
+      "actual": "F",
+      "expected": "F",
+      "formula": "=BIN2HEX(1111)",
+      "id": "bin2hex.basic",
+      "passed": true
+    },
+    {
+      "actual": "7",
+      "expected": "7",
+      "formula": "=BIN2OCT(111)",
+      "id": "bin2oct.basic",
+      "passed": true
+    },
+    {
+      "actual": 8.0,
+      "expected": 8,
+      "formula": "=BITAND(12,10)",
+      "id": "bitand.basic",
+      "passed": true
+    },
+    {
+      "actual": 12.0,
+      "expected": 12,
+      "formula": "=BITLSHIFT(3,2)",
+      "id": "bitlshift.basic",
+      "passed": true
+    },
+    {
+      "actual": 14.0,
+      "expected": 14,
+      "formula": "=BITOR(12,10)",
+      "id": "bitor.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=BITRSHIFT(12,2)",
+      "id": "bitrshift.basic",
+      "passed": true
+    },
+    {
+      "actual": 6.0,
+      "expected": 6,
+      "formula": "=BITXOR(12,10)",
+      "id": "bitxor.basic",
+      "passed": true
+    },
+    {
+      "actual": "3+4i",
+      "expected": "3+4i",
+      "formula": "=COMPLEX(3,4)",
+      "id": "complex.basic",
+      "passed": true
+    },
+    {
+      "actual": 100.0,
+      "expected": 100,
+      "formula": "=CONVERT(1,\"m\",\"cm\")",
+      "id": "convert.basic",
+      "passed": true
+    },
+    {
+      "actual": "101",
+      "expected": "101",
+      "formula": "=DEC2BIN(5)",
+      "id": "dec2bin.basic",
+      "passed": true
+    },
+    {
+      "actual": "FF",
+      "expected": "FF",
+      "formula": "=DEC2HEX(255)",
+      "id": "dec2hex.basic",
+      "passed": true
+    },
+    {
+      "actual": "10",
+      "expected": "10",
+      "formula": "=DEC2OCT(8)",
+      "id": "dec2oct.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=DELTA(5,5)",
+      "id": "delta.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.0,
+      "expected": 0,
+      "formula": "=ERF(0)",
+      "id": "erf.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.0,
+      "expected": 0,
+      "formula": "=ERF.PRECISE(0)",
+      "id": "erf.precise.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=ERFC(0)",
+      "id": "erfc.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=ERFC.PRECISE(0)",
+      "id": "erfc.precise.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=GESTEP(5,4)",
+      "id": "gestep.basic",
+      "passed": true
+    },
+    {
+      "actual": "1010",
+      "expected": "1010",
+      "formula": "=HEX2BIN(\"A\")",
+      "id": "hex2bin.basic",
+      "passed": true
+    },
+    {
+      "actual": 255.0,
+      "expected": 255,
+      "formula": "=HEX2DEC(\"FF\")",
+      "id": "hex2dec.basic",
+      "passed": true
+    },
+    {
+      "actual": "17",
+      "expected": "17",
+      "formula": "=HEX2OCT(\"F\")",
+      "id": "hex2oct.basic",
+      "passed": true
+    },
+    {
+      "actual": 5.0,
+      "expected": 5,
+      "formula": "=IMABS(\"3+4i\")",
+      "id": "imabs.basic",
+      "passed": true
+    },
+    {
+      "actual": 4.0,
+      "expected": 4,
+      "formula": "=IMAGINARY(\"3+4i\")",
+      "id": "imaginary.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.7853981633974483,
+      "expected": 0.7853981633974483,
+      "formula": "=IMARGUMENT(\"1+i\")",
+      "id": "imargument.basic",
+      "passed": true
+    },
+    {
+      "actual": "3-4i",
+      "expected": "3-4i",
+      "formula": "=IMCONJUGATE(\"3+4i\")",
+      "id": "imconjugate.basic",
+      "passed": true
+    },
+    {
+      "actual": "1",
+      "expected": "1",
+      "formula": "=IMCOS(\"0\")",
+      "id": "imcos.basic",
+      "passed": true
+    },
+    {
+      "actual": "1",
+      "expected": "1",
+      "formula": "=IMCOSH(\"0\")",
+      "id": "imcosh.basic",
+      "passed": true
+    },
+    {
+      "actual": "2+i",
+      "expected": "2+i",
+      "formula": "=IMDIV(\"4+2i\",\"2\")",
+      "id": "imdiv.basic",
+      "passed": true
+    },
+    {
+      "actual": "1",
+      "expected": "1",
+      "formula": "=IMEXP(\"0\")",
+      "id": "imexp.basic",
+      "passed": true
+    },
+    {
+      "actual": "0",
+      "expected": "0",
+      "formula": "=IMLN(\"1\")",
+      "id": "imln.basic",
+      "passed": true
+    },
+    {
+      "actual": "0",
+      "expected": "0",
+      "formula": "=IMLOG10(\"1\")",
+      "id": "imlog10.basic",
+      "passed": true
+    },
+    {
+      "actual": "0",
+      "expected": "0",
+      "formula": "=IMLOG2(\"1\")",
+      "id": "imlog2.basic",
+      "passed": true
+    },
+    {
+      "actual": "5",
+      "expected": "5",
+      "formula": "=IMPRODUCT(\"2+i\",\"2-i\")",
+      "id": "improduct.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=IMREAL(\"3+4i\")",
+      "id": "imreal.basic",
+      "passed": true
+    },
+    {
+      "actual": "1",
+      "expected": "1",
+      "formula": "=IMSEC(\"0\")",
+      "id": "imsec.basic",
+      "passed": true
+    },
+    {
+      "actual": "1",
+      "expected": "1",
+      "formula": "=IMSECH(\"0\")",
+      "id": "imsech.basic",
+      "passed": true
+    },
+    {
+      "actual": "0",
+      "expected": "0",
+      "formula": "=IMSIN(\"0\")",
+      "id": "imsin.basic",
+      "passed": true
+    },
+    {
+      "actual": "0",
+      "expected": "0",
+      "formula": "=IMSINH(\"0\")",
+      "id": "imsinh.basic",
+      "passed": true
+    },
+    {
+      "actual": "2",
+      "expected": "2",
+      "formula": "=IMSQRT(\"4\")",
+      "id": "imsqrt.basic",
+      "passed": true
+    },
+    {
+      "actual": "2+3i",
+      "expected": "2+3i",
+      "formula": "=IMSUB(\"3+4i\",\"1+i\")",
+      "id": "imsub.basic",
+      "passed": true
+    },
+    {
+      "actual": "3+4i",
+      "expected": "3+4i",
+      "formula": "=IMSUM(\"1+i\",\"2+3i\")",
+      "id": "imsum.basic",
+      "passed": true
+    },
+    {
+      "actual": "0",
+      "expected": "0",
+      "formula": "=IMTAN(\"0\")",
+      "id": "imtan.basic",
+      "passed": true
+    },
+    {
+      "actual": "111",
+      "expected": "111",
+      "formula": "=OCT2BIN(7)",
+      "id": "oct2bin.basic",
+      "passed": true
+    },
+    {
+      "actual": 15.0,
+      "expected": 15,
+      "formula": "=OCT2DEC(17)",
+      "id": "oct2dec.basic",
+      "passed": true
+    },
+    {
+      "actual": "F",
+      "expected": "F",
+      "formula": "=OCT2HEX(17)",
+      "id": "oct2hex.basic",
+      "passed": true
+    },
+    {
+      "actual": -109.9999999999999,
+      "expected": -110,
+      "formula": "=PMT(0.1,1,100)",
+      "id": "pmt.basic",
+      "passed": true
+    },
+    {
+      "actual": 1000.0,
+      "expected": 1000,
+      "formula": "=PV(0,10,-100)",
+      "id": "pv.basic",
+      "passed": true
+    },
+    {
+      "actual": 1000.0,
+      "expected": 1000,
+      "formula": "=FV(0,10,-100)",
+      "id": "fv.basic",
+      "passed": true
+    },
+    {
+      "actual": 10.0,
+      "expected": 10,
+      "formula": "=NPER(0,-10,100)",
+      "id": "nper.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.10000000000000085,
+      "expected": 0.1,
+      "formula": "=RATE(1,-110,100)",
+      "id": "rate.basic",
+      "passed": true
+    },
+    {
+      "actual": -10.0,
+      "expected": -10,
+      "formula": "=IPMT(0.1,1,1,100)",
+      "id": "ipmt.basic",
+      "passed": true
+    },
+    {
+      "actual": -99.9999999999999,
+      "expected": -100,
+      "formula": "=PPMT(0.1,1,1,100)",
+      "id": "ppmt.basic",
+      "passed": true
+    },
+    {
+      "actual": 6.0,
+      "expected": 6,
+      "formula": "=NPV(0,1,2,3)",
+      "id": "npv.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.09999999999999984,
+      "expected": 0.1,
+      "formula": "=IRR({-100;110})",
+      "id": "irr.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.10000000000000009,
+      "expected": 0.1,
+      "formula": "=MIRR({-100;110},0.1,0.1)",
+      "id": "mirr.basic",
+      "passed": true
+    },
+    {
+      "actual": -1.4210854715202004e-14,
+      "expected": 0,
+      "formula": "=XNPV(0.1,{-100;110},{44927;45292})",
+      "id": "xnpv.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.09999999999999985,
+      "expected": 0.1,
+      "formula": "=XIRR({-100;110},{44927;45292})",
+      "id": "xirr.basic",
+      "passed": true
+    },
+    {
+      "actual": 30.0,
+      "expected": 30,
+      "formula": "=SLN(100,10,3)",
+      "id": "sln.basic",
+      "passed": true
+    },
+    {
+      "actual": 20.0,
+      "expected": 20,
+      "formula": "=DDB(100,0,10,1)",
+      "id": "ddb.basic",
+      "passed": true
+    },
+    {
+      "actual": 45.0,
+      "expected": 45,
+      "formula": "=SYD(100,10,3,1)",
+      "id": "syd.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.78125,
+      "expected": 1.78125,
+      "formula": "=DOLLARDE(1.125,16)",
+      "id": "dollarde.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.125,
+      "expected": 1.125,
+      "formula": "=DOLLARFR(1.78125,16)",
+      "id": "dollarfr.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.10250000000000004,
+      "expected": 0.1025,
+      "formula": "=EFFECT(0.1,2)",
+      "id": "effect.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.10000000000000009,
+      "expected": 0.1,
+      "formula": "=NOMINAL(0.1025,2)",
+      "id": "nominal.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.9999999999999982,
+      "expected": 1,
+      "formula": "=PDURATION(0.1,100,110)",
+      "id": "pduration.basic",
+      "passed": true
+    },
+    {
+      "actual": 0.10000000000000009,
+      "expected": 0.1,
+      "formula": "=RRI(1,100,110)",
+      "id": "rri.basic",
+      "passed": true
+    },
+    {
+      "actual": -5.0,
+      "expected": -5,
+      "formula": "=ISPMT(0.1,1,2,100)",
+      "id": "ispmt.basic",
+      "passed": true
+    },
+    {
+      "actual": -10.0,
+      "expected": -10,
+      "formula": "=CUMIPMT(0.1,1,100,1,1,0)",
+      "id": "cumipmt.basic",
+      "passed": true
+    },
+    {
+      "actual": -99.9999999999999,
+      "expected": -100,
+      "formula": "=CUMPRINC(0.1,1,100,1,1,0)",
+      "id": "cumprinc.basic",
+      "passed": true
+    },
+    {
+      "actual": 132.0,
+      "expected": 132,
+      "formula": "=FVSCHEDULE(100,{0.1,0.2})",
+      "id": "fvschedule.basic",
+      "passed": true
+    },
+    {
+      "actual": "Beta",
+      "expected": "Beta",
+      "formula": "=INDEX(B1:B3,2)",
+      "id": "index.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.0,
+      "expected": 2,
+      "formula": "=MATCH(20,A1:A3,0)",
+      "id": "match.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.0,
+      "expected": 2,
+      "formula": "=XMATCH(20,A1:A3)",
+      "id": "xmatch.basic",
+      "passed": true
+    },
+    {
+      "actual": "Beta",
+      "expected": "Beta",
+      "formula": "=XLOOKUP(20,A1:A3,B1:B3)",
+      "id": "xlookup.basic",
+      "passed": true
+    },
+    {
+      "actual": "Beta",
+      "expected": "Beta",
+      "formula": "=VLOOKUP(20,A1:B3,2,FALSE)",
+      "id": "vlookup.basic",
+      "passed": true
+    },
+    {
+      "actual": "Beta",
+      "expected": "Beta",
+      "formula": "=LOOKUP(20,A1:A3,B1:B3)",
+      "id": "lookup.basic",
+      "passed": true
+    },
+    {
+      "actual": "B",
+      "expected": "B",
+      "formula": "=CHOOSE(2,\"A\",\"B\",\"C\")",
+      "id": "choose.basic",
+      "passed": true
+    },
+    {
+      "actual": "$C$2",
+      "expected": "$C$2",
+      "formula": "=ADDRESS(2,3)",
+      "id": "address.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=COLUMN(C5)",
+      "id": "column.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=COLUMNS(A1:C1)",
+      "id": "columns.basic",
+      "passed": true
+    },
+    {
+      "actual": 5.0,
+      "expected": 5,
+      "formula": "=ROW(C5)",
+      "id": "row.basic",
+      "passed": true
+    },
+    {
+      "actual": 3.0,
+      "expected": 3,
+      "formula": "=ROWS(A1:A3)",
+      "id": "rows.basic",
+      "passed": true
+    },
+    {
+      "actual": "Beta",
+      "expected": "Beta",
+      "formula": "=INDIRECT(\"B2\")",
+      "id": "indirect.basic",
+      "passed": true
+    },
+    {
+      "actual": "Beta",
+      "expected": "Beta",
+      "formula": "=OFFSET(A1,1,1)",
+      "id": "offset.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=ISBLANK(Z1)",
+      "id": "isblank.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=ISERR(1/0)",
+      "id": "iserr.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=ISERROR(1/0)",
+      "id": "iserror.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=ISEVEN(4)",
+      "id": "iseven.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=ISLOGICAL(TRUE)",
+      "id": "islogical.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=ISNA(NA())",
+      "id": "isna.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=ISNONTEXT(12)",
+      "id": "isnontext.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=ISNUMBER(12)",
+      "id": "isnumber.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=ISODD(3)",
+      "id": "isodd.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=ISREF(A1)",
+      "id": "isref.basic",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "formula": "=ISTEXT(\"a\")",
+      "id": "istext.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=N(TRUE)",
+      "id": "n.basic",
+      "passed": true
+    },
+    {
+      "actual": 1.0,
+      "expected": 1,
+      "formula": "=TYPE(12)",
+      "id": "type.basic",
+      "passed": true
+    },
+    {
+      "actual": 2.0,
+      "expected": 2,
+      "formula": "=ERROR.TYPE(1/0)",
+      "id": "error.type.basic",
+      "passed": true
+    },
+    {
+      "actual": "#N/A",
+      "expected": "#N/A",
+      "formula": "=NA()",
+      "id": "na.basic",
+      "passed": true
+    }
+  ],
+  "engine": {
+    "availability_only": true,
+    "commit": "eb9ca75bd99160c17902359d2d87225c4571c468",
+    "engine": "IronCalc",
+    "extensions": [
+      "AGGREGATE"
+    ],
+    "functions": [
+      "ABS",
+      "ACCRINT",
+      "ACCRINTM",
+      "ACOS",
+      "ACOSH",
+      "ACOT",
+      "ACOTH",
+      "ADDRESS",
+      "AGGREGATE",
+      "AMORDEGRC",
+      "AMORLINC",
+      "AND",
+      "ARABIC",
+      "AREAS",
+      "ARRAYTOTEXT",
+      "ASC",
+      "ASIN",
+      "ASINH",
+      "ATAN",
+      "ATAN2",
+      "ATANH",
+      "AVEDEV",
+      "AVERAGE",
+      "AVERAGEA",
+      "AVERAGEIF",
+      "AVERAGEIFS",
+      "BASE",
+      "BESSELI",
+      "BESSELJ",
+      "BESSELK",
+      "BESSELY",
+      "BETA.DIST",
+      "BETA.INV",
+      "BETADIST",
+      "BETAINV",
+      "BIN2DEC",
+      "BIN2HEX",
+      "BIN2OCT",
+      "BINOM.DIST",
+      "BINOM.DIST.RANGE",
+      "BINOM.INV",
+      "BINOMDIST",
+      "BITAND",
+      "BITLSHIFT",
+      "BITOR",
+      "BITRSHIFT",
+      "BITXOR",
+      "BYCOL",
+      "BYROW",
+      "CEILING",
+      "CEILING.MATH",
+      "CEILING.PRECISE",
+      "CELL",
+      "CHAR",
+      "CHIDIST",
+      "CHIINV",
+      "CHISQ.DIST",
+      "CHISQ.DIST.RT",
+      "CHISQ.INV",
+      "CHISQ.INV.RT",
+      "CHISQ.TEST",
+      "CHITEST",
+      "CHOOSE",
+      "CHOOSECOLS",
+      "CHOOSEROWS",
+      "CLEAN",
+      "CODE",
+      "COLUMN",
+      "COLUMNS",
+      "COMBIN",
+      "COMBINA",
+      "COMPLEX",
+      "CONCAT",
+      "CONCATENATE",
+      "CONFIDENCE",
+      "CONFIDENCE.NORM",
+      "CONFIDENCE.T",
+      "CONVERT",
+      "CORREL",
+      "COS",
+      "COSH",
+      "COT",
+      "COTH",
+      "COUNT",
+      "COUNTA",
+      "COUNTBLANK",
+      "COUNTIF",
+      "COUNTIFS",
+      "COUPDAYBS",
+      "COUPDAYS",
+      "COUPDAYSNC",
+      "COUPNCD",
+      "COUPNUM",
+      "COUPPCD",
+      "COVAR",
+      "COVARIANCE.P",
+      "COVARIANCE.S",
+      "CRITBINOM",
+      "CSC",
+      "CSCH",
+      "CUMIPMT",
+      "CUMPRINC",
+      "DATE",
+      "DATEDIF",
+      "DATEVALUE",
+      "DAVERAGE",
+      "DAY",
+      "DAYS",
+      "DAYS360",
+      "DB",
+      "DCOUNT",
+      "DCOUNTA",
+      "DDB",
+      "DEC2BIN",
+      "DEC2HEX",
+      "DEC2OCT",
+      "DECIMAL",
+      "DEGREES",
+      "DELTA",
+      "DEVSQ",
+      "DGET",
+      "DISC",
+      "DMAX",
+      "DMIN",
+      "DOLLAR",
+      "DOLLARDE",
+      "DOLLARFR",
+      "DPRODUCT",
+      "DROP",
+      "DSTDEV",
+      "DSTDEVP",
+      "DSUM",
+      "DURATION",
+      "DVAR",
+      "DVARP",
+      "ECMA.CEILING",
+      "EDATE",
+      "EFFECT",
+      "ENCODEURL",
+      "EOMONTH",
+      "ERF",
+      "ERF.PRECISE",
+      "ERFC",
+      "ERFC.PRECISE",
+      "ERROR.TYPE",
+      "EVEN",
+      "EXACT",
+      "EXP",
+      "EXPAND",
+      "EXPON.DIST",
+      "EXPONDIST",
+      "F.DIST",
+      "F.DIST.RT",
+      "F.INV",
+      "F.INV.RT",
+      "F.TEST",
+      "FACT",
+      "FACTDOUBLE",
+      "FALSE",
+      "FDIST",
+      "FILTER",
+      "FIND",
+      "FINDB",
+      "FINV",
+      "FISHER",
+      "FISHERINV",
+      "FIXED",
+      "FLOOR",
+      "FLOOR.MATH",
+      "FLOOR.PRECISE",
+      "FORECAST",
+      "FORECAST.ETS",
+      "FORECAST.ETS.CONFINT",
+      "FORECAST.ETS.SEASONALITY",
+      "FORECAST.ETS.STAT",
+      "FORECAST.LINEAR",
+      "FORMULATEXT",
+      "FREQUENCY",
+      "FTEST",
+      "FV",
+      "FVSCHEDULE",
+      "GAMMA",
+      "GAMMA.DIST",
+      "GAMMA.INV",
+      "GAMMADIST",
+      "GAMMAINV",
+      "GAMMALN",
+      "GAMMALN.PRECISE",
+      "GAUSS",
+      "GCD",
+      "GEOMEAN",
+      "GESTEP",
+      "GROWTH",
+      "HARMEAN",
+      "HEX2BIN",
+      "HEX2DEC",
+      "HEX2OCT",
+      "HLOOKUP",
+      "HOUR",
+      "HSTACK",
+      "HYPERLINK",
+      "HYPGEOM.DIST",
+      "HYPGEOMDIST",
+      "IF",
+      "IFERROR",
+      "IFNA",
+      "IFS",
+      "IMABS",
+      "IMAGINARY",
+      "IMARGUMENT",
+      "IMCONJUGATE",
+      "IMCOS",
+      "IMCOSH",
+      "IMCOT",
+      "IMCSC",
+      "IMCSCH",
+      "IMDIV",
+      "IMEXP",
+      "IMLN",
+      "IMLOG10",
+      "IMLOG2",
+      "IMPOWER",
+      "IMPRODUCT",
+      "IMREAL",
+      "IMSEC",
+      "IMSECH",
+      "IMSIN",
+      "IMSINH",
+      "IMSQRT",
+      "IMSUB",
+      "IMSUM",
+      "IMTAN",
+      "INDEX",
+      "INDIRECT",
+      "INFO",
+      "INT",
+      "INTERCEPT",
+      "INTRATE",
+      "IPMT",
+      "IRR",
+      "ISBLANK",
+      "ISERR",
+      "ISERROR",
+      "ISEVEN",
+      "ISFORMULA",
+      "ISLOGICAL",
+      "ISNA",
+      "ISNONTEXT",
+      "ISNUMBER",
+      "ISO.CEILING",
+      "ISODD",
+      "ISOMITTED",
+      "ISOWEEKNUM",
+      "ISPMT",
+      "ISREF",
+      "ISTEXT",
+      "KURT",
+      "LAMBDA",
+      "LARGE",
+      "LCM",
+      "LEFT",
+      "LEFTB",
+      "LEN",
+      "LENB",
+      "LET",
+      "LINEST",
+      "LN",
+      "LOG",
+      "LOG10",
+      "LOGEST",
+      "LOGINV",
+      "LOGNORM.DIST",
+      "LOGNORM.INV",
+      "LOGNORMDIST",
+      "LOOKUP",
+      "LOWER",
+      "MAKEARRAY",
+      "MAP",
+      "MATCH",
+      "MAX",
+      "MAXA",
+      "MAXIFS",
+      "MDETERM",
+      "MDURATION",
+      "MEDIAN",
+      "MID",
+      "MIDB",
+      "MIN",
+      "MINA",
+      "MINIFS",
+      "MINUTE",
+      "MINVERSE",
+      "MIRR",
+      "MMULT",
+      "MOD",
+      "MODE",
+      "MODE.MULT",
+      "MODE.SNGL",
+      "MONTH",
+      "MROUND",
+      "MULTINOMIAL",
+      "MUNIT",
+      "N",
+      "NA",
+      "NEGBINOM.DIST",
+      "NEGBINOMDIST",
+      "NETWORKDAYS",
+      "NETWORKDAYS.INTL",
+      "NOMINAL",
+      "NORM.DIST",
+      "NORM.INV",
+      "NORM.S.DIST",
+      "NORM.S.INV",
+      "NORMDIST",
+      "NORMINV",
+      "NORMSDIST",
+      "NORMSINV",
+      "NOT",
+      "NOW",
+      "NPER",
+      "NPV",
+      "NUMBERVALUE",
+      "OCT2BIN",
+      "OCT2DEC",
+      "OCT2HEX",
+      "ODD",
+      "ODDFPRICE",
+      "ODDFYIELD",
+      "ODDLPRICE",
+      "ODDLYIELD",
+      "OFFSET",
+      "OR",
+      "PDURATION",
+      "PEARSON",
+      "PERCENTILE",
+      "PERCENTILE.EXC",
+      "PERCENTILE.INC",
+      "PERCENTOF",
+      "PERCENTRANK",
+      "PERCENTRANK.EXC",
+      "PERCENTRANK.INC",
+      "PERMUT",
+      "PERMUTATIONA",
+      "PHI",
+      "PI",
+      "PMT",
+      "POISSON",
+      "POISSON.DIST",
+      "POWER",
+      "PPMT",
+      "PRICE",
+      "PRICEDISC",
+      "PRICEMAT",
+      "PROB",
+      "PRODUCT",
+      "PROPER",
+      "PV",
+      "QUARTILE",
+      "QUARTILE.EXC",
+      "QUARTILE.INC",
+      "QUOTIENT",
+      "RADIANS",
+      "RAND",
+      "RANDARRAY",
+      "RANDBETWEEN",
+      "RANK",
+      "RANK.AVG",
+      "RANK.EQ",
+      "RATE",
+      "RECEIVED",
+      "REDUCE",
+      "REGEXEXTRACT",
+      "REGEXREPLACE",
+      "REGEXTEST",
+      "REPLACE",
+      "REPLACEB",
+      "REPT",
+      "RIGHT",
+      "RIGHTB",
+      "ROMAN",
+      "ROUND",
+      "ROUNDDOWN",
+      "ROUNDUP",
+      "ROW",
+      "ROWS",
+      "RRI",
+      "RSQ",
+      "SCAN",
+      "SEARCH",
+      "SEARCHB",
+      "SEC",
+      "SECH",
+      "SECOND",
+      "SEQUENCE",
+      "SERIESSUM",
+      "SHEET",
+      "SHEETS",
+      "SIGN",
+      "SIN",
+      "SINH",
+      "SKEW",
+      "SKEW.P",
+      "SLN",
+      "SLOPE",
+      "SMALL",
+      "SORT",
+      "SORTBY",
+      "SQRT",
+      "SQRTPI",
+      "STANDARDIZE",
+      "STDEV",
+      "STDEV.P",
+      "STDEV.S",
+      "STDEVA",
+      "STDEVP",
+      "STDEVPA",
+      "STEYX",
+      "SUBSTITUTE",
+      "SUBTOTAL",
+      "SUM",
+      "SUMIF",
+      "SUMIFS",
+      "SUMPRODUCT",
+      "SUMSQ",
+      "SUMX2MY2",
+      "SUMX2PY2",
+      "SUMXMY2",
+      "SWITCH",
+      "SYD",
+      "T",
+      "T.DIST",
+      "T.DIST.2T",
+      "T.DIST.RT",
+      "T.INV",
+      "T.INV.2T",
+      "T.TEST",
+      "TAKE",
+      "TAN",
+      "TANH",
+      "TBILLEQ",
+      "TBILLPRICE",
+      "TBILLYIELD",
+      "TDIST",
+      "TEXT",
+      "TEXTAFTER",
+      "TEXTBEFORE",
+      "TEXTJOIN",
+      "TEXTSPLIT",
+      "TIME",
+      "TIMEVALUE",
+      "TINV",
+      "TOCOL",
+      "TODAY",
+      "TOROW",
+      "TRANSPOSE",
+      "TREND",
+      "TRIM",
+      "TRIMMEAN",
+      "TRIMRANGE",
+      "TRUE",
+      "TRUNC",
+      "TTEST",
+      "TYPE",
+      "UNICHAR",
+      "UNICODE",
+      "UNIQUE",
+      "UPPER",
+      "VALUE",
+      "VALUETOTEXT",
+      "VAR",
+      "VAR.P",
+      "VAR.S",
+      "VARA",
+      "VARP",
+      "VARPA",
+      "VDB",
+      "VLOOKUP",
+      "VSTACK",
+      "WEEKDAY",
+      "WEEKNUM",
+      "WEIBULL",
+      "WEIBULL.DIST",
+      "WORKDAY",
+      "WORKDAY.INTL",
+      "WRAPCOLS",
+      "WRAPROWS",
+      "XIRR",
+      "XLOOKUP",
+      "XMATCH",
+      "XNPV",
+      "XOR",
+      "YEAR",
+      "YEARFRAC",
+      "YIELD",
+      "YIELDDISC",
+      "YIELDMAT",
+      "Z.TEST",
+      "ZTEST"
+    ],
+    "version": "v0.9.1"
+  },
+  "functions": {
+    "ABS": {
+      "cases": [
+        "abs.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ACOS": {
+      "cases": [
+        "acos.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ACOSH": {
+      "cases": [
+        "acosh.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ACOT": {
+      "cases": [
+        "acot.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ACOTH": {
+      "cases": [
+        "acoth.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ADDRESS": {
+      "cases": [
+        "address.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "AGGREGATE": {
+      "cases": [
+        "aggregate.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "AND": {
+      "cases": [
+        "and.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ARABIC": {
+      "cases": [
+        "arabic.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ASIN": {
+      "cases": [
+        "asin.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ASINH": {
+      "cases": [
+        "asinh.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ATAN": {
+      "cases": [
+        "atan.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ATAN2": {
+      "cases": [
+        "atan2.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ATANH": {
+      "cases": [
+        "atanh.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "AVEDEV": {
+      "cases": [
+        "avedev.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "AVERAGE": {
+      "cases": [
+        "average.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "AVERAGEIF": {
+      "cases": [
+        "averageif.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "AVERAGEIFS": {
+      "cases": [
+        "averageifs.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "BASE": {
+      "cases": [
+        "base.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "BETA.DIST": {
+      "cases": [
+        "beta.dist.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "BETA.INV": {
+      "cases": [
+        "beta.inv.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "BIN2DEC": {
+      "cases": [
+        "bin2dec.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "BIN2HEX": {
+      "cases": [
+        "bin2hex.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "BIN2OCT": {
+      "cases": [
+        "bin2oct.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "BINOM.DIST": {
+      "cases": [
+        "binom.dist.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "BITAND": {
+      "cases": [
+        "bitand.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "BITLSHIFT": {
+      "cases": [
+        "bitlshift.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "BITOR": {
+      "cases": [
+        "bitor.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "BITRSHIFT": {
+      "cases": [
+        "bitrshift.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "BITXOR": {
+      "cases": [
+        "bitxor.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CEILING": {
+      "cases": [
+        "ceiling.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CEILING.MATH": {
+      "cases": [
+        "ceiling.math.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CEILING.PRECISE": {
+      "cases": [
+        "ceiling.precise.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CHAR": {
+      "cases": [
+        "char.basic",
+        "clean.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CHISQ.DIST": {
+      "cases": [
+        "chisq.dist.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CHOOSE": {
+      "cases": [
+        "choose.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CLEAN": {
+      "cases": [
+        "clean.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CODE": {
+      "cases": [
+        "code.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COLUMN": {
+      "cases": [
+        "column.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COLUMNS": {
+      "cases": [
+        "columns.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COMBIN": {
+      "cases": [
+        "combin.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COMBINA": {
+      "cases": [
+        "combina.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COMPLEX": {
+      "cases": [
+        "complex.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CONCAT": {
+      "cases": [
+        "concat.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CONCATENATE": {
+      "cases": [
+        "concatenate.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CONFIDENCE.NORM": {
+      "cases": [
+        "confidence.norm.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CONVERT": {
+      "cases": [
+        "convert.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COS": {
+      "cases": [
+        "cos.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COSH": {
+      "cases": [
+        "cosh.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COT": {
+      "cases": [
+        "cot.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COTH": {
+      "cases": [
+        "coth.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COUNT": {
+      "cases": [
+        "count.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COUNTA": {
+      "cases": [
+        "counta.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COUNTBLANK": {
+      "cases": [
+        "countblank.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COUNTIF": {
+      "cases": [
+        "countif.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "COUNTIFS": {
+      "cases": [
+        "countifs.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CSC": {
+      "cases": [
+        "csc.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CSCH": {
+      "cases": [
+        "csch.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CUMIPMT": {
+      "cases": [
+        "cumipmt.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "CUMPRINC": {
+      "cases": [
+        "cumprinc.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DATE": {
+      "cases": [
+        "date.basic",
+        "day.basic",
+        "days.basic",
+        "days.basic",
+        "days360.basic",
+        "days360.basic",
+        "edate.basic",
+        "eomonth.basic",
+        "isoweeknum.basic",
+        "month.basic",
+        "networkdays.basic",
+        "networkdays.basic",
+        "networkdays.intl.basic",
+        "networkdays.intl.basic",
+        "weekday.basic",
+        "weeknum.basic",
+        "workday.basic",
+        "year.basic",
+        "datedif.basic",
+        "datedif.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DATEDIF": {
+      "cases": [
+        "datedif.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DAY": {
+      "cases": [
+        "day.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DAYS": {
+      "cases": [
+        "days.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DAYS360": {
+      "cases": [
+        "days360.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DDB": {
+      "cases": [
+        "ddb.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DEC2BIN": {
+      "cases": [
+        "dec2bin.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DEC2HEX": {
+      "cases": [
+        "dec2hex.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DEC2OCT": {
+      "cases": [
+        "dec2oct.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DECIMAL": {
+      "cases": [
+        "decimal.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DEGREES": {
+      "cases": [
+        "degrees.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DELTA": {
+      "cases": [
+        "delta.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DOLLARDE": {
+      "cases": [
+        "dollarde.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "DOLLARFR": {
+      "cases": [
+        "dollarfr.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "EDATE": {
+      "cases": [
+        "edate.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "EFFECT": {
+      "cases": [
+        "effect.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "EOMONTH": {
+      "cases": [
+        "eomonth.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ERF": {
+      "cases": [
+        "erf.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ERF.PRECISE": {
+      "cases": [
+        "erf.precise.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ERFC": {
+      "cases": [
+        "erfc.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ERFC.PRECISE": {
+      "cases": [
+        "erfc.precise.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ERROR.TYPE": {
+      "cases": [
+        "error.type.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "EVEN": {
+      "cases": [
+        "even.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "EXACT": {
+      "cases": [
+        "exact.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "EXP": {
+      "cases": [
+        "exp.basic",
+        "ln.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "EXPON.DIST": {
+      "cases": [
+        "expon.dist.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "FACT": {
+      "cases": [
+        "fact.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "FACTDOUBLE": {
+      "cases": [
+        "factdouble.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "FALSE": {
+      "cases": [
+        "false.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "FIND": {
+      "cases": [
+        "find.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "FIXED": {
+      "cases": [
+        "fixed.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "FLOOR": {
+      "cases": [
+        "floor.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "FLOOR.MATH": {
+      "cases": [
+        "floor.math.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "FLOOR.PRECISE": {
+      "cases": [
+        "floor.precise.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "FV": {
+      "cases": [
+        "fv.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "FVSCHEDULE": {
+      "cases": [
+        "fvschedule.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "GAMMA": {
+      "cases": [
+        "gamma.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "GAMMALN": {
+      "cases": [
+        "gammaln.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "GAUSS": {
+      "cases": [
+        "gauss.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "GCD": {
+      "cases": [
+        "gcd.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "GESTEP": {
+      "cases": [
+        "gestep.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "HEX2BIN": {
+      "cases": [
+        "hex2bin.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "HEX2DEC": {
+      "cases": [
+        "hex2dec.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "HEX2OCT": {
+      "cases": [
+        "hex2oct.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "HOUR": {
+      "cases": [
+        "hour.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IF": {
+      "cases": [
+        "if.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IFERROR": {
+      "cases": [
+        "iferror.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IFNA": {
+      "cases": [
+        "ifna.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IFS": {
+      "cases": [
+        "ifs.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMABS": {
+      "cases": [
+        "imabs.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMAGINARY": {
+      "cases": [
+        "imaginary.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMARGUMENT": {
+      "cases": [
+        "imargument.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMCONJUGATE": {
+      "cases": [
+        "imconjugate.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMCOS": {
+      "cases": [
+        "imcos.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMCOSH": {
+      "cases": [
+        "imcosh.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMDIV": {
+      "cases": [
+        "imdiv.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMEXP": {
+      "cases": [
+        "imexp.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMLN": {
+      "cases": [
+        "imln.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMLOG10": {
+      "cases": [
+        "imlog10.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMLOG2": {
+      "cases": [
+        "imlog2.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMPRODUCT": {
+      "cases": [
+        "improduct.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMREAL": {
+      "cases": [
+        "imreal.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMSEC": {
+      "cases": [
+        "imsec.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMSECH": {
+      "cases": [
+        "imsech.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMSIN": {
+      "cases": [
+        "imsin.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMSINH": {
+      "cases": [
+        "imsinh.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMSQRT": {
+      "cases": [
+        "imsqrt.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMSUB": {
+      "cases": [
+        "imsub.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMSUM": {
+      "cases": [
+        "imsum.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IMTAN": {
+      "cases": [
+        "imtan.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "INDEX": {
+      "cases": [
+        "index.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "INDIRECT": {
+      "cases": [
+        "indirect.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "INT": {
+      "cases": [
+        "int.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IPMT": {
+      "cases": [
+        "ipmt.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "IRR": {
+      "cases": [
+        "irr.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISBLANK": {
+      "cases": [
+        "isblank.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISERR": {
+      "cases": [
+        "iserr.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISERROR": {
+      "cases": [
+        "iserror.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISEVEN": {
+      "cases": [
+        "iseven.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISLOGICAL": {
+      "cases": [
+        "islogical.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISNA": {
+      "cases": [
+        "isna.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISNONTEXT": {
+      "cases": [
+        "isnontext.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISNUMBER": {
+      "cases": [
+        "isnumber.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISO.CEILING": {
+      "cases": [
+        "iso.ceiling.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISODD": {
+      "cases": [
+        "isodd.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISOWEEKNUM": {
+      "cases": [
+        "isoweeknum.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISPMT": {
+      "cases": [
+        "ispmt.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISREF": {
+      "cases": [
+        "isref.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ISTEXT": {
+      "cases": [
+        "istext.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "LAMBDA": {
+      "cases": [
+        "lambda.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "LARGE": {
+      "cases": [
+        "large.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "LCM": {
+      "cases": [
+        "lcm.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "LEFT": {
+      "cases": [
+        "left.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "LEN": {
+      "cases": [
+        "len.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "LET": {
+      "cases": [
+        "let.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "LN": {
+      "cases": [
+        "ln.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "LOG": {
+      "cases": [
+        "log.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "LOG10": {
+      "cases": [
+        "log10.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "LOOKUP": {
+      "cases": [
+        "lookup.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "LOWER": {
+      "cases": [
+        "lower.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MATCH": {
+      "cases": [
+        "match.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MAX": {
+      "cases": [
+        "max.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MAXIFS": {
+      "cases": [
+        "maxifs.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MEDIAN": {
+      "cases": [
+        "median.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MID": {
+      "cases": [
+        "mid.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MIN": {
+      "cases": [
+        "min.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MINIFS": {
+      "cases": [
+        "minifs.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MINUTE": {
+      "cases": [
+        "minute.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MIRR": {
+      "cases": [
+        "mirr.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MOD": {
+      "cases": [
+        "mod.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MONTH": {
+      "cases": [
+        "month.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MROUND": {
+      "cases": [
+        "mround.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "MULTINOMIAL": {
+      "cases": [
+        "multinomial.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "N": {
+      "cases": [
+        "n.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "NA": {
+      "cases": [
+        "ifna.basic",
+        "isna.basic",
+        "na.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "NETWORKDAYS": {
+      "cases": [
+        "networkdays.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "NETWORKDAYS.INTL": {
+      "cases": [
+        "networkdays.intl.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "NOMINAL": {
+      "cases": [
+        "nominal.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "NORM.DIST": {
+      "cases": [
+        "norm.dist.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "NORM.INV": {
+      "cases": [
+        "norm.inv.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "NORM.S.DIST": {
+      "cases": [
+        "norm.s.dist.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "NORM.S.INV": {
+      "cases": [
+        "norm.s.inv.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "NOT": {
+      "cases": [
+        "not.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "NPER": {
+      "cases": [
+        "nper.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "NPV": {
+      "cases": [
+        "npv.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "NUMBERVALUE": {
+      "cases": [
+        "numbervalue.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "OCT2BIN": {
+      "cases": [
+        "oct2bin.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "OCT2DEC": {
+      "cases": [
+        "oct2dec.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "OCT2HEX": {
+      "cases": [
+        "oct2hex.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ODD": {
+      "cases": [
+        "odd.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "OFFSET": {
+      "cases": [
+        "offset.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "OR": {
+      "cases": [
+        "or.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "PDURATION": {
+      "cases": [
+        "pduration.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "PERCENTILE.EXC": {
+      "cases": [
+        "percentile.exc.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "PERCENTILE.INC": {
+      "cases": [
+        "percentile.inc.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "PERCENTRANK.INC": {
+      "cases": [
+        "percentrank.inc.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "PHI": {
+      "cases": [
+        "phi.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "PI": {
+      "cases": [
+        "cot.basic",
+        "csc.basic",
+        "degrees.basic",
+        "pi.basic",
+        "sin.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "PMT": {
+      "cases": [
+        "pmt.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "POISSON.DIST": {
+      "cases": [
+        "poisson.dist.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "POWER": {
+      "cases": [
+        "power.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "PPMT": {
+      "cases": [
+        "ppmt.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "PRODUCT": {
+      "cases": [
+        "product.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "PROPER": {
+      "cases": [
+        "proper.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "PV": {
+      "cases": [
+        "pv.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "QUARTILE.INC": {
+      "cases": [
+        "quartile.inc.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "QUOTIENT": {
+      "cases": [
+        "quotient.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "RADIANS": {
+      "cases": [
+        "radians.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "RANK.AVG": {
+      "cases": [
+        "rank.avg.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "RANK.EQ": {
+      "cases": [
+        "rank.eq.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "RATE": {
+      "cases": [
+        "rate.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "REPLACE": {
+      "cases": [
+        "replace.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "REPT": {
+      "cases": [
+        "rept.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "RIGHT": {
+      "cases": [
+        "right.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ROMAN": {
+      "cases": [
+        "roman.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ROUND": {
+      "cases": [
+        "round.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ROUNDDOWN": {
+      "cases": [
+        "rounddown.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ROUNDUP": {
+      "cases": [
+        "roundup.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ROW": {
+      "cases": [
+        "row.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "ROWS": {
+      "cases": [
+        "rows.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "RRI": {
+      "cases": [
+        "rri.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SEARCH": {
+      "cases": [
+        "search.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SEC": {
+      "cases": [
+        "sec.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SECH": {
+      "cases": [
+        "sech.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SECOND": {
+      "cases": [
+        "second.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SIGN": {
+      "cases": [
+        "sign.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SIN": {
+      "cases": [
+        "sin.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SINH": {
+      "cases": [
+        "sinh.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SLN": {
+      "cases": [
+        "sln.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SMALL": {
+      "cases": [
+        "small.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SQRT": {
+      "cases": [
+        "sqrt.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SQRTPI": {
+      "cases": [
+        "sqrtpi.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "STANDARDIZE": {
+      "cases": [
+        "standardize.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "STDEV": {
+      "cases": [
+        "stdev.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "STDEV.P": {
+      "cases": [
+        "stdev.p.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "STDEV.S": {
+      "cases": [
+        "stdev.s.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "STDEVP": {
+      "cases": [
+        "stdevp.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SUBSTITUTE": {
+      "cases": [
+        "substitute.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SUBTOTAL": {
+      "cases": [
+        "subtotal.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SUM": {
+      "cases": [
+        "sum.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SUMIF": {
+      "cases": [
+        "sumif.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SUMIFS": {
+      "cases": [
+        "sumifs.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SUMPRODUCT": {
+      "cases": [
+        "sumproduct.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SUMSQ": {
+      "cases": [
+        "sumsq.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SUMX2MY2": {
+      "cases": [
+        "sumx2my2.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SUMX2PY2": {
+      "cases": [
+        "sumx2py2.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SUMXMY2": {
+      "cases": [
+        "sumxmy2.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SWITCH": {
+      "cases": [
+        "switch.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "SYD": {
+      "cases": [
+        "syd.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "T": {
+      "cases": [
+        "t.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "TAN": {
+      "cases": [
+        "tan.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "TANH": {
+      "cases": [
+        "tanh.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "TEXT": {
+      "cases": [
+        "text.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "TEXTAFTER": {
+      "cases": [
+        "textafter.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "TEXTBEFORE": {
+      "cases": [
+        "textbefore.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "TEXTJOIN": {
+      "cases": [
+        "textjoin.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "TIME": {
+      "cases": [
+        "hour.basic",
+        "minute.basic",
+        "second.basic",
+        "time.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "TIMEVALUE": {
+      "cases": [
+        "timevalue.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "TRIM": {
+      "cases": [
+        "trim.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "TRUE": {
+      "cases": [
+        "true.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "TRUNC": {
+      "cases": [
+        "trunc.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "TYPE": {
+      "cases": [
+        "type.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "UNICHAR": {
+      "cases": [
+        "unichar.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "UNICODE": {
+      "cases": [
+        "unicode.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "UPPER": {
+      "cases": [
+        "upper.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "VALUE": {
+      "cases": [
+        "value.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "VALUETOTEXT": {
+      "cases": [
+        "valuetotext.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "VAR": {
+      "cases": [
+        "var.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "VAR.P": {
+      "cases": [
+        "var.p.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "VAR.S": {
+      "cases": [
+        "var.s.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "VARP": {
+      "cases": [
+        "varp.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "VLOOKUP": {
+      "cases": [
+        "vlookup.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "WEEKDAY": {
+      "cases": [
+        "weekday.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "WEEKNUM": {
+      "cases": [
+        "weeknum.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "WEIBULL.DIST": {
+      "cases": [
+        "weibull.dist.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "WORKDAY": {
+      "cases": [
+        "workday.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "XIRR": {
+      "cases": [
+        "xirr.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "XLOOKUP": {
+      "cases": [
+        "xlookup.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "XMATCH": {
+      "cases": [
+        "xmatch.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "XNPV": {
+      "cases": [
+        "xnpv.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "XOR": {
+      "cases": [
+        "xor.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    },
+    "YEAR": {
+      "cases": [
+        "year.basic"
+      ],
+      "passed": true,
+      "test": "formula_catalog_tests"
+    }
+  },
+  "passed": true,
+  "schemaVersion": 1
+}

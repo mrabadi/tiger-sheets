@@ -1,0 +1,4 @@
+[1/3] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/number_formatter.cpp.o
+[2/3] Linking CXX static library libworksheet_core.a
+[3/3] Linking CXX executable selection_statistics_tests
+selection statistics tests passed

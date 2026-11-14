@@ -1,0 +1,1 @@
+releasing a completed 200000-cell financial snapshot must return within 50 ms; observed 772 ms

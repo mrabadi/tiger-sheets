@@ -1,0 +1,33 @@
+{
+  "result": "PASS",
+  "runDate": "2026-11-11",
+  "runtimeVersion": "codex-cli 0.159.2",
+  "model": "gpt-6.1-sol",
+  "reasoningEffort": "low (Light)",
+  "serviceTier": "runtime default (Standard)",
+  "protocol": "installed Codex app-server stdio JSON-RPC; native workbook.v1 dynamic tools; isolated workbook_tool v1 child process",
+  "data": "six fictional local revenue records only; no existing workbook or external source shared",
+  "validation": [
+    "native PivotTable and linked column PivotChart created by authenticated model",
+    "grand total 210, East 90, West 120",
+    "isolated cumulative preview and rendered review state before desktop Accept",
+    "one desktop Undo removes entire proposal, Redo restores it",
+    "desktop XLSX save and native read verify real pivotTable/pivotCache/pivotSource parts"
+  ],
+  "binaries": {
+    "acceptanceHarness": {
+      "path": "/tmp/tigersheets-analysis-live-reporting",
+      "sha256": "4b1ffded6245cf0b1369ead1468f464606112fa1dfea78de274ce074662d315f"
+    },
+    "nativeReportWorker": {
+      "path": "/workspace/tiger-sheets/build-release/tigersheets-report-worker",
+      "sha256": "5496f39285583649cabf5749e7824279a4405a52144517ab9d1b43cc3146071c"
+    },
+    "authenticatedRuntime": {
+      "path": "/usr/lib/chatgpt/resources/codex",
+      "sha256": "1748767b230ebfc3d4ab7e4e254920d0c0ad9691fd8c11f190e7d44511a4a92e"
+    }
+  },
+  "environment": "First managed-sandbox run refused normal runtime state write (read-only os error30). Approved escalated explicit --live run completed successfully.",
+  "secrets": "No credentials, account contents or raw RPC/auth logs retained."
+}

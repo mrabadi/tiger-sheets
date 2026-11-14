@@ -1,0 +1,20 @@
+F
+======================================================================
+FAIL: test_complete_development_manifest (__main__.ManifestTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/tiger-sheets/tests/development_package_validation_tests.py", line 41, in test_complete_development_manifest
+    self.assertEqual(MODULE.validate_manifest(self.stage, self.fields), [])
+AssertionError: Lists differ: ["Version must be 0.3.0~dev.1, received '0.3.0~dev.2'"] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+"Version must be 0.3.0~dev.1, received '0.3.0~dev.2'"
+
+- ["Version must be 0.3.0~dev.1, received '0.3.0~dev.2'"]
++ []
+
+----------------------------------------------------------------------
+Ran 1 test in 0.008s
+
+FAILED (failures=1)

@@ -1,0 +1,4 @@
+[0/2] Re-checking globbed directories...
+[1/3] Building CXX object CMakeFiles/tigersheets_codex.dir/src/codex.cpp.o
+[2/3] Linking CXX static library libtigersheets_codex.a
+[3/3] Linking CXX executable codex_tests

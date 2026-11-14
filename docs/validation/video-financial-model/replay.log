@@ -1,0 +1,96 @@
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+PASS 0:46 starting actual data
+PASS 1:11 EOMONTH pointing to prior month
+PASS 1:20 drag dates through December 2026
+PASS 1:30 label forecast columns
+PASS 2:12 new Input sheet and Paste Special Transpose
+PASS 2:21 enter first zero percent scenario
+PASS 2:24 copy zero percent into four selected cells
+PASS 2:38 five initial revenue scenarios
+PASS 2:47 copy and verify all fifteen initial scenario entries
+PASS 2:56 copy growth scenarios and set minimum Opex to five percent
+PASS 3:15 negative growth alternatives
+PASS 3:58 create a range-backed assumption list
+PASS 4:01 open and dismiss first dropdown while blank
+PASS 4:09 create a range-backed assumption list
+PASS 4:16 create a range-backed assumption list
+PASS 4:48 blank growth initially gives four million
+PASS 4:58 ten percent revenue growth
+PASS 5:03 fifteen percent revenue growth
+PASS 5:18 intentional relative-reference mistake produces flat revenue
+PASS 5:20 double-click column boundaries to autofit the forecast
+PASS 6:03 lock assumption column and refill revenue
+PASS 6:13 reduce growth dynamically to ten percent
+PASS 6:48 fill COGS across every month
+PASS 6:58 fill and verify gross profit
+PASS 7:23 point to previous Opex and lock its assumption column
+PASS 7:31 fill and verify Opex
+PASS 7:43 complete first full forecast
+PASS 7:58 change only revenue to fifteen percent
+PASS 8:02 retain ten percent COGS
+PASS 8:09 fifteen-ten-ten scenario
+PASS 8:59 change revenue to twenty percent
+PASS 9:04 twenty-fifteen-ten scenario
+PASS 9:18 twenty-fifteen-fifteen scenario breaks even in April
+PASS 9:33 bold date header and light blue fill
+PASS 9:40 bold smaller Actual and Forecast labels
+PASS 9:50 yellow assumptions section
+PASS 9:55 last dropdown change leaves all growth assumptions at fifteen percent
+PASS 10:19 saved XLSX reopens and dropdowns remain live
+Every recorded financial-model video action and numerical checkpoint passed

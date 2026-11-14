@@ -1,0 +1,68 @@
+stage initial worker calculation and report
+stage current-source calculation and repeated refresh
+stage first native save and reopen
+stage second native reopen and recovery durability
+{
+  "aggregatesValidated": [
+    "sum",
+    "average",
+    "count",
+    "max",
+    "min"
+  ],
+  "blankSourceInputs": 14286,
+  "currentSourceCalculationMs": 10544.247464,
+  "currentSourceGenerationMs": 2113.834089,
+  "deltaApplyAndEnqueueMs": [
+    97.807237,
+    0.176431
+  ],
+  "durabilityBarrierMs": [
+    2608.593221,
+    4.689385
+  ],
+  "fields": 10,
+  "filterApplyMs": 7287.288361,
+  "filterRegenerationMs": 1826.338025,
+  "financialContextAcceptance": {
+    "allIntersectionsAndTotalsValidated": true,
+    "fixture": "/workspace/tiger-sheets/tests/fixtures/reporting-financial-context.json",
+    "frozenRetainedLinkUses": 20,
+    "nativeVbaSourceExportQualified": false,
+    "records": 20,
+    "udfCalls": 20,
+    "workerWallMs": 293.606238
+  },
+  "firstNativeBytes": 7804468,
+  "firstNativeReopenMs": 10216.190116,
+  "firstNativeSaveMs": 24029.492899,
+  "fixtureBuildMs": 978.599046,
+  "fixtureFiles": [
+    "/workspace/tiger-sheets/docs/validation/reporting-capacity/capacity-first.xlsx",
+    "/workspace/tiger-sheets/docs/validation/reporting-capacity/capacity-resaved.xlsx"
+  ],
+  "initialCreationIncludingValidationMs": 12918.511346,
+  "initialWorkerWallMs": 11716.071965,
+  "maximumIndividualChildPeakRssKiB": 4424036,
+  "measurementBoundary": "Headless exact-capacity pipeline; desktop event/input latency is measured separately.",
+  "minimumFromCurrentCacheMs": 427.855291,
+  "nativePivotsValidated": 2,
+  "nativeReopensValidated": 2,
+  "noOpRefreshApplyMs": 136.459403,
+  "nonemptyHeaderFields": 10,
+  "nonemptySourceInputs": 985714,
+  "processPeakRssKiB": 4686316,
+  "records": 100000,
+  "recoveryInitialSessionCaptureMs": 6343.964871,
+  "referenceMachineMatch": false,
+  "refreshUndoMs": 132.05529,
+  "requestSerializationMs": 683.866578,
+  "responseParsingMs": 76.854091,
+  "secondNativeBytes": 7804877,
+  "secondNativeReopenMs": 15007.736424,
+  "secondNativeSaveMs": 31830.397135,
+  "sourceDataCells": 1000000,
+  "sourceFormulas": 10000,
+  "sourceRange": "A1:J100001",
+  "validationPassed": true
+}

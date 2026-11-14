@@ -1,0 +1,11 @@
+[1/5] Building CXX object CMakeFiles/chart_core.dir/workspace/tiger-sheets/src/chart_editor.cpp.o
+[2/5] Building CXX object CMakeFiles/chart_core.dir/workspace/tiger-sheets/src/chart.cpp.o
+[3/5] Linking CXX static library libchart_core.a
+[4/5] Building CXX object CMakeFiles/chart_tests.dir/workspace/tiger-sheets/tests/chart_tests.cpp.o
+[5/5] Linking CXX executable chart_tests
+FAILED: chart_tests
+: && /usr/bin/c++   CMakeFiles/chart_tests.dir/workspace/tiger-sheets/tests/chart_tests.cpp.o -o chart_tests  libchart_core.a  /usr/lib/x86_64-linux-gnu/libQt6Test.so.6.2.4  libworksheet_core.a  /workspace/tiger-sheets/rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a  -ldl  -lm  -lpthread  /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.2.4  /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4  /usr/lib/x86_64-linux-gnu/libGLX.so  /usr/lib/x86_64-linux-gnu/libOpenGL.so  /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4 && :
+/usr/bin/ld: CMakeFiles/chart_tests.dir/workspace/tiger-sheets/tests/chart_tests.cpp.o: in function `main':
+chart_tests.cpp:(.text+0xc436): undefined reference to `tigersheets::renderChart(QPainter&, QRectF const&, nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > const&, nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > const&, QFont const&)'
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.

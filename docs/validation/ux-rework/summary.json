@@ -1,0 +1,128 @@
+{
+  "generatedUtc": "2026-11-11T16:52:46.811957+00:00",
+  "scope": "Reported native UX defects and associated integration regressions",
+  "completeExcelReleaseReady": false,
+  "qualifiedDebDelivered": false,
+  "platform": "Ubuntu 22.04 amd64, Qt 6.2.4, C++20/GCC 11.4",
+  "interactionPlatform": "Qt offscreen; X11/Wayland/accessibility remain unqualified",
+  "optimizedTests": {
+    "total": 37,
+    "failures": 0,
+    "skipped": 0,
+    "names": [
+      "analysis_tests",
+      "branding_tests",
+      "release_gate_tests",
+      "packaging_tests",
+      "dependency_bootstrap_tests",
+      "compatibility_catalog_tests",
+      "codex_tests",
+      "recovery_tests",
+      "calculation_tests",
+      "formula_catalog_tests",
+      "session_tests",
+      "ooxml_tests",
+      "csv_tests",
+      "references_tests",
+      "formula_editor_tests",
+      "worksheet_entry_tests",
+      "workbook_links_tests",
+      "grid_tests",
+      "printing_tests",
+      "chart_tests",
+      "chart_editor_tests",
+      "vba_tests",
+      "robustness_mutation_tests",
+      "solver_tests",
+      "workspace_tests",
+      "workspace_ux_tests",
+      "formula_workspace_tests",
+      "theme_tests",
+      "ribbon_page_tests",
+      "chart_workspace_tests",
+      "chart_interaction_tests",
+      "workbook_ui_links_tests",
+      "preview_ui_tests",
+      "financial_model_tests",
+      "modeling_ui_tests",
+      "scheduler_tests",
+      "vba_worker_tests"
+    ]
+  },
+  "focusedAddressUndefinedSanitizerTests": {
+    "total": 6,
+    "failures": 0,
+    "skipped": 0,
+    "names": [
+      "formula_editor_tests",
+      "worksheet_entry_tests",
+      "workspace_ux_tests",
+      "formula_workspace_tests",
+      "chart_workspace_tests",
+      "chart_interaction_tests"
+    ]
+  },
+  "sanitizerOptions": {
+    "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1",
+    "limits": "Leak detection disabled; no qualification of every code path or prebuilt third-party library."
+  },
+  "independentFinancialModel": {
+    "status": "passed_with_limitations",
+    "passed": 13,
+    "total": 13,
+    "limits": [
+      "Actual Microsoft Excel execution/reopen unverified",
+      "PDF chart graphics not printed"
+    ]
+  },
+  "temporaryInstallation": {
+    "prefix": "/tmp/tigersheets-ux-install-kkNOli/usr",
+    "status": "passed desktop-entry/MIME-cache/library-resolution/native-demo smoke checks",
+    "systemInstallation": false,
+    "cleanMachineUpgradeQualified": false
+  },
+  "releaseGate": {
+    "exitCode": 1,
+    "missingFunctionEvidence": 215,
+    "missingShortcutEvidence": 190,
+    "missingFeatureEvidence": 21,
+    "report": "release-gate-final.log"
+  },
+  "executables": {
+    "build-release/tiger-sheets": {
+      "sha256": "811ea77fc9d2fa50bb35d703a9610873d2d2173ba84d0e9492d84158c2c23af0",
+      "bytes": 25675896
+    },
+    "build-release/tigersheets-vba-worker": {
+      "sha256": "c58422fe30c0e411e72f59b030746596b08e3310c3a074271a1220aa832432ad",
+      "bytes": 563280
+    },
+    "build/tiger-sheets": {
+      "sha256": "6ba981a864648a64987a51ec390a338eb19bc64355536d3c108fab3ece92068a",
+      "bytes": 28983864
+    },
+    "/tmp/tigersheets-ux-install-kkNOli/usr/bin/tiger-sheets": {
+      "sha256": "3902dc7fa9efb5da9495b6d0ad4cd1b456783b752df872f1936691abfa92e329",
+      "bytes": 25675896
+    }
+  },
+  "recordsSha256": {
+    "ctest-release.xml": "016ff2247233ec380a2cc262992ce3a82588c343229004e53dd194790b3d2338",
+    "ctest-asan.xml": "24eace7bd58eed5dabb13e627919fe41b1e0b71d5e198d7bb4c33f9184bde817",
+    "tigersheets-ux-release-final-ctest.log": "7430646abe88539fe519acd8695ed9427125264c686fbf6c1751ae0c7d52ce81",
+    "tigersheets-ux-asan-final-ctest.log": "fada488430958a2b44a4f2aa60864fcff12fbabde63a3105e90ced582491519c",
+    "independent-financial-model.json": "ff9064fbeb9131dc9b59c532d89927aa56058f08a4777e5634119d0ab37ddc36",
+    "source-sha256.json": "777f84fbaaad0783d6aab6e8c77db88f1dbe32c622a78dde2a16c63eddefa33c"
+  },
+  "screenshotsSha256": {
+    "output/formula-editor-geometry/bottom-right-completion-help.png": "78fd2d5dbc742455c70ace68d1ea926ed2c403061ea3150e2338e28f0b7cca62",
+    "output/formula-editor-geometry/bottom-right-completion-popup.png": "8312d35f4552d3b542179ec8318bbba1ed45f08b9542fbb33890d080538b58df",
+    "output/formula-editor-geometry/bottom-right-standalone-help.png": "70489790856e59be0e5f4428876df2c61b5967768f78aaed409a46a069820615",
+    "output/tigersheets-chart-editor.png": "a464978897623cb0d0a79d3262e4394de0c3cf4aaae88fe005e0c66939f7c679",
+    "output/tigersheets-chart-selected.png": "db0d8ae4ed0eb1ae13e3436dc3e1792591c2c545cf433bd436b407664bbfd98f",
+    "output/tigersheets-narrow.png": "92b7e315d40e8b2fa92905497caa0e0bd9c903d20aa86fbe5ee8c06dea7572dd",
+    "output/tigersheets-workspace.png": "a9f81fc95aeac68405c6153a83e4ad6df0953eca9d9ece034e5625904eff8f5c"
+  },
+  "broaderReleaseLimits": "The original full Excel function/shortcut/feature contract, native VBA authoring, complete charts/pivots, performance and distribution qualification remain incomplete. See docs/RELEASE_VALIDATION.md."
+}

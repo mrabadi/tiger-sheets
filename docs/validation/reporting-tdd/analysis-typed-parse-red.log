@@ -1,0 +1,25 @@
+   Compiling tigersheets_calc_bridge v0.1.0 (/workspace/tiger-sheets/rust/ironcalc_bridge)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.49s
+     Running unittests src/lib.rs (rust/ironcalc_bridge/target/debug/deps/tigersheets_calc_bridge-49acdc708141ec2d)
+
+running 4 tests
+test computed_result_tests::typed_input_retains_revision_and_ignores_noncalculation_metadata ... ok
+test computed_result_tests::computed_results_preserve_failed_calculation_contracts ... ok
+test computed_result_tests::computed_results_omit_only_exactly_reconstructible_literals ... ok
+test computed_result_tests::ignored_metadata_does_not_allocate_a_second_workbook_tree ... FAILED
+
+failures:
+
+---- computed_result_tests::ignored_metadata_does_not_allocate_a_second_workbook_tree stdout ----
+
+thread 'computed_result_tests::ignored_metadata_does_not_allocate_a_second_workbook_tree' (161) panicked at src/lib.rs:580:47:
+ignored metadata allocated 16817032 bytes instead of being skipped
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    computed_result_tests::ignored_metadata_does_not_allocate_a_second_workbook_tree
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.22s
+
+error: test failed, to rerun pass `--lib`

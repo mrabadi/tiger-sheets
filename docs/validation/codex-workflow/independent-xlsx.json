@@ -1,0 +1,21 @@
+{
+  "file": "docs/validation/codex-workflow/Cedar-Ridge-Analytics.xlsx",
+  "checks": {
+    "companyWorksheetName": true,
+    "historicalRevenue": true,
+    "forecastFormula": true,
+    "nativeEditableLineChart": true,
+    "oneRevenueSeries": true,
+    "revenueSeriesRange": true,
+    "editedChartTitle": true,
+    "financialStyles": true
+  },
+  "allPassed": true,
+  "nativeChartPart": "xl/charts/tigersheets-chart1.xml",
+  "nativeChartFormulaRefs": [
+    "'Cedar Ridge Analytics'!$B$1",
+    "'Cedar Ridge Analytics'!$A$2:$A$6",
+    "'Cedar Ridge Analytics'!$B$2:$B$6"
+  ],
+  "excelReopenVerified": false
+}

@@ -1,0 +1,11 @@
+ninja: Entering directory `build-release'
+[0/2] Re-checking globbed directories...
+[1/9] Building CXX object CMakeFiles/tigersheets_analysis.dir/src/analysis.cpp.o
+[2/9] Linking CXX static library libtigersheets_analysis.a
+[3/9] Building CXX object CMakeFiles/tigersheets_financial_workflows.dir/src/financial_workflows.cpp.o
+[4/9] Building CXX object CMakeFiles/tigersheets_financial_models.dir/src/financial_models.cpp.o
+[5/9] Linking CXX static library libtigersheets_financial_models.a
+[6/9] Building CXX object CMakeFiles/tigersheets_solver.dir/src/solver.cpp.o
+[7/9] Linking CXX static library libtigersheets_solver.a
+[8/9] Linking CXX static library libtigersheets_financial_workflows.a
+[9/9] Linking CXX executable financial_workflow_tests

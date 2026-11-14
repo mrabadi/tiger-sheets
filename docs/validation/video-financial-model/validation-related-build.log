@@ -1,0 +1,8 @@
+Command: cmake --build build-release --target worksheet_validation_tests worksheet_validation_ooxml_tests worksheet_layout_ooxml_tests session_tests structural_edit_tests ooxml_tests calculation_tests calculation_context_tests -j2
+Exit: 0
+[1/6] Linking CXX executable structural_edit_tests
+[2/6] Linking CXX executable session_tests
+[3/6] Linking CXX executable worksheet_layout_ooxml_tests
+[4/6] Linking CXX executable ooxml_tests
+[5/6] Building CXX object CMakeFiles/worksheet_validation_tests.dir/tests/worksheet_validation_tests.cpp.o
+[6/6] Linking CXX executable worksheet_validation_tests

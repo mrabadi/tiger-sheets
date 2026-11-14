@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "files": [
+    {
+      "file": "docs/validation/forecast-fixtures/financial-workflows.xlsx",
+      "sha256": "05705070c26271e7af9034caf2a0e51a9a6aa361d3ab8e7be7db3d2c4f6dcdc8",
+      "bytes": 7121,
+      "xmlPartsParsed": 12,
+      "financialDefinitions": 11,
+      "numericOutputChecks": 23,
+      "ordinaryFormulas": 16,
+      "cachedFormulaValues": 0,
+      "openpyxlVersion": "3.0.9",
+      "status": "passed",
+      "qualification": "Read-only ZIP/XML/openpyxl inspection; Microsoft Excel application not run"
+    },
+    {
+      "file": "docs/validation/forecast-fixtures/financial-workflows-resaved.xlsx",
+      "sha256": "9d6433ca84fb3b298cca6e786c2a711c1f0ad7ccae0cb14cf63fee294b8e5f31",
+      "bytes": 7281,
+      "xmlPartsParsed": 12,
+      "financialDefinitions": 11,
+      "numericOutputChecks": 23,
+      "ordinaryFormulas": 16,
+      "cachedFormulaValues": 0,
+      "openpyxlVersion": "3.0.9",
+      "status": "passed",
+      "qualification": "Read-only ZIP/XML/openpyxl inspection; Microsoft Excel application not run"
+    }
+  ]
+}

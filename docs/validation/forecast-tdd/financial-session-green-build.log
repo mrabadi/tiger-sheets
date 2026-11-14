@@ -1,0 +1,6 @@
+[0/2] Re-checking globbed directories...
+[1/5] Building CXX object CMakeFiles/tigersheets_financial_models.dir/src/financial_models.cpp.o
+[2/5] Linking CXX static library libtigersheets_financial_models.a
+[3/5] Building CXX object CMakeFiles/tigersheets_core.dir/src/session.cpp.o
+[4/5] Linking CXX static library libtigersheets_core.a
+[5/5] Linking CXX executable financial_model_session_tests

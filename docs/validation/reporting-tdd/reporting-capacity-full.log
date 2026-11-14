@@ -1,0 +1,131 @@
+{"running": "reporting_capacity_benchmark", "elapsedSeconds": 30.0, "sampledProcessTreePeakRssKiB": 3659616}
+{"running": "reporting_capacity_benchmark", "elapsedSeconds": 60.0, "sampledProcessTreePeakRssKiB": 3659616}
+{"running": "reporting_capacity_benchmark", "elapsedSeconds": 90.0, "sampledProcessTreePeakRssKiB": 3730020}
+{"running": "reporting_capacity_benchmark", "elapsedSeconds": 120.0, "sampledProcessTreePeakRssKiB": 4434968}
+{"running": "python3", "elapsedSeconds": 30.0, "sampledProcessTreePeakRssKiB": 2230876}
+{"running": "python3", "elapsedSeconds": 60.0, "sampledProcessTreePeakRssKiB": 3030704}
+{"running": "python3", "elapsedSeconds": 30.0, "sampledProcessTreePeakRssKiB": 2739264}
+{"running": "python3", "elapsedSeconds": 60.0, "sampledProcessTreePeakRssKiB": 3222564}
+{
+  "aggregatesValidated": [
+    "sum",
+    "average",
+    "count",
+    "max",
+    "min"
+  ],
+  "blankSourceInputs": 14286,
+  "currentSourceCalculationMs": 10544.247464,
+  "currentSourceGenerationMs": 2113.834089,
+  "deltaApplyAndEnqueueMs": [
+    97.807237,
+    0.176431
+  ],
+  "durabilityBarrierMs": [
+    2608.593221,
+    4.689385
+  ],
+  "fields": 10,
+  "filterApplyMs": 7287.288361,
+  "filterRegenerationMs": 1826.338025,
+  "financialContextAcceptance": {
+    "allIntersectionsAndTotalsValidated": true,
+    "fixture": "/workspace/tiger-sheets/tests/fixtures/reporting-financial-context.json",
+    "frozenRetainedLinkUses": 20,
+    "nativeVbaSourceExportQualified": false,
+    "records": 20,
+    "udfCalls": 20,
+    "workerWallMs": 293.606238
+  },
+  "firstNativeBytes": 7804468,
+  "firstNativeReopenMs": 10216.190116,
+  "firstNativeSaveMs": 24029.492899,
+  "fixtureBuildMs": 978.599046,
+  "fixtureFiles": [
+    "/workspace/tiger-sheets/docs/validation/reporting-capacity/capacity-first.xlsx",
+    "/workspace/tiger-sheets/docs/validation/reporting-capacity/capacity-resaved.xlsx"
+  ],
+  "initialCreationIncludingValidationMs": 12918.511346,
+  "initialWorkerWallMs": 11716.071965,
+  "maximumIndividualChildPeakRssKiB": 4424036,
+  "measurementBoundary": "Headless exact-capacity pipeline; desktop event/input latency is measured separately.",
+  "minimumFromCurrentCacheMs": 427.855291,
+  "nativePivotsValidated": 2,
+  "nativeReopensValidated": 2,
+  "noOpRefreshApplyMs": 136.459403,
+  "nonemptyHeaderFields": 10,
+  "nonemptySourceInputs": 985714,
+  "processPeakRssKiB": 4686316,
+  "records": 100000,
+  "recoveryInitialSessionCaptureMs": 6343.964871,
+  "referenceMachineMatch": false,
+  "refreshUndoMs": 132.05529,
+  "requestSerializationMs": 683.866578,
+  "responseParsingMs": 76.854091,
+  "secondNativeBytes": 7804877,
+  "secondNativeReopenMs": 15007.736424,
+  "secondNativeSaveMs": 31830.397135,
+  "sourceDataCells": 1000000,
+  "sourceFormulas": 10000,
+  "sourceRange": "A1:J100001",
+  "validationPassed": true,
+  "binaryIdentity": {
+    "benchmarkBinarySha256": "2278d64f70ea113b661e03111e783a3870046095ea73b8f5c881b9de8be614bf",
+    "workerBinarySha256": "db74dea08228e76f6d4cdc90adccb820dc9466aa64b94c27c4d3a3545f20ca20"
+  },
+  "pipelineProcessTree": {
+    "wallSeconds": 142.01443895301782,
+    "sampledProcessTreePeakRssKiB": 4686968,
+    "sampleIntervalMs": 25
+  },
+  "hardware": {"redacted": true, "reason": "Host-specific configuration omitted from public evidence"},
+  "hardwareQualification": "Host-specific configuration is redacted; this run does not qualify a 4-core, 16-GiB reference host.",
+  "independentInspection": [
+    {
+      "wallSeconds": 89.15768788900459,
+      "sampledProcessTreePeakRssKiB": 3222692,
+      "sampleIntervalMs": 25,
+      "result": {
+        "path": "/workspace/tiger-sheets/docs/validation/reporting-capacity/capacity-first.xlsx",
+        "openpyxl": "3.0.9",
+        "pivots": [
+          "CapacitySales",
+          "CapacityMinimum"
+        ],
+        "records": [
+          100000,
+          100000
+        ],
+        "pivot_charts": [
+          "xl/charts/tigersheets-chart3.xml",
+          "xl/charts/tigersheets-chart2.xml",
+          "xl/charts/tigersheets-chart1.xml"
+        ],
+        "validated_chart_points": 960
+      }
+    },
+    {
+      "wallSeconds": 62.68739431601716,
+      "sampledProcessTreePeakRssKiB": 3222564,
+      "sampleIntervalMs": 25,
+      "result": {
+        "path": "/workspace/tiger-sheets/docs/validation/reporting-capacity/capacity-resaved.xlsx",
+        "openpyxl": "3.0.9",
+        "pivots": [
+          "CapacitySales",
+          "CapacityMinimum"
+        ],
+        "records": [
+          100000,
+          100000
+        ],
+        "pivot_charts": [
+          "xl/charts/tigersheets-chart3.xml",
+          "xl/charts/tigersheets-chart1.xml",
+          "xl/charts/tigersheets-chart2.xml"
+        ],
+        "validated_chart_points": 960
+      }
+    }
+  ]
+}

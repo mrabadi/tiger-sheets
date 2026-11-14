@@ -1,0 +1,30 @@
+/workspace/tiger-sheets/tests/solver_tests.cpp: In function ‘void {anonymous}::settingsAndCancellation()’:
+/workspace/tiger-sheets/tests/solver_tests.cpp:97:37: error: ‘normalizeSolverSpecification’ is not a member of ‘tigersheets’
+   97 |  const auto normalized=tigersheets::normalizeSolverSpecification(snapshot,spec);require(normalized["variables"][0]["start"]==2.5&&normalized["seed"]==42&&normalized["tolerance"]==1e-7&&tigersheets::normalizeSolverSpecification(snapshot,normalized)==normalized,"Saved Solver settings normalize explicitly and round-trip start/bounds/constraints/options");
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/tiger-sheets/tests/solver_tests.cpp:97:199: error: ‘normalizeSolverSpecification’ is not a member of ‘tigersheets’
+   97 |  const auto normalized=tigersheets::normalizeSolverSpecification(snapshot,spec);require(normalized["variables"][0]["start"]==2.5&&normalized["seed"]==42&&normalized["tolerance"]==1e-7&&tigersheets::normalizeSolverSpecification(snapshot,normalized)==normalized,"Saved Solver settings normalize explicitly and round-trip start/bounds/constraints/options");
+      |                                                                                                                                                                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/tiger-sheets/tests/solver_tests.cpp:100:64: error: too many arguments to function ‘tigersheets::Json tigersheets::solveWorkbook(const Json&, const Json&, const tigersheets::CalculationContext*)’
+  100 |   spec["method"]=method;auto stopped=tigersheets::solveWorkbook(snapshot,spec,nullptr,[]{return true;});require(stopped["status"]=="cancelled"&&stopped["evaluations"]==0&&stopped["operations"].empty(),"All Solver backends honor cancellation before any calculation");
+      |                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /workspace/tiger-sheets/tests/solver_tests.cpp:1:
+/workspace/tiger-sheets/include/tigersheets/solver.hpp:6:6: note: declared here
+    6 | Json solveWorkbook(const Json& snapshot, const Json& specification,const CalculationContext* context=nullptr);
+      |      ^~~~~~~~~~~~~
+/workspace/tiger-sheets/tests/solver_tests.cpp:101:314: error: too many arguments to function ‘tigersheets::Json tigersheets::solveWorkbook(const Json&, const Json&, const tigersheets::CalculationContext*)’
+  101 |   tigersheets::CalculationContext context;context.snapshot=snapshot;context.generation=17;bool cancel=false;int calls=0;tigersheets::CalculationEngine engine;context.evaluator=[&](const Json& book){++calls;auto result=engine.calculate(book);cancel=true;return result;};const auto during=tigersheets::solveWorkbook(snapshot,spec,&context,[&]{return cancel;});require(during["status"]=="cancelled"&&calls==1&&during["operations"].empty(),"All Solver backends honor cancellation after a calculation before publishing edits");
+      |                                                                                                                                                                                                                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /workspace/tiger-sheets/tests/solver_tests.cpp:1:
+/workspace/tiger-sheets/include/tigersheets/solver.hpp:6:6: note: declared here
+    6 | Json solveWorkbook(const Json& snapshot, const Json& specification,const CalculationContext* context=nullptr);
+      |      ^~~~~~~~~~~~~
+/workspace/tiger-sheets/tests/solver_tests.cpp:104:401: error: ‘normalizeSolverSpecification’ is not a member of ‘tigersheets’
+  104 |  for(const auto* problem:{"start","integer","coordinate","budget"}){auto invalid=spec;if(std::string(problem)=="start")invalid["variables"][0]["start"]=99;if(std::string(problem)=="integer")invalid["variables"][0]["integer"]=true;if(std::string(problem)=="coordinate")invalid["objective"]["row"]=1.5;if(std::string(problem)=="budget")invalid["maxEvaluations"]=2.5;bool refused=false;try{tigersheets::normalizeSolverSpecification(snapshot,invalid);}catch(const std::exception&){refused=true;}require(refused,"Saved Solver specifications must refuse invalid starts, fractional coordinates and fractional budgets");}
+      |                                                                                                                                                                                                                                                                                                                                                                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "/tmp/tigersheets-forecast-analysis/build.py", line 10, in <module>
+    subprocess.run(args,cwd=b,check=True);objects.append(str(dst))
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/bin/c++', '-DJSON_DIAGNOSTICS=0', '-DJSON_USE_IMPLICIT_CONVERSIONS=1', '-I/workspace/tiger-sheets/include', '-isystem', '/workspace/tiger-sheets/.deps/solvers/prefix/include', '-isystem', '/workspace/tiger-sheets/.deps/solvers/prefix/include/highs', '-O3', '-DNDEBUG', '-fPIE', '-Wno-invalid-offsetof', '-std=c++20', '-o', '/tmp/tigersheets-forecast-analysis/solver_tests.o', '-c', '/workspace/tiger-sheets/tests/solver_tests.cpp']' returned non-zero exit status 1.

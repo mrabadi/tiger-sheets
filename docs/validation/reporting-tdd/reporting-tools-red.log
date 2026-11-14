@@ -1,0 +1,17 @@
+[0/2] Re-checking globbed directories...
+[1/2] Re-running CMake...
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/tiger-sheets/build-release
+[0/2] Re-checking globbed directories...
+[1/7] Building pinned offline IronCalc engine
+    Finished `release` profile [optimized] target(s) in 0.03s
+[2/7] Building CXX object CMakeFiles/tigersheets_calculation.dir/src/calculation.cpp.o
+[3/7] Linking CXX static library libtigersheets_calculation.a
+[4/7] Building CXX object CMakeFiles/reporting_tools_tests.dir/tests/reporting_tools_tests.cpp.o
+[5/7] Building CXX object CMakeFiles/tigersheets_workbook_tools.dir/src/workbook_tools.cpp.o
+[6/7] Linking CXX static library libtigersheets_workbook_tools.a
+[7/7] Linking CXX executable reporting_tools_tests
+Codex can propose a genuine pivot through typed operations

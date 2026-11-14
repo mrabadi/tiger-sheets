@@ -1,0 +1,25 @@
+
+### /tmp/tigersheets-chart-offset-session-red.log
+malformed chart pixel offsets must reject the entire transaction
+
+### /tmp/tigersheets-chart-offset-session-green.log
+session tests passed
+
+### /tmp/tigersheets-chart-offset-native-red.log
+chart pixel offsets must be encoded into real DrawingML EMU anchors
+
+### /tmp/tigersheets-chart-offset-native-green.log
+ooxml tests passed
+
+### /tmp/tigersheets-chart-offset-import-red.log
+mapped native DrawingML offsets import independently of private offset fields
+
+### /tmp/tigersheets-chart-offset-import-green.log
+ooxml tests passed
+
+### /tmp/tigersheets-chart-offset-session-final.log
+session tests passed
+
+### /tmp/tigersheets-chart-offset-io-final.log
+/tmp/tigersheets-ooxml-iiZEWi
+ooxml tests passed

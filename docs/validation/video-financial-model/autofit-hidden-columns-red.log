@@ -1,0 +1,8 @@
+Provenance: Exact command, exit status and output transcribed from this task's recorded tool response.
+This file was preserved after the run; it is not a new execution or a copied /tmp shell log.
+Execution chunk: 7d3175
+Working directory: /workspace/tiger-sheets
+Command: QT_QPA_PLATFORM=offscreen build-release/worksheet_autofit_ui_tests
+Exit status: 1
+Output:
+FAILED: header auto-fit preserves existing hidden columns stored without width entries

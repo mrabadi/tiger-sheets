@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="82"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="redacted-host"
+	time="22"
+	timestamp="2026-11-11T19:31:20"
+	>
+	<testcase name="analysis_tests" classname="analysis_tests" time="0.00338181" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="branding_tests" classname="branding_tests" time="8.79501" status="run">
+		<system-out>...
+----------------------------------------------------------------------
+Ran 3 tests in 8.729s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="release_gate_tests" classname="release_gate_tests" time="0.0625494" status="run">
+		<system-out>....
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="development_package_validation_tests" classname="development_package_validation_tests" time="0.101806" status="run">
+		<system-out>....
+----------------------------------------------------------------------
+Ran 4 tests in 0.020s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="packaging_tests" classname="packaging_tests" time="0.172799" status="run">
+		<system-out>......
+----------------------------------------------------------------------
+Ran 6 tests in 0.106s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="dependency_bootstrap_tests" classname="dependency_bootstrap_tests" time="0.587523" status="run">
+		<system-out>..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.467s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="compatibility_catalog_tests" classname="compatibility_catalog_tests" time="0.067043" status="run">
+		<system-out>.
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="codex_tests" classname="codex_tests" time="0.482773" status="run">
+		<system-out>codex tests passed
+</system-out>
+	</testcase>
+	<testcase name="snapshot_capture_tests" classname="snapshot_capture_tests" time="1.51023" status="run">
+		<system-out>snapshot capture tests passed
+</system-out>
+	</testcase>
+	<testcase name="recovery_tests" classname="recovery_tests" time="0.423382" status="run">
+		<system-out>recovery tests passed
+</system-out>
+	</testcase>
+	<testcase name="calculation_tests" classname="calculation_tests" time="0.0131099" status="run">
+		<system-out>calculation tests passed
+</system-out>
+	</testcase>
+	<testcase name="calculation_context_tests" classname="calculation_context_tests" time="0.0041288" status="run">
+		<system-out>calculation context passed
+</system-out>
+	</testcase>
+	<testcase name="formula_catalog_tests" classname="formula_catalog_tests" time="0.0325751" status="run">
+		<system-out>282/282 formula reference cases passed
+</system-out>
+	</testcase>
+	<testcase name="session_tests" classname="session_tests" time="0.0075857" status="run">
+		<system-out>session tests passed
+</system-out>
+	</testcase>
+	<testcase name="session_foundation_tests" classname="session_foundation_tests" time="0.107293" status="run">
+		<system-out>session foundation passed
+</system-out>
+	</testcase>
+	<testcase name="session_lookup_tests" classname="session_lookup_tests" time="0.131938" status="run">
+		<system-out>{"checksum":499815000,"lookupMs":23.347266,"lookups":10000,"populatedCells":100000}
+</system-out>
+	</testcase>
+	<testcase name="prepared_session_tests" classname="prepared_session_tests" time="0.355595" status="run">
+		<system-out>prepared session tests passed
+</system-out>
+	</testcase>
+	<testcase name="prepared_native_tests" classname="prepared_native_tests" time="0.153463" status="run">
+		<system-out>prepared native tests passed
+</system-out>
+	</testcase>
+	<testcase name="pivot_tests" classname="pivot_tests" time="0.0111338" status="run">
+		<system-out>pivot tests passed
+</system-out>
+	</testcase>
+	<testcase name="pivot_conversion_tests" classname="pivot_conversion_tests" time="0.0148578" status="run">
+		<system-out>pivot conversion tests passed
+</system-out>
+	</testcase>
+	<testcase name="pivot_reference_tests" classname="pivot_reference_tests" time="0.00820954" status="run">
+		<system-out>pivot reference tests passed
+</system-out>
+	</testcase>
+	<testcase name="pivot_ownership_tests" classname="pivot_ownership_tests" time="0.00469129" status="run">
+		<system-out>pivot ownership tests passed
+</system-out>
+	</testcase>
+	<testcase name="ooxml_tests" classname="ooxml_tests" time="1.83659" status="run">
+		<system-out>ooxml tests passed
+</system-out>
+	</testcase>
+	<testcase name="native_pivot_tests" classname="native_pivot_tests" time="0.329373" status="run">
+		<system-out>native pivot tests passed
+</system-out>
+	</testcase>
+	<testcase name="printing_ooxml_tests" classname="printing_ooxml_tests" time="0.017901" status="run">
+		<system-out>native printing tests passed
+</system-out>
+	</testcase>
+	<testcase name="ooxml_style_performance_tests" classname="ooxml_style_performance_tests" time="0.680792" status="run">
+		<system-out>styled native save: 405 ms for 20000 cells
+styled native save test passed
+</system-out>
+	</testcase>
+	<testcase name="csv_tests" classname="csv_tests" time="0.00413205" status="run">
+		<system-out>csv tests passed
+</system-out>
+	</testcase>
+	<testcase name="workbook_tools_tests" classname="workbook_tools_tests" time="0.0387732" status="run">
+		<system-out>workbook tools tests passed
+</system-out>
+	</testcase>
+	<testcase name="reporting_tools_tests" classname="reporting_tools_tests" time="0.0140946" status="run">
+		<system-out>reporting tools tests passed
+</system-out>
+	</testcase>
+	<testcase name="references_tests" classname="references_tests" time="0.00269864" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="formula_editor_tests" classname="formula_editor_tests" time="0.475218" status="run">
+		<system-out>This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not supp...
+The rest of the test output was removed since it exceeds the threshold of 1024 bytes.
+</system-out>
+	</testcase>
+	<testcase name="worksheet_entry_tests" classname="worksheet_entry_tests" time="0.304742" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Qt platform: offscreen
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeH...
+The rest of the test output was removed since it exceeds the threshold of 1024 bytes.
+</system-out>
+	</testcase>
+	<testcase name="workbook_links_tests" classname="workbook_links_tests" time="0.0271493" status="run">
+		<system-out>workbook links tests passed
+</system-out>
+	</testcase>
+	<testcase name="grid_tests" classname="grid_tests" time="0.0278393" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="worksheet_correctness_tests" classname="worksheet_correctness_tests" time="0.0374757" status="run">
+		<system-out>worksheet correctness all passed
+</system-out>
+	</testcase>
+	<testcase name="printing_tests" classname="printing_tests" time="0.4388" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+QPainter::begin(): Returned false
+printing tests passed
+</system-out>
+	</testcase>
+	<testcase name="chart_tests" classname="chart_tests" time="0.0494347" status="run">
+		<system-out>This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+</system-out>
+	</testcase>
+	<testcase name="chart_editor_tests" classname="chart_editor_tests" time="0.0639222" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+</system-out>
+	</testcase>
+	<testcase name="vba_tests" classname="vba_tests" time="0.0187715" status="run">
+		<system-out>vba tests passed
+</system-out>
+	</testcase>
+	<testcase name="robustness_mutation_tests" classname="robustness_mutation_tests" time="0.153429" status="run">
+		<system-out>200 package mutations (19 readable, 181 rejected), 200 VBA mutations completed
+</system-out>
+	</testcase>
+	<testcase name="solver_tests" classname="solver_tests" time="0.477119" status="run">
+		<system-out>solver tests passed
+</system-out>
+	</testcase>
+	<testcase name="workspace_tests" classname="workspace_tests" time="0.859813" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+</system-out>
+	</testcase>
+	<testcase name="pivot_fields_pane_tests" classname="pivot_fields_pane_tests" time="0.0555217" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+pivot fields pane tests passed
+</system-out>
+	</testcase>
+	<testcase name="codex_host_tool_tests" classname="codex_host_tool_tests" time="1.70362" status="run">
+		<system-out>Codex isolated host tests passed
+</system-out>
+	</testcase>
+	<testcase name="manual_calculation_tests" classname="manual_calculation_tests" time="0.963231" status="run">
+		<system-out>Cached sheet switch ms: 0.104385
+Stale sheet switch ms: 0.018113
+manual calculation tests passed
+</system-out>
+	</testcase>
+	<testcase name="selection_status_ui_tests" classname="selection_status_ui_tests" time="0.245771" status="run">
+		<system-out>sparse selection status passed
+</system-out>
+	</testcase>
+	<testcase name="link_status_ui_tests" classname="link_status_ui_tests" time="0.315395" status="run">
+		<system-out>linked source status passed
+</system-out>
+	</testcase>
+	<testcase name="selection_statistics_tests" classname="selection_statistics_tests" time="0.449948" status="run">
+		<system-out>selection statistics tests passed
+</system-out>
+	</testcase>
+	<testcase name="static_conversion_ui_tests" classname="static_conversion_ui_tests" time="0.385961" status="run">
+		<system-out>static conversion desktop tests passed
+</system-out>
+	</testcase>
+	<testcase name="reporting_formula_header_tests" classname="reporting_formula_header_tests" time="0.296776" status="run">
+		<system-out>calculated formula headers passed
+</system-out>
+	</testcase>
+	<testcase name="reporting_workspace_tests" classname="reporting_workspace_tests" time="0.333276" status="run">
+		<system-out>reporting workspace tests passed
+</system-out>
+	</testcase>
+	<testcase name="reporting_publication_tests" classname="reporting_publication_tests" time="3.05438" status="run">
+		<system-out>{"budgetMs":15000,"elapsedMs":650,"finalViewportPaintMs":4.485062,"longestUiDispatchMs":58.189954,"maxConcurrentCaptures":1,"measurementBoundary":"Whole report action on actual Qt event loop; precise1ms observer, no polling sleep","microGaps":[{"activeCaptures":1,"elapsedMs":17.008294,"gapMs":16.903311,"stage":"Preparing report inputs…"},{"activeCaptures":0,"elapsedMs":645.676519,"gapMs":58.189954,"stage":"Report refreshed — Undo restores the previous table, cache and charts"}],"phase":"initial","publicationCallbackCumulativeMs":{"commitPreparedCumulativeMs":0.01091,"fieldsPaneCumulativeMs":23.203959,"modelRefreshCumulativeMs":0.052052,"onChangedCumulativeMs":0.345497,"sheetRebuildCumulativeMs":0.395472,"totalCumulativeMs":23.222292},"qualified":true,"sourceCells":100000,"sourceFormulas":1,"stageTransitions":[{"elapsedMs":0.620912,"stage":"Preparing report inputs…"},{"elapsedMs":103.148679,"stage":"Preparing report inputs"},{"elapsedMs":172.745265,"stage":"Starting report calculation"},{"elapsedMs":189....
+The rest of the test output was removed since it exceeds the threshold of 1024 bytes.
+</system-out>
+	</testcase>
+	<testcase name="reporting_snapshot_lifetime_tests" classname="reporting_snapshot_lifetime_tests" time="0.810362" status="run">
+		<system-out>{"candidateDiscarded":true,"error":"The workbook changed while preparing the report; run it again.","recalculatedBetweenSnapshotSlices":true,"unchangedRevisionAndHistory":true}
+{"lateCandidateDiscarded":true,"replacedAfterSnapshotBeforeWorker":true}
+</system-out>
+	</testcase>
+	<testcase name="report_worker_retirement_tests" classname="report_worker_retirement_tests" time="2.28093" status="run">
+		<system-out>Foreign result longest GUI dispatch ms: 0.32878
+Cancelled parsed result longest GUI dispatch ms: 0.333013
+report worker retirement tests passed
+</system-out>
+	</testcase>
+	<testcase name="report_tool_worker_tests" classname="report_tool_worker_tests" time="0.0426485" status="run">
+		<system-out>report tool worker passed
+</system-out>
+	</testcase>
+	<testcase name="report_worker_tool_tests" classname="report_worker_tool_tests" time="0.352386" status="run">
+		<system-out>report worker tool tests passed
+</system-out>
+	</testcase>
+	<testcase name="native_platform_tests" classname="native_platform_tests" time="0.0742715" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+Qt platform: offscreen
+native keyboard/accessibility interface smoke passed
+</system-out>
+	</testcase>
+	<testcase name="reporting_calculation_ui_tests" classname="reporting_calculation_ui_tests" time="0.232507" status="run">
+		<system-out>reporting calculation UI passed
+</system-out>
+	</testcase>
+	<testcase name="print_settings_ui_tests" classname="print_settings_ui_tests" time="0.210355" status="run">
+		<system-out>print settings UI passed
+</system-out>
+	</testcase>
+	<testcase name="reporting_cached_consent_tests" classname="reporting_cached_consent_tests" time="0.380349" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+cached source consent passed
+</system-out>
+	</testcase>
+	<testcase name="reporting_cached_consent_new_sheet_tests" classname="reporting_cached_consent_new_sheet_tests" time="0.384831" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+cached source consent passed
+</system-out>
+	</testcase>
+	<testcase name="report_worker_tests" classname="report_worker_tests" time="2.2364" status="run">
+		<system-out>report worker tests passed
+</system-out>
+	</testcase>
+	<testcase name="vba_draft_workspace_tests" classname="vba_draft_workspace_tests" time="0.240454" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+VBA draft workspace tests passed
+</system-out>
+	</testcase>
+	<testcase name="worksheet_clipboard_ui_tests" classname="worksheet_clipboard_ui_tests" time="0.299248" status="run">
+		<system-out>worksheet clipboard UI passed
+</system-out>
+	</testcase>
+	<testcase name="codex_workspace_tests" classname="codex_workspace_tests" time="0.263302" status="run">
+		<system-out>Codex workspace tests passed
+</system-out>
+	</testcase>
+	<testcase name="codex_controls_tests" classname="codex_controls_tests" time="0.046487" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+Codex control tests passed
+</system-out>
+	</testcase>
+	<testcase name="codex_panel_integration_tests" classname="codex_panel_integration_tests" time="0.334301" status="run">
+		<system-out>Codex panel selectors integration passed
+</system-out>
+	</testcase>
+	<testcase name="codex_financial_workflow_tests" classname="codex_financial_workflow_tests" time="0.848835" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+Codex financial workflow passed
+</system-out>
+	</testcase>
+	<testcase name="codex_panel_keyboard_tests" classname="codex_panel_keyboard_tests" time="0.315379" status="run">
+		<system-out>Codex panel keyboard integration passed
+</system-out>
+	</testcase>
+	<testcase name="workspace_ux_tests" classname="workspace_ux_tests" time="2.17979" status="run">
+		<system-out>This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not supp...
+The rest of the test output was removed since it exceeds the threshold of 1024 bytes.
+</system-out>
+	</testcase>
+	<testcase name="formula_workspace_tests" classname="formula_workspace_tests" time="1.91843" status="run">
+		<system-out>This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not supp...
+The rest of the test output was removed since it exceeds the threshold of 1024 bytes.
+</system-out>
+	</testcase>
+	<testcase name="theme_tests" classname="theme_tests" time="0.0520738" status="run">
+		<system-out>control heights: tool=25 button=24 line=24 combo=24 spin=24 double=24 tabs=25 menu=24
+theme tests passed
+</system-out>
+	</testcase>
+	<testcase name="ribbon_page_tests" classname="ribbon_page_tests" time="0.0705555" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+ribbon page tests passed
+</system-out>
+	</testcase>
+	<testcase name="chart_workspace_tests" classname="chart_workspace_tests" time="1.44712" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+chart workspace tests passed
+</system-out>
+	</testcase>
+	<testcase name="chart_interaction_tests" classname="chart_interaction_tests" time="1.88027" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+selection passed
+grid passed
+cancel passed
+resize passed
+edit passed
+preview passed
+readonly passed
+chart interaction tests passed
+</system-out>
+	</testcase>
+	<testcase name="workbook_ui_links_tests" classname="workbook_ui_links_tests" time="0.236172" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="preview_ui_tests" classname="preview_ui_tests" time="0.58232" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="financial_model_tests" classname="financial_model_tests" time="0.28906" status="run">
+		<system-out>DCF 6301151.123557135; native XLSX/chart reopen, typed CSV and PDF exported
+</system-out>
+	</testcase>
+	<testcase name="modeling_ui_tests" classname="modeling_ui_tests" time="0.201151" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+modeling UI tests passed
+</system-out>
+	</testcase>
+	<testcase name="scheduler_tests" classname="scheduler_tests" time="0.0654255" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="scheduler_preparation_tests" classname="scheduler_preparation_tests" time="0.0126357" status="run">
+		<system-out>scheduler preparation passed
+</system-out>
+	</testcase>
+	<testcase name="vba_worker_tests" classname="vba_worker_tests" time="0.081892" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+vba worker tests passed
+</system-out>
+	</testcase>
+</testsuite>

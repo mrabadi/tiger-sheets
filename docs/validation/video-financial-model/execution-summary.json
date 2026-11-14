@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-14",
+  "status": "passed",
+  "build": {
+    "command": "cmake --build build-release -j2",
+    "exit": 0,
+    "log": "full-build.log",
+    "freshRustCompilationVerified": false,
+    "mode": "explicit existing pinned calculation archive; C++ rebuilt"
+  },
+  "regressions": {
+    "command": "ctest --test-dir build-release --output-on-failure -j2",
+    "exit": 0,
+    "passed": 133,
+    "failed": 0,
+    "log": "full-ctest.log"
+  },
+  "nativeReplay": {
+    "command": "QT_QPA_PLATFORM=offscreen TIGERSHEETS_VIDEO_OUTPUT_DIR=\"$PWD/docs/validation/video-financial-model\" build-release/video_financial_model_tests",
+    "exit": 0,
+    "sourceChecklistCheckpoints": 49,
+    "recordedUIStates": 38,
+    "forecastMonths": 15,
+    "log": "replay.log",
+    "trace": "replay.json",
+    "startingWorkbook": "video-start.xlsx",
+    "completedWorkbook": "video-replicated.xlsx"
+  },
+  "independentInspection": {
+    "status": "passed",
+    "reader": "openpyxl",
+    "nativeListRules": 3,
+    "forecastMonths": 15,
+    "finalDisplayedFinancialCellsComparedWithDecimalOracle": 75,
+    "recordedReplayStates": 38,
+    "finalAssumptions": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "scope": "XLSX formulas, typed inputs, native list validation, formatting, and recorded UI text; Microsoft Excel execution and original palette RGB are unverified."
+  },
+  "tddEvidence": [
+    "evidence.md",
+    "validation-core-evidence.json",
+    "*-red.log",
+    "*-green.log"
+  ],
+  "limits": {
+    "startingWorkbookReconstructed": true,
+    "exactSourceBlueRGBVerified": false,
+    "pixelIdenticalExcelRenderingVerified": false,
+    "microsoftExcelExecuted": false,
+    "sourceAccountingSpacingReplicated": false
+  },
+  "browserResearchTabs": "closed; empty browser session verified after cleanup request"
+}

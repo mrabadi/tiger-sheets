@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="8"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="redacted-host"
+	time="7"
+	timestamp="2026-11-11T16:28:16"
+	>
+	<testcase name="codex_tests" classname="codex_tests" time="0.646087" status="run">
+		<system-out>codex tests passed
+</system-out>
+	</testcase>
+	<testcase name="workbook_tools_tests" classname="workbook_tools_tests" time="0.992762" status="run">
+		<system-out>workbook tools tests passed
+</system-out>
+	</testcase>
+	<testcase name="codex_workspace_tests" classname="codex_workspace_tests" time="0.888762" status="run">
+		<system-out>Codex workspace tests passed
+</system-out>
+	</testcase>
+	<testcase name="codex_controls_tests" classname="codex_controls_tests" time="0.128856" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+Codex control tests passed
+</system-out>
+	</testcase>
+	<testcase name="codex_panel_integration_tests" classname="codex_panel_integration_tests" time="0.976447" status="run">
+		<system-out>Codex panel selectors integration passed
+</system-out>
+	</testcase>
+	<testcase name="codex_financial_workflow_tests" classname="codex_financial_workflow_tests" time="1.68819" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+Codex financial workflow passed
+</system-out>
+	</testcase>
+	<testcase name="codex_panel_keyboard_tests" classname="codex_panel_keyboard_tests" time="0.800478" status="run">
+		<system-out>Codex panel keyboard integration passed
+</system-out>
+	</testcase>
+	<testcase name="preview_ui_tests" classname="preview_ui_tests" time="1.31751" status="run">
+		<system-out></system-out>
+	</testcase>
+</testsuite>

@@ -1,0 +1,6 @@
+[0/2] Re-checking globbed directories...
+[1/5] Building CXX object CMakeFiles/tigersheets_core.dir/src/session.cpp.o
+[2/5] Linking CXX static library libtigersheets_core.a
+[3/5] Linking CXX executable session_foundation_tests
+[4/5] Linking CXX executable session_tests
+[5/5] Linking CXX executable reporting_input_benchmark

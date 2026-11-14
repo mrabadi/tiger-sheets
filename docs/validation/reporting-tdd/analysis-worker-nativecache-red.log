@@ -1,0 +1,1 @@
+report worker test failed: Report worker did not produce a qualified result: [{"code":"formula_error","col":2,"message":"#REF!","row":2,"sheet":"s"},{"code":"report_error","message":"Pivot source contains a formula error at row 2"}]

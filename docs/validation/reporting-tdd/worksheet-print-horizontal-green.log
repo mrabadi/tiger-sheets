@@ -1,0 +1,6 @@
+[1/3] Building CXX object CMakeFiles/printing_core.dir/workspace/tiger-sheets/src/printing.cpp.o
+[2/3] Linking CXX static library libprinting_core.a
+[3/3] Linking CXX executable printing_tests
+This plugin does not support propagateSizeHints()
+QPainter::begin(): Returned false
+printing tests passed

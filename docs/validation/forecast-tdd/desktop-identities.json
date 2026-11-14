@@ -1,0 +1,142 @@
+{
+  "status": "passed",
+  "qualification": "Actual MainWindow + native worker; native Qt offscreen event loop. Full application and report values visually inspected. System Qt uninstrumented; focused pane ASan recorded separately.",
+  "identities": {
+    "tests/financial_desktop_acceptance_tests.cpp": {
+      "bytes": 9671,
+      "sha256": "bdbd42488e5e905c6ee1b1cc3ed9cad081fae2b46894f14e98a0c546a10a70b3"
+    },
+    "/tmp/tigersheets-financial-desktop-acceptance": {
+      "bytes": 30733712,
+      "sha256": "e4c77c3ef7de1671ff265d2121f53dbf4d775647ab4ca36d3b77f786656b1e68"
+    },
+    "build-release/tigersheets-report-worker": {
+      "bytes": 26006688,
+      "sha256": "f4b3acf9f7b8ecf9e72aaa891284f4dec984e0513e8760b0a7c8c3c618563992"
+    },
+    "docs/validation/forecast-tdd/desktop-acceptance-red.log": {
+      "bytes": 86,
+      "sha256": "5ff97d942897a292477825c1d698190800cf4740e47daed31a0ab1ea100151ff"
+    },
+    "docs/validation/forecast-tdd/desktop-acceptance-green.log": {
+      "bytes": 165,
+      "sha256": "f2ff66964b8749ee15fd9b90406421c6208cde0ee49cb41729042d45aa558bd1"
+    },
+    "docs/validation/forecast-tdd/financial-desktop.png": {
+      "bytes": 152852,
+      "sha256": "9fcf7ed0a6b2833bf34b5db162ab1cda3635706612a5c64e4e2503aee9646377"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_financial_workflows.a": {
+      "bytes": 354372,
+      "sha256": "53f1b3a0502430cc4120281277d2a41a55f69b846e57282bcd5f03138b16e4d5"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_grid.a": {
+      "bytes": 436252,
+      "sha256": "3abcbfa664a8e9bd9279d4f820bc2bfbb98f9981a9b636b6d5f442236fb9438a"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_financial_models.a": {
+      "bytes": 684034,
+      "sha256": "661b3c0cdd3de56a228046fde23cd0e334e78fbf1388b8c21465547c754176f9"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_references.a": {
+      "bytes": 57088,
+      "sha256": "d919e6e13419a925d9ba76c5adb29b18c8794285af7f790a9341eac02d3d7bf2"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_capture.a": {
+      "bytes": 124866,
+      "sha256": "3cacccce08e5de8a990c1fee4db714838fc992865fdde1f4638d140df8f9224d"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_io.a": {
+      "bytes": 2393590,
+      "sha256": "c890c184a20cd30a42cc69219916aa3236003f9ad0dd78b737b9d0e77c3b3395"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_worksheet_view.a": {
+      "bytes": 61238,
+      "sha256": "08901fb0241f9f17fd8581c84c75fb4d98f4db0c89f8fef4e7553a1f83a9d79a"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_calculation.a": {
+      "bytes": 348900,
+      "sha256": "5e89c95f42e07aadc6bb5d09ccebd780908fcb297af271abb2b0dc7f6126365e"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_desktop.a": {
+      "bytes": 2467382,
+      "sha256": "5f04082219573948fa9f7c4768b5edb1a4e3a2a256dc124c671995d7b72d4000"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_workbook_tools.a": {
+      "bytes": 977126,
+      "sha256": "9f335d1700a00ba6599637fb7b2576d95fa669b5511021ce3ebe5d83c199e4b8"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_vba_ui.a": {
+      "bytes": 876574,
+      "sha256": "6da0c9dc269577b1dce697e2ca2e1463989ca62c94bcd0556d6a12c489ebf0d7"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_modeling_ui.a": {
+      "bytes": 1333410,
+      "sha256": "b3391c51f9b3edbbb4fb92fcf1e9c470be7106ffde13db9e0d95dc21376d66e1"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_pivot.a": {
+      "bytes": 1087856,
+      "sha256": "53680b187df4fbfd0f0769ea5e22705eb145cdec64e364735bd7ef7ec9540471"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_solver.a": {
+      "bytes": 485536,
+      "sha256": "09096ee72b5a67859807ab5bd0c270633fee2830757ea186f24d634307375d52"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_report_worker.a": {
+      "bytes": 557404,
+      "sha256": "f3973374c2ed45a6cb63784e14cd6ee18227418af8ec1ac61e4e5c080d3308dd"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_core.a": {
+      "bytes": 848186,
+      "sha256": "97113d1458173d572294cfd9c3c984d6832ed83e7a972392a2329c5255adbf8f"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_vba.a": {
+      "bytes": 546790,
+      "sha256": "7a4d3c28f2db75de0b87b33281158b00d46c5d72a4cfd63757fedba02e606e75"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_formula_editor.a": {
+      "bytes": 255650,
+      "sha256": "819c6eba0782ec3e53933c19eb4240b7c4e5f3a6f83075297c3059edc92634fb"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_recovery.a": {
+      "bytes": 599778,
+      "sha256": "b04f1b1ff35f05a048c775bf6ac51a3511a101836a2e1aa797e2ce61969c10ba"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_scheduler.a": {
+      "bytes": 188906,
+      "sha256": "d76152c9ec53f70ab5fc6d8baa31d69fef4696c9407fda9970494d57f7d0368b"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_printing.a": {
+      "bytes": 188126,
+      "sha256": "60b9b2d1a71ea25eaad015aeb744b1d3e6fec449cb8badbf684044cd1a00fdf2"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_financial_workspace.a": {
+      "bytes": 240854,
+      "sha256": "21a2fe19e9eb6ad9a9629d56a763d312307af62ee6eaad703f637b437aaa0754"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_links.a": {
+      "bytes": 316054,
+      "sha256": "d46c2d07efc460b3c2a07aa4a0514448eeaff1dd644311dfbfd5ac74319d4a38"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_formatter.a": {
+      "bytes": 226446,
+      "sha256": "42979e4f232ab59061862bb69fe7b7fb345af1de138a3fcf2c493dee6858b2cc"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_pivot_fields.a": {
+      "bytes": 578670,
+      "sha256": "a51b5bee56dcaf933d60c5912a10e3e1d3e142e782e46f3a407ef43d1266f8f8"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_analysis.a": {
+      "bytes": 295192,
+      "sha256": "3c0833e09b4e7315fcac150a4eb2f698e2502a0c84204b4965a3449d61a9ebdc"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_codex.a": {
+      "bytes": 641002,
+      "sha256": "216a2c45885668440a5dc8fca5b9c3ff6a1b3e3b700be0e48c491bfd8fad05da"
+    },
+    "/tmp/financial-ui-archives/libtigersheets_charts.a": {
+      "bytes": 466192,
+      "sha256": "410c0c0ddb11bb05f2272e1f236d01d307ef679735461be69c61bc39c12bd7c9"
+    }
+  }
+}

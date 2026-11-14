@@ -1,0 +1,7 @@
+# Sources are pinned by rust/ironcalc_bridge/Cargo.lock and retain Cargo checksums.
+# Run Cargo from this repository or a subdirectory to load this configuration.
+[source.crates-io]
+replace-with = "vendored-sources"
+
+[source.vendored-sources]
+directory = "third_party/rust-vendor"

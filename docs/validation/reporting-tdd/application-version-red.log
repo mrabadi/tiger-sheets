@@ -1,0 +1,4 @@
+TigerSheets 0.1.0
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+AssertionError: application --version must match the requested development installer

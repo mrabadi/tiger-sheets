@@ -1,0 +1,28 @@
+{
+  "calculationMs": [
+    609.857608,
+    557.635212,
+    561.426671
+  ],
+  "cells": 100000,
+  "formulas": 20000,
+  "inputMeasurement": "WorksheetModel::setData; excludes rendering and desktop recovery checkpoint",
+  "modelEditBelow50ms": true,
+  "modelEditMs": [
+    0.051393,
+    0.022522,
+    0.018113,
+    0.016393,
+    0.016514,
+    0.015936,
+    0.015412,
+    0.031009,
+    0.01666,
+    0.016226,
+    0.015853
+  ],
+  "modelEditP95Ms": 0.051393,
+  "ordinaryCalculationBelow1000ms": true,
+  "referenceMachineMatch": false,
+  "sheets": 20
+}

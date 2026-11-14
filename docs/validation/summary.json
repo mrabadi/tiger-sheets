@@ -1,0 +1,180 @@
+{
+  "generatedUtc": "2026-11-11T15:49:54.224397+00:00",
+  "status": "development-implementation-incomplete",
+  "completeReleaseReady": false,
+  "qualifiedDebDelivered": false,
+  "workspace": "/workspace/tiger-sheets",
+  "os": "Ubuntu 22.04.5 LTS",
+  "architecture": "x86_64",
+  "buildType": "Release",
+  "toolchain": {
+    "cpp": "GCC 11.4 / C++20",
+    "qt": "6.2.4",
+    "cmake": "3.22.1",
+    "rust": "1.99.1"
+  },
+  "testTargets": {
+    "total": 28,
+    "failures": 0,
+    "skipped": 0,
+    "names": [
+      "analysis_tests",
+      "branding_tests",
+      "release_gate_tests",
+      "packaging_tests",
+      "dependency_bootstrap_tests",
+      "compatibility_catalog_tests",
+      "codex_tests",
+      "recovery_tests",
+      "calculation_tests",
+      "formula_catalog_tests",
+      "session_tests",
+      "ooxml_tests",
+      "csv_tests",
+      "references_tests",
+      "workbook_links_tests",
+      "grid_tests",
+      "printing_tests",
+      "chart_tests",
+      "vba_tests",
+      "robustness_mutation_tests",
+      "solver_tests",
+      "workspace_tests",
+      "workbook_ui_links_tests",
+      "preview_ui_tests",
+      "financial_model_tests",
+      "modeling_ui_tests",
+      "scheduler_tests",
+      "vba_worker_tests"
+    ],
+    "scope": "Development coverage; release acceptance incomplete"
+  },
+  "formulaCases": {
+    "total": 282,
+    "passed": 282,
+    "catalogEntriesWithCases": 282,
+    "availableFunctionNames": 498,
+    "availabilityIsConformance": false
+  },
+  "catalogs": {
+    "functions": {
+      "entries": 512,
+      "required": 497,
+      "excluded": 15,
+      "missingExecutedEvidence": 215,
+      "sha256": "0056948e792a2d0f8a665c55147266bb937ff750cf92a6dd066cdfbf9fe5307e"
+    },
+    "shortcuts": {
+      "entries": 226,
+      "required": 190,
+      "excluded": 36,
+      "missingExecutedEvidence": 190,
+      "sha256": "2b0c1d2d6b493b14b92802a7bf3d31c08db87f7191cd986e75499d7efdd8921e"
+    },
+    "features": {
+      "entries": 21,
+      "required": 21,
+      "excluded": 0,
+      "missingExecutedEvidence": 21,
+      "sha256": "bf3222993c27c6ffc11e36a74b21c2584f9f84b5d2a5d7b6fdf311817f885d9e"
+    }
+  },
+  "engine": {
+    "availability_only": true,
+    "commit": "eb9ca75bd99160c17902359d2d87225c4571c468",
+    "engine": "IronCalc",
+    "extensions": [
+      "AGGREGATE"
+    ],
+    "version": "v0.9.1"
+  },
+  "dependencies": {
+    "rustRegistryPackagesVendored": 72,
+    "cargoLockSha256": "18e95f9670b4a5737e0b474ad1fb0c46060fde28ef57a41ef146fe4cca555c30",
+    "freshEmptyRegistryOfflineCheckPassed": true,
+    "solverBackends": "HiGHS 1.15.1; NLopt 2.11.0 COBYLA; pagmo 2.20.0 IHS",
+    "solverDependenciesOfflineRebuilt": true
+  },
+  "upstreamEngineTests": {
+    "unitPassed": 2765,
+    "docPassed": 23,
+    "ignored": 8,
+    "failures": 0,
+    "record": "ironcalc-upstream.log"
+  },
+  "sanitizers": {
+    "focusedOoxmlAddressUndefinedPassed": true,
+    "record": "ooxml-input-safety-green.log",
+    "leakSanitizerQualified": false
+  },
+  "independentFinancialModel": {
+    "status": "passed_with_limitations",
+    "checks": 13,
+    "allChecksPassed": true,
+    "report": "independent-financial-model.json"
+  },
+  "stagedInstallation": {
+    "status": "passed-development-stage-only",
+    "actualWorkerExecuted": true,
+    "report": "install-stage.json"
+  },
+  "performance": {
+    "referenceMachineMatch": false,
+    "hostPhysicalCores": 4,
+    "hostLogicalCpus": 8,
+    "hostRamApproxGiB": 40,
+    "ordinaryCells": 100000,
+    "ordinaryFormulas": 20000,
+    "ordinaryCalculationMs": [
+      833.21953,
+      827.502505,
+      845.559429
+    ],
+    "modelEditP95Ms": 428.823037,
+    "modelEditBelow50ms": false,
+    "inputScope": "WorksheetModel::setData; excludes rendering and desktop recovery checkpoint",
+    "stressCells": 1000000,
+    "stressFormulas": 200000,
+    "stressCalculationMs": 7695.378568,
+    "stressPeakRssKiB": 2447584,
+    "qualified": false,
+    "records": [
+      "performance-release-100k.json",
+      "performance-release-1m.json",
+      "benchmark-binaries.json"
+    ]
+  },
+  "packaging": {
+    "releaseGateExit": 1,
+    "cpackExit": 1,
+    "outcome": "Intentionally blocked by incomplete acceptance evidence",
+    "debFiles": [],
+    "explicitQtPluginDependencies": [
+      "qt6-qpa-plugins",
+      "qt6-wayland"
+    ]
+  },
+  "unverified": [
+    "Microsoft Excel reopen and VBA execution",
+    "Full formula and keyboard catalog conformance",
+    "Native VBA project authoring, complete runtime, debugger, UserForms, events",
+    "Full charts, pivots, data tables, references, links and worksheet behavior",
+    "50 ms end-to-end input and 16 GiB reference-machine qualification",
+    "Clean installation/upgrade, X11/Wayland and accessibility"
+  ],
+  "binaries": {
+    "build-release/tiger-sheets": "6dffb87936da963782c9a87a335850d8bfee7cb19966cc61adab3b7894e4bf32",
+    "build-release/tigersheets-vba-worker": "5086dbc70af242512158f6838dc4dc9600510236fe30457d67225b605c406900",
+    "stagedAppAfterRuntimePathRewrite": "5ac1890227ae02596daea643547de4539a4d874bd051ba8d743a93b4c5dd1115"
+  },
+  "recordsSha256": {
+    "ctest.xml": "57e276a9f6a7f5a7e49adc9e1e1282dd9b70c5607cfe20397400bcbdd471d0e2",
+    "ctest.log": "e26db4b48f9332200e44362a043a097635670772fe6084ce91fe9392a7595e87",
+    "formula-evidence.json": "fdd2f902f84d99b2cefdb0852ae3c721dfd364dda038214a75359949ba60ef7b",
+    "source-sha256.json": "bd43d5cb894aab6d5d7bf2aed6f7fddbbba0db8481c55e1a3036e849907a195a",
+    "independent-financial-model.json": "de27ce7635b688723454e8bbff0fb683a15d65e8b239d0334a7a67e18354626e",
+    "install-stage.json": "3acb01ff772ef5227c0621b03d7cc23fd40281cb7091493b770b2f330c345ae8",
+    "release-gate.log": "35fb5152cd1f7c42c144250f528d0b9b19344cf37660f66b5312a6822e968a48",
+    "cpack.log": "f13c5fc7174bac2a0f4dcf668533d8cbe6c379afed469fe9d3b1743ba6062aec"
+  }
+}

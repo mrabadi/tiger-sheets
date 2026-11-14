@@ -1,0 +1,73 @@
+
+### /tmp/tigersheets-worksheet-bar-first-red.log
+This plugin does not support propagateSizeHints()
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qpointer.h:77:14: runtime error: downcast of address 0x504000006bd0 which does not point to an object of type 'QLineEdit'
+0x504000006bd0: note: object is of type 'QWidget'
+ 00 00 00 00  20 cd 12 bb c3 7a 00 00  00 0b 00 00 70 51 00 00  d0 ce 12 bb c3 7a 00 00  00 00 be be
+              ^~~~~~~~~~~~~~~~~~~~~~~
+              vptr for 'QWidget'
+    #0 0x6291f23f4d50 in QPointer<QLineEdit>::data() const /usr/include/x86_64-linux-gnu/qt6/QtCore/qpointer.h:77
+    #1 0x6291f24505ed in bool operator==<QObject>(QObject*, QPointer<QLineEdit> const&) /usr/include/x86_64-linux-gnu/qt6/QtCore/qpointer.h:109
+    #2 0x6291f24344ee in tigersheets::WorksheetView::eventFilter(QObject*, QEvent*) /workspace/tiger-sheets/src/worksheet_view.cpp:57
+    #3 0x7ac3b9d53817 in QCoreApplicationPrivate::sendThroughObjectEventFilters(QObject*, QEvent*) (/lib/x86_64-linux-gnu/libQt6Core.so.6+0x153817)
+    #4 0x7ac3bab7fd24 in QApplicationPrivate::notify_helper(QObject*, QEvent*) (/lib/x86_64-linux-gnu/libQt6Widgets.so.6+0x17fd24)
+    #5 0x7ac3b9d53a57 in QCoreApplication::notifyInternal2(QObject*, QEvent*) (/lib/x86_64-linux-gnu/libQt6Core.so.6+0x153a57)
+    #6 0x7ac3babd3475 in QWidget::clearFocus() (/lib/x86_64-linux-gnu/libQt6Widgets.so.6+0x1d3475)
+    #7 0x7ac3babd46af in QWidget::~QWidget() (/lib/x86_64-linux-gnu/libQt6Widgets.so.6+0x1d46af)
+    #8 0x7ac3bad09ffc in QLineEdit::~QLineEdit() (/lib/x86_64-linux-gnu/libQt6Widgets.so.6+0x309ffc)
+    #9 0x6291f23d19f2 in formulaBarCanBeDestroyedBeforeTheView() /workspace/tiger-sheets/tests/worksheet_entry_tests.cpp:85
+    #10 0x6291f23d2c37 in main /workspace/tiger-sheets/tests/worksheet_entry_tests.cpp:89
+    #11 0x7ac3b8c29d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #12 0x7ac3b8c29e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #13 0x6291f23b4504 in _start (/tmp/tigersheets-worksheet-ux/asan/worksheet_entry_tests+0x2fb504)
+
+
+### /tmp/tigersheets-worksheet-bar-first-green.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+Observed command exit code: 0
+
+### /tmp/tigersheets-worksheet-bar-first-suite-green.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+Observed command exit code: 0
+
+### /tmp/tigersheets-worksheet-bar-first-normal-green.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+Observed command exit code: 0

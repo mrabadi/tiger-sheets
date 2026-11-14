@@ -1,0 +1,19 @@
+{
+  "src/financial_models.cpp": {
+    "sha256": "1e460f18671be28f63cc3ae8549226211eb5c2c8c25896ea544e74b5c10c18ac",
+    "mtimeNs": 1794493016599367521
+  },
+  "tests/financial_models_tests.cpp": {
+    "sha256": "8bd1acca71206c88236f807fd82fb2bf3e824c3bbfe30397f2c983f6ba229af5",
+    "mtimeNs": 1794492930947971290
+  },
+  "/tmp/tigersheets-forecast-sanitizer/financial_models.o": {
+    "sha256": "cc39c8e45847926063119040488278ad32879ef67fb698a1aa574ec4264e5e93",
+    "mtimeNs": 1794494347600746220
+  },
+  "/tmp/tigersheets-forecast-sanitizer/backend": {
+    "sha256": "7674e73ba697ccaabfc1842cc79f2c6b23d5cd9992ce8957e130a665dc1757d1",
+    "mtimeNs": 1794494361145782353
+  },
+  "boundary": "Only financial_models.cpp and its focused test are ASan+UBSan instrumented; linked release calculation/pivot/reference/formatter/Rust archives are not instrumented. This run precedes the separately owned manual-number-format refresh adjustment."
+}

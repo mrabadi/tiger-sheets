@@ -1,0 +1,29 @@
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/tigersheets-reporting-worksheet/build
+[1/4] Building CXX object CMakeFiles/worksheet_view_core.dir/workspace/tiger-sheets/src/worksheet_view.cpp.o
+[2/4] Linking CXX static library libworksheet_view_core.a
+[3/4] Building CXX object CMakeFiles/worksheet_entry_tests.dir/workspace/tiger-sheets/tests/worksheet_entry_tests.cpp.o
+[4/4] Linking CXX executable worksheet_entry_tests
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed

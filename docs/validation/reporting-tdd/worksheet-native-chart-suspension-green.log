@@ -1,0 +1,10 @@
+[1/6] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/session.cpp.o
+[2/6] Linking CXX static library libworksheet_core.a
+[3/6] Linking CXX executable session_foundation_tests
+[4/6] Building CXX object CMakeFiles/worksheet_io.dir/workspace/tiger-sheets/src/pivot_ooxml.cpp.o
+[5/6] Linking CXX static library libworksheet_io.a
+[6/6] Linking CXX executable native_pivot_tests
+suspended chart retains native link title family geometry and a clear diagnostic
+[1/2] Building CXX object CMakeFiles/native_pivot_tests.dir/workspace/tiger-sheets/tests/native_pivot_tests.cpp.o
+[2/2] Linking CXX executable native_pivot_tests
+native pivot tests passed

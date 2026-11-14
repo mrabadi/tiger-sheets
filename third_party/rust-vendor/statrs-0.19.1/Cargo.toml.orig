@@ -1,0 +1,76 @@
+[package]
+name = "statrs"
+version = "0.19.1"
+authors = ["Michael Ma"]
+description = "Statistical computing library for Rust"
+license = "MIT"
+keywords = ["probability", "statistics", "stats", "distribution", "math"]
+categories = ["science"]
+homepage = "https://github.com/statrs-dev/statrs"
+repository = "https://github.com/statrs-dev/statrs"
+edition = "2024"
+
+include = ["CHANGELOG.md", "LICENSE.md", "src/", "tests/"]
+
+# When changing MSRV: Also update the README
+rust-version = "1.89.0"
+
+[lib]
+name = "statrs"
+path = "src/lib.rs"
+
+[[bench]]
+name = "order_statistics"
+harness = false
+required-features = ["rand", "std"]
+
+[[bench]]
+name = "density"
+harness = false
+required-features = ["rand", "std", "kde"]
+
+[features]
+default = ["std", "nalgebra", "rand"]
+std = ["approx/std", "num-traits/std", "nalgebra?/std", "rand?/std"]
+# at the moment, all nalgebra features needs std
+nalgebra = ["dep:nalgebra", "std"]
+rand = ["dep:rand", "nalgebra?/rand-no-std", "rand?/std_rng"]
+# kd-tree backed density estimation (src/density), implemented in terms of nalgebra vectors
+kde = ["dep:kdtree", "nalgebra"]
+
+[dependencies]
+approx = { version = "0.5.0", default-features = false }
+num-traits = { version = "0.2.14", default-features = false, features = ["libm"] }
+thiserror = { version = "2.0", default-features = false }
+
+[dependencies.rand]
+version = "0.10.0"
+optional = true
+default-features = false
+
+[dependencies.nalgebra]
+version = "0.35"
+optional = true
+default-features = false
+
+[dependencies.kdtree]
+version = "0.7.0"
+optional = true
+
+[dev-dependencies]
+criterion = "0.8"
+anyhow = "1.0"
+
+[dev-dependencies.nalgebra]
+version = "0.35"
+default-features = false
+features = ["macros"]
+
+[lints.rust.unexpected_cfgs]
+level = "warn"
+# Set by cargo-llvm-cov when running on nightly
+check-cfg = ['cfg(coverage_nightly)']
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

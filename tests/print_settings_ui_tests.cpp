@@ -1,0 +1,7 @@
+#include "tigersheets/main_window.hpp"
+#include <QApplication>
+#include <QTemporaryDir>
+#include <QFile>
+#include <iostream>
+using namespace tigersheets;
+int main(int argc,char** argv){QApplication app(argc,argv);QTemporaryDir directory;qputenv("TIGERSHEETS_STATE_DIR",directory.path().toUtf8());MainWindow window;const auto initial=window.currentSession().snapshot();const Json settings={{"area",{{"row1",1},{"col1",1},{"row2",30},{"col2",4}}},{"fitWidth",true},{"repeatHeaderRows",{{"row1",1},{"row2",2}}},{"orientation","landscape"}};if(!window.executeCommand("print.settings",{{"settings",settings}})||window.currentSession().snapshotView().at("settings").at("printSheets").at("sheet-1")!=settings){std::cerr<<"desktop exposes persistent per-sheet print settings\n";return 1;}auto invalid=settings;invalid["area"]["row2"]=0;const auto before=window.currentSession().snapshot();if(window.executeCommand("print.settings",{{"settings",invalid}})||window.currentSession().snapshot()!=before){std::cerr<<"invalid print area refuses atomically\n";return 1;}if(!window.executeCommand("export.pdf",{{"path",directory.filePath("report.pdf").toStdString()}})||!QFile::exists(directory.filePath("report.pdf"))){std::cerr<<"PDF command applies the configured area without a file dialog\n";return 1;}if(!window.executeCommand("undo")||window.currentSession().snapshotView().contains("settings")){std::cerr<<"one undo removes the print settings\n";return 1;}std::cout<<"print settings UI passed\n";}

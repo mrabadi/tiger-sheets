@@ -1,0 +1,19 @@
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/tigersheets-reporting-worksheet/build
+[1/8] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/calculation.cpp.o
+[2/8] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot_ownership.cpp.o
+[3/8] Building CXX object CMakeFiles/worksheet_view_core.dir/workspace/tiger-sheets/src/worksheet_view.cpp.o
+[4/8] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot.cpp.o
+[5/8] Linking CXX static library libworksheet_core.a
+[6/8] Linking CXX static library libworksheet_view_core.a
+[7/8] Building CXX object CMakeFiles/worksheet_entry_tests.dir/workspace/tiger-sheets/tests/worksheet_entry_tests.cpp.o
+FAILED: CMakeFiles/worksheet_entry_tests.dir/workspace/tiger-sheets/tests/worksheet_entry_tests.cpp.o
+/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_TESTCASE_BUILDDIR=\"/tmp/tigersheets-reporting-worksheet/build\" -DQT_TESTCASE_SOURCEDIR=\"/tmp/tigersheets-reporting-worksheet\" -DQT_TESTLIB_LIB -DQT_WIDGETS_LIB -I/workspace/tiger-sheets/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtTest -fPIE -fPIC -std=gnu++20 -MD -MT CMakeFiles/worksheet_entry_tests.dir/workspace/tiger-sheets/tests/worksheet_entry_tests.cpp.o -MF CMakeFiles/worksheet_entry_tests.dir/workspace/tiger-sheets/tests/worksheet_entry_tests.cpp.o.d -o CMakeFiles/worksheet_entry_tests.dir/workspace/tiger-sheets/tests/worksheet_entry_tests.cpp.o -c /workspace/tiger-sheets/tests/worksheet_entry_tests.cpp
+/workspace/tiger-sheets/tests/worksheet_entry_tests.cpp: In function ‘void pivotPointingHook()’:
+/workspace/tiger-sheets/tests/worksheet_entry_tests.cpp:60:166: error: ‘class tigersheets::WorksheetView’ has no member named ‘pointedReference’
+   60 |  Fixture fixture;fixture.view.setCurrentIndex(fixture.model.index(0,3));fixture.bar.setFocus();const auto before=fixture.session.snapshot();int calls=0;fixture.view.pointedReference=[&](QModelIndex first,QModelIndex last){++calls;require(first==last,"custom references receive a single pointed cell");return first.column()==4?QString("GETPIVOTDATA(\"Revenue\",$A$5)"):QString();};
+      |                                                                                                                                                                      ^~~~~~~~~~~~~~~~
+ninja: build stopped: subcommand failed.

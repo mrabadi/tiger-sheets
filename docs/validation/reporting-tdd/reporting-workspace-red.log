@@ -1,0 +1,37 @@
+[0/2] Re-checking globbed directories...
+[1/2] Re-running CMake...
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/tiger-sheets/build-release
+[0/2] Re-checking globbed directories...
+[1/28] Linking CXX static library libtigersheets_codex.a
+[2/28] Building CXX object CMakeFiles/tigersheets_links.dir/src/workbook_links.cpp.o
+[3/28] Linking CXX static library libtigersheets_links.a
+[4/28] Building CXX object CMakeFiles/tigersheets_grid.dir/src/grid.cpp.o
+[5/28] Linking CXX static library libtigersheets_grid.a
+[6/28] Building CXX object CMakeFiles/tigersheets_printing.dir/src/printing.cpp.o
+[7/28] Building CXX object CMakeFiles/tigersheets_charts.dir/src/chart.cpp.o
+[8/28] Building CXX object CMakeFiles/tigersheets_charts.dir/src/chart_editor.cpp.o
+[9/28] Linking CXX static library libtigersheets_charts.a
+[10/28] Linking CXX static library libtigersheets_printing.a
+[11/28] Building CXX object CMakeFiles/tigersheets_solver.dir/src/solver.cpp.o
+[12/28] Linking CXX static library libtigersheets_solver.a
+[13/28] Building CXX object CMakeFiles/tigersheets_vba.dir/src/vba.cpp.o
+[14/28] Linking CXX static library libtigersheets_vba.a
+[15/28] Building CXX object CMakeFiles/tigersheets-report-worker.dir/src/report_worker_main.cpp.o
+[16/28] Linking CXX executable tigersheets-report-worker
+[17/28] Building CXX object CMakeFiles/tigersheets_report_worker.dir/src/report_worker.cpp.o
+[18/28] Linking CXX static library libtigersheets_report_worker.a
+[19/28] Building CXX object CMakeFiles/tigersheets_scheduler.dir/src/calculation_scheduler.cpp.o
+[20/28] Linking CXX static library libtigersheets_scheduler.a
+[21/28] Building CXX object CMakeFiles/tigersheets_modeling_ui.dir/src/modeling_ui.cpp.o
+[22/28] Linking CXX static library libtigersheets_modeling_ui.a
+[23/28] Building CXX object CMakeFiles/tigersheets_vba_ui.dir/src/vba_ui.cpp.o
+[24/28] Linking CXX static library libtigersheets_vba_ui.a
+[25/28] Building CXX object CMakeFiles/reporting_workspace_tests.dir/tests/reporting_workspace_tests.cpp.o
+[26/28] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[27/28] Linking CXX static library libtigersheets_desktop.a
+[28/28] Linking CXX executable reporting_workspace_tests
+desktop starts a native reporting job: Select at least two columns and a header row followed by data.

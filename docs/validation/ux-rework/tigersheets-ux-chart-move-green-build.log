@@ -1,0 +1,6 @@
+[0/2] Re-checking globbed directories...
+[1/5] Building CXX object CMakeFiles/tigersheets_references.dir/src/references.cpp.o
+[2/5] Linking CXX static library libtigersheets_references.a
+[3/5] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[4/5] Linking CXX static library libtigersheets_desktop.a
+[5/5] Linking CXX executable chart_workspace_tests

@@ -1,0 +1,12 @@
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/tigersheets-reporting-worksheet/build
+[1/7] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot_ownership.cpp.o
+[2/7] Linking CXX static library libworksheet_core.a
+[3/7] Building CXX object CMakeFiles/worksheet_io.dir/workspace/tiger-sheets/src/pivot_ooxml.cpp.o
+[4/7] Linking CXX static library libworksheet_io.a
+[5/7] Building CXX object CMakeFiles/native_pivot_tests.dir/workspace/tiger-sheets/tests/native_pivot_tests.cpp.o
+[6/7] Building CXX object CMakeFiles/native_pivot_tests.dir/workspace/tiger-sheets/src/printing_ooxml.cpp.o
+[7/7] Linking CXX executable native_pivot_tests

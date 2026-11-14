@@ -1,0 +1,12 @@
+[0/2] Re-checking globbed directories...
+[1/11] Building CXX object CMakeFiles/tigersheets_recovery.dir/src/recovery.cpp.o
+[2/11] Linking CXX static library libtigersheets_recovery.a
+[3/11] Building CXX object CMakeFiles/tigersheets_io.dir/src/ooxml.cpp.o
+[4/11] Building CXX object CMakeFiles/tigersheets_report_worker.dir/src/report_worker.cpp.o
+[5/11] Linking CXX static library libtigersheets_report_worker.a
+[6/11] Building CXX object CMakeFiles/tigersheets_io.dir/src/pivot_ooxml.cpp.o
+[7/11] Linking CXX static library libtigersheets_io.a
+[8/11] Building CXX object CMakeFiles/reporting_input_benchmark.dir/tests/reporting_input_benchmark.cpp.o
+[9/11] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[10/11] Linking CXX static library libtigersheets_desktop.a
+[11/11] Linking CXX executable reporting_input_benchmark

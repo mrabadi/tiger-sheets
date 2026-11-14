@@ -1,0 +1,13 @@
+{
+  "after": {
+    "fill": "#123456",
+    "numberFormat": "#,##0.00"
+  },
+  "before": {
+    "fill": "#123456",
+    "numberFormat": "0.0\"x\""
+  },
+  "changedRefreshApplied": true,
+  "error": "",
+  "unchangedOperations": 0
+}

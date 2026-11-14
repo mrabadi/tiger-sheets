@@ -1,0 +1,13 @@
+[0/2] Re-checking globbed directories...
+[1/2] Re-running CMake...
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/tiger-sheets/build-release
+[0/2] Re-checking globbed directories...
+[1/9] Building pinned offline IronCalc engine
+FAILED: ../rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a /workspace/tiger-sheets/rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a
+cd /workspace/tiger-sheets && /usr/bin/cmake -E env PATH=/tmp/tigersheets-toolchain/cargo/bin:/home/developer/.codex/tmp/arg0/codex-arg0biNL3V:/home/developer/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/developer/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources CARGO_HOME=/tmp/tigersheets-toolchain/cargo RUSTUP_HOME=/tmp/tigersheets-toolchain/rustup /tmp/tigersheets-toolchain/cargo/bin/cargo build --offline --locked --release --manifest-path /workspace/tiger-sheets/rust/ironcalc_bridge/Cargo.toml
+No such file or directory
+ninja: build stopped: subcommand failed.

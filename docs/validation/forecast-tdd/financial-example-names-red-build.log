@@ -1,0 +1,4 @@
+ninja: Entering directory `build-release'
+[0/2] Re-checking globbed directories...
+[1/2] Building CXX object CMakeFiles/financial_example_tests.dir/tests/financial_example_tests.cpp.o
+[2/2] Linking CXX executable financial_example_tests

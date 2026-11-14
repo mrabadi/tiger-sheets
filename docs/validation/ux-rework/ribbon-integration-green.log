@@ -1,0 +1,6 @@
+$ QT_QPA_PLATFORM=offscreen /tmp/tiger-ribbon-integration
+processEvents window=820 tabsHeight=86 overflow=1 extra=14 scrollbarVisible=1 range=273 viewport=820x47 content=1093x44
+wait50 window=820 tabsHeight=86 overflow=1 extra=14 scrollbarVisible=1 range=273 viewport=820x47 content=1093x44
+lastFocus=1 lastFullyVisible=1 scroll=273
+This plugin does not support propagateSizeHints()
+process return code: 0

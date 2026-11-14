@@ -1,0 +1,3579 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "abs.basic",
+      "formula": "=ABS(-3)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "acos.basic",
+      "formula": "=ACOS(0)",
+      "expected": 1.5707963267948966,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "acosh.basic",
+      "formula": "=ACOSH(1)",
+      "expected": 0,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "acot.basic",
+      "formula": "=ACOT(1)",
+      "expected": 0.7853981633974483,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "acoth.basic",
+      "formula": "=ACOTH(2)",
+      "expected": 0.5493061443340549,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "arabic.basic",
+      "formula": "=ARABIC(\"XIV\")",
+      "expected": 14,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "asin.basic",
+      "formula": "=ASIN(0.5)",
+      "expected": 0.5235987755982988,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "asinh.basic",
+      "formula": "=ASINH(1)",
+      "expected": 0.881373587019543,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "atan.basic",
+      "formula": "=ATAN(1)",
+      "expected": 0.7853981633974483,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "atan2.basic",
+      "formula": "=ATAN2(1,1)",
+      "expected": 0.7853981633974483,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "atanh.basic",
+      "formula": "=ATANH(0.5)",
+      "expected": 0.5493061443340548,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "base.basic",
+      "formula": "=BASE(15,16)",
+      "expected": "F",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "ceiling.basic",
+      "formula": "=CEILING(2.5,2)",
+      "expected": 4,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "ceiling.math.basic",
+      "formula": "=CEILING.MATH(2.5)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "ceiling.precise.basic",
+      "formula": "=CEILING.PRECISE(2.5)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "combin.basic",
+      "formula": "=COMBIN(5,2)",
+      "expected": 10,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "combina.basic",
+      "formula": "=COMBINA(3,2)",
+      "expected": 6,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "cos.basic",
+      "formula": "=COS(0)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "cosh.basic",
+      "formula": "=COSH(0)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "cot.basic",
+      "formula": "=COT(PI()/4)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "coth.basic",
+      "formula": "=COTH(1)",
+      "expected": 1.3130352854993315,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "csc.basic",
+      "formula": "=CSC(PI()/2)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "csch.basic",
+      "formula": "=CSCH(1)",
+      "expected": 0.8509181282393216,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "decimal.basic",
+      "formula": "=DECIMAL(\"FF\",16)",
+      "expected": 255,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "degrees.basic",
+      "formula": "=DEGREES(PI())",
+      "expected": 180,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "even.basic",
+      "formula": "=EVEN(3)",
+      "expected": 4,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "exp.basic",
+      "formula": "=EXP(1)",
+      "expected": 2.718281828459045,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "fact.basic",
+      "formula": "=FACT(5)",
+      "expected": 120,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "factdouble.basic",
+      "formula": "=FACTDOUBLE(6)",
+      "expected": 48,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "floor.basic",
+      "formula": "=FLOOR(3.7,2)",
+      "expected": 2,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "floor.math.basic",
+      "formula": "=FLOOR.MATH(-3.2)",
+      "expected": -4,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "floor.precise.basic",
+      "formula": "=FLOOR.PRECISE(3.2)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "gcd.basic",
+      "formula": "=GCD(18,24)",
+      "expected": 6,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "int.basic",
+      "formula": "=INT(-3.2)",
+      "expected": -4,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "iso.ceiling.basic",
+      "formula": "=ISO.CEILING(4.3,2)",
+      "expected": 6,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "lcm.basic",
+      "formula": "=LCM(3,4)",
+      "expected": 12,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "ln.basic",
+      "formula": "=LN(EXP(1))",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "log.basic",
+      "formula": "=LOG(100,10)",
+      "expected": 2,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "log10.basic",
+      "formula": "=LOG10(1000)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "mod.basic",
+      "formula": "=MOD(-3,2)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "mround.basic",
+      "formula": "=MROUND(10,3)",
+      "expected": 9,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "multinomial.basic",
+      "formula": "=MULTINOMIAL(2,3)",
+      "expected": 10,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "odd.basic",
+      "formula": "=ODD(2)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "pi.basic",
+      "formula": "=PI()",
+      "expected": 3.141592653589793,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "power.basic",
+      "formula": "=POWER(2,8)",
+      "expected": 256,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "product.basic",
+      "formula": "=PRODUCT(2,3,4)",
+      "expected": 24,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "quotient.basic",
+      "formula": "=QUOTIENT(10,3)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "radians.basic",
+      "formula": "=RADIANS(180)",
+      "expected": 3.141592653589793,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "roman.basic",
+      "formula": "=ROMAN(14)",
+      "expected": "XIV",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "round.basic",
+      "formula": "=ROUND(12.345,2)",
+      "expected": 12.35,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "rounddown.basic",
+      "formula": "=ROUNDDOWN(-1.29,1)",
+      "expected": -1.2,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "roundup.basic",
+      "formula": "=ROUNDUP(1.21,1)",
+      "expected": 1.3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sec.basic",
+      "formula": "=SEC(0)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sech.basic",
+      "formula": "=SECH(0)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sign.basic",
+      "formula": "=SIGN(-12)",
+      "expected": -1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sin.basic",
+      "formula": "=SIN(PI()/2)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sinh.basic",
+      "formula": "=SINH(1)",
+      "expected": 1.1752011936438014,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sqrt.basic",
+      "formula": "=SQRT(81)",
+      "expected": 9,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sqrtpi.basic",
+      "formula": "=SQRTPI(1)",
+      "expected": 1.7724538509055159,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sum.basic",
+      "formula": "=SUM(1,2,3)",
+      "expected": 6,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sumproduct.basic",
+      "formula": "=SUMPRODUCT({1,2},{3,4})",
+      "expected": 11,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sumsq.basic",
+      "formula": "=SUMSQ(3,4)",
+      "expected": 25,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sumx2my2.basic",
+      "formula": "=SUMX2MY2({1,2},{3,4})",
+      "expected": -20,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sumx2py2.basic",
+      "formula": "=SUMX2PY2({1,2},{3,4})",
+      "expected": 30,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sumxmy2.basic",
+      "formula": "=SUMXMY2({1,2},{3,4})",
+      "expected": 8,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "tan.basic",
+      "formula": "=TAN(0)",
+      "expected": 0,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "tanh.basic",
+      "formula": "=TANH(0)",
+      "expected": 0,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "trunc.basic",
+      "formula": "=TRUNC(-3.9)",
+      "expected": -3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "and.basic",
+      "formula": "=AND(TRUE,FALSE)",
+      "expected": false,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "false.basic",
+      "formula": "=FALSE()",
+      "expected": false,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "if.basic",
+      "formula": "=IF(2>1,\"yes\",1/0)",
+      "expected": "yes",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "iferror.basic",
+      "formula": "=IFERROR(1/0,\"n/a\")",
+      "expected": "n/a",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "ifna.basic",
+      "formula": "=IFNA(NA(),\"missing\")",
+      "expected": "missing",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "ifs.basic",
+      "formula": "=IFS(1>2,\"no\",1<2,\"yes\")",
+      "expected": "yes",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "let.basic",
+      "formula": "=LET(x,4,x*3)",
+      "expected": 12,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "lambda.basic",
+      "formula": "=LAMBDA(x,x+1)(2)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "not.basic",
+      "formula": "=NOT(FALSE)",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "or.basic",
+      "formula": "=OR(FALSE,TRUE)",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "switch.basic",
+      "formula": "=SWITCH(2,1,\"one\",2,\"two\",\"other\")",
+      "expected": "two",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "true.basic",
+      "formula": "=TRUE()",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "xor.basic",
+      "formula": "=XOR(TRUE,TRUE,FALSE)",
+      "expected": false,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "average.basic",
+      "formula": "=AVERAGE(A1:A5)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "avedev.basic",
+      "formula": "=AVEDEV(A1:A5)",
+      "expected": 1.2,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "count.basic",
+      "formula": "=COUNT(A1:A5)",
+      "expected": 5,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "counta.basic",
+      "formula": "=COUNTA(A1:A5)",
+      "expected": 5,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "countblank.basic",
+      "formula": "=COUNTBLANK(A1:A6)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "countif.basic",
+      "formula": "=COUNTIF(A1:A5,\">2\")",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "countifs.basic",
+      "formula": "=COUNTIFS(A1:A5,\">2\",A1:A5,\"<5\")",
+      "expected": 2,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "large.basic",
+      "formula": "=LARGE(A1:A5,2)",
+      "expected": 4,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "max.basic",
+      "formula": "=MAX(A1:A5)",
+      "expected": 5,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "median.basic",
+      "formula": "=MEDIAN(A1:A5)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "min.basic",
+      "formula": "=MIN(A1:A5)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "small.basic",
+      "formula": "=SMALL(A1:A5,2)",
+      "expected": 2,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "stdev.s.basic",
+      "formula": "=STDEV.S(A1:A5)",
+      "expected": 1.5811388300841898,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "stdev.p.basic",
+      "formula": "=STDEV.P(A1:A5)",
+      "expected": 1.4142135623730951,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "stdev.basic",
+      "formula": "=STDEV(A1:A5)",
+      "expected": 1.5811388300841898,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "stdevp.basic",
+      "formula": "=STDEVP(A1:A5)",
+      "expected": 1.4142135623730951,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "var.s.basic",
+      "formula": "=VAR.S(A1:A5)",
+      "expected": 2.5,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "var.p.basic",
+      "formula": "=VAR.P(A1:A5)",
+      "expected": 2,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "var.basic",
+      "formula": "=VAR(A1:A5)",
+      "expected": 2.5,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "varp.basic",
+      "formula": "=VARP(A1:A5)",
+      "expected": 2,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "percentile.inc.basic",
+      "formula": "=PERCENTILE.INC(A1:A5,0.5)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "percentile.exc.basic",
+      "formula": "=PERCENTILE.EXC(A1:A5,0.5)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "percentrank.inc.basic",
+      "formula": "=PERCENTRANK.INC(A1:A5,3)",
+      "expected": 0.5,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "quartile.inc.basic",
+      "formula": "=QUARTILE.INC(A1:A5,2)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "rank.eq.basic",
+      "formula": "=RANK.EQ(3,A1:A5)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "rank.avg.basic",
+      "formula": "=RANK.AVG(3,A1:A5)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "subtotal.basic",
+      "formula": "=SUBTOTAL(9,A1:A5)",
+      "expected": 15,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "aggregate.basic",
+      "formula": "=AGGREGATE(9,0,A1:A5)",
+      "expected": 15,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sumif.basic",
+      "formula": "=SUMIF(A1:A5,\">3\")",
+      "expected": 9,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sumifs.basic",
+      "formula": "=SUMIFS(A1:A5,A1:A5,\">3\")",
+      "expected": 9,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "averageif.basic",
+      "formula": "=AVERAGEIF(A1:A5,\">3\")",
+      "expected": 4.5,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "averageifs.basic",
+      "formula": "=AVERAGEIFS(A1:A5,A1:A5,\">3\")",
+      "expected": 4.5,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "maxifs.basic",
+      "formula": "=MAXIFS(A1:A5,A1:A5,\"<4\")",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "minifs.basic",
+      "formula": "=MINIFS(A1:A5,A1:A5,\">2\")",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          3,
+          1,
+          "3"
+        ],
+        [
+          4,
+          1,
+          "4"
+        ],
+        [
+          5,
+          1,
+          "5"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "beta.dist.basic",
+      "formula": "=BETA.DIST(0.5,1,1,TRUE)",
+      "expected": 0.5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "beta.inv.basic",
+      "formula": "=BETA.INV(0.5,1,1)",
+      "expected": 0.5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "binom.dist.basic",
+      "formula": "=BINOM.DIST(2,4,0.5,FALSE)",
+      "expected": 0.375,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "chisq.dist.basic",
+      "formula": "=CHISQ.DIST(0,2,TRUE)",
+      "expected": 0,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "confidence.norm.basic",
+      "formula": "=CONFIDENCE.NORM(0.05,1,100)",
+      "expected": 0.195996398454,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "expon.dist.basic",
+      "formula": "=EXPON.DIST(0,1,TRUE)",
+      "expected": 0,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "gamma.basic",
+      "formula": "=GAMMA(5)",
+      "expected": 24,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "gammaln.basic",
+      "formula": "=GAMMALN(5)",
+      "expected": 3.1780538303479458,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "gauss.basic",
+      "formula": "=GAUSS(0)",
+      "expected": 0,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "norm.dist.basic",
+      "formula": "=NORM.DIST(0,0,1,TRUE)",
+      "expected": 0.5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "norm.inv.basic",
+      "formula": "=NORM.INV(0.5,0,1)",
+      "expected": 0,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "norm.s.dist.basic",
+      "formula": "=NORM.S.DIST(0,TRUE)",
+      "expected": 0.5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "norm.s.inv.basic",
+      "formula": "=NORM.S.INV(0.5)",
+      "expected": 0,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "phi.basic",
+      "formula": "=PHI(0)",
+      "expected": 0.3989422804014327,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "poisson.dist.basic",
+      "formula": "=POISSON.DIST(0,1,FALSE)",
+      "expected": 0.36787944117144233,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "standardize.basic",
+      "formula": "=STANDARDIZE(10,5,2)",
+      "expected": 2.5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "weibull.dist.basic",
+      "formula": "=WEIBULL.DIST(0,1,1,TRUE)",
+      "expected": 0,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "date.basic",
+      "formula": "=DATE(2024,1,1)",
+      "expected": 45292,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "day.basic",
+      "formula": "=DAY(DATE(2024,2,29))",
+      "expected": 29,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "days.basic",
+      "formula": "=DAYS(DATE(2024,1,2),DATE(2024,1,1))",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "days360.basic",
+      "formula": "=DAYS360(DATE(2024,1,1),DATE(2024,2,1))",
+      "expected": 30,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "edate.basic",
+      "formula": "=EDATE(DATE(2024,1,31),1)",
+      "expected": 45351,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "eomonth.basic",
+      "formula": "=EOMONTH(DATE(2024,1,1),1)",
+      "expected": 45351,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "hour.basic",
+      "formula": "=HOUR(TIME(12,30,15))",
+      "expected": 12,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "isoweeknum.basic",
+      "formula": "=ISOWEEKNUM(DATE(2024,1,1))",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "minute.basic",
+      "formula": "=MINUTE(TIME(12,30,15))",
+      "expected": 30,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "month.basic",
+      "formula": "=MONTH(DATE(2024,2,1))",
+      "expected": 2,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "networkdays.basic",
+      "formula": "=NETWORKDAYS(DATE(2024,1,1),DATE(2024,1,5))",
+      "expected": 5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "networkdays.intl.basic",
+      "formula": "=NETWORKDAYS.INTL(DATE(2024,1,1),DATE(2024,1,7),1)",
+      "expected": 5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "second.basic",
+      "formula": "=SECOND(TIME(12,30,15))",
+      "expected": 15,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "time.basic",
+      "formula": "=TIME(12,0,0)",
+      "expected": 0.5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "timevalue.basic",
+      "formula": "=TIMEVALUE(\"12:00\")",
+      "expected": 0.5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "weekday.basic",
+      "formula": "=WEEKDAY(DATE(2024,1,1),2)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "weeknum.basic",
+      "formula": "=WEEKNUM(DATE(2024,1,1),2)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "workday.basic",
+      "formula": "=WORKDAY(DATE(2024,1,1),5)",
+      "expected": 45299,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "year.basic",
+      "formula": "=YEAR(DATE(2024,1,1))",
+      "expected": 2024,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "datedif.basic",
+      "formula": "=DATEDIF(DATE(2024,1,1),DATE(2025,1,1),\"Y\")",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "char.basic",
+      "formula": "=CHAR(65)",
+      "expected": "A",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "clean.basic",
+      "formula": "=CLEAN(CHAR(9)&\"abc\")",
+      "expected": "abc",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "code.basic",
+      "formula": "=CODE(\"A\")",
+      "expected": 65,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "concat.basic",
+      "formula": "=CONCAT(\"Ti\",\"ger\")",
+      "expected": "Tiger",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "concatenate.basic",
+      "formula": "=CONCATENATE(\"Ti\",\"ger\")",
+      "expected": "Tiger",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "exact.basic",
+      "formula": "=EXACT(\"A\",\"A\")",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "find.basic",
+      "formula": "=FIND(\"g\",\"Tiger\")",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "fixed.basic",
+      "formula": "=FIXED(1234.5,1,TRUE)",
+      "expected": "1234.5",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "left.basic",
+      "formula": "=LEFT(\"Tiger\",2)",
+      "expected": "Ti",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "len.basic",
+      "formula": "=LEN(\"Tiger\")",
+      "expected": 5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "lower.basic",
+      "formula": "=LOWER(\"TIGER\")",
+      "expected": "tiger",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "mid.basic",
+      "formula": "=MID(\"Tiger\",2,3)",
+      "expected": "ige",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "numbervalue.basic",
+      "formula": "=NUMBERVALUE(\"1.234,5\",\",\",\".\")",
+      "expected": 1234.5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "proper.basic",
+      "formula": "=PROPER(\"tiger sheets\")",
+      "expected": "Tiger Sheets",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "replace.basic",
+      "formula": "=REPLACE(\"Tiger\",1,1,\"L\")",
+      "expected": "Liger",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "rept.basic",
+      "formula": "=REPT(\"ab\",3)",
+      "expected": "ababab",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "right.basic",
+      "formula": "=RIGHT(\"Tiger\",3)",
+      "expected": "ger",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "search.basic",
+      "formula": "=SEARCH(\"GE\",\"Tiger\")",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "substitute.basic",
+      "formula": "=SUBSTITUTE(\"aa-aa\",\"aa\",\"b\")",
+      "expected": "b-b",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "t.basic",
+      "formula": "=T(\"abc\")",
+      "expected": "abc",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "text.basic",
+      "formula": "=TEXT(0.125,\"0.0%\")",
+      "expected": "12.5%",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "textafter.basic",
+      "formula": "=TEXTAFTER(\"one/two\",\"/\")",
+      "expected": "two",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "textbefore.basic",
+      "formula": "=TEXTBEFORE(\"one/two\",\"/\")",
+      "expected": "one",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "textjoin.basic",
+      "formula": "=TEXTJOIN(\",\",TRUE,{\"a\",\"b\"})",
+      "expected": "a,b",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "trim.basic",
+      "formula": "=TRIM(\" a  b \")",
+      "expected": "a b",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "unichar.basic",
+      "formula": "=UNICHAR(65)",
+      "expected": "A",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "unicode.basic",
+      "formula": "=UNICODE(\"A\")",
+      "expected": 65,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "upper.basic",
+      "formula": "=UPPER(\"tiger\")",
+      "expected": "TIGER",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "value.basic",
+      "formula": "=VALUE(\"12.5\")",
+      "expected": 12.5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "valuetotext.basic",
+      "formula": "=VALUETOTEXT(12.5)",
+      "expected": "12.5",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "bin2dec.basic",
+      "formula": "=BIN2DEC(101)",
+      "expected": 5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "bin2hex.basic",
+      "formula": "=BIN2HEX(1111)",
+      "expected": "F",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "bin2oct.basic",
+      "formula": "=BIN2OCT(111)",
+      "expected": "7",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "bitand.basic",
+      "formula": "=BITAND(12,10)",
+      "expected": 8,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "bitlshift.basic",
+      "formula": "=BITLSHIFT(3,2)",
+      "expected": 12,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "bitor.basic",
+      "formula": "=BITOR(12,10)",
+      "expected": 14,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "bitrshift.basic",
+      "formula": "=BITRSHIFT(12,2)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "bitxor.basic",
+      "formula": "=BITXOR(12,10)",
+      "expected": 6,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "complex.basic",
+      "formula": "=COMPLEX(3,4)",
+      "expected": "3+4i",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "convert.basic",
+      "formula": "=CONVERT(1,\"m\",\"cm\")",
+      "expected": 100,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "dec2bin.basic",
+      "formula": "=DEC2BIN(5)",
+      "expected": "101",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "dec2hex.basic",
+      "formula": "=DEC2HEX(255)",
+      "expected": "FF",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "dec2oct.basic",
+      "formula": "=DEC2OCT(8)",
+      "expected": "10",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "delta.basic",
+      "formula": "=DELTA(5,5)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "erf.basic",
+      "formula": "=ERF(0)",
+      "expected": 0,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "erf.precise.basic",
+      "formula": "=ERF.PRECISE(0)",
+      "expected": 0,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "erfc.basic",
+      "formula": "=ERFC(0)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "erfc.precise.basic",
+      "formula": "=ERFC.PRECISE(0)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "gestep.basic",
+      "formula": "=GESTEP(5,4)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "hex2bin.basic",
+      "formula": "=HEX2BIN(\"A\")",
+      "expected": "1010",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "hex2dec.basic",
+      "formula": "=HEX2DEC(\"FF\")",
+      "expected": 255,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "hex2oct.basic",
+      "formula": "=HEX2OCT(\"F\")",
+      "expected": "17",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imabs.basic",
+      "formula": "=IMABS(\"3+4i\")",
+      "expected": 5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imaginary.basic",
+      "formula": "=IMAGINARY(\"3+4i\")",
+      "expected": 4,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imargument.basic",
+      "formula": "=IMARGUMENT(\"1+i\")",
+      "expected": 0.7853981633974483,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imconjugate.basic",
+      "formula": "=IMCONJUGATE(\"3+4i\")",
+      "expected": "3-4i",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imcos.basic",
+      "formula": "=IMCOS(\"0\")",
+      "expected": "1",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imcosh.basic",
+      "formula": "=IMCOSH(\"0\")",
+      "expected": "1",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imdiv.basic",
+      "formula": "=IMDIV(\"4+2i\",\"2\")",
+      "expected": "2+i",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imexp.basic",
+      "formula": "=IMEXP(\"0\")",
+      "expected": "1",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imln.basic",
+      "formula": "=IMLN(\"1\")",
+      "expected": "0",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imlog10.basic",
+      "formula": "=IMLOG10(\"1\")",
+      "expected": "0",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imlog2.basic",
+      "formula": "=IMLOG2(\"1\")",
+      "expected": "0",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "improduct.basic",
+      "formula": "=IMPRODUCT(\"2+i\",\"2-i\")",
+      "expected": "5",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imreal.basic",
+      "formula": "=IMREAL(\"3+4i\")",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imsec.basic",
+      "formula": "=IMSEC(\"0\")",
+      "expected": "1",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imsech.basic",
+      "formula": "=IMSECH(\"0\")",
+      "expected": "1",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imsin.basic",
+      "formula": "=IMSIN(\"0\")",
+      "expected": "0",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imsinh.basic",
+      "formula": "=IMSINH(\"0\")",
+      "expected": "0",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imsqrt.basic",
+      "formula": "=IMSQRT(\"4\")",
+      "expected": "2",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imsub.basic",
+      "formula": "=IMSUB(\"3+4i\",\"1+i\")",
+      "expected": "2+3i",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imsum.basic",
+      "formula": "=IMSUM(\"1+i\",\"2+3i\")",
+      "expected": "3+4i",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "imtan.basic",
+      "formula": "=IMTAN(\"0\")",
+      "expected": "0",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "oct2bin.basic",
+      "formula": "=OCT2BIN(7)",
+      "expected": "111",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "oct2dec.basic",
+      "formula": "=OCT2DEC(17)",
+      "expected": 15,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "oct2hex.basic",
+      "formula": "=OCT2HEX(17)",
+      "expected": "F",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "pmt.basic",
+      "formula": "=PMT(0.1,1,100)",
+      "expected": -110,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "pv.basic",
+      "formula": "=PV(0,10,-100)",
+      "expected": 1000,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "fv.basic",
+      "formula": "=FV(0,10,-100)",
+      "expected": 1000,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "nper.basic",
+      "formula": "=NPER(0,-10,100)",
+      "expected": 10,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "rate.basic",
+      "formula": "=RATE(1,-110,100)",
+      "expected": 0.1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "ipmt.basic",
+      "formula": "=IPMT(0.1,1,1,100)",
+      "expected": -10,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "ppmt.basic",
+      "formula": "=PPMT(0.1,1,1,100)",
+      "expected": -100,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "npv.basic",
+      "formula": "=NPV(0,1,2,3)",
+      "expected": 6,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "irr.basic",
+      "formula": "=IRR({-100;110})",
+      "expected": 0.1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "mirr.basic",
+      "formula": "=MIRR({-100;110},0.1,0.1)",
+      "expected": 0.1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "xnpv.basic",
+      "formula": "=XNPV(0.1,{-100;110},{44927;45292})",
+      "expected": 0,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "xirr.basic",
+      "formula": "=XIRR({-100;110},{44927;45292})",
+      "expected": 0.1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "sln.basic",
+      "formula": "=SLN(100,10,3)",
+      "expected": 30,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "ddb.basic",
+      "formula": "=DDB(100,0,10,1)",
+      "expected": 20,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "syd.basic",
+      "formula": "=SYD(100,10,3,1)",
+      "expected": 45,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "dollarde.basic",
+      "formula": "=DOLLARDE(1.125,16)",
+      "expected": 1.78125,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "dollarfr.basic",
+      "formula": "=DOLLARFR(1.78125,16)",
+      "expected": 1.125,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "effect.basic",
+      "formula": "=EFFECT(0.1,2)",
+      "expected": 0.1025,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "nominal.basic",
+      "formula": "=NOMINAL(0.1025,2)",
+      "expected": 0.1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "pduration.basic",
+      "formula": "=PDURATION(0.1,100,110)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "rri.basic",
+      "formula": "=RRI(1,100,110)",
+      "expected": 0.1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "ispmt.basic",
+      "formula": "=ISPMT(0.1,1,2,100)",
+      "expected": -5,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "cumipmt.basic",
+      "formula": "=CUMIPMT(0.1,1,100,1,1,0)",
+      "expected": -10,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "cumprinc.basic",
+      "formula": "=CUMPRINC(0.1,1,100,1,1,0)",
+      "expected": -100,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "fvschedule.basic",
+      "formula": "=FVSCHEDULE(100,{0.1,0.2})",
+      "expected": 132,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "index.basic",
+      "formula": "=INDEX(B1:B3,2)",
+      "expected": "Beta",
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "match.basic",
+      "formula": "=MATCH(20,A1:A3,0)",
+      "expected": 2,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "xmatch.basic",
+      "formula": "=XMATCH(20,A1:A3)",
+      "expected": 2,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "xlookup.basic",
+      "formula": "=XLOOKUP(20,A1:A3,B1:B3)",
+      "expected": "Beta",
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "vlookup.basic",
+      "formula": "=VLOOKUP(20,A1:B3,2,FALSE)",
+      "expected": "Beta",
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "lookup.basic",
+      "formula": "=LOOKUP(20,A1:A3,B1:B3)",
+      "expected": "Beta",
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "choose.basic",
+      "formula": "=CHOOSE(2,\"A\",\"B\",\"C\")",
+      "expected": "B",
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "address.basic",
+      "formula": "=ADDRESS(2,3)",
+      "expected": "$C$2",
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "column.basic",
+      "formula": "=COLUMN(C5)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "columns.basic",
+      "formula": "=COLUMNS(A1:C1)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "row.basic",
+      "formula": "=ROW(C5)",
+      "expected": 5,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "rows.basic",
+      "formula": "=ROWS(A1:A3)",
+      "expected": 3,
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "indirect.basic",
+      "formula": "=INDIRECT(\"B2\")",
+      "expected": "Beta",
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "offset.basic",
+      "formula": "=OFFSET(A1,1,1)",
+      "expected": "Beta",
+      "tolerance": 1e-09,
+      "cells": [
+        [
+          1,
+          1,
+          "10"
+        ],
+        [
+          2,
+          1,
+          "20"
+        ],
+        [
+          3,
+          1,
+          "30"
+        ],
+        [
+          1,
+          2,
+          "Alpha"
+        ],
+        [
+          2,
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          2,
+          "Gamma"
+        ]
+      ],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "isblank.basic",
+      "formula": "=ISBLANK(Z1)",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "iserr.basic",
+      "formula": "=ISERR(1/0)",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "iserror.basic",
+      "formula": "=ISERROR(1/0)",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "iseven.basic",
+      "formula": "=ISEVEN(4)",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "islogical.basic",
+      "formula": "=ISLOGICAL(TRUE)",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "isna.basic",
+      "formula": "=ISNA(NA())",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "isnontext.basic",
+      "formula": "=ISNONTEXT(12)",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "isnumber.basic",
+      "formula": "=ISNUMBER(12)",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "isodd.basic",
+      "formula": "=ISODD(3)",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "isref.basic",
+      "formula": "=ISREF(A1)",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "istext.basic",
+      "formula": "=ISTEXT(\"a\")",
+      "expected": true,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "n.basic",
+      "formula": "=N(TRUE)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "type.basic",
+      "formula": "=TYPE(12)",
+      "expected": 1,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "error.type.basic",
+      "formula": "=ERROR.TYPE(1/0)",
+      "expected": 2,
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    },
+    {
+      "id": "na.basic",
+      "formula": "=NA()",
+      "expected": "#N/A",
+      "tolerance": 1e-09,
+      "cells": [],
+      "reference": "Independent arithmetic, mathematical identity, or documented Excel semantics"
+    }
+  ]
+}

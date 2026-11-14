@@ -1,0 +1,5 @@
+{
+  "constructorCanonicalizationMs": 3860.296441,
+  "sourceCells": 1000000
+}
+already ordered one-million-cell input must remain fully validated in under one second on this host

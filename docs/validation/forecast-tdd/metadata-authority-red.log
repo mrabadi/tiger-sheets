@@ -1,0 +1,3 @@
+sharedStrings-only native edit retained stale private financial definitions
+styles-only native edit retained stale private financial definitions
+native shared strings and styles must invalidate saved financial metadata without worksheet rewrites

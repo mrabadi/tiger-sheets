@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/tiger-sheets/tests/development_package_validation_tests.py", line 11, in <module>
+    SPEC.loader.exec_module(MODULE)
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1016, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1073, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/tiger-sheets/tools/verify_development_package.py'

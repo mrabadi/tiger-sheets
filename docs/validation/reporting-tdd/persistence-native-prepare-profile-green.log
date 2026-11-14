@@ -1,0 +1,11 @@
+{
+  "constructorCanonicalizationMs": 89.860067,
+  "factoryMs": 214.487535,
+  "fixtureMs": 687.855296,
+  "generationMs": 666.160745,
+  "genericApplyMs": 863.445692,
+  "genericRetirementMs": 584.084526,
+  "records": 100000,
+  "sourceAllocationRetained": true,
+  "sourceCells": 1000000
+}

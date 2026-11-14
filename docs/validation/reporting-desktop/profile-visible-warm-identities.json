@@ -1,0 +1,344 @@
+{
+  "utc": "2026-11-12T01:23:44.214410+00:00",
+  "buildBoundary": "Private -O1 MainWindow/test objects and release archives; not final all-target release binary. Full 1m data-cell shown offscreen Qt event-loop pipeline includes final viewport paint.",
+  "summary": {
+    "fields": 10,
+    "phases": [
+      {
+        "budgetMs": 15000,
+        "elapsedMs": 5241,
+        "finalViewportPaintMs": 14.530439,
+        "longestUiDispatchMs": 23.426097,
+        "maxConcurrentCaptures": 1,
+        "measurementBoundary": "Whole report action on actual Qt event loop; precise1ms observer, no polling sleep",
+        "microGaps": [
+          {
+            "activeCaptures": 1,
+            "elapsedMs": 17.202172,
+            "gapMs": 17.088587,
+            "stage": "Preparing report inputs\u2026"
+          },
+          {
+            "activeCaptures": 0,
+            "elapsedMs": 1545.975547,
+            "gapMs": 23.426097,
+            "stage": "Starting report calculation"
+          },
+          {
+            "activeCaptures": 0,
+            "elapsedMs": 5227.029795,
+            "gapMs": 16.511325,
+            "stage": "Report refreshed \u2014 Undo restores the previous table, cache and charts"
+          }
+        ],
+        "phase": "initial",
+        "publicationCallbackCumulativeMs": {
+          "commitPreparedCumulativeMs": 0.015069,
+          "fieldsPaneCumulativeMs": 15.784275,
+          "modelRefreshCumulativeMs": 0.04694,
+          "onChangedCumulativeMs": 0.246244,
+          "sheetRebuildCumulativeMs": 0.279474,
+          "totalCumulativeMs": 15.797465
+        },
+        "qualified": true,
+        "sourceCells": 1000000,
+        "sourceFormulas": 1,
+        "stageTransitions": [
+          {
+            "elapsedMs": 0.595054,
+            "stage": "Preparing report inputs\u2026"
+          },
+          {
+            "elapsedMs": 824.131657,
+            "stage": "Preparing report inputs"
+          },
+          {
+            "elapsedMs": 1523.21597,
+            "stage": "Starting report calculation"
+          },
+          {
+            "elapsedMs": 1571.29335,
+            "stage": "Reading report inputs"
+          },
+          {
+            "elapsedMs": 2323.036997,
+            "stage": "Calculating source formulas"
+          },
+          {
+            "elapsedMs": 3725.673765,
+            "stage": "Grouping report records"
+          },
+          {
+            "elapsedMs": 4837.037187,
+            "stage": "Reading report result"
+          },
+          {
+            "elapsedMs": 4924.544892,
+            "stage": "Preparing the report transaction\u2026"
+          },
+          {
+            "elapsedMs": 5226.802066,
+            "stage": "Report refreshed \u2014 Undo restores the previous table, cache and charts"
+          }
+        ]
+      },
+      {
+        "budgetMs": 10000,
+        "elapsedMs": 6085,
+        "finalViewportPaintMs": 9.634624,
+        "longestUiDispatchMs": 36.783246,
+        "maxConcurrentCaptures": 1,
+        "measurementBoundary": "Whole report action on actual Qt event loop; precise1ms observer, no polling sleep",
+        "microGaps": [
+          {
+            "activeCaptures": 1,
+            "elapsedMs": 37.57548,
+            "gapMs": 36.783246,
+            "stage": "Preparing report inputs\u2026"
+          },
+          {
+            "activeCaptures": 0,
+            "elapsedMs": 2259.929511,
+            "gapMs": 34.778984,
+            "stage": "Starting report calculation"
+          }
+        ],
+        "phase": "fresh",
+        "publicationCallbackCumulativeMs": {
+          "commitPreparedCumulativeMs": 0.012692,
+          "fieldsPaneCumulativeMs": 2.245915,
+          "modelRefreshCumulativeMs": 0.050306,
+          "onChangedCumulativeMs": 0.118352,
+          "sheetRebuildCumulativeMs": 0.192039,
+          "totalCumulativeMs": 2.256658
+        },
+        "qualified": true,
+        "sourceCells": 1000000,
+        "sourceFormulas": 1,
+        "stageTransitions": [
+          {
+            "elapsedMs": 0.546157,
+            "stage": "Preparing report inputs\u2026"
+          },
+          {
+            "elapsedMs": 1237.843903,
+            "stage": "Preparing report inputs"
+          },
+          {
+            "elapsedMs": 2226.038261,
+            "stage": "Starting report calculation"
+          },
+          {
+            "elapsedMs": 2298.452385,
+            "stage": "Reading report inputs"
+          },
+          {
+            "elapsedMs": 3200.054382,
+            "stage": "Calculating source formulas"
+          },
+          {
+            "elapsedMs": 4553.30129,
+            "stage": "Grouping report records"
+          },
+          {
+            "elapsedMs": 5611.201427,
+            "stage": "Reading report result"
+          },
+          {
+            "elapsedMs": 5689.531194,
+            "stage": "Preparing the report transaction\u2026"
+          },
+          {
+            "elapsedMs": 6075.678957,
+            "stage": "Report refreshed \u2014 Undo restores the previous table, cache and charts"
+          }
+        ]
+      },
+      {
+        "budgetMs": 3000,
+        "elapsedMs": 2389,
+        "finalViewportPaintMs": 5.47922,
+        "longestUiDispatchMs": 34.861056,
+        "maxConcurrentCaptures": 1,
+        "measurementBoundary": "Whole report action on actual Qt event loop; precise1ms observer, no polling sleep",
+        "microGaps": [
+          {
+            "activeCaptures": 1,
+            "elapsedMs": 16.712853,
+            "gapMs": 16.490444,
+            "stage": "Preparing report inputs\u2026"
+          },
+          {
+            "activeCaptures": 0,
+            "elapsedMs": 1483.023024,
+            "gapMs": 34.861056,
+            "stage": "Starting report calculation"
+          }
+        ],
+        "phase": "warm-current-calculated",
+        "publicationCallbackCumulativeMs": {
+          "commitPreparedCumulativeMs": 0.010443,
+          "fieldsPaneCumulativeMs": 2.002179,
+          "modelRefreshCumulativeMs": 0.040346,
+          "onChangedCumulativeMs": 0.099097,
+          "sheetRebuildCumulativeMs": 0.166826,
+          "totalCumulativeMs": 2.013227
+        },
+        "qualified": true,
+        "sourceCells": 1000000,
+        "sourceFormulas": 1,
+        "stageTransitions": [
+          {
+            "elapsedMs": 0.54394,
+            "stage": "Preparing report inputs\u2026"
+          },
+          {
+            "elapsedMs": 852.264258,
+            "stage": "Preparing current source values\u2026"
+          },
+          {
+            "elapsedMs": 1356.256856,
+            "stage": "Preparing report inputs"
+          },
+          {
+            "elapsedMs": 1448.553581,
+            "stage": "Starting report calculation"
+          },
+          {
+            "elapsedMs": 1523.658379,
+            "stage": "Reading report inputs"
+          },
+          {
+            "elapsedMs": 1623.81704,
+            "stage": "Grouping report records"
+          },
+          {
+            "elapsedMs": 1908.866017,
+            "stage": "Reading report result"
+          },
+          {
+            "elapsedMs": 1989.133761,
+            "stage": "Preparing the report transaction\u2026"
+          },
+          {
+            "elapsedMs": 2376.271409,
+            "stage": "Report refreshed \u2014 Undo restores the previous table, cache and charts"
+          }
+        ]
+      },
+      {
+        "budgetMs": 3000,
+        "elapsedMs": 2138,
+        "finalViewportPaintMs": 5.98428,
+        "longestUiDispatchMs": 37.35819,
+        "maxConcurrentCaptures": 1,
+        "measurementBoundary": "Whole report action on actual Qt event loop; precise1ms observer, no polling sleep",
+        "microGaps": [
+          {
+            "activeCaptures": 0,
+            "elapsedMs": 1402.484734,
+            "gapMs": 37.35819,
+            "stage": "Starting report calculation"
+          }
+        ],
+        "phase": "unchanged-current-calculated",
+        "publicationCallbackCumulativeMs": {
+          "commitPreparedCumulativeMs": 0.003719,
+          "totalCumulativeMs": 0.041412
+        },
+        "qualified": true,
+        "sourceCells": 1000000,
+        "sourceFormulas": 1,
+        "stageTransitions": [
+          {
+            "elapsedMs": 1.525875,
+            "stage": "Preparing report inputs\u2026"
+          },
+          {
+            "elapsedMs": 766.334082,
+            "stage": "Preparing current source values\u2026"
+          },
+          {
+            "elapsedMs": 1274.086251,
+            "stage": "Preparing report inputs"
+          },
+          {
+            "elapsedMs": 1365.06078,
+            "stage": "Starting report calculation"
+          },
+          {
+            "elapsedMs": 1445.20266,
+            "stage": "Reading report inputs"
+          },
+          {
+            "elapsedMs": 1545.539626,
+            "stage": "Grouping report records"
+          },
+          {
+            "elapsedMs": 1825.569774,
+            "stage": "Reading report result"
+          },
+          {
+            "elapsedMs": 1912.547447,
+            "stage": "Preparing the report transaction\u2026"
+          },
+          {
+            "elapsedMs": 2131.666567,
+            "stage": "Report is current \u2014 no changes to undo"
+          }
+        ]
+      }
+    ],
+    "qualified": true,
+    "records": 100000,
+    "sharedCalculationBeforeWarmMs": 2747.097808,
+    "sourceCells": 1000000,
+    "sourceFormulas": 1,
+    "summary": true,
+    "totalsValidated": true,
+    "unchangedRevisionAndHistory": true,
+    "warmReportOneUndoRedo": true
+  },
+  "files": [
+    {
+      "path": "/tmp/tigersheets-publication/tests",
+      "size": 28219760,
+      "sha256": "8042795cccc6ef4202ecc2721cf18b5b4c5355a06dc1f1ac003cdf97f9eaffea"
+    },
+    {
+      "path": "/tmp/tigersheets-publication/mainwindow.o",
+      "size": 1641432,
+      "sha256": "122451634fc6a7b8af7dc862e2c19459a53c21c2d009b316e3e665d2e06212b3"
+    },
+    {
+      "path": "/tmp/tigersheets-analysis-worker",
+      "size": 19053952,
+      "sha256": "19aefdbab8ae7b0ccbc5568e301fc5052f6f0bbe556e55c2c45ebe8da305cccc"
+    },
+    {
+      "path": "/tmp/tigersheets-analysis-pivot.o",
+      "size": 555936,
+      "sha256": "175a834b327941bc6e3cdc45e4b8f654e3a0a5b877a20f93e025046fff81a64c"
+    },
+    {
+      "path": "/tmp/tigersheets-analysis-owned-links.o",
+      "size": 303336,
+      "sha256": "547c5c9b325622b136218a0a9e8d79270241416e57a51dda80139e8f7799a58f"
+    },
+    {
+      "path": "/tmp/tigersheets-publication/libtigersheets_core.a",
+      "size": 798264,
+      "sha256": "805de1c15a8fcd232fe84b4458084acb7b7f5f3b56783936329124b6c4102733"
+    },
+    {
+      "path": "/workspace/tiger-sheets/src/main_window.cpp",
+      "size": 112003,
+      "sha256": "40acd9670af1e78b8ac6fefa26aaa8a7c86a2fa9eabb9df25043ce99e626ab26"
+    },
+    {
+      "path": "/workspace/tiger-sheets/tests/reporting_publication_tests.cpp",
+      "size": 6041,
+      "sha256": "636b612544ca4fc80cd1ccd16d0fd6567d97759e5c768f9675ee49a984edd467"
+    }
+  ]
+}

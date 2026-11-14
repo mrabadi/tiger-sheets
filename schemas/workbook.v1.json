@@ -1,0 +1,2914 @@
+{
+  "description": "TigerSheets native workbook read/search, financial modeling, native reporting and isolated preview tool contract. Accept and save remain user actions.",
+  "tools": [
+    {
+      "description": "Discover built-in native workbook editing tools, exact operation schemas, limits and financial-model/chart examples. Call before preparing workbook edits; no external skill, file access or installation is needed.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "workbook_v1_capabilities",
+      "type": "function"
+    },
+    {
+      "description": "Read bounded native cells and workbook metadata, including charts. During a proposal this reads the pending preview; revision remains the live base for later preview calls. Coordinates and rectangles are 1-based and inclusive. At most 10000 cells/1 MiB cell JSON; each metadata value is limited to 256 KiB. metadataTruncated names omitted fields, which cannot be replaced.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "col1": {
+            "maximum": 16384,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "col2": {
+            "maximum": 16384,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metadata": {
+            "items": {
+              "enum": [
+                "charts",
+                "pivots",
+                "scenarios",
+                "links",
+                "settings",
+                "vba",
+                "names"
+              ],
+              "type": "string"
+            },
+            "maxItems": 7,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "row1": {
+            "maximum": 1048576,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "row2": {
+            "maximum": 1048576,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "sheet": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "workbook_v1_read",
+      "type": "function"
+    },
+    {
+      "description": "Search live or pending preview cell inputs for text. Returns stable worksheet ids, cell coordinates, the live base revision and up to 1000 matches.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "type": "object"
+      },
+      "name": "workbook_v1_search",
+      "type": "function"
+    },
+    {
+      "description": "Read a native report slice within 1 MiB, including its complete editable definition (at most 256 KiB). Oversized definitions refuse safely; use bounded member reads to inspect large selections. Reads the pending proposal and never returns source records.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "colLimit": {
+            "maximum": 32,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "colOffset": {
+            "maximum": 16384,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "rowLimit": {
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "rowOffset": {
+            "maximum": 250000,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object"
+      },
+      "name": "workbook_v1_report",
+      "type": "function"
+    },
+    {
+      "description": "List up to 200 native report summaries, including preserved read-only imports. Returns stable ids, locations and field names without source records or member caches.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "maximum": 200,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "maximum": 100000,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "workbook_v1_reports",
+      "type": "function"
+    },
+    {
+      "description": "Search a report's retained source-field members. Returns up to 200 typed items and at most 1 MiB, with selection and missing-item state. Query searches the whole field cache; offset paginates matching members. Reads the pending proposal when present.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "maxLength": 256,
+            "type": "string"
+          },
+          "id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "limit": {
+            "maximum": 200,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "maximum": 100000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "query": {
+            "maxLength": 4096,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "field"
+        ],
+        "type": "object"
+      },
+      "name": "workbook_v1_pivot_members",
+      "type": "function"
+    },
+    {
+      "description": "List up to200 financial model summaries from the live or proposed workbook, optionally filtering by kind. Generated results and source caches are omitted; unsupported versions remain read-only.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "limit": {
+            "maximum": 200,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "maximum": 100000,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "workbook_v1_financial_models",
+      "type": "function"
+    },
+    {
+      "description": "Read one complete editable financial setup, at most256 KiB. Generated results, provenance and caches are omitted. Unsupported definitions return bounded read-only identities.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object"
+      },
+      "name": "workbook_v1_financial_model",
+      "type": "function"
+    },
+    {
+      "description": "Create or extend one isolated, revision-checked native workbook proposal. When asked to create/edit a model or chart, use this tool to do it. set_range writes financial data/formulas; add_chart appends an editable chart. Consecutive calls at the same live revision accumulate in one proposal. Only the user can accept/discard it; saving remains a desktop action.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "operations": {
+            "items": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "description": "Set one Excel input string. Formulas begin with =; a leading apostrophe forces literal text. Optional style merges unless replaceStyle is true.",
+                  "properties": {
+                    "col": {
+                      "maximum": 16384,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "input": {
+                      "maxLength": 32767,
+                      "type": "string"
+                    },
+                    "replaceStyle": {
+                      "type": "boolean"
+                    },
+                    "row": {
+                      "maximum": 1048576,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "sheet": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "style": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "alignment": {
+                          "enum": [
+                            "left",
+                            "center",
+                            "right"
+                          ],
+                          "type": "string"
+                        },
+                        "bold": {
+                          "type": "boolean"
+                        },
+                        "color": {
+                          "maxLength": 64,
+                          "type": "string"
+                        },
+                        "fill": {
+                          "maxLength": 64,
+                          "type": "string"
+                        },
+                        "fontFamily": {
+                          "maxLength": 256,
+                          "type": "string"
+                        },
+                        "fontSize": {
+                          "maximum": 400,
+                          "minimum": 1,
+                          "type": "number"
+                        },
+                        "italic": {
+                          "type": "boolean"
+                        },
+                        "note": {
+                          "maxLength": 32767,
+                          "type": "string"
+                        },
+                        "numberFormat": {
+                          "maxLength": 4096,
+                          "type": "string"
+                        },
+                        "underline": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [],
+                      "type": "object"
+                    },
+                    "type": {
+                      "const": "set_cell",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "sheet",
+                    "row",
+                    "col",
+                    "input",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Write a nonempty rectangular matrix from the 1-based top-left cell. Text uses Excel input syntax, numbers are decimal, booleans TRUE/FALSE and null clears input. Maximum 10000 cells across the complete preview.",
+                  "properties": {
+                    "col": {
+                      "maximum": 16384,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "row": {
+                      "maximum": 1048576,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "sheet": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "set_range",
+                      "type": "string"
+                    },
+                    "values": {
+                      "items": {
+                        "items": {
+                          "type": [
+                            "string",
+                            "number",
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "maxItems": 10000,
+                        "minItems": 1,
+                        "type": "array"
+                      },
+                      "maxItems": 10000,
+                      "minItems": 1,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "sheet",
+                    "row",
+                    "col",
+                    "values",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Style one cell, merging with its current style unless replace is true. Colors use #RRGGBB; numberFormat uses Excel format syntax.",
+                  "properties": {
+                    "col": {
+                      "maximum": 16384,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "replace": {
+                      "type": "boolean"
+                    },
+                    "row": {
+                      "maximum": 1048576,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "sheet": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "style": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "alignment": {
+                          "enum": [
+                            "left",
+                            "center",
+                            "right"
+                          ],
+                          "type": "string"
+                        },
+                        "bold": {
+                          "type": "boolean"
+                        },
+                        "color": {
+                          "maxLength": 64,
+                          "type": "string"
+                        },
+                        "fill": {
+                          "maxLength": 64,
+                          "type": "string"
+                        },
+                        "fontFamily": {
+                          "maxLength": 256,
+                          "type": "string"
+                        },
+                        "fontSize": {
+                          "maximum": 400,
+                          "minimum": 1,
+                          "type": "number"
+                        },
+                        "italic": {
+                          "type": "boolean"
+                        },
+                        "note": {
+                          "maxLength": 32767,
+                          "type": "string"
+                        },
+                        "numberFormat": {
+                          "maxLength": 4096,
+                          "type": "string"
+                        },
+                        "underline": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [],
+                      "type": "object"
+                    },
+                    "type": {
+                      "const": "set_style",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "sheet",
+                    "row",
+                    "col",
+                    "style",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Create a worksheet with a new stable id. Later operations in this preview can address that id.",
+                  "properties": {
+                    "id": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "name": {
+                      "maxLength": 31,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "add_sheet",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Rename an existing worksheet; supported local formula references update automatically.",
+                  "properties": {
+                    "name": {
+                      "maxLength": 31,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sheet": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "rename_sheet",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "sheet",
+                    "name",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Clear inputs in a bounded inclusive rectangle while retaining formatting; at most 10000 addressed cells per preview.",
+                  "properties": {
+                    "col1": {
+                      "maximum": 16384,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "col2": {
+                      "maximum": 16384,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "row1": {
+                      "maximum": 1048576,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "row2": {
+                      "maximum": 1048576,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "sheet": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "clear_range",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "sheet",
+                    "row1",
+                    "col1",
+                    "row2",
+                    "col2",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Append an editable native chart with a unique id while preserving every existing chart. Provide a table with categories in its first column and series headings in its first row.",
+                  "properties": {
+                    "chart": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "anchor": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "col": {
+                              "maximum": 16384,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "height": {
+                              "maximum": 8192,
+                              "minimum": 230,
+                              "type": "integer"
+                            },
+                            "offsetX": {
+                              "maximum": 1000000,
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "offsetY": {
+                              "maximum": 1000000,
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "row": {
+                              "maximum": 1048576,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "width": {
+                              "maximum": 8192,
+                              "minimum": 320,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [],
+                          "type": "object"
+                        },
+                        "id": {
+                          "maxLength": 128,
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "range": {
+                          "additionalProperties": false,
+                          "description": "The first row contains series headings; the first column contains categories. At least 2 rows and 2 columns; at most 10000 data rows and 100 series.",
+                          "properties": {
+                            "col1": {
+                              "maximum": 16384,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "col2": {
+                              "maximum": 16384,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "row1": {
+                              "maximum": 1048576,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "row2": {
+                              "maximum": 1048576,
+                              "minimum": 1,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "row1",
+                            "col1",
+                            "row2",
+                            "col2"
+                          ],
+                          "type": "object"
+                        },
+                        "sheet": {
+                          "maxLength": 128,
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "title": {
+                          "maxLength": 4096,
+                          "type": "string"
+                        },
+                        "type": {
+                          "enum": [
+                            "line",
+                            "column",
+                            "bar",
+                            "area",
+                            "scatter",
+                            "pie",
+                            "doughnut"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "sheet",
+                        "type",
+                        "title",
+                        "range"
+                      ],
+                      "type": "object"
+                    },
+                    "type": {
+                      "const": "add_chart",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "chart",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Replace one supported workbook metadata field. Read its existing value first. Unrelated fields remain preserved. Macro enablement is a desktop action; VBA source proposals cannot enable macros.",
+                  "properties": {
+                    "key": {
+                      "enum": [
+                        "charts",
+                        "pivots",
+                        "scenarios",
+                        "links",
+                        "settings",
+                        "vba",
+                        "names"
+                      ],
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "set_metadata",
+                      "type": "string"
+                    },
+                    "value": {
+                      "description": "Replace the complete named metadata value. Prefer add_chart for insertion. charts is an array of the chart schema; names is an object mapping names to reference strings; vba is an object with modules [{name,source}], existing project metadata and user enablement are retained, and enabling macros is unavailable. Other keys preserve their native workbook JSON format.",
+                      "type": [
+                        "object",
+                        "array"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "value",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Create a real native PivotTable from a local rectangular source. Headers must be unique text. Cache and generated output are owned; use typed report operations to edit. Up to100000 records/1million data cells,4measures and250000 output cells.",
+                  "properties": {
+                    "definition": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "columnGrandTotals": {
+                          "type": "boolean"
+                        },
+                        "columns": {
+                          "items": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "field": {
+                                "maxLength": 256,
+                                "type": "string"
+                              },
+                              "group": {
+                                "enum": [
+                                  "year",
+                                  "quarter",
+                                  "month"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "field"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "filters": {
+                          "items": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "all": {
+                                "type": "boolean"
+                              },
+                              "field": {
+                                "maxLength": 256,
+                                "type": "string"
+                              },
+                              "items": {
+                                "items": {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "type": {
+                                      "enum": [
+                                        "string",
+                                        "number",
+                                        "boolean",
+                                        "blank"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": [
+                                        "string",
+                                        "number",
+                                        "boolean",
+                                        "null"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "value"
+                                  ],
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "all"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "id": {
+                          "maxLength": 128,
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "name": {
+                          "maxLength": 128,
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "output": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "col1": {
+                              "maximum": 16384,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "row1": {
+                              "maximum": 1048576,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "sheet": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "sheet",
+                            "row1",
+                            "col1"
+                          ],
+                          "type": "object"
+                        },
+                        "rowGrandTotals": {
+                          "type": "boolean"
+                        },
+                        "rows": {
+                          "items": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "field": {
+                                "maxLength": 256,
+                                "type": "string"
+                              },
+                              "group": {
+                                "enum": [
+                                  "year",
+                                  "quarter",
+                                  "month"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "field"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "source": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "col1": {
+                              "maximum": 16384,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "col2": {
+                              "maximum": 16384,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "row1": {
+                              "maximum": 1048576,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "row2": {
+                              "maximum": 1048576,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "sheet": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "row1",
+                            "col1",
+                            "row2",
+                            "col2",
+                            "sheet"
+                          ],
+                          "type": "object"
+                        },
+                        "values": {
+                          "items": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "aggregate": {
+                                "enum": [
+                                  "sum",
+                                  "count",
+                                  "average",
+                                  "min",
+                                  "max"
+                                ],
+                                "type": "string"
+                              },
+                              "field": {
+                                "maxLength": 256,
+                                "type": "string"
+                              },
+                              "name": {
+                                "maxLength": 256,
+                                "type": "string"
+                              },
+                              "numberFormat": {
+                                "maxLength": 4096,
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "aggregate"
+                            ],
+                            "type": "object"
+                          },
+                          "maxItems": 4,
+                          "minItems": 1,
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "source",
+                        "values",
+                        "output"
+                      ],
+                      "type": "object"
+                    },
+                    "type": {
+                      "const": "create_pivot",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "definition",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Update editable fields, filters, measures or source of an existing native pivot; recompute its cache, owned output and linked charts in the same proposal.",
+                  "properties": {
+                    "changes": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "columnGrandTotals": {
+                          "type": "boolean"
+                        },
+                        "columns": {
+                          "items": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "field": {
+                                "maxLength": 256,
+                                "type": "string"
+                              },
+                              "group": {
+                                "enum": [
+                                  "year",
+                                  "quarter",
+                                  "month"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "field"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "filters": {
+                          "items": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "all": {
+                                "type": "boolean"
+                              },
+                              "field": {
+                                "maxLength": 256,
+                                "type": "string"
+                              },
+                              "items": {
+                                "items": {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "type": {
+                                      "enum": [
+                                        "string",
+                                        "number",
+                                        "boolean",
+                                        "blank"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": [
+                                        "string",
+                                        "number",
+                                        "boolean",
+                                        "null"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "value"
+                                  ],
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "all"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "name": {
+                          "maxLength": 128,
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "output": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "col1": {
+                              "maximum": 16384,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "row1": {
+                              "maximum": 1048576,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "sheet": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "sheet",
+                            "row1",
+                            "col1"
+                          ],
+                          "type": "object"
+                        },
+                        "rowGrandTotals": {
+                          "type": "boolean"
+                        },
+                        "rows": {
+                          "items": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "field": {
+                                "maxLength": 256,
+                                "type": "string"
+                              },
+                              "group": {
+                                "enum": [
+                                  "year",
+                                  "quarter",
+                                  "month"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "field"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "source": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "col1": {
+                              "maximum": 16384,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "col2": {
+                              "maximum": 16384,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "row1": {
+                              "maximum": 1048576,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "row2": {
+                              "maximum": 1048576,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "sheet": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "row1",
+                            "col1",
+                            "row2",
+                            "col2",
+                            "sheet"
+                          ],
+                          "type": "object"
+                        },
+                        "values": {
+                          "items": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "aggregate": {
+                                "enum": [
+                                  "sum",
+                                  "count",
+                                  "average",
+                                  "min",
+                                  "max"
+                                ],
+                                "type": "string"
+                              },
+                              "field": {
+                                "maxLength": 256,
+                                "type": "string"
+                              },
+                              "name": {
+                                "maxLength": 256,
+                                "type": "string"
+                              },
+                              "numberFormat": {
+                                "maxLength": 4096,
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "aggregate"
+                            ],
+                            "type": "object"
+                          },
+                          "maxItems": 4,
+                          "minItems": 1,
+                          "type": "array"
+                        }
+                      },
+                      "required": [],
+                      "type": "object"
+                    },
+                    "id": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "update_pivot",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changes",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Recalculate an existing native pivot from the proposed source, replacing its cache and generated output together. An unchanged refresh produces no edit.",
+                  "properties": {
+                    "id": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "refresh_pivot",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Relocate a native pivot using its retained cache and preserving stale state. Generated cells and linked charts move together; supported dependent formulas and defined names follow the move.",
+                  "properties": {
+                    "id": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "output": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "col1": {
+                          "maximum": 16384,
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "row1": {
+                          "maximum": 1048576,
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "sheet": {
+                          "maxLength": 128,
+                          "minLength": 1,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "sheet",
+                        "row1",
+                        "col1"
+                      ],
+                      "type": "object"
+                    },
+                    "type": {
+                      "const": "move_pivot",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "output",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Delete an editable native pivot, its generated output and its linked PivotCharts together. Source data is retained.",
+                  "properties": {
+                    "id": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "delete_pivot",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Create a genuine native PivotChart linked to a proposed/existing pivot; series follow its fields and filters and exclude grand totals. Maximum1000categories/16series.",
+                  "properties": {
+                    "chartType": {
+                      "enum": [
+                        "line",
+                        "column",
+                        "bar"
+                      ],
+                      "type": "string"
+                    },
+                    "id": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "pivotId": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "title": {
+                      "maxLength": 4096,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "create_pivot_chart",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "pivotId",
+                    "id",
+                    "chartType",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Update the family, title or position of an existing editable PivotChart, retaining its owning report.",
+                  "properties": {
+                    "changes": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "anchor": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "col": {
+                              "maximum": 16384,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "height": {
+                              "maximum": 8192,
+                              "minimum": 230,
+                              "type": "integer"
+                            },
+                            "offsetX": {
+                              "maximum": 1000000,
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "offsetY": {
+                              "maximum": 1000000,
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "row": {
+                              "maximum": 1048576,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "width": {
+                              "maximum": 8192,
+                              "minimum": 320,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [],
+                          "type": "object"
+                        },
+                        "chartType": {
+                          "enum": [
+                            "line",
+                            "column",
+                            "bar"
+                          ],
+                          "type": "string"
+                        },
+                        "title": {
+                          "maxLength": 4096,
+                          "type": "string"
+                        }
+                      },
+                      "required": [],
+                      "type": "object"
+                    },
+                    "id": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "update_pivot_chart",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changes",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Delete an editable PivotChart while retaining its source PivotTable.",
+                  "properties": {
+                    "id": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "delete_pivot_chart",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Save a validated assumption set, scenario, Goal Seek or Solver setup in the isolated proposal. Saving never applies inputs or accepts a numerical solution.",
+                  "properties": {
+                    "definition": {
+                      "oneOf": [
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "cells": {
+                              "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "col": {
+                                    "maximum": 16384,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "row": {
+                                    "maximum": 1048576,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "sheet": {
+                                    "maxLength": 128,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "number",
+                                      "string",
+                                      "boolean",
+                                      "blank"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": [
+                                      "number",
+                                      "string",
+                                      "boolean",
+                                      "null"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "sheet",
+                                  "row",
+                                  "col",
+                                  "type",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "maxItems": 1000,
+                              "minItems": 1,
+                              "type": "array"
+                            },
+                            "id": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "kind": {
+                              "const": "assumption_set",
+                              "type": "string"
+                            },
+                            "name": {
+                              "maxLength": 64,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "version": {
+                              "const": 1,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "cells",
+                            "version",
+                            "id",
+                            "name",
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "cells": {
+                              "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "col": {
+                                    "maximum": 16384,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "row": {
+                                    "maximum": 1048576,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "sheet": {
+                                    "maxLength": 128,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "number",
+                                      "string",
+                                      "boolean",
+                                      "blank"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": [
+                                      "number",
+                                      "string",
+                                      "boolean",
+                                      "null"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "sheet",
+                                  "row",
+                                  "col",
+                                  "type",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "maxItems": 1000,
+                              "minItems": 1,
+                              "type": "array"
+                            },
+                            "id": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "kind": {
+                              "const": "scenario",
+                              "type": "string"
+                            },
+                            "name": {
+                              "maxLength": 64,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "version": {
+                              "const": 1,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "cells",
+                            "version",
+                            "id",
+                            "name",
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "id": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "kind": {
+                              "const": "goal_seek",
+                              "type": "string"
+                            },
+                            "name": {
+                              "maxLength": 64,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "specification": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "changing": {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "col": {
+                                      "maximum": 16384,
+                                      "minimum": 1,
+                                      "type": "integer"
+                                    },
+                                    "row": {
+                                      "maximum": 1048576,
+                                      "minimum": 1,
+                                      "type": "integer"
+                                    },
+                                    "sheet": {
+                                      "maxLength": 128,
+                                      "minLength": 1,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "sheet",
+                                    "row",
+                                    "col"
+                                  ],
+                                  "type": "object"
+                                },
+                                "lower": {
+                                  "type": "number"
+                                },
+                                "maxEvaluations": {
+                                  "maximum": 1000000,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "maxIterations": {
+                                  "maximum": 1000000,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "output": {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "col": {
+                                      "maximum": 16384,
+                                      "minimum": 1,
+                                      "type": "integer"
+                                    },
+                                    "row": {
+                                      "maximum": 1048576,
+                                      "minimum": 1,
+                                      "type": "integer"
+                                    },
+                                    "sheet": {
+                                      "maxLength": 128,
+                                      "minLength": 1,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "sheet",
+                                    "row",
+                                    "col"
+                                  ],
+                                  "type": "object"
+                                },
+                                "relativeTolerance": {
+                                  "minimum": 0,
+                                  "type": "number"
+                                },
+                                "start": {
+                                  "type": "number"
+                                },
+                                "target": {
+                                  "type": "number"
+                                },
+                                "tolerance": {
+                                  "exclusiveMinimum": 0,
+                                  "type": "number"
+                                },
+                                "upper": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "output",
+                                "changing",
+                                "target"
+                              ],
+                              "type": "object"
+                            },
+                            "version": {
+                              "const": 1,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "specification",
+                            "version",
+                            "id",
+                            "name",
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "id": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "kind": {
+                              "const": "solver",
+                              "type": "string"
+                            },
+                            "name": {
+                              "maxLength": 64,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "specification": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "constraints": {
+                                  "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "col": {
+                                        "maximum": 16384,
+                                        "minimum": 1,
+                                        "type": "integer"
+                                      },
+                                      "relation": {
+                                        "enum": [
+                                          "<=",
+                                          ">=",
+                                          "="
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "row": {
+                                        "maximum": 1048576,
+                                        "minimum": 1,
+                                        "type": "integer"
+                                      },
+                                      "sheet": {
+                                        "maxLength": 128,
+                                        "minLength": 1,
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "sheet",
+                                      "row",
+                                      "col",
+                                      "relation",
+                                      "value"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "maxItems": 1000,
+                                  "type": "array"
+                                },
+                                "goal": {
+                                  "enum": [
+                                    "min",
+                                    "max",
+                                    "value"
+                                  ],
+                                  "type": "string"
+                                },
+                                "maxEvaluations": {
+                                  "maximum": 1000000,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "method": {
+                                  "enum": [
+                                    "linear",
+                                    "nonlinear",
+                                    "evolutionary"
+                                  ],
+                                  "type": "string"
+                                },
+                                "objective": {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "col": {
+                                      "maximum": 16384,
+                                      "minimum": 1,
+                                      "type": "integer"
+                                    },
+                                    "row": {
+                                      "maximum": 1048576,
+                                      "minimum": 1,
+                                      "type": "integer"
+                                    },
+                                    "sheet": {
+                                      "maxLength": 128,
+                                      "minLength": 1,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "sheet",
+                                    "row",
+                                    "col"
+                                  ],
+                                  "type": "object"
+                                },
+                                "seed": {
+                                  "maximum": 4294967295,
+                                  "minimum": 0,
+                                  "type": "integer"
+                                },
+                                "target": {
+                                  "type": "number"
+                                },
+                                "tolerance": {
+                                  "exclusiveMinimum": 0,
+                                  "maximum": 1,
+                                  "type": "number"
+                                },
+                                "variables": {
+                                  "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "binary": {
+                                        "type": "boolean"
+                                      },
+                                      "col": {
+                                        "maximum": 16384,
+                                        "minimum": 1,
+                                        "type": "integer"
+                                      },
+                                      "integer": {
+                                        "type": "boolean"
+                                      },
+                                      "lower": {
+                                        "type": "number"
+                                      },
+                                      "row": {
+                                        "maximum": 1048576,
+                                        "minimum": 1,
+                                        "type": "integer"
+                                      },
+                                      "sheet": {
+                                        "maxLength": 128,
+                                        "minLength": 1,
+                                        "type": "string"
+                                      },
+                                      "start": {
+                                        "type": "number"
+                                      },
+                                      "upper": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "sheet",
+                                      "row",
+                                      "col"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "maxItems": 200,
+                                  "minItems": 1,
+                                  "type": "array"
+                                }
+                              },
+                              "required": [
+                                "objective",
+                                "variables"
+                              ],
+                              "type": "object"
+                            },
+                            "version": {
+                              "const": 1,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "specification",
+                            "version",
+                            "id",
+                            "name",
+                            "kind"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "type": {
+                      "const": "save_financial_model",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "definition",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Run exactly one new editable definition or saved model id using the frozen calculation context. Builds a forecast/comparison/sensitivity report, applies saved inputs, or offers only a qualified Goal Seek/Solver solution. The result remains an isolated proposal for user review.",
+                  "oneOf": [
+                    {
+                      "required": [
+                        "id"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "definition"
+                      ]
+                    }
+                  ],
+                  "properties": {
+                    "definition": {
+                      "oneOf": [
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "cells": {
+                              "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "col": {
+                                    "maximum": 16384,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "row": {
+                                    "maximum": 1048576,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "sheet": {
+                                    "maxLength": 128,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "number",
+                                      "string",
+                                      "boolean",
+                                      "blank"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": [
+                                      "number",
+                                      "string",
+                                      "boolean",
+                                      "null"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "sheet",
+                                  "row",
+                                  "col",
+                                  "type",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "maxItems": 1000,
+                              "minItems": 1,
+                              "type": "array"
+                            },
+                            "id": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "kind": {
+                              "const": "assumption_set",
+                              "type": "string"
+                            },
+                            "name": {
+                              "maxLength": 64,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "version": {
+                              "const": 1,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "cells",
+                            "version",
+                            "id",
+                            "name",
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "cells": {
+                              "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "col": {
+                                    "maximum": 16384,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "row": {
+                                    "maximum": 1048576,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "sheet": {
+                                    "maxLength": 128,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "number",
+                                      "string",
+                                      "boolean",
+                                      "blank"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": [
+                                      "number",
+                                      "string",
+                                      "boolean",
+                                      "null"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "sheet",
+                                  "row",
+                                  "col",
+                                  "type",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "maxItems": 1000,
+                              "minItems": 1,
+                              "type": "array"
+                            },
+                            "id": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "kind": {
+                              "const": "scenario",
+                              "type": "string"
+                            },
+                            "name": {
+                              "maxLength": 64,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "version": {
+                              "const": 1,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "cells",
+                            "version",
+                            "id",
+                            "name",
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "id": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "kind": {
+                              "const": "goal_seek",
+                              "type": "string"
+                            },
+                            "name": {
+                              "maxLength": 64,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "specification": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "changing": {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "col": {
+                                      "maximum": 16384,
+                                      "minimum": 1,
+                                      "type": "integer"
+                                    },
+                                    "row": {
+                                      "maximum": 1048576,
+                                      "minimum": 1,
+                                      "type": "integer"
+                                    },
+                                    "sheet": {
+                                      "maxLength": 128,
+                                      "minLength": 1,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "sheet",
+                                    "row",
+                                    "col"
+                                  ],
+                                  "type": "object"
+                                },
+                                "lower": {
+                                  "type": "number"
+                                },
+                                "maxEvaluations": {
+                                  "maximum": 1000000,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "maxIterations": {
+                                  "maximum": 1000000,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "output": {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "col": {
+                                      "maximum": 16384,
+                                      "minimum": 1,
+                                      "type": "integer"
+                                    },
+                                    "row": {
+                                      "maximum": 1048576,
+                                      "minimum": 1,
+                                      "type": "integer"
+                                    },
+                                    "sheet": {
+                                      "maxLength": 128,
+                                      "minLength": 1,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "sheet",
+                                    "row",
+                                    "col"
+                                  ],
+                                  "type": "object"
+                                },
+                                "relativeTolerance": {
+                                  "minimum": 0,
+                                  "type": "number"
+                                },
+                                "start": {
+                                  "type": "number"
+                                },
+                                "target": {
+                                  "type": "number"
+                                },
+                                "tolerance": {
+                                  "exclusiveMinimum": 0,
+                                  "type": "number"
+                                },
+                                "upper": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "output",
+                                "changing",
+                                "target"
+                              ],
+                              "type": "object"
+                            },
+                            "version": {
+                              "const": 1,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "specification",
+                            "version",
+                            "id",
+                            "name",
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "id": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "kind": {
+                              "const": "solver",
+                              "type": "string"
+                            },
+                            "name": {
+                              "maxLength": 64,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "specification": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "constraints": {
+                                  "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "col": {
+                                        "maximum": 16384,
+                                        "minimum": 1,
+                                        "type": "integer"
+                                      },
+                                      "relation": {
+                                        "enum": [
+                                          "<=",
+                                          ">=",
+                                          "="
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "row": {
+                                        "maximum": 1048576,
+                                        "minimum": 1,
+                                        "type": "integer"
+                                      },
+                                      "sheet": {
+                                        "maxLength": 128,
+                                        "minLength": 1,
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "sheet",
+                                      "row",
+                                      "col",
+                                      "relation",
+                                      "value"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "maxItems": 1000,
+                                  "type": "array"
+                                },
+                                "goal": {
+                                  "enum": [
+                                    "min",
+                                    "max",
+                                    "value"
+                                  ],
+                                  "type": "string"
+                                },
+                                "maxEvaluations": {
+                                  "maximum": 1000000,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "method": {
+                                  "enum": [
+                                    "linear",
+                                    "nonlinear",
+                                    "evolutionary"
+                                  ],
+                                  "type": "string"
+                                },
+                                "objective": {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "col": {
+                                      "maximum": 16384,
+                                      "minimum": 1,
+                                      "type": "integer"
+                                    },
+                                    "row": {
+                                      "maximum": 1048576,
+                                      "minimum": 1,
+                                      "type": "integer"
+                                    },
+                                    "sheet": {
+                                      "maxLength": 128,
+                                      "minLength": 1,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "sheet",
+                                    "row",
+                                    "col"
+                                  ],
+                                  "type": "object"
+                                },
+                                "seed": {
+                                  "maximum": 4294967295,
+                                  "minimum": 0,
+                                  "type": "integer"
+                                },
+                                "target": {
+                                  "type": "number"
+                                },
+                                "tolerance": {
+                                  "exclusiveMinimum": 0,
+                                  "maximum": 1,
+                                  "type": "number"
+                                },
+                                "variables": {
+                                  "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "binary": {
+                                        "type": "boolean"
+                                      },
+                                      "col": {
+                                        "maximum": 16384,
+                                        "minimum": 1,
+                                        "type": "integer"
+                                      },
+                                      "integer": {
+                                        "type": "boolean"
+                                      },
+                                      "lower": {
+                                        "type": "number"
+                                      },
+                                      "row": {
+                                        "maximum": 1048576,
+                                        "minimum": 1,
+                                        "type": "integer"
+                                      },
+                                      "sheet": {
+                                        "maxLength": 128,
+                                        "minLength": 1,
+                                        "type": "string"
+                                      },
+                                      "start": {
+                                        "type": "number"
+                                      },
+                                      "upper": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "sheet",
+                                      "row",
+                                      "col"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "maxItems": 200,
+                                  "minItems": 1,
+                                  "type": "array"
+                                }
+                              },
+                              "required": [
+                                "objective",
+                                "variables"
+                              ],
+                              "type": "object"
+                            },
+                            "version": {
+                              "const": 1,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "specification",
+                            "version",
+                            "id",
+                            "name",
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "assumptionSetId": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "drivers": {
+                              "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "base": {
+                                    "oneOf": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                          "col": {
+                                            "maximum": 16384,
+                                            "minimum": 1,
+                                            "type": "integer"
+                                          },
+                                          "row": {
+                                            "maximum": 1048576,
+                                            "minimum": 1,
+                                            "type": "integer"
+                                          },
+                                          "sheet": {
+                                            "maxLength": 128,
+                                            "minLength": 1,
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "sheet",
+                                          "row",
+                                          "col"
+                                        ],
+                                        "type": "object"
+                                      }
+                                    ]
+                                  },
+                                  "growth": {
+                                    "oneOf": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                          "col": {
+                                            "maximum": 16384,
+                                            "minimum": 1,
+                                            "type": "integer"
+                                          },
+                                          "row": {
+                                            "maximum": 1048576,
+                                            "minimum": 1,
+                                            "type": "integer"
+                                          },
+                                          "sheet": {
+                                            "maxLength": 128,
+                                            "minLength": 1,
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "sheet",
+                                          "row",
+                                          "col"
+                                        ],
+                                        "type": "object"
+                                      }
+                                    ]
+                                  },
+                                  "name": {
+                                    "maxLength": 64,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "numberFormat": {
+                                    "maxLength": 256,
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "base",
+                                  "growth"
+                                ],
+                                "type": "object"
+                              },
+                              "maxItems": 32,
+                              "minItems": 1,
+                              "type": "array"
+                            },
+                            "id": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "kind": {
+                              "const": "forecast",
+                              "type": "string"
+                            },
+                            "name": {
+                              "maxLength": 64,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "output": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "col1": {
+                                  "maximum": 16384,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "row1": {
+                                  "maximum": 1048576,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "sheet": {
+                                  "maxLength": 128,
+                                  "minLength": 1,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "sheet",
+                                "row1",
+                                "col1"
+                              ],
+                              "type": "object"
+                            },
+                            "periods": {
+                              "maximum": 120,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "startPeriod": {
+                              "maximum": 9999,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "version": {
+                              "const": 1,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "periods",
+                            "drivers",
+                            "output",
+                            "version",
+                            "id",
+                            "name",
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "id": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "includeBaseline": {
+                              "type": "boolean"
+                            },
+                            "kind": {
+                              "const": "scenario_comparison",
+                              "type": "string"
+                            },
+                            "name": {
+                              "maxLength": 64,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "output": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "col1": {
+                                  "maximum": 16384,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "row1": {
+                                  "maximum": 1048576,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "sheet": {
+                                  "maxLength": 128,
+                                  "minLength": 1,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "sheet",
+                                "row1",
+                                "col1"
+                              ],
+                              "type": "object"
+                            },
+                            "outputs": {
+                              "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "col": {
+                                    "maximum": 16384,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "label": {
+                                    "maxLength": 64,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "numberFormat": {
+                                    "maxLength": 256,
+                                    "type": "string"
+                                  },
+                                  "row": {
+                                    "maximum": 1048576,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "sheet": {
+                                    "maxLength": 128,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "sheet",
+                                  "row",
+                                  "col",
+                                  "label"
+                                ],
+                                "type": "object"
+                              },
+                              "maxItems": 32,
+                              "minItems": 1,
+                              "type": "array"
+                            },
+                            "scenarioIds": {
+                              "items": {
+                                "maxLength": 128,
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "maxItems": 32,
+                              "minItems": 1,
+                              "type": "array",
+                              "uniqueItems": true
+                            },
+                            "version": {
+                              "const": 1,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "scenarioIds",
+                            "outputs",
+                            "output",
+                            "version",
+                            "id",
+                            "name",
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "id": {
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "inputs": {
+                              "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "col": {
+                                    "maximum": 16384,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "label": {
+                                    "maxLength": 64,
+                                    "type": "string"
+                                  },
+                                  "numberFormat": {
+                                    "maxLength": 256,
+                                    "type": "string"
+                                  },
+                                  "row": {
+                                    "maximum": 1048576,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "sheet": {
+                                    "maxLength": 128,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "values": {
+                                    "items": {
+                                      "type": "number"
+                                    },
+                                    "maxItems": 100,
+                                    "minItems": 1,
+                                    "type": "array"
+                                  }
+                                },
+                                "required": [
+                                  "sheet",
+                                  "row",
+                                  "col",
+                                  "values"
+                                ],
+                                "type": "object"
+                              },
+                              "maxItems": 2,
+                              "minItems": 1,
+                              "type": "array"
+                            },
+                            "kind": {
+                              "const": "sensitivity",
+                              "type": "string"
+                            },
+                            "name": {
+                              "maxLength": 64,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "output": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "col1": {
+                                  "maximum": 16384,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "row1": {
+                                  "maximum": 1048576,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "sheet": {
+                                  "maxLength": 128,
+                                  "minLength": 1,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "sheet",
+                                "row1",
+                                "col1"
+                              ],
+                              "type": "object"
+                            },
+                            "result": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "col": {
+                                  "maximum": 16384,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "label": {
+                                  "maxLength": 64,
+                                  "minLength": 1,
+                                  "type": "string"
+                                },
+                                "numberFormat": {
+                                  "maxLength": 256,
+                                  "type": "string"
+                                },
+                                "row": {
+                                  "maximum": 1048576,
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "sheet": {
+                                  "maxLength": 128,
+                                  "minLength": 1,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "sheet",
+                                "row",
+                                "col",
+                                "label"
+                              ],
+                              "type": "object"
+                            },
+                            "version": {
+                              "const": 1,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "inputs",
+                            "result",
+                            "output",
+                            "version",
+                            "id",
+                            "name",
+                            "kind"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "id": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "run_financial_model",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Apply a saved assumption set or scenario to its validated constant input cells in the proposal, preserving formulas and generated report ownership.",
+                  "properties": {
+                    "id": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "apply_financial_scenario",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "description": "Delete an editable saved model and its generated owned output together. Dependent models must be removed first; source model inputs are retained.",
+                  "properties": {
+                    "id": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "delete_financial_model",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            "maxItems": 10000,
+            "minItems": 1,
+            "type": "array"
+          },
+          "revision": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "revision",
+          "operations"
+        ],
+        "type": "object"
+      },
+      "name": "workbook_v1_preview",
+      "type": "function"
+    }
+  ],
+  "version": "workbook.v1"
+}

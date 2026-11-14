@@ -1,0 +1,42 @@
+{
+  "blankSourceInputs": 14286,
+  "calculationOutputValues": 10000,
+  "computedResults": true,
+  "currentSourceCalculationMs": 4526.353603,
+  "currentSourceGenerationMs": 1796.010554,
+  "fields": 10,
+  "filterApplyMs": 6352.109135,
+  "filterRegenerationMs": 1261.598204,
+  "fixtureBuildMs": 1523.314252,
+  "initialCreationIncludingValidationMs": 12725.775039,
+  "initialWorkerWallMs": 11172.341081,
+  "maximumIndividualChildPeakRssKiB": 2255172,
+  "measurementBoundary": "Exact-capacity calculation/report/refresh path only; native save, reopen and recovery covered by the separate full baseline.",
+  "minimumFromCurrentCacheMs": 574.012214,
+  "noOpRefreshApplyMs": 162.719371,
+  "nonemptyHeaderFields": 10,
+  "nonemptySourceInputs": 985714,
+  "processPeakRssKiB": 1836120,
+  "records": 100000,
+  "referenceMachineMatch": false,
+  "refreshUndoMs": 138.788872,
+  "requestSerializationMs": 804.16298,
+  "responseParsingMs": 154.087149,
+  "sourceDataCells": 1000000,
+  "sourceFormulas": 10000,
+  "sourceRange": "A1:J100001",
+  "validationPassed": true,
+  "binaryIdentity": {
+    "benchmarkBinarySha256": "2275dc31e47d34f6fc6b648213cadfc7b72f3c3ba5a50f03d17079515af945f8",
+    "workerBinarySha256": "29814d5ed667c7f2f9a43c6818abf51de21ec3de9acea2c449812acd66fab75c"
+  },
+  "pipelineProcessTree": {
+    "wallSeconds": 34.50186504900921,
+    "sampledProcessTreePeakRssKiB": 2795684,
+    "sampleIntervalMs": 25
+  },
+  "hardware": {"redacted": true, "reason": "Host-specific configuration omitted from public evidence"},
+  "hardwareQualification": "Host-specific configuration is redacted; this run does not qualify a 4-core, 16-GiB reference host.",
+  "recoveryDatabaseRetained": false,
+  "independentInspection": []
+}

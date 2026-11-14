@@ -1,0 +1,18 @@
+/build*/
+/.deps/
+/output/
+/dist/
+**/__pycache__/
+**/target/
+*.user
+# Generated screenshots remain local; tests verify behavior and results.
+/docs/validation/**/*.png
+# Local credentials and editor state.
+/.env
+/.env.*
+!/.env.example
+/.codex/
+/.aws/
+/.agents/
+*.swp
+*.swo

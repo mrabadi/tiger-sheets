@@ -1,0 +1,31 @@
+{
+  "tiger-sheets": {
+    "sha256": "bfb1166b57b61a37eae4bf0041b589e02dc8bcd1f4032e0fa9528455cb0aedf7",
+    "bytes": 28049488
+  },
+  "tigersheets-report-worker": {
+    "sha256": "77fb145ab5c678667d0047de5d48cb07be9075ac7c783cc92501b2a83effb838",
+    "bytes": 18953600
+  },
+  "tigersheets-vba-worker": {
+    "sha256": "00a597e20e8f3f13e139ae4bf542cf57a16d6309012b10f8d0eeec6f4bf7bafe",
+    "bytes": 6280840
+  },
+  "appVersion": "TigerSheets 0.2.0~dev.1",
+  "ctest": {
+    "passed": 80,
+    "failed": 0,
+    "wallSeconds": 26.17
+  },
+  "cargoBridge": {
+    "passed": 2,
+    "failed": 0
+  },
+  "pinnedEngine": {
+    "unitPassed": 2767,
+    "ignored": 8,
+    "docPassed": 23,
+    "failed": 0
+  },
+  "fullReleaseGate": "expected refusal, incomplete Excel/VBA acceptance"
+}

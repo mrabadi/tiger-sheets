@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_development_deb_is_installable_and_clearly_labeled (__main__.PackagingTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/tiger-sheets/tests/packaging_tests.py", line 60, in test_development_deb_is_installable_and_clearly_labeled
+    self.assertEqual(sum(line.strip() == 'TigerSheets development build' for line in description.splitlines()),
+AssertionError: 2 != 1 : the installer description must contain its summary only once
+
+----------------------------------------------------------------------
+Ran 1 test in 0.021s
+
+FAILED (failures=1)

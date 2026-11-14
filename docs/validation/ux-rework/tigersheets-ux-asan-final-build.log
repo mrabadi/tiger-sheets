@@ -1,0 +1,16 @@
+[0/2] Re-checking globbed directories...
+[1/15] Building CXX object CMakeFiles/tigersheets_formula_editor.dir/src/formula_editor.cpp.o
+[2/15] Linking CXX static library libtigersheets_formula_editor.a
+[3/15] Building CXX object CMakeFiles/tigersheets_worksheet_view.dir/src/worksheet_view.cpp.o
+[4/15] Linking CXX static library libtigersheets_worksheet_view.a
+[5/15] Building CXX object CMakeFiles/formula_editor_tests.dir/tests/formula_editor_tests.cpp.o
+[6/15] Linking CXX executable formula_editor_tests
+[7/15] Building CXX object CMakeFiles/formula_workspace_tests.dir/tests/formula_workspace_tests.cpp.o
+[8/15] Building CXX object CMakeFiles/worksheet_entry_tests.dir/tests/worksheet_entry_tests.cpp.o
+[9/15] Linking CXX executable worksheet_entry_tests
+[10/15] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[11/15] Linking CXX static library libtigersheets_desktop.a
+[12/15] Linking CXX executable formula_workspace_tests
+[13/15] Linking CXX executable workspace_ux_tests
+[14/15] Linking CXX executable chart_workspace_tests
+[15/15] Linking CXX executable chart_interaction_tests

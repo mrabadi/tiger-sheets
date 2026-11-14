@@ -1,0 +1,12 @@
+#include "tigersheets/pivot.hpp"
+#include "tigersheets/workbook_tools.hpp"
+#include <iostream>
+#include <stdexcept>
+using namespace tigersheets;
+void require(bool okay,const char* message){if(!okay)throw std::runtime_error(message);}
+void longMemberBounds(){Json cells=Json::array({{{"row",1},{"col",1},{"input","Region"}},{{"row",1},{"col",2},{"input","Revenue"}}});for(int row=2;row<=101;++row){cells.push_back({{"row",row},{"col",1},{"input","'"+std::string(32000,'x')+std::to_string(row)}});cells.push_back({{"row",row},{"col",2},{"input","1"}});}Json book={{"revision",0},{"sheets",Json::array({{{"id","s"},{"name","Source"},{"cells",std::move(cells)}},{{"id","r"},{"name","Report"},{"cells",Json::array()}}})}};
+ const Json definition={{"id","p"},{"name","LongMembers"},{"source",{{"sheet","s"},{"row1",1},{"col1",1},{"row2",101},{"col2",2}}},{"rows",Json::array({{{"field","Region"}}})},{"values",Json::array({{{"field","Revenue"},{"aggregate","sum"}}})},{"output",{{"sheet","r"},{"row1",1},{"col1",1}}}};auto generated=generatePivot(book,{{"revision",0},{"status","ok"},{"values",Json::array()}},definition);book["pivots"]=Json::array({generated.definition});book["sheets"][1]["cells"]=std::move(generated.cells);WorkbookSession session(book);WorkbookTools tools(session,Json::object());const auto result=tools.invoke("workbook_v1_report",{{"id","p"},{"rowLimit",1000}});
+ require(!result.contains("error")&&result.dump().size()<=1048576&&result.at("truncated")==true&&!result.at("data").empty(),"report row labels obey the one MiB reply bound and remain paginated");const auto next=tools.invoke("workbook_v1_report",{{"id","p"},{"rowOffset",result.at("data").size()},{"rowLimit",1000}});require(!next.contains("error")&&next.at("rowKeys")[0]!=result.at("rowKeys").back(),"bounded report pages advance without repeating the last row");
+ book["pivots"][0]["filters"]=Json::array({{{"field","Region"},{"all",false},{"items",book["pivots"][0]["cache"]["fields"][0]["items"]}}});WorkbookSession largeDefinition(book);WorkbookTools oversized(largeDefinition,Json::object());const auto refused=oversized.invoke("workbook_v1_report",{{"id","p"}});require(refused.contains("error")&&refused.dump().size()<4096,"oversized editable definitions refuse safely instead of returning an incomplete filter selection");
+}
+int main(){try{longMemberBounds();std::cout<<"reporting read bounds passed\n";}catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}

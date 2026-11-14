@@ -1,0 +1,2 @@
+{"candidateDiscarded":false,"error":"[json.exception.invalid_iterator.214] cannot get value","recalculatedBetweenSnapshotSlices":true,"unchangedRevisionAndHistory":true}
+Replacing a current calculation during a sliced warm snapshot must discard the candidate

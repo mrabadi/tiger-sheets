@@ -1,0 +1,12 @@
+Command: cmake --build build-release --target worksheet_validation_tests -j2
+Exit: 1
+[1/2] Building CXX object CMakeFiles/worksheet_validation_tests.dir/tests/worksheet_validation_tests.cpp.o
+[2/2] Linking CXX executable worksheet_validation_tests
+FAILED: worksheet_validation_tests 
+: && /usr/bin/c++ -O3 -DNDEBUG  CMakeFiles/worksheet_validation_tests.dir/tests/worksheet_validation_tests.cpp.o -o worksheet_validation_tests  libtigersheets_core.a  libtigersheets_worksheet_layout.a  libtigersheets_financial_models.a  libtigersheets_calculation.a  libtigersheets_pivot.a  libtigersheets_validation.a  libtigersheets_references.a  libtigersheets_formatter.a  ../rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a  -ldl  -lm && :
+/usr/bin/ld: CMakeFiles/worksheet_validation_tests.dir/tests/worksheet_validation_tests.cpp.o: in function `main':
+worksheet_validation_tests.cpp:(.text.startup+0x26b): undefined reference to `tigersheets::worksheetListValidationAt(nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > const&, int, int)'
+/usr/bin/ld: worksheet_validation_tests.cpp:(.text.startup+0x36f): undefined reference to `tigersheets::worksheetListValidationAt(nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > const&, int, int)'
+/usr/bin/ld: worksheet_validation_tests.cpp:(.text.startup+0x426): undefined reference to `tigersheets::worksheetListValidationAt(nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > const&, int, int)'
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.

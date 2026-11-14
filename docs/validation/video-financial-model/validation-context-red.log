@@ -1,0 +1,5 @@
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+FAILED: a newly opened workbook must request calculation instead of offering a previous workbook's cached option

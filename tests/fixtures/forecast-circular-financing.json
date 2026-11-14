@@ -1,0 +1,96 @@
+{
+  "workbook": {
+    "revision": 31,
+    "settings": {
+      "iterationEnabled": true,
+      "maxIterations": 200,
+      "maxChange": 1e-12
+    },
+    "sheets": [
+      {
+        "id": "m",
+        "name": "Financing",
+        "cells": [
+          {
+            "row": 1,
+            "col": 1,
+            "input": "100"
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "input": "='[Assumptions.xlsx]Inputs'!A1"
+          },
+          {
+            "row": 3,
+            "col": 1,
+            "input": "=FinanceRate(0.1)"
+          },
+          {
+            "row": 1,
+            "col": 2,
+            "input": "=MAX(0,A2-A1+B2)"
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "input": "=B1*A3"
+          }
+        ]
+      }
+    ],
+    "vba": {
+      "enabled": true,
+      "modules": [
+        {
+          "name": "FinancingFunctions",
+          "source": "Function FinanceRate(value)\nFinanceRate = value\nEnd Function"
+        }
+      ]
+    }
+  },
+  "retainedLink": {
+    "name": "Assumptions.xlsx",
+    "state": "retained",
+    "enabled": true,
+    "workbook": {
+      "revision": 0,
+      "sheets": [
+        {
+          "id": "i",
+          "name": "Inputs",
+          "cells": [
+            {
+              "row": 1,
+              "col": 1,
+              "input": "150"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "specification": {
+    "changing": {
+      "sheet": "m",
+      "row": 1,
+      "col": 1
+    },
+    "output": {
+      "sheet": "m",
+      "row": 1,
+      "col": 2
+    },
+    "target": 40,
+    "lower": 0,
+    "upper": 150,
+    "tolerance": 1e-07,
+    "maxEvaluations": 100
+  },
+  "expected": {
+    "cash": 114,
+    "debt": 40,
+    "interest": 4,
+    "contextGeneration": 23
+  }
+}

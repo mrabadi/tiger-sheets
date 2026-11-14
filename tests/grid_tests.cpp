@@ -1,0 +1,55 @@
+#include "tigersheets/grid.hpp"
+#include <QApplication>
+#include <QColor>
+#include <iostream>
+bool rejectedCalculationsClearOldDisplay(){
+ using namespace tigersheets;WorkbookSession session;WorksheetModel model(session);model.apply(Json::array({{{"type","set_cell"},{"sheet","sheet-1"},{"row",1},{"col",1},{"input","1"}},{{"type","set_cell"},{"sheet","sheet-1"},{"row",50},{"col",5},{"input","=A1+1"}}}));
+ for(const auto& status:std::vector<std::string>{"not_converged","error","ok"}){const auto revision=session.snapshotView().at("revision");model.setCalculated({{"revision",revision},{"status","ok"},{"values",Json::array({{{"sheet","sheet-1"},{"row",50},{"col",5},{"type","number"},{"value",2}}})}});model.setData(model.index(0,0),QString::number(revision.get<int>()+1),Qt::EditRole);if(model.data(model.index(49,4)).toString()!="2"){std::cerr<<"FAILED: fast edit fixture retains prior dependent value until calculation result\n";return false;}bool repainted=false;const auto connection=QObject::connect(&model,&QAbstractItemModel::dataChanged,[&](QModelIndex first,QModelIndex last){if(first.row()<=49&&last.row()>=49&&first.column()<=4&&last.column()>=4)repainted=true;});model.setCalculated({{"revision",session.snapshotView().at("revision")},{"status",status},{"iteration",{{"converged",false}}},{"values",Json::array()}});QObject::disconnect(connection);if(model.data(model.index(49,4)).toString()!="=A1+1"||!repainted||model.calculatedSnapshot().at("status")!="stale"||model.copyRange(49,4,49,4).at("cells")[0][0].contains("value")){std::cerr<<"FAILED: failed or nonconverged calculation must clear and repaint previous dependent numeric values and reject cache export\n";return false;}}
+ return true;
+}
+bool borrowedPreviewView(){using namespace tigersheets;WorkbookSession session;WorksheetModel model(session);model.setData(model.index(0,0),"Live",Qt::EditRole);const auto live=session.snapshot();auto first=std::make_unique<Json>(live);(*first)["revision"]=live.at("revision").get<int>()+1;(*first)["sheets"][0]["cells"]=Json::array({{{"row",1},{"col",1},{"input","'00123"},{"style",{{"fill","#123456"},{"bold",true}}}},{{"row",1},{"col",2},{"input","=1+2"}}});(*first)["sheets"].push_back({{"id","other"},{"name","Other"},{"cells",Json::array({{{"row",1},{"col",1},{"input","'=lookup"}}})}});model.showPreviewView(*first);if(&model.workbookView()!=first.get()||model.data(model.index(0,0)).toString()!="00123"||model.data(model.index(0,0),Qt::BackgroundRole).value<QColor>()!=QColor("#123456")||(model.flags(model.index(0,0))&Qt::ItemIsEditable)||model.setData(model.index(0,0),"leak",Qt::EditRole)){std::cerr<<"FAILED: borrowed preview must read the exact caller-owned values and style without cloning or allowing edits\n";return false;}model.setCalculated({{"revision",first->at("revision")},{"status","ok"},{"values",Json::array({{{"sheet","sheet-1"},{"row",1},{"col",2},{"type","number"},{"value",3}}})}});const auto clip=model.copyRange(0,0,0,1);if(clip.at("cells")[0][0].at("input")!="'00123"||clip.at("cells")[0][1].at("value")!=3||clip.at("cells")[0][1].at("valueType")!="number"){std::cerr<<"FAILED: borrowed preview preserves typed copy values and literal source\n";return false;}model.setSheetId("other");if(model.data(model.index(0,0)).toString()!="=lookup"||(model.flags(model.index(0,0))&Qt::ItemIsEditable))return false;model.setSheetId("sheet-1");auto replacement=std::make_unique<Json>(*first);(*replacement)["sheets"][0]["cells"][0]["input"]="Replacement";model.showPreviewView(*replacement);first.reset();for(int step=0;step<3;++step){auto next=std::make_unique<Json>(*replacement);(*next)["sheets"][0]["cells"][0]["input"]="View"+std::to_string(step);model.showPreviewView(*next);replacement.reset();replacement=std::move(next);if(model.raw(0,0)!="View"+QString::number(step)||&model.workbookView()!=replacement.get())return false;}model.refresh();replacement.reset();if(model.data(model.index(0,0)).toString()!="Live"||!(model.flags(model.index(0,0))&Qt::ItemIsEditable)||session.snapshot()!=live){std::cerr<<"FAILED: clearing borrowed previews must restore live state before caller releases storage\n";return false;}return true;}
+bool removedSheetFallsBackToLiveSheet(){using namespace tigersheets;WorkbookSession session;WorksheetModel model(session);model.setData(model.index(0,0),"Live",Qt::EditRole);auto preview=session.snapshot();preview["sheets"].push_back({{"id","converted"},{"name","Converted"},{"cells",Json::array({{{"row",1},{"col",1},{"input","Preview"}}})}});model.showPreviewView(preview);model.setSheetId("converted");if(model.raw(0,0)!="Preview")return false;model.refresh();if(model.sheetId()!="sheet-1"||model.raw(0,0)!="Live"){std::cerr<<"FAILED: discarded preview worksheet must fall back to an existing live worksheet\n";return false;}if(!session.apply(session.snapshotView().at("revision"),Json::array({{{"type","add_sheet"},{"id","added"},{"name","Added"}}})))return false;model.refresh();model.setSheetId("added");if(!session.undo())return false;model.refresh();if(model.sheetId()!="sheet-1"||model.raw(0,0)!="Live"){std::cerr<<"FAILED: undo removing the selected worksheet must fall back to an existing live worksheet\n";return false;}return true;}
+int main(int argc,char**argv){
+ QApplication app(argc,argv);
+ if(!rejectedCalculationsClearOldDisplay()||!borrowedPreviewView()||!removedSheetFallsBackToLiveSheet())return 1;
+ tigersheets::WorkbookSession session;
+ tigersheets::WorksheetModel model(session);
+ if(model.rowCount()!=1048576||model.columnCount()!=16384){std::cerr<<"FAILED: Excel worksheet dimensions\n";return 1;}
+ if(!model.setData(model.index(0,0),"Revenue",Qt::EditRole)||model.data(model.index(0,0),Qt::DisplayRole)!="Revenue"){std::cerr<<"FAILED: native grid edits canonical workbook\n";return 1;}
+ model.setData(model.index(0,1),"=100*1.25",Qt::EditRole);
+ model.setCalculated({{"revision",session.snapshot()["revision"]},{"values",tigersheets::Json::array({{{"sheet",model.sheetId().toStdString()},{"row",1},{"col",2},{"type","number"},{"value",125.0}}})}});
+ if(model.data(model.index(0,1),Qt::DisplayRole).toString()!="125"||model.data(model.index(0,1),Qt::EditRole)!="=100*1.25"){std::cerr<<"FAILED: calculated display is separate from formula source\n";return 1;}
+ model.setData(model.index(0,1),"=200",Qt::EditRole);
+ model.setCalculated({{"revision",0},{"values",tigersheets::Json::array({{{"sheet",model.sheetId().toStdString()},{"row",1},{"col",2},{"type","number"},{"value",999.0}}})}});
+ if(model.data(model.index(0,1),Qt::DisplayRole).toString()=="999"){std::cerr<<"FAILED: stale calculation must be discarded\n";return 1;}
+ auto clip=model.copyRange(0,0,0,1);
+ if(!model.pasteRange(2,2,clip)||model.raw(2,3)!="=200"){std::cerr<<"FAILED: internal clipboard copies cells into canonical model\n";return 1;}
+ model.setData(model.index(4,0),"1234.5",Qt::EditRole);
+ model.apply(tigersheets::Json::array({{{"type","set_style"},{"sheet",model.sheetId().toStdString()},{"row",5},{"col",1},{"style",{{"numberFormat","$#,##0.00"},{"fill","#ffcc00"}}}}}));
+ if(model.data(model.index(4,0),Qt::DisplayRole).toString()!="$1,234.50"||model.data(model.index(4,0),Qt::BackgroundRole).value<QColor>()!=QColor("#ffcc00")){std::cerr<<"FAILED: cell number format and fill render from semantic style\n";return 1;}
+ model.setData(model.index(5,0),"45292",Qt::EditRole);model.apply(tigersheets::Json::array({{{"type","set_style"},{"sheet",model.sheetId().toStdString()},{"row",6},{"col",1},{"style",{{"numberFormat","m/d/yyyy"}}}}}));
+ if(model.data(model.index(5,0)).toString()!="1/1/2024"){std::cerr<<"FAILED: Excel serial date displays as a date\n";return 1;}
+ model.apply(tigersheets::Json::array({{{"type","set_cell"},{"sheet",model.sheetId().toStdString()},{"row",7},{"col",1},{"input","0"},{"style",{{"numberFormat","m/d/yyyy"}}}},{{"type","set_metadata"},{"key","settings"},{"value",{{"date1904",true}}}}}));
+ if(model.data(model.index(6,0)).toString()!="1/1/1904"){std::cerr<<"FAILED: 1904 date-system serial zero displays January 1 1904\n";return 1;}
+ model.apply(tigersheets::Json::array({{{"type","set_metadata"},{"key","settings"},{"value",{{"date1904",false}}}}}));
+ for(const auto& [input,format,expected]:std::vector<std::tuple<const char*,const char*,const char*>>{{"1234567","#,##0,,","1"},{"2.5","0.0\"x\"","2.5x"},{"45292.5","m/d/yyyy h:mm","1/1/2024 12:00"}}){model.apply(tigersheets::Json::array({{{"type","set_cell"},{"sheet",model.sheetId().toStdString()},{"row",8},{"col",1},{"input",input},{"style",{{"numberFormat",format}}}}}));if(model.data(model.index(7,0)).toString()!=expected){std::cerr<<"FAILED: shared financial number formatter "<<format<<" expected "<<expected<<" got "<<model.data(model.index(7,0)).toString().toStdString()<<'\n';return 1;}}
+ auto candidate=session.preview(session.snapshot()["revision"],tigersheets::Json::array({{{"type","set_cell"},{"sheet",model.sheetId().toStdString()},{"row",1},{"col",1},{"input","Preview"}}}));
+ model.showPreview(candidate);
+ if(model.data(model.index(0,0)).toString()!="Preview"||model.setData(model.index(0,0),"leak",Qt::EditRole)||session.snapshot()["sheets"][0]["cells"][0]["input"]=="Preview"){std::cerr<<"FAILED: isolated read-only preview renders without mutating live workbook\n";return 1;}
+ tigersheets::WorkbookSession twoSheets;
+ if(!twoSheets.apply(0,tigersheets::Json::array({{{"type","add_sheet"},{"id","second"},{"name","Second"}},{{"type","set_cell"},{"sheet","second"},{"row",1},{"col",1},{"input","Live second"}}}))){std::cerr<<"FAILED: two-sheet preview fixture\n";return 1;}
+ tigersheets::WorksheetModel previewModel(twoSheets);
+ const auto liveBeforePreview=twoSheets.snapshot();
+ const auto twoSheetCandidate=twoSheets.preview(liveBeforePreview["revision"],tigersheets::Json::array({{{"type","set_cell"},{"sheet","sheet-1"},{"row",1},{"col",1},{"input","Preview first"}},{{"type","set_cell"},{"sheet","second"},{"row",1},{"col",1},{"input","Preview second"}}}));
+ previewModel.showPreview(twoSheetCandidate);
+ previewModel.setSheetId("second");
+ const auto visibleSecond=previewModel.data(previewModel.index(0,0)).toString();
+ const bool previewEditable=previewModel.flags(previewModel.index(0,0))&Qt::ItemIsEditable;
+ const bool previewWrite=previewModel.setData(previewModel.index(0,0),"leaked edit",Qt::EditRole);
+ if(visibleSecond!="Preview second"||previewEditable||previewWrite||twoSheets.snapshot()!=liveBeforePreview){std::cerr<<"FAILED: preview sheet switching retains candidate values and read-only isolation\n";return 1;}
+ previewModel.setSheetId("sheet-1");
+ if(previewModel.data(previewModel.index(0,0)).toString()!="Preview first"||(previewModel.flags(previewModel.index(0,0))&Qt::ItemIsEditable)){std::cerr<<"FAILED: return to first preview worksheet remains isolated\n";return 1;}
+ twoSheets.discard();previewModel.refresh();previewModel.setSheetId("second");
+ if(previewModel.data(previewModel.index(0,0)).toString()!="Live second"||!(previewModel.flags(previewModel.index(0,0))&Qt::ItemIsEditable)){std::cerr<<"FAILED: explicit refresh restores live editable workbook after discard\n";return 1;}
+
+}

@@ -1,0 +1,10 @@
+[0/2] Re-checking globbed directories...
+[1/9] Building CXX object CMakeFiles/tigersheets_formula_editor.dir/src/formula_editor.cpp.o
+[2/9] Linking CXX static library libtigersheets_formula_editor.a
+[3/9] Automatic RCC for resources/tiger-sheets.qrc
+[4/9] Building CXX object CMakeFiles/formula_editor_tests.dir/tests/formula_editor_tests.cpp.o
+[5/9] Linking CXX executable formula_editor_tests
+[6/9] Building CXX object CMakeFiles/tigersheets_desktop.dir/tigersheets_desktop_autogen/3YJK5W5UP7/qrc_tiger-sheets.cpp.o
+[7/9] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[8/9] Linking CXX static library libtigersheets_desktop.a
+[9/9] Linking CXX executable workspace_ux_tests

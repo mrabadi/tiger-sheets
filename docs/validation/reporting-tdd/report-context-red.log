@@ -1,0 +1,37 @@
+[0/2] Re-checking globbed directories...
+[1/35] Building CXX object CMakeFiles/tigersheets_capture.dir/src/snapshot_capture.cpp.o
+[2/35] Linking CXX static library libtigersheets_capture.a
+[3/35] Building CXX object CMakeFiles/tigersheets_calculation.dir/src/calculation.cpp.o
+[4/35] Linking CXX static library libtigersheets_calculation.a
+[5/35] Building CXX object CMakeFiles/tigersheets_codex.dir/src/codex.cpp.o
+[6/35] Building CXX object CMakeFiles/tigersheets_workbook_tools.dir/src/workbook_tools.cpp.o
+[7/35] Linking CXX static library libtigersheets_workbook_tools.a
+[8/35] Linking CXX static library libtigersheets_codex.a
+[9/35] Building CXX object CMakeFiles/tigersheets_io.dir/src/pivot_ooxml.cpp.o
+[10/35] Linking CXX static library libtigersheets_io.a
+[11/35] Building CXX object CMakeFiles/tigersheets_worksheet_view.dir/src/worksheet_view.cpp.o
+[12/35] Building CXX object CMakeFiles/tigersheets_grid.dir/src/grid.cpp.o
+[13/35] Linking CXX static library libtigersheets_grid.a
+[14/35] Linking CXX static library libtigersheets_worksheet_view.a
+[15/35] Building CXX object CMakeFiles/tigersheets_links.dir/src/workbook_links.cpp.o
+[16/35] Linking CXX static library libtigersheets_links.a
+[17/35] Building CXX object CMakeFiles/tigersheets_printing.dir/src/printing.cpp.o
+[18/35] Building CXX object CMakeFiles/tigersheets_charts.dir/src/chart.cpp.o
+[19/35] Building CXX object CMakeFiles/tigersheets_charts.dir/src/chart_editor.cpp.o
+[20/35] Linking CXX static library libtigersheets_charts.a
+[21/35] Linking CXX static library libtigersheets_printing.a
+[22/35] Building CXX object CMakeFiles/tigersheets_vba.dir/src/vba.cpp.o
+[23/35] Linking CXX static library libtigersheets_vba.a
+[24/35] Building CXX object CMakeFiles/tigersheets-report-worker.dir/src/report_worker_main.cpp.o
+[25/35] Linking CXX executable tigersheets-report-worker
+[26/35] Building CXX object CMakeFiles/tigersheets_scheduler.dir/src/calculation_scheduler.cpp.o
+[27/35] Linking CXX static library libtigersheets_scheduler.a
+[28/35] Building CXX object CMakeFiles/tigersheets_modeling_ui.dir/src/modeling_ui.cpp.o
+[29/35] Linking CXX static library libtigersheets_modeling_ui.a
+[30/35] Building CXX object CMakeFiles/tigersheets_vba_ui.dir/src/vba_ui.cpp.o
+[31/35] Linking CXX static library libtigersheets_vba_ui.a
+[32/35] Building CXX object CMakeFiles/reporting_workspace_tests.dir/tests/reporting_workspace_tests.cpp.o
+[33/35] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[34/35] Linking CXX static library libtigersheets_desktop.a
+[35/35] Linking CXX executable reporting_workspace_tests
+refreshing calculation context cancels an in-flight report immediately

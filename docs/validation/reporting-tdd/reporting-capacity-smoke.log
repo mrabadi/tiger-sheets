@@ -1,0 +1,113 @@
+{
+  "aggregatesValidated": [
+    "sum",
+    "average",
+    "count",
+    "max",
+    "min"
+  ],
+  "currentSourceCalculationMs": 61.646012,
+  "currentSourceGenerationMs": 14.986556,
+  "deltaApplyAndEnqueueMs": [
+    1.11295,
+    0.175781
+  ],
+  "durabilityBarrierMs": [
+    42.236949,
+    1.47235
+  ],
+  "fields": 10,
+  "filterApplyMs": 44.166824,
+  "filterRegenerationMs": 14.318339,
+  "financialContextAcceptance": {
+    "allIntersectionsAndTotalsValidated": true,
+    "fixture": "/workspace/tiger-sheets/tests/fixtures/reporting-financial-context.json",
+    "frozenRetainedLinkUses": 20,
+    "nativeVbaSourceExportQualified": false,
+    "records": 20,
+    "udfCalls": 20,
+    "workerWallMs": 61.844831
+  },
+  "firstNativeBytes": 123103,
+  "firstNativeReopenMs": 123.676419,
+  "firstNativeSaveMs": 1594.948382,
+  "fixtureBuildMs": 8.043095,
+  "fixtureFiles": [
+    "/tmp/tigersheets-reporting-capacity-smoke/capacity-first.xlsx",
+    "/tmp/tigersheets-reporting-capacity-smoke/capacity-resaved.xlsx"
+  ],
+  "initialCreationIncludingValidationMs": 170.030603,
+  "initialWorkerWallMs": 158.503294,
+  "measurementBoundary": "Headless exact-capacity pipeline; desktop event/input latency is measured separately.",
+  "minimumFromCurrentCacheMs": 4.40774,
+  "nativePivotsValidated": 2,
+  "nativeReopensValidated": 2,
+  "noOpRefreshApplyMs": 1.549955,
+  "processPeakRssKiB": 84032,
+  "records": 1000,
+  "recoveryInitialSessionCaptureMs": 32.745813,
+  "referenceMachineMatch": false,
+  "refreshUndoMs": 4.109219,
+  "requestSerializationMs": 4.116017,
+  "responseParsingMs": 2.306814,
+  "secondNativeBytes": 123487,
+  "secondNativeReopenMs": 145.413739,
+  "secondNativeSaveMs": 1780.436235,
+  "sourceDataCells": 10000,
+  "sourceFormulas": 100,
+  "sourceRange": "A1:J1001",
+  "validationPassed": true,
+  "pipelineProcessTree": {
+    "wallSeconds": 4.2953825849690475,
+    "sampledProcessTreePeakRssKiB": 101788,
+    "sampleIntervalMs": 25
+  },
+  "hardware": {"redacted": true, "reason": "Host-specific configuration omitted from public evidence"},
+  "hardwareQualification": "Host-specific configuration is redacted; this run does not qualify a 4-core, 16-GiB reference host.",
+  "independentInspection": [
+    {
+      "wallSeconds": 1.3778364089666866,
+      "sampledProcessTreePeakRssKiB": 90552,
+      "sampleIntervalMs": 25,
+      "result": {
+        "path": "/tmp/tigersheets-reporting-capacity-smoke/capacity-first.xlsx",
+        "openpyxl": "3.0.9",
+        "pivots": [
+          "CapacityMinimum",
+          "CapacitySales"
+        ],
+        "records": [
+          1000,
+          1000
+        ],
+        "pivot_charts": [
+          "xl/charts/tigersheets-chart1.xml",
+          "xl/charts/tigersheets-chart3.xml",
+          "xl/charts/tigersheets-chart2.xml"
+        ]
+      }
+    },
+    {
+      "wallSeconds": 1.3485249339719303,
+      "sampledProcessTreePeakRssKiB": 90552,
+      "sampleIntervalMs": 25,
+      "result": {
+        "path": "/tmp/tigersheets-reporting-capacity-smoke/capacity-resaved.xlsx",
+        "openpyxl": "3.0.9",
+        "pivots": [
+          "CapacitySales",
+          "CapacityMinimum"
+        ],
+        "records": [
+          1000,
+          1000
+        ],
+        "pivot_charts": [
+          "xl/charts/tigersheets-chart1.xml",
+          "xl/charts/tigersheets-chart3.xml",
+          "xl/charts/tigersheets-chart2.xml"
+        ]
+      }
+    }
+  ]
+}

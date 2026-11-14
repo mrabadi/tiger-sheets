@@ -1,0 +1,3 @@
+Command: /tmp/worksheet_validation_tests (fresh C++ source; existing CMake compilation/link flags)
+Exit: 1
+FAILED: native list validation transaction: 

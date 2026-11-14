@@ -1,0 +1,76 @@
+TigerSheets formula workspace: agent execution transcript excerpts
+================================================================
+
+PROVENANCE AND LIMITS
+These are retrospective excerpts of command/output pairs actually observed in
+the agent's execution-tool responses. The original runs were not redirected
+to raw log files. This document is an execution transcript excerpt, NOT an
+original raw stdout/stderr capture, and does not manufacture timestamps.
+
+The standalone test was compiled/linked independently using:
+  python3 /tmp/tigersheets-formula-workspace-build.py
+That temporary helper compiled tests/formula_workspace_tests.cpp with
+-Wall -Wextra -Wpedantic and linked the existing build/ workspace libraries
+plus the frozen formula-editor object. It did not mutate the shared build.
+The build completed successfully without compiler warnings before each run
+recorded below. The maintained test is now available through root CMake.
+
+Working directory for all three commands:
+  /workspace/tiger-sheets
+
+RED 1: CELL COMPLETION TAB MUST NOT COMMIT
+----------------------------------------
+Stage: real MainWindow cell editor did not yet use FormulaLineEdit.
+The binary at this stage contained the initial cell-completion regression.
+Command actually executed:
+  env QT_QPA_PLATFORM=offscreen /tmp/tigersheets-formula-workspace-tests
+Observed tool result: exit_code 1
+Output excerpt (verbatim):
+formula workspace test failed: autocomplete Tab must not commit incomplete =SUM to the canonical workbook
+
+The test opened an actual cell editor with F2, typed =SUM, pressed Tab, and
+compared the canonical snapshot before checking the resulting editor state.
+This failed on the intended behavior: incomplete text was committed.
+
+RED 2: WORKBOOK METADATA MUST SUPPLY COMPLETIONS
+----------------------------------------------
+Stage: the formula bar had built-in completion, but workbook names/functions
+had not yet been connected to its completion context.
+Command actually executed:
+  env QT_QPA_PLATFORM=offscreen /tmp/tigersheets-formula-workspace-tests workbook_context
+Observed tool result: exit_code 1
+Output excerpt (verbatim; preceding Qt offscreen notices omitted):
+formula workspace test failed: set_metadata names must appear in nested formula-bar completion without a function parenthesis
+
+The fixture applied set_metadata through WorksheetModel for names and enabled
+VBA, recalculated, typed =IF(1,disco and pressed Tab. The expected pending
+text was =IF(1,DiscountRate, without a function parenthesis or transaction.
+
+FINAL INDEPENDENT GREEN
+-----------------------
+Stage: current integrated libraries, complete seven-scenario test, temporary
+context-progression diagnostics removed, independently rebuilt and relinked.
+Command actually executed:
+  env QT_QPA_PLATFORM=offscreen /tmp/tigersheets-formula-workspace-tests
+Observed final tool result: exit_code 0
+Output summary excerpt (verbatim; Qt offscreen notices omitted):
+PASS cell_completion
+PASS workbook_context
+PASS bar_keyboard
+PASS bar_mouse
+PASS nested_hints
+PASS escape
+PASS unicode_f4
+formula workspace tests passed
+
+The final process returned output in multiple tool chunks; the summary above
+was returned in the completion chunk. Qt's offscreen backend also printed
+"This plugin does not support raise()" notices. Those notices are unrelated
+to the assertions and are not represented here as failures or suppressed tests.
+
+EXCLUDED SETUP ARTIFACT
+-----------------------
+docs/validation/ux-rework/tigersheets-ux-workbook-context-red.log was produced
+by a root run of a stale binary and contains "formula workspace tests passed".
+Despite its filename, it is a setup artifact, NOT RED evidence. It was not
+used to establish either failing behavior recorded above.

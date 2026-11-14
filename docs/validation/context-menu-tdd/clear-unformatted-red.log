@@ -1,0 +1,11 @@
+COMMAND: c++ -std=c++20 -fPIC -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_TESTLIB_LIB -Iinclude -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/x86_64-linux-gnu/qt6/QtTest tests/worksheet_cell_format_tests.cpp src/worksheet_cell_format.cpp -Wl,--start-group build-release/libtigersheets_grid.a build-release/libtigersheets_core.a build-release/libtigersheets_worksheet_layout.a build-release/libtigersheets_financial_models.a build-release/libtigersheets_calculation.a build-release/libtigersheets_pivot.a build-release/libtigersheets_references.a build-release/libtigersheets_formatter.a rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a -Wl,--end-group -lQt6Widgets -lQt6Gui -lQt6Core -lQt6Test -lpthread -ldl -lm -o /tmp/tigersheets-cell-format-tests
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+clearing an unformatted range does not allocate blank cells or create history
+Traceback (most recent call last):
+  File "/tmp/tigersheets-build-cell-format.py", line 8, in <module>
+    subprocess.run(['/tmp/tigersheets-cell-format-tests'],cwd=root,env={**__import__('os').environ,'QT_QPA_PLATFORM':'offscreen'},check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/tmp/tigersheets-cell-format-tests']' returned non-zero exit status 1.

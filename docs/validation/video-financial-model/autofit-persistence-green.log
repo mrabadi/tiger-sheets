@@ -1,0 +1,9 @@
+Provenance: Exact command, exit status and output transcribed from this task's recorded tool response.
+This file was preserved after the run; it is not a new execution or a copied /tmp shell log.
+Execution chunk: 827e19
+Working directory: /workspace/tiger-sheets
+Command: QT_QPA_PLATFORM=offscreen build-release/worksheet_autofit_ui_tests && QT_QPA_PLATFORM=offscreen build-release/worksheet_fill_handle_tests
+Exit status: 0
+Output:
+Worksheet header auto-fit UI tests passed
+Worksheet fill handle tests passed

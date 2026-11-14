@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="/compatibility">
+    <file alias="functions.json">../compatibility/functions.json</file>
+  </qresource>
+  <qresource prefix="/icons">
+    <file alias="tiger-sheets-16.png">../packaging/icons/hicolor/16x16/apps/tiger-sheets.png</file>
+    <file alias="tiger-sheets-24.png">../packaging/icons/hicolor/24x24/apps/tiger-sheets.png</file>
+    <file alias="tiger-sheets-32.png">../packaging/icons/hicolor/32x32/apps/tiger-sheets.png</file>
+    <file alias="tiger-sheets-48.png">../packaging/icons/hicolor/48x48/apps/tiger-sheets.png</file>
+    <file alias="tiger-sheets-64.png">../packaging/icons/hicolor/64x64/apps/tiger-sheets.png</file>
+    <file alias="tiger-sheets-128.png">../packaging/icons/hicolor/128x128/apps/tiger-sheets.png</file>
+    <file alias="tiger-sheets-256.png">../packaging/icons/hicolor/256x256/apps/tiger-sheets.png</file>
+    <file alias="tiger-sheets-512.png">../packaging/icons/hicolor/512x512/apps/tiger-sheets.png</file>
+  </qresource>
+</RCC>

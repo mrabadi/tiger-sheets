@@ -1,0 +1,4 @@
+tests/workbook_links_tests.cpp: In function ‘void {anonymous}::ownedResolutionMovesCanonicalStorage(const std::filesystem::__cxx11::path&)’:
+tests/workbook_links_tests.cpp:31:19: error: ‘prepareWorkbookLinksOwned’ was not declared in this scope
+   31 |     auto prepared=prepareWorkbookLinksOwned(std::move(owned));
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~

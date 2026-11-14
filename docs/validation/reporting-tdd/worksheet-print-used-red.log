@@ -1,0 +1,5 @@
+[1/4] Building CXX object CMakeFiles/printing_core.dir/workspace/tiger-sheets/src/printing.cpp.o
+[2/4] Linking CXX static library libprinting_core.a
+[3/4] Building CXX object CMakeFiles/printing_tests.dir/workspace/tiger-sheets/tests/printing_tests.cpp.o
+[4/4] Linking CXX executable printing_tests
+printing test failed: default printing must include used cells beyond the former A1:I40 placeholder

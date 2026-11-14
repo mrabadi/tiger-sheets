@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="5"
+	failures="4"
+	disabled="0"
+	skipped="0"
+	hostname="redacted-host"
+	time="2"
+	timestamp="2026-11-11T10:43:09"
+	>
+	<testcase name="worksheet_entry_tests" classname="worksheet_entry_tests" time="0.39418" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+</system-out>
+	</testcase>
+	<testcase name="workspace_ux_tests" classname="workspace_ux_tests" time="0.465066" status="fail">
+		<failure message=""/>
+		<system-out>/usr/include/x86_64-linux-gnu/qt6/QtCore/qpointer.h:77:14: runtime error: downcast of address 0x504000091f50 which does not point to an object of type 'QLineEdit'
+0x504000091f50: note: object is of type 'QWidget'
+ 00 00 00 00  20 cd 12 fa 91 76 00 00  00 9b 06 00 70 51 00 00  d0 ce 12 fa 91 76 00 00  00 00 be be
+              ^~~~~~~~~~~~~~~~~~~~~~~
+              vptr for 'QWidget'
+</system-out>
+	</testcase>
+	<testcase name="formula_workspace_tests" classname="formula_workspace_tests" time="0.492778" status="fail">
+		<failure message=""/>
+		<system-out>This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qpointer.h:77:14: runtime error: downcast of address 0x504000091f10 which does not point to an object of type 'QLineEdit'
+0x504000091f10: note: object is of type 'QWidget'
+ 00 00 00 00  20 cd 92 f9 99 74 00 00  00 9b 06 00 70 51 00 00  d0 ce 92 f9 99 74 00 00  00 00 be be
+              ^~~~~~~~~~~~~~~~~~~~~~~
+              vptr for 'QWidget'
+</system-out>
+	</testcase>
+	<testcase name="chart_workspace_tests" classname="chart_workspace_tests" time="0.616066" status="fail">
+		<failure message=""/>
+		<system-out>This plugin does not support propagateSizeHints()
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qpointer.h:77:14: runtime error: downcast of address 0x504000091f50 which does not point to an object of type 'QLineEdit'
+0x504000091f50: note: object is of type 'QWidget'
+ 00 00 00 00  20 cd 12 ce b4 7e 00 00  00 9b 06 00 70 51 00 00  d0 ce 12 ce b4 7e 00 00  00 00 be be
+              ^~~~~~~~~~~~~~~~~~~~~~~
+              vptr for 'QWidget'
+</system-out>
+	</testcase>
+	<testcase name="chart_interaction_tests" classname="chart_interaction_tests" time="0.552016" status="fail">
+		<failure message=""/>
+		<system-out>/usr/include/x86_64-linux-gnu/qt6/QtCore/qpointer.h:77:14: runtime error: downcast of address 0x504000091f10 which does not point to an object of type 'QLineEdit'
+0x504000091f10: note: object is of type 'QWidget'
+ 00 00 00 00  20 cd 52 41 99 7f 00 00  80 9e 06 00 70 51 00 00  d0 ce 52 41 99 7f 00 00  00 00 be be
+              ^~~~~~~~~~~~~~~~~~~~~~~
+              vptr for 'QWidget'
+</system-out>
+	</testcase>
+</testsuite>

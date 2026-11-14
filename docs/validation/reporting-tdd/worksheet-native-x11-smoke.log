@@ -1,0 +1,2 @@
+Qt platform: xcb
+native keyboard/accessibility interface smoke passed

@@ -1,0 +1,18 @@
+/workspace/tiger-sheets/tests/calculation_tests.cpp: In function ‘void {anonymous}::sharedNumberFormattingPreservesFinancialCodes()’:
+/workspace/tiger-sheets/tests/calculation_tests.cpp:297:26: error: ‘formatCellValue’ is not a member of ‘tigersheets’
+  297 |     require(tigersheets::formatCellValue(123456789,"#,##0,,")=="123","Trailing commas must scale financial report values");
+      |                          ^~~~~~~~~~~~~~~
+/workspace/tiger-sheets/tests/calculation_tests.cpp:298:26: error: ‘formatCellValue’ is not a member of ‘tigersheets’
+  298 |     require(tigersheets::formatCellValue(1.25,"0.0\"x\"")=="1.3x","Quoted units must remain literal");
+      |                          ^~~~~~~~~~~~~~~
+/workspace/tiger-sheets/tests/calculation_tests.cpp:299:26: error: ‘formatCellValue’ is not a member of ‘tigersheets’
+  299 |     require(tigersheets::formatCellValue(45292.5,"m/d/yyyy h:mm")=="1/1/2024 12:00","Date and time formatting must retain the fractional day");
+      |                          ^~~~~~~~~~~~~~~
+/workspace/tiger-sheets/tests/calculation_tests.cpp:300:40: error: ‘formatCellValue’ is not a member of ‘tigersheets’
+  300 |     const auto accounting=tigersheets::formatCellValue(-1234,"_($* #,##0.00_);_($* (#,##0.00);_($* \"-\"??_);_(@_)");
+      |                                        ^~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/bin/c++', '-DJSON_DIAGNOSTICS=0', '-DJSON_USE_IMPLICIT_CONVERSIONS=1', '-I/workspace/tiger-sheets/include', '-std=c++20', '-o', '/tmp/reporting-format-red.o', '-c', '/workspace/tiger-sheets/tests/calculation_tests.cpp']' returned non-zero exit status 1.

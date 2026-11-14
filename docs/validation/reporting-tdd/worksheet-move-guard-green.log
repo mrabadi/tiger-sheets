@@ -1,0 +1,6 @@
+[1/5] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/grid.cpp.o
+[2/5] Linking CXX static library libworksheet_core.a
+[3/5] Linking CXX executable references_tests
+[4/5] Linking CXX executable grid_tests
+[5/5] Linking CXX executable worksheet_correctness_tests
+worksheet correctness all passed

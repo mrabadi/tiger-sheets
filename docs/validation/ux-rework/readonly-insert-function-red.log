@@ -1,0 +1,3 @@
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+FAILED: Insert Function must not open a writable dialog or modify a readonly preview formula

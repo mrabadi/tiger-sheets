@@ -1,0 +1,10 @@
+/usr/bin/ld: /tmp/ccTA39qi.o: in function `preparedPreview()':
+prepared_session_tests.cpp:(.text+0x1eaa): undefined reference to `tigersheets::WorkbookSession::previewPrepared(unsigned long, std::unique_ptr<tigersheets::WorkbookSession::PreparedTransaction, std::default_delete<tigersheets::WorkbookSession::PreparedTransaction> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*)'
+/usr/bin/ld: prepared_session_tests.cpp:(.text+0x1f56): undefined reference to `tigersheets::WorkbookSession::previewView[abi:cxx11]() const'
+/usr/bin/ld: prepared_session_tests.cpp:(.text+0x1f6e): undefined reference to `tigersheets::WorkbookSession::previewView[abi:cxx11]() const'
+/usr/bin/ld: prepared_session_tests.cpp:(.text+0x222d): undefined reference to `tigersheets::WorkbookSession::previewPrepared(unsigned long, std::unique_ptr<tigersheets::WorkbookSession::PreparedTransaction, std::default_delete<tigersheets::WorkbookSession::PreparedTransaction> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*)'
+/usr/bin/ld: prepared_session_tests.cpp:(.text+0x231e): undefined reference to `tigersheets::WorkbookSession::acceptPrepared(std::unique_ptr<tigersheets::WorkbookSession::PreparedTransaction, std::default_delete<tigersheets::WorkbookSession::PreparedTransaction> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*)'
+/usr/bin/ld: prepared_session_tests.cpp:(.text+0x235a): undefined reference to `tigersheets::WorkbookSession::previewView[abi:cxx11]() const'
+/usr/bin/ld: prepared_session_tests.cpp:(.text+0x271e): undefined reference to `tigersheets::WorkbookSession::previewPrepared(unsigned long, std::unique_ptr<tigersheets::WorkbookSession::PreparedTransaction, std::default_delete<tigersheets::WorkbookSession::PreparedTransaction> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*)'
+/usr/bin/ld: prepared_session_tests.cpp:(.text+0x2766): undefined reference to `tigersheets::WorkbookSession::discardPrepared()'
+collect2: error: ld returned 1 exit status

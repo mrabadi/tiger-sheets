@@ -1,0 +1,10 @@
+#include "tigersheets/main_window.hpp"
+#include "tigersheets/financial_model_pane.hpp"
+#include <QApplication>
+#include <QDockWidget>
+#include <QTemporaryDir>
+#include <iostream>
+#include <stdexcept>
+using namespace tigersheets;
+void require(bool value,const char* message){if(!value)throw std::runtime_error(message);}
+int main(int argc,char** argv){QApplication app(argc,argv);QTemporaryDir dir;qputenv("TIGERSHEETS_STATE_DIR",dir.path().toUtf8());try{MainWindow window;window.show();app.processEvents();require(window.executeCommand("financial.forecast"),"forecast command opens authoring");FinancialModelPane* pane=nullptr;for(auto* widget:window.findChildren<QWidget*>())if(auto* candidate=dynamic_cast<FinancialModelPane*>(widget))pane=candidate;require(pane&&pane->isVisible(),"forecast authoring is a visible compact native field pane");require(pane->definition().at("kind")=="forecast","forecast command selects a new forecast definition");std::string error;const Json assumptions={{"version",1},{"id","base"},{"kind","assumption_set"},{"name","Base"},{"cells",Json::array({{{"sheet","sheet-1"},{"row",1},{"col",1},{"type","number"},{"value",100}}})}};const bool seeded=window.currentSession().apply(0,Json::array({{{"type","set_cell"},{"sheet","sheet-1"},{"row",1},{"col",1},{"input","100"}},{{"type","save_financial_definition"},{"definition",assumptions}}}),&error);require(seeded,error.c_str());for(const auto* kind:{"goal_seek","solver","sensitivity","assumption_set","scenario_comparison"}){require(window.executeCommand(QString("financial.")+kind),"every financial workflow opens native saved authoring");require(pane->definition().at("kind")==kind,"financial command selects the requested editor family");}require(window.executeCommand("financial.assumption_set"),"open assumptions on the selected input");require(pane->definition().at("cells")[0].at("value")==100,"new assumptions should prefill the selected typed worksheet value");std::cout<<"financial workspace tests passed\n";}catch(const std::exception& error){std::cerr<<error.what()<<'\n';return 1;}}

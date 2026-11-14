@@ -1,0 +1,27 @@
+{
+  "version": "0.3.0~dev.1",
+  "package": "/workspace/tiger-sheets/dist/tiger-sheets_0.3.0~dev.1_amd64.deb",
+  "bytes": 81126880,
+  "sha256": "15f31c2768253af09200d6f22061b919d7a9e08b1e355b27c40cd0c55faed019",
+  "buildOutputs": {
+    "tiger-sheets": {
+      "bytes": 29209584,
+      "sha256": "4190ee8f183c2e59daf01a1ede713bf1d30b5586c4f419f75b020a25d061d552"
+    },
+    "tigersheets-report-worker": {
+      "bytes": 26024648,
+      "sha256": "40b0ae76efd3c9d9677e0f053cd8b9cdff42288c64d648f9a36f79daf11fa3c6"
+    },
+    "tigersheets-vba-worker": {
+      "bytes": 18154168,
+      "sha256": "5b03c906c290f4d7d921d977f92a2568554377c1a5010b571194c5e4a33f0bc5"
+    }
+  },
+  "sourceManifest": "final-source-manifest.json",
+  "ctest": {
+    "passed": 104,
+    "failed": 0,
+    "seconds": 66.33,
+    "junit": "final-ctest.xml"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "openpyxl_version": "3.0.9",
+  "native_save_reopen_cycles": 2,
+  "tigersheets_forecast_result": 120,
+  "formula_cached_values": "Not authored; fullCalcOnLoad requested. openpyxl preserves formulas and does not calculate them.",
+  "actual_microsoft_excel": "Unverified; Ubuntu-only verification",
+  "fixtures": [
+    {
+      "path": "/workspace/tiger-sheets/docs/validation/context-menu-fixtures/native-layout.xlsx",
+      "bytes": 2520,
+      "sha256": "4675cf24a8b94bfd5807a6cfa33ea4d3a3ea05ca08a1f856fb12fdddae254a12",
+      "zip_integrity": "passed",
+      "xml": "passed",
+      "openpyxl": "passed",
+      "no_tigersheets_metadata": true,
+      "merge": "A1:D1",
+      "row_2_points": 27.5,
+      "row_5_hidden": true,
+      "column_b_raw_width": 8.7109375,
+      "column_d_hidden": true,
+      "forecast_formula": "=B3*(1+B4)",
+      "numeric_revenue": 100,
+      "typed_values": [
+        "leading-zero text",
+        "formula-looking text",
+        "boolean",
+        "numeric-looking text"
+      ],
+      "formats": [
+        "$#,##0.00",
+        "0.0%"
+      ],
+      "title_italic": false
+    },
+    {
+      "path": "/workspace/tiger-sheets/docs/validation/context-menu-fixtures/native-layout-resaved.xlsx",
+      "bytes": 2638,
+      "sha256": "49a10dbc3b940099085d62f5454214de279a12ab9c584e5211f6727b664aa992",
+      "zip_integrity": "passed",
+      "xml": "passed",
+      "openpyxl": "passed",
+      "no_tigersheets_metadata": true,
+      "merge": "A1:D1",
+      "row_2_points": 27.5,
+      "row_5_hidden": true,
+      "column_b_raw_width": 8.7109375,
+      "column_d_hidden": true,
+      "forecast_formula": "=B3*(1+B4)",
+      "numeric_revenue": 100,
+      "typed_values": [
+        "leading-zero text",
+        "formula-looking text",
+        "boolean",
+        "numeric-looking text"
+      ],
+      "formats": [
+        "$#,##0.00",
+        "0.0%"
+      ],
+      "title_italic": true
+    }
+  ]
+}

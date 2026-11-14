@@ -1,0 +1,90 @@
+[0/2] Re-checking globbed directories...
+[1/2] Re-running CMake...
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/tiger-sheets/build-release
+[0/2] Re-checking globbed directories...
+[1/80] Building pinned offline IronCalc engine
+   Compiling tigersheets_calc_bridge v0.1.0 (/workspace/tiger-sheets/rust/ironcalc_bridge)
+    Finished `release` profile [optimized] target(s) in 2.54s
+[2/80] Linking CXX executable calculation_tests
+[3/80] Linking CXX executable codex_tests
+[4/80] Linking CXX executable calculation_context_tests
+[5/80] Linking CXX executable formula_catalog_tests
+[6/80] Linking CXX executable session_tests
+[7/80] Linking CXX executable session_foundation_tests
+[8/80] Linking CXX executable session_lookup_tests
+[9/80] Linking CXX executable prepared_session_tests
+[10/80] Linking CXX executable grid_tests
+[11/80] Linking CXX executable pivot_tests
+[12/80] Linking CXX executable pivot_conversion_tests
+[13/80] Linking CXX executable pivot_reference_tests
+[14/80] Linking CXX executable pivot_ownership_tests
+[15/80] Linking CXX executable pivot_benchmark
+[16/80] Linking CXX executable native_pivot_tests
+[17/80] Linking CXX executable ooxml_tests
+[18/80] Linking CXX executable printing_ooxml_tests
+[19/80] Linking CXX executable ooxml_style_performance_tests
+[20/80] Linking CXX executable csv_tests
+[21/80] Linking CXX executable workbook_tools_tests
+[22/80] Linking CXX executable reporting_tools_tests
+[23/80] Linking CXX executable worksheet_entry_tests
+[24/80] Linking CXX executable workbook_links_tests
+[25/80] Linking CXX executable worksheet_correctness_tests
+[26/80] Linking CXX executable printing_tests
+[27/80] Linking CXX executable chart_tests
+[28/80] Linking CXX executable chart_editor_tests
+[29/80] Linking CXX executable vba_tests
+[30/80] Linking CXX executable robustness_mutation_tests
+[31/80] Linking CXX executable solver_tests
+[32/80] Linking CXX executable tigersheets-report-worker
+[33/80] Linking CXX executable tigersheets-vba-worker
+[34/80] Building CXX object CMakeFiles/formula_editor_tests.dir/tests/formula_editor_tests.cpp.o
+[35/80] Linking CXX executable formula_editor_tests
+[36/80] Building CXX object CMakeFiles/manual_calculation_tests.dir/tests/manual_calculation_tests.cpp.o
+[37/80] Linking CXX executable selection_statistics_tests
+[38/80] Building CXX object CMakeFiles/reporting_formula_header_tests.dir/tests/reporting_formula_header_tests.cpp.o
+[39/80] Linking CXX executable report_worker_tool_tests
+[40/80] Linking CXX executable native_platform_tests
+[41/80] Building CXX object CMakeFiles/chart_interaction_tests.dir/tests/chart_interaction_tests.cpp.o
+[42/80] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[43/80] Linking CXX static library libtigersheets_desktop.a
+[44/80] Linking CXX executable tiger-sheets
+[45/80] Linking CXX executable workspace_tests
+[46/80] Building CXX object CMakeFiles/preview_ui_tests.dir/tests/preview_ui_tests.cpp.o
+[47/80] Linking CXX executable codex_host_tool_tests
+[48/80] Linking CXX executable manual_calculation_tests
+[49/80] Linking CXX executable selection_status_ui_tests
+[50/80] Linking CXX executable link_status_ui_tests
+[51/80] Linking CXX executable static_conversion_ui_tests
+[52/80] Linking CXX executable reporting_workspace_tests
+[53/80] Linking CXX executable reporting_formula_header_tests
+[54/80] Linking CXX executable live_reporting_workflow
+[55/80] Linking CXX executable reporting_publication_tests
+[56/80] Linking CXX executable print_settings_ui_tests
+[57/80] Linking CXX executable reporting_calculation_ui_tests
+[58/80] Linking CXX executable reporting_cached_consent_tests
+[59/80] Linking CXX executable reporting_input_benchmark
+[60/80] Linking CXX executable vba_draft_workspace_tests
+[61/80] Linking CXX executable worksheet_clipboard_ui_tests
+[62/80] Linking CXX executable codex_controls_tests
+[63/80] Linking CXX executable codex_workspace_tests
+[64/80] Linking CXX executable codex_panel_integration_tests
+[65/80] Linking CXX executable codex_financial_workflow_tests
+[66/80] Linking CXX executable workspace_ux_tests
+[67/80] Linking CXX executable ribbon_page_tests
+[68/80] Linking CXX executable theme_tests
+[69/80] Linking CXX executable formula_workspace_tests
+[70/80] Linking CXX executable chart_workspace_tests
+[71/80] Linking CXX executable chart_interaction_tests
+[72/80] Linking CXX executable workbook_ui_links_tests
+[73/80] Linking CXX executable preview_ui_tests
+[74/80] Linking CXX executable modeling_ui_tests
+[75/80] Linking CXX executable financial_model_tests
+[76/80] Linking CXX executable scheduler_tests
+[77/80] Linking CXX executable scheduler_preparation_tests
+[78/80] Linking CXX executable reporting_capacity_benchmark
+[79/80] Linking CXX executable performance_benchmark
+[80/80] Linking CXX executable vba_worker_tests

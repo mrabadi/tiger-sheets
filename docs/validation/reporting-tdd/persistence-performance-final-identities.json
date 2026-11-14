@@ -1,0 +1,25 @@
+{
+  "generatedUnixSeconds": 1794447122.7506602,
+  "files": {
+    "build-release/tiger-sheets": {
+      "sizeBytes": 28233480,
+      "sha256": "08b145e107263a582d731c14d1905a8d09d4acf7b512596a73b967eabe34dd99"
+    },
+    "build-release/tigersheets-report-worker": {
+      "sizeBytes": 19067504,
+      "sha256": "5b85e0b92300a3978720687281b79ed288703306fbf3062cda92a9b544a99e5b"
+    },
+    "build-release/tigersheets-vba-worker": {
+      "sizeBytes": 6322528,
+      "sha256": "8278008f3a3ffd4b68caad3cf69b034ec8b2669db35026f197b74e782f50ebd1"
+    },
+    "build-release/prepared_native_tests": {
+      "sizeBytes": 17631416,
+      "sha256": "960e04c4b348e2463dbce121f92a38989a85a3b3b99280ea1266c17e7f5288ec"
+    },
+    "rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a": {
+      "sizeBytes": 44820906,
+      "sha256": "6584e06cf9be92f23d8e73d20a0901d3f61335ccd5c14441044f5277e08978b1"
+    }
+  }
+}

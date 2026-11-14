@@ -1,0 +1,4 @@
+/workspace/tiger-sheets/tests/pivot_tests.cpp: In function ‘void sourceCachePreparation()’:
+/workspace/tiger-sheets/tests/pivot_tests.cpp:84:70: error: ‘buildPivotSourceCache’ was not declared in this scope
+   84 |  const auto expected=generatePivot(book,result,spec(),17);auto cache=buildPivotSourceCache(book,result,spec());
+      |                                                                      ^~~~~~~~~~~~~~~~~~~~~

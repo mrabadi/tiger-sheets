@@ -1,0 +1,38 @@
+Final executed validation (2026-11-11)
+
+All production sources were frozen before the final build. Frontend worker
+retirement was the final source change; no public header layouts changed.
+
+  cmake --build build-release -j2
+  ctest --test-dir build-release --output-on-failure -j2
+
+Result: all targets build; 80/80 CTests pass, zero failures, 26.17 seconds.
+Evidence: persistence-release-ready-build.log and persistence-release-ready-ctest.log.
+The final CLI reports exactly `TigerSheets 0.2.0~dev.1`.
+Binary sizes/SHA256 hashes: persistence-release-ready-identities.json.
+
+Rust bridge: both unit tests and doctests pass after the final formatter change.
+Evidence: persistence-final-stable-cargo-bridge.log.
+Copied pinned engine: 2767 unit tests pass, 8 ignored; 23 doctests pass.
+Evidence: analysis-format-upstream-final.log. The first full-engine regression
+found a real 19-decimal formatting error; the minimum fix also protects 16-digit
+integers while retaining positive/negative decimal-half rounding coverage.
+
+The initial 77-test project run exposed four obsolete assumptions. Tests now
+drive the actual isolated asynchronous preview path, distinguish supported
+GETPIVOTDATA from unavailable CUBEVALUE, and select the current recovery identity
+when unsaved replacement state also exists. The recovery assertion now verifies
+the exact current workbook and original source bytes, then verifies the same
+identity is recreated after another window saves/erases its durable record.
+
+Additional regressions verified in the final suite include typed calculated
+formula headers, manual compact results/context binding, cached/stale sheet
+switches, Show Formulas retaining numeric statistics, named saved/unavailable link
+status for sync/async/failure calculations, pending VBA source retained on direct
+replacement, and off-thread disposal of foreign/cancelled parsed worker results.
+
+Actual complete-release CPack was exercised and refused with exit1 and
+RELEASE BLOCKED while full Excel/VBA acceptance remains incomplete.
+Evidence: persistence-final-release-gate.log. This is an expected release guard,
+not qualification for a complete Excel/VBA release. Development packaging and
+the final quiet GUI performance measurements are owned by the parent task.

@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "reader": "openpyxl",
+  "version": "3.1.5",
+  "python": "/home/developer/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "fixtures": "/tmp/tigersheets-ooxml-ivMhva",
+  "checks": [
+    "exact tab/LF/CR/CRLF text",
+    "accented/Greek/CJK/supplementary Unicode",
+    "Unicode defined name",
+    "Euro number-format string",
+    "six-digit RGB emitted as valid ARGB",
+    "eight-digit ARGB retained"
+  ]
+}

@@ -1,0 +1,3 @@
+FAIL native additions retain original namespace prefixes
+FAIL native formats use workbook stylesheet relationship
+native pivot export respects retained namespace and stylesheet relationship graph

@@ -1,0 +1,18 @@
+[0/2] Re-checking globbed directories...
+[1/2] Re-running CMake...
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/tiger-sheets/build-release
+[0/2] Re-checking globbed directories...
+[1/10] Building CXX object CMakeFiles/worksheet_layout_ui_tests.dir/tests/worksheet_layout_ui_tests.cpp.o
+[2/10] Building CXX object CMakeFiles/tigersheets_worksheet_layout.dir/src/worksheet_layout.cpp.o
+[3/10] Linking CXX static library libtigersheets_worksheet_layout.a
+[4/10] Building CXX object CMakeFiles/tigersheets_worksheet_view.dir/src/worksheet_view.cpp.o
+[5/10] Linking CXX static library libtigersheets_worksheet_view.a
+[6/10] Linking CXX executable worksheet_layout_ui_tests
+[7/10] Building CXX object CMakeFiles/worksheet_action_ui_tests.dir/tests/worksheet_action_ui_tests.cpp.o
+[8/10] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[9/10] Linking CXX static library libtigersheets_desktop.a
+[10/10] Linking CXX executable worksheet_action_ui_tests

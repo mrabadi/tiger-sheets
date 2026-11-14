@@ -1,0 +1,14 @@
+[0/2] Re-checking globbed directories...
+[1/2] Re-running CMake...
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/tiger-sheets/build-release
+[0/2] Re-checking globbed directories...
+[1/6] Linking CXX static library libtigersheets_desktop.a
+[2/6] Linking CXX executable scheduler_tests
+[3/6] Linking CXX executable reporting_workspace_tests
+[4/6] Linking CXX executable reporting_publication_tests
+[5/6] Linking CXX executable reporting_cached_consent_tests
+[6/6] Linking CXX executable reporting_input_benchmark

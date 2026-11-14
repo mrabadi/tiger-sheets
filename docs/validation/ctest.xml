@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="28"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="redacted-host"
+	time="12"
+	timestamp="2026-11-11T09:48:37"
+	>
+	<testcase name="analysis_tests" classname="analysis_tests" time="0.0038884" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="branding_tests" classname="branding_tests" time="8.14417" status="run">
+		<system-out>...
+----------------------------------------------------------------------
+Ran 3 tests in 8.057s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="release_gate_tests" classname="release_gate_tests" time="0.0625564" status="run">
+		<system-out>....
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="packaging_tests" classname="packaging_tests" time="0.118925" status="run">
+		<system-out>...
+----------------------------------------------------------------------
+Ran 3 tests in 0.057s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="dependency_bootstrap_tests" classname="dependency_bootstrap_tests" time="0.580467" status="run">
+		<system-out>..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.463s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="compatibility_catalog_tests" classname="compatibility_catalog_tests" time="0.0589945" status="run">
+		<system-out>.
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="codex_tests" classname="codex_tests" time="0.191096" status="run">
+		<system-out>codex tests passed
+</system-out>
+	</testcase>
+	<testcase name="recovery_tests" classname="recovery_tests" time="0.204677" status="run">
+		<system-out>recovery tests passed
+</system-out>
+	</testcase>
+	<testcase name="calculation_tests" classname="calculation_tests" time="0.00803512" status="run">
+		<system-out>calculation tests passed
+</system-out>
+	</testcase>
+	<testcase name="formula_catalog_tests" classname="formula_catalog_tests" time="0.0243878" status="run">
+		<system-out>282/282 formula reference cases passed
+</system-out>
+	</testcase>
+	<testcase name="session_tests" classname="session_tests" time="0.00521284" status="run">
+		<system-out>session tests passed
+</system-out>
+	</testcase>
+	<testcase name="ooxml_tests" classname="ooxml_tests" time="0.0567481" status="run">
+		<system-out>ooxml tests passed
+</system-out>
+	</testcase>
+	<testcase name="csv_tests" classname="csv_tests" time="0.00357609" status="run">
+		<system-out>csv tests passed
+</system-out>
+	</testcase>
+	<testcase name="references_tests" classname="references_tests" time="0.00285847" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="workbook_links_tests" classname="workbook_links_tests" time="0.0242371" status="run">
+		<system-out>workbook links tests passed
+</system-out>
+	</testcase>
+	<testcase name="grid_tests" classname="grid_tests" time="0.0227905" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="printing_tests" classname="printing_tests" time="0.194648" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+QPainter::begin(): Returned false
+printing tests passed
+</system-out>
+	</testcase>
+	<testcase name="chart_tests" classname="chart_tests" time="0.0372406" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vba_tests" classname="vba_tests" time="0.0118259" status="run">
+		<system-out>vba tests passed
+</system-out>
+	</testcase>
+	<testcase name="robustness_mutation_tests" classname="robustness_mutation_tests" time="0.150758" status="run">
+		<system-out>200 package mutations (19 readable, 181 rejected), 200 VBA mutations completed
+</system-out>
+	</testcase>
+	<testcase name="solver_tests" classname="solver_tests" time="0.434712" status="run">
+		<system-out>solver tests passed
+</system-out>
+	</testcase>
+	<testcase name="workspace_tests" classname="workspace_tests" time="0.626487" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+</system-out>
+	</testcase>
+	<testcase name="workbook_ui_links_tests" classname="workbook_ui_links_tests" time="0.181689" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="preview_ui_tests" classname="preview_ui_tests" time="0.373354" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="financial_model_tests" classname="financial_model_tests" time="0.229317" status="run">
+		<system-out>DCF 6301151.123557135; native XLSX/chart reopen, typed CSV and PDF exported
+</system-out>
+	</testcase>
+	<testcase name="modeling_ui_tests" classname="modeling_ui_tests" time="0.185544" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+modeling UI tests passed
+</system-out>
+	</testcase>
+	<testcase name="scheduler_tests" classname="scheduler_tests" time="0.057693" status="run">
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vba_worker_tests" classname="vba_worker_tests" time="0.0751098" status="run">
+		<system-out>This plugin does not support propagateSizeHints()
+vba worker tests passed
+</system-out>
+	</testcase>
+</testsuite>

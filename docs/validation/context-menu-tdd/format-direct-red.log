@@ -1,0 +1,4 @@
+tests/worksheet_cell_format_tests.cpp:1:10: fatal error: tigersheets/worksheet_cell_format.hpp: No such file or directory
+    1 | #include "tigersheets/worksheet_cell_format.hpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.

@@ -1,0 +1,94 @@
+
+### /tmp/tigersheets-worksheet-dirty-red.log
+This plugin does not support propagateSizeHints()
+FAILED: calculation dataChanged must preserve the dirty in-cell draft and caret
+
+### /tmp/tigersheets-worksheet-dirty-green.log
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+
+### /tmp/tigersheets-worksheet-outline-red.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+FAILED: active draft reference must have a visible blue range outline
+
+### /tmp/tigersheets-worksheet-outline-green.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+
+### /tmp/tigersheets-worksheet-keyboard-red.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+FAILED: arrow after a delimiter inserts a neighboring cell reference
+
+### /tmp/tigersheets-worksheet-keyboard-green.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+
+### /tmp/tigersheets-worksheet-teardown-red.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+malloc(): unaligned tcache chunk detected
+
+### /tmp/tigersheets-worksheet-teardown-green.log
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+
+### /tmp/tigersheets-worksheet-border-red.log
+This plugin does not support propagateSizeHints()
+FAILED: current worksheet cell has a visible forest suite border
+
+### /tmp/tigersheets-worksheet-border-green.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+
+### /tmp/tigersheets-worksheet-final-normal.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+Observed full command exit code: 0
+
+### /tmp/tigersheets-worksheet-final-asan.log
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Destroying standalone WorksheetView with active draft
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+worksheet entry tests passed
+Observed full command exit code: 0

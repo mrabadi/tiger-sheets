@@ -1,0 +1,9 @@
+# Forecast and what-if TDD evidence
+
+This directory retains focused observed failures, minimum-change passing reruns and subsequent integration checks for the forecasts/what-if development milestone. Agent-specific records describe the exact assertions and commands. Compiler/setup failures unrelated to the intended behavior are diagnostic artifacts, not valid RED evidence.
+
+Root integration cycles cover saved-definition persistence, isolated financial protocol replies, refusal of unsuccessful mutating replies, Session typed operations, financial workflow dispatch, owned output restoration, source-edit freshness undo/redo, desktop authoring/publication, circular-financing examples and packaged worker solver-library resolution. `financial-session-red-corrected.log` is the valid typed-operation RED; the earlier test-message lifetime error is excluded. The initial workspace GREEN attempt hit an invalid test cast; `financial-workspace-green-corrected.log` records the corrected native-widget lookup and passing result.
+
+Acceptance checks extend the focused tests to cancellation, worker crashes, context replacement, complete save/reopen and installer execution. Passing development checks do not clear the complete Excel release gate, establish actual Microsoft Excel interoperability, or replace the outstanding reporting/reference-hardware/platform qualification.
+
+`financial-pivot-collision-red-corrected.log` is the valid cross-object RED: a native pivot previously could occupy a blank cell reserved by a saved financial input set. The earlier occupied-report-output fixture was already rejected by the native pivot generator and is excluded as RED evidence. Identity roundtrip evidence verifies newly authored worksheet IDs remain stable when fingerprint-checked application metadata is intact.

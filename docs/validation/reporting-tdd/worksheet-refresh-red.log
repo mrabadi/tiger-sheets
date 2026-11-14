@@ -1,0 +1,19 @@
+[1/14] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/grid.cpp.o
+[2/14] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/session.cpp.o
+[3/14] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/calculation.cpp.o
+[4/14] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot_ownership.cpp.o
+[5/14] Linking CXX static library libworksheet_core.a
+[6/14] Linking CXX executable references_tests
+[7/14] Building CXX object CMakeFiles/worksheet_correctness_tests.dir/workspace/tiger-sheets/tests/worksheet_correctness_tests.cpp.o
+[8/14] Linking CXX executable worksheet_correctness_tests
+FAILED: worksheet_correctness_tests
+: && /usr/bin/c++   CMakeFiles/worksheet_correctness_tests.dir/workspace/tiger-sheets/tests/worksheet_correctness_tests.cpp.o -o worksheet_correctness_tests  libworksheet_core.a  /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.2.4  /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4  /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4  /usr/lib/x86_64-linux-gnu/libGLX.so  /usr/lib/x86_64-linux-gnu/libOpenGL.so  /workspace/tiger-sheets/rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a  -ldl  -lm  -lpthread && :
+/usr/bin/ld: libworksheet_core.a(calculation.cpp.o): in function `tigersheets::(anonymous namespace)::evaluateFunction(void*, char const*)':
+calculation.cpp:(.text+0x1a35): undefined reference to `tigersheets::getPivotData(nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > const&)'
+/usr/bin/ld: libworksheet_core.a(calculation.cpp.o): in function `tigersheets::CalculationEngine::calculate(nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > const&, std::function<nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > (std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > const&)> const&) const':
+calculation.cpp:(.text+0x2d67): undefined reference to `tigersheets_calc_calculate_with_references'
+collect2: error: ld returned 1 exit status
+[9/14] Building CXX object CMakeFiles/grid_tests.dir/workspace/tiger-sheets/tests/grid_tests.cpp.o
+ninja: build stopped: subcommand failed.
+/bin/bash: line 10: /tmp/tigersheets-reporting-worksheet/build/worksheet_correctness_tests: No such file or directory
+FAILED: ordinary edit must refresh only its changed rectangle

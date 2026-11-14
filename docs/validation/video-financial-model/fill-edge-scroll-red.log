@@ -1,0 +1,8 @@
+Provenance: Exact command, exit status and output transcribed from this task's recorded tool response.
+This file was preserved after the run; it is not a new execution or a copied /tmp shell log.
+Execution chunk: e365f4
+Working directory: /workspace/tiger-sheets
+Command: QT_QPA_PLATFORM=offscreen build-release/worksheet_fill_handle_tests scroll
+Exit status: 1
+Output:
+FAILED: holding a dragged fill handle at the viewport edge scrolls to more columns

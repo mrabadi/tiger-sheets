@@ -1,0 +1,7 @@
+[1/5] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/grid.cpp.o
+[2/5] Linking CXX static library libworksheet_core.a
+[3/5] Linking CXX executable references_tests
+[4/5] Linking CXX executable grid_tests
+[5/5] Linking CXX executable worksheet_correctness_tests
+/bin/bash: line 2: /tmp/tigersheets-reporting-worksheet/build/worksheet_correctness_tests: Text file busy
+worksheet correctness all passed

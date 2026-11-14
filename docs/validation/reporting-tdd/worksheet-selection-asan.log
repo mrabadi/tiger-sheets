@@ -1,0 +1,16 @@
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/tigersheets-reporting-worksheet/asan
+[1/10] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/grid.cpp.o
+[2/10] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/references.cpp.o
+[3/10] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/session.cpp.o
+[4/10] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/calculation.cpp.o
+[5/10] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot_ownership.cpp.o
+[6/10] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/number_formatter.cpp.o
+[7/10] Building CXX object CMakeFiles/selection_statistics_tests.dir/workspace/tiger-sheets/tests/selection_statistics_tests.cpp.o
+[8/10] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot.cpp.o
+[9/10] Linking CXX static library libworksheet_core.a
+[10/10] Linking CXX executable selection_statistics_tests
+selection statistics tests passed

@@ -1,0 +1,23 @@
+[1/7] Building CXX object CMakeFiles/worksheet_correctness_tests.dir/workspace/tiger-sheets/tests/worksheet_correctness_tests.cpp.o
+[2/7] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/grid.cpp.o
+[3/7] Linking CXX static library libworksheet_core.a
+[4/7] Linking CXX executable worksheet_correctness_tests
+FAILED: worksheet_correctness_tests
+: && /usr/bin/c++   CMakeFiles/worksheet_correctness_tests.dir/workspace/tiger-sheets/tests/worksheet_correctness_tests.cpp.o -o worksheet_correctness_tests  libworksheet_core.a  /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.2.4  /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4  /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4  /usr/lib/x86_64-linux-gnu/libGLX.so  /usr/lib/x86_64-linux-gnu/libOpenGL.so  /workspace/tiger-sheets/rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a  -ldl  -lm  -lpthread && :
+/usr/bin/ld: CMakeFiles/worksheet_correctness_tests.dir/workspace/tiger-sheets/tests/worksheet_correctness_tests.cpp.o: in function `(anonymous namespace)::atomicMove()':
+worksheet_correctness_tests.cpp:(.text+0x3bdc): undefined reference to `tigersheets::WorksheetModel::cutRange[abi:cxx11](int, int, int, int) const'
+collect2: error: ld returned 1 exit status
+[5/7] Building CXX object CMakeFiles/grid_tests.dir/workspace/tiger-sheets/tests/grid_tests.cpp.o
+ninja: build stopped: subcommand failed.
+[1/4] Linking CXX executable references_tests
+[2/4] Linking CXX executable grid_tests
+[3/4] Building CXX object CMakeFiles/worksheet_correctness_tests.dir/workspace/tiger-sheets/tests/worksheet_correctness_tests.cpp.o
+[4/4] Linking CXX executable worksheet_correctness_tests
+FAILED: worksheet_correctness_tests
+: && /usr/bin/c++   CMakeFiles/worksheet_correctness_tests.dir/workspace/tiger-sheets/tests/worksheet_correctness_tests.cpp.o -o worksheet_correctness_tests  libworksheet_core.a  /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.2.4  /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4  /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4  /usr/lib/x86_64-linux-gnu/libGLX.so  /usr/lib/x86_64-linux-gnu/libOpenGL.so  /workspace/tiger-sheets/rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a  -ldl  -lm  -lpthread && :
+/usr/bin/ld: CMakeFiles/worksheet_correctness_tests.dir/workspace/tiger-sheets/tests/worksheet_correctness_tests.cpp.o: in function `(anonymous namespace)::atomicMove()':
+worksheet_correctness_tests.cpp:(.text+0x3bd6): undefined reference to `tigersheets::WorksheetModel::cutRange[abi:cxx11](int, int, int, int) const'
+/usr/bin/ld: worksheet_correctness_tests.cpp:(.text+0x4780): undefined reference to `tigersheets::WorksheetModel::cutRange[abi:cxx11](int, int, int, int) const'
+/usr/bin/ld: worksheet_correctness_tests.cpp:(.text+0x5a83): undefined reference to `tigersheets::WorksheetModel::cutRange[abi:cxx11](int, int, int, int) const'
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.

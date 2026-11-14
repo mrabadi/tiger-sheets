@@ -1,0 +1,55 @@
+FILE /tmp/tigersheets-analysis-asan-cache/main_window.o.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -I/workspace/tiger-sheets/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtPrintSupport -isystem /workspace/tiger-sheets/.deps/solvers/prefix/include -isystem /workspace/tiger-sheets/.deps/solvers/prefix/include/highs -fPIC -fPIC -Wno-invalid-offsetof -std=c++20 -o /tmp/tigersheets-analysis-asan-cache/main_window.o -c /workspace/tiger-sheets/src/main_window.cpp
+/workspace/tiger-sheets/src/main_window.cpp: In constructor ‘tigersheets::MainWindow::MainWindow(QWidget*)’:
+/workspace/tiger-sheets/src/main_window.cpp:135:1: note: variable tracking size limit exceeded with ‘-fvar-tracking-assignments’, retrying without
+  135 | MainWindow::MainWindow(QWidget* p):QMainWindow(p),state_(std::make_unique<State>()){
+      | ^~~~~~~~~~
+
+FILE /tmp/tigersheets-analysis-asan-cache/pivot.o.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -I/workspace/tiger-sheets/include -std=c++20 -o /tmp/tigersheets-analysis-asan-cache/pivot.o -c /workspace/tiger-sheets/src/pivot.cpp
+
+FILE /tmp/tigersheets-analysis-asan-cache/pivot_tests.link.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -O3 -DNDEBUG /tmp/tigersheets-analysis-asan-cache/pivot_tests.o /tmp/tigersheets-analysis-asan-cache/pivot.o -o /tmp/tigersheets-analysis-asan-cache/pivot_tests libtigersheets_pivot.a libtigersheets_calculation.a libtigersheets_pivot.a libtigersheets_references.a libtigersheets_formatter.a ../rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a -ldl -lm
+
+FILE /tmp/tigersheets-analysis-asan-cache/pivot_tests.o.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -I/workspace/tiger-sheets/include -std=c++20 -o /tmp/tigersheets-analysis-asan-cache/pivot_tests.o -c /workspace/tiger-sheets/tests/pivot_tests.cpp
+
+FILE /tmp/tigersheets-analysis-asan-cache/prepared_native_tests.link.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -O3 -DNDEBUG /tmp/tigersheets-analysis-asan-cache/prepared_native_tests.o /tmp/tigersheets-analysis-asan-cache/session.o /tmp/tigersheets-analysis-asan-cache/prepared_native_transaction.o /tmp/tigersheets-analysis-asan-cache/pivot.o -o /tmp/tigersheets-analysis-asan-cache/prepared_native_tests libtigersheets_core.a libtigersheets_pivot.a libtigersheets_formatter.a ../rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a -ldl -lm libtigersheets_references.a
+
+FILE /tmp/tigersheets-analysis-asan-cache/prepared_native_tests.o.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -I/workspace/tiger-sheets/include -std=c++20 -o /tmp/tigersheets-analysis-asan-cache/prepared_native_tests.o -c /workspace/tiger-sheets/tests/prepared_native_tests.cpp
+
+FILE /tmp/tigersheets-analysis-asan-cache/prepared_native_transaction.o.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -I/workspace/tiger-sheets/include -std=c++20 -o /tmp/tigersheets-analysis-asan-cache/prepared_native_transaction.o -c /workspace/tiger-sheets/src/prepared_native_transaction.cpp
+
+FILE /tmp/tigersheets-analysis-asan-cache/report_worker.o.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_NO_DEBUG -I/workspace/tiger-sheets/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -fPIC -std=c++20 -o /tmp/tigersheets-analysis-asan-cache/report_worker.o -c /workspace/tiger-sheets/src/report_worker.cpp
+
+FILE /tmp/tigersheets-analysis-asan-cache/report_worker_main.o.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_NO_DEBUG -I/workspace/tiger-sheets/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -fPIC -std=c++20 -o /tmp/tigersheets-analysis-asan-cache/report_worker_main.o -c /workspace/tiger-sheets/src/report_worker_main.cpp
+
+FILE /tmp/tigersheets-analysis-asan-cache/report_worker_tests.link.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -O3 -DNDEBUG /tmp/tigersheets-analysis-asan-cache/report_worker_tests.o /tmp/tigersheets-analysis-asan-cache/report_worker.o -o /tmp/tigersheets-analysis-asan-cache/report_worker_tests libtigersheets_report_worker.a /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+
+FILE /tmp/tigersheets-analysis-asan-cache/report_worker_tests.o.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_NO_DEBUG -I/workspace/tiger-sheets/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -fPIC -std=c++20 -o /tmp/tigersheets-analysis-asan-cache/report_worker_tests.o -c /workspace/tiger-sheets/tests/report_worker_tests.cpp
+
+FILE /tmp/tigersheets-analysis-asan-cache/reporting_snapshot_lifetime_tests.link.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -O3 -DNDEBUG /tmp/tigersheets-analysis-asan-cache/reporting_snapshot_lifetime_tests.o /tmp/tigersheets-analysis-asan-cache/main_window.o /tmp/tigersheets-analysis-asan-cache/pivot.o /tmp/tigersheets-analysis-asan-cache/workbook_links.o /tmp/tigersheets-analysis-asan-cache/report_worker.o /tmp/tigersheets-analysis-asan-cache/snapshot_capture.o -o /tmp/tigersheets-analysis-asan-cache/reporting_snapshot_lifetime_tests -Wl,-rpath,/workspace/tiger-sheets/.deps/solvers/prefix/lib libtigersheets_desktop.a /usr/lib/x86_64-linux-gnu/libQt6Test.so.6.2.4 libtigersheets_formula_editor.a libtigersheets_capture.a libtigersheets_report_worker.a libtigersheets_pivot_fields.a libtigersheets_worksheet_view.a libtigersheets_printing.a libtigersheets_links.a libtigersheets_scheduler.a libtigersheets_io.a -lzip -lpugixml libtigersheets_codex.a libtigersheets_workbook_tools.a libtigersheets_charts.a libtigersheets_recovery.a libtigersheets_vba_ui.a libtigersheets_modeling_ui.a libtigersheets_grid.a libtigersheets_analysis.a libtigersheets_vba.a libtigersheets_core.a libtigersheets_solver.a libtigersheets_calculation.a libtigersheets_pivot.a libtigersheets_references.a libtigersheets_formatter.a ../rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a -lm ../.deps/solvers/prefix/lib/libhighs.a -ldl ../.deps/solvers/prefix/lib/libhighs_extras.a ../.deps/solvers/prefix/lib/libnlopt.a -lm ../.deps/solvers/prefix/lib/libpagmo.so.9.0 ../.deps/solvers/prefix/lib/libboost_serialization.so /usr/lib/x86_64-linux-gnu/libsqlite3.so /usr/lib/x86_64-linux-gnu/libQt6PrintSupport.so.6.2.4 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.2.4 /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4 /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4 -Wl,-rpath-link,/workspace/tiger-sheets/.deps/solvers/prefix/lib
+
+FILE /tmp/tigersheets-analysis-asan-cache/reporting_snapshot_lifetime_tests.o.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_PRINTSUPPORT_LIB '-DQT_TESTCASE_BUILDDIR="/workspace/tiger-sheets/build-release"' '-DQT_TESTCASE_SOURCEDIR="/workspace/tiger-sheets"' -DQT_TESTLIB_LIB -DQT_WIDGETS_LIB -I/workspace/tiger-sheets/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtPrintSupport -isystem /workspace/tiger-sheets/.deps/solvers/prefix/include -isystem /workspace/tiger-sheets/.deps/solvers/prefix/include/highs -isystem /usr/include/x86_64-linux-gnu/qt6/QtTest -fPIE -fPIC -Wno-invalid-offsetof -std=c++20 -o /tmp/tigersheets-analysis-asan-cache/reporting_snapshot_lifetime_tests.o -c /workspace/tiger-sheets/tests/reporting_snapshot_lifetime_tests.cpp
+
+FILE /tmp/tigersheets-analysis-asan-cache/session.o.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -I/workspace/tiger-sheets/include -std=c++20 -o /tmp/tigersheets-analysis-asan-cache/session.o -c /workspace/tiger-sheets/src/session.cpp
+
+FILE /tmp/tigersheets-analysis-asan-cache/snapshot_capture.o.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_NO_DEBUG -I/workspace/tiger-sheets/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -fPIC -std=c++20 -o /tmp/tigersheets-analysis-asan-cache/snapshot_capture.o -c /workspace/tiger-sheets/src/snapshot_capture.cpp
+
+FILE /tmp/tigersheets-analysis-asan-cache/tigersheets-report-worker.link.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -O3 -DNDEBUG /tmp/tigersheets-analysis-asan-cache/report_worker_main.o /tmp/tigersheets-analysis-asan-cache/pivot.o /tmp/tigersheets-analysis-asan-cache/workbook_links.o -o /tmp/tigersheets-analysis-asan-cache/tigersheets-report-worker libtigersheets_workbook_tools.a libtigersheets_calculation.a libtigersheets_links.a libtigersheets_pivot.a libtigersheets_vba.a /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4 libtigersheets_io.a -lzip -lpugixml libtigersheets_core.a libtigersheets_pivot.a libtigersheets_formatter.a ../rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a -ldl -lm libtigersheets_references.a
+
+FILE /tmp/tigersheets-analysis-asan-cache/workbook_links.o.log
+/usr/bin/c++ -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -I/workspace/tiger-sheets/include -std=c++20 -o /tmp/tigersheets-analysis-asan-cache/workbook_links.o -c /workspace/tiger-sheets/src/workbook_links.cpp
+

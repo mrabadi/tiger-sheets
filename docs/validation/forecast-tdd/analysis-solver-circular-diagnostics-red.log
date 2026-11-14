@@ -1,0 +1,1 @@
+solver test failed: Circular Solver refusal must retain the underlying iteration diagnostic rather than a generic optimizer failure

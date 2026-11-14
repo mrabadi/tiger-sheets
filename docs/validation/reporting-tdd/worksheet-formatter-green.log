@@ -1,0 +1,4 @@
+[1/4] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot.cpp.o
+[2/4] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/grid.cpp.o
+[3/4] Linking CXX static library libworksheet_core.a
+[4/4] Linking CXX executable grid_tests

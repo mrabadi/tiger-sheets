@@ -1,0 +1,21 @@
+[0/2] Re-checking globbed directories...
+[1/2] Re-running CMake...
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/tiger-sheets/build-release
+[0/2] Re-checking globbed directories...
+[1/12] Building pinned offline IronCalc engine
+    Finished `release` profile [optimized] target(s) in 0.02s
+[2/12] Building CXX object CMakeFiles/tigersheets_formatter.dir/src/number_formatter.cpp.o
+[3/12] Linking CXX static library libtigersheets_formatter.a
+[4/12] Building CXX object CMakeFiles/tigersheets_calculation.dir/src/calculation.cpp.o
+[5/12] Building CXX object CMakeFiles/tigersheets_pivot.dir/src/pivot.cpp.o
+[6/12] Linking CXX static library libtigersheets_pivot.a
+[7/12] Linking CXX static library libtigersheets_calculation.a
+[8/12] Linking CXX executable pivot_tests
+[9/12] Building CXX object CMakeFiles/tigersheets_io.dir/src/pivot_ooxml.cpp.o
+[10/12] Linking CXX static library libtigersheets_io.a
+[11/12] Building CXX object CMakeFiles/native_pivot_tests.dir/tests/native_pivot_tests.cpp.o
+[12/12] Linking CXX executable native_pivot_tests

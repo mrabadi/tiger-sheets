@@ -1,0 +1,10 @@
+[0/2] Re-checking globbed directories...
+[1/9] Building CXX object CMakeFiles/tigersheets_core.dir/src/session.cpp.o
+[2/9] Linking CXX static library libtigersheets_core.a
+[3/9] Building CXX object CMakeFiles/tigersheets_grid.dir/src/grid.cpp.o
+[4/9] Linking CXX static library libtigersheets_grid.a
+[5/9] Linking CXX executable tigersheets-vba-worker
+[6/9] Building CXX object CMakeFiles/vba_worker_tests.dir/tests/vba_worker_tests.cpp.o
+[7/9] Building CXX object CMakeFiles/tigersheets_vba_ui.dir/src/vba_ui.cpp.o
+[8/9] Linking CXX static library libtigersheets_vba_ui.a
+[9/9] Linking CXX executable vba_worker_tests

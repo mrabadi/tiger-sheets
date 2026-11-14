@@ -1,0 +1,4 @@
+[0/2] Re-checking globbed directories...
+[1/2] Building CXX object CMakeFiles/snapshot_capture_tests.dir/tests/snapshot_capture_tests.cpp.o
+[2/2] Linking CXX executable snapshot_capture_tests
+already stale input must be rejected immediately

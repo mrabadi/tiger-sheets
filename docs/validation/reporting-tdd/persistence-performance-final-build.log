@@ -1,0 +1,117 @@
+[0/2] Re-checking globbed directories...
+[1/2] Re-running CMake...
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/tiger-sheets/build-release
+[0/2] Re-checking globbed directories...
+[1/109] Building CXX object CMakeFiles/tigersheets_calculation.dir/src/calculation.cpp.o
+[2/109] Building CXX object CMakeFiles/calculation_tests.dir/tests/calculation_tests.cpp.o
+[3/109] Building CXX object CMakeFiles/tigersheets_core.dir/src/prepared_native_transaction.cpp.o
+[4/109] Building CXX object CMakeFiles/tigersheets_core.dir/src/session.cpp.o
+[5/109] Building CXX object CMakeFiles/prepared_native_tests.dir/tests/prepared_native_tests.cpp.o
+[6/109] Building CXX object CMakeFiles/tigersheets_pivot.dir/src/pivot.cpp.o
+[7/109] Building CXX object CMakeFiles/tigersheets_pivot.dir/src/pivot_ownership.cpp.o
+[8/109] Building CXX object CMakeFiles/tigersheets_pivot.dir/src/pivot_conversion.cpp.o
+[9/109] Linking CXX static library libtigersheets_pivot.a
+[10/109] Linking CXX static library libtigersheets_calculation.a
+[11/109] Linking CXX executable calculation_tests
+[12/109] Linking CXX executable calculation_context_tests
+[13/109] Building CXX object CMakeFiles/pivot_tests.dir/tests/pivot_tests.cpp.o
+[14/109] Linking CXX static library libtigersheets_core.a
+[15/109] Linking CXX executable session_tests
+[16/109] Linking CXX executable session_foundation_tests
+[17/109] Linking CXX executable formula_catalog_tests
+[18/109] Linking CXX executable session_lookup_tests
+[19/109] Linking CXX executable prepared_session_tests
+[20/109] Linking CXX executable prepared_native_tests
+[21/109] Linking CXX executable pivot_tests
+[22/109] Building CXX object CMakeFiles/pivot_reference_tests.dir/tests/pivot_reference_tests.cpp.o
+[23/109] Building CXX object CMakeFiles/pivot_conversion_tests.dir/tests/pivot_conversion_tests.cpp.o
+[24/109] Linking CXX executable pivot_reference_tests
+[25/109] Linking CXX executable pivot_conversion_tests
+[26/109] Building CXX object CMakeFiles/pivot_ownership_tests.dir/tests/pivot_ownership_tests.cpp.o
+[27/109] Linking CXX executable pivot_ownership_tests
+[28/109] Building CXX object CMakeFiles/pivot_benchmark.dir/tests/pivot_benchmark.cpp.o
+[29/109] Linking CXX executable pivot_benchmark
+[30/109] Building CXX object CMakeFiles/native_pivot_tests.dir/tests/native_pivot_tests.cpp.o
+[31/109] Building CXX object CMakeFiles/tigersheets_io.dir/src/pivot_ooxml.cpp.o
+[32/109] Linking CXX static library libtigersheets_io.a
+[33/109] Linking CXX executable ooxml_tests
+[34/109] Linking CXX executable native_pivot_tests
+[35/109] Linking CXX executable printing_ooxml_tests
+[36/109] Linking CXX executable ooxml_style_performance_tests
+[37/109] Linking CXX executable csv_tests
+[38/109] Linking CXX executable formula_editor_tests
+[39/109] Linking CXX executable worksheet_entry_tests
+[40/109] Building CXX object CMakeFiles/tigersheets_workbook_tools.dir/src/workbook_tools.cpp.o
+[41/109] Linking CXX static library libtigersheets_workbook_tools.a
+[42/109] Building CXX object CMakeFiles/tigersheets_links.dir/src/workbook_links.cpp.o
+[43/109] Linking CXX executable codex_tests
+[44/109] Linking CXX executable workbook_tools_tests
+[45/109] Linking CXX static library libtigersheets_links.a
+[46/109] Linking CXX executable reporting_tools_tests
+[47/109] Linking CXX executable grid_tests
+[48/109] Linking CXX executable worksheet_correctness_tests
+[49/109] Building CXX object CMakeFiles/workbook_links_tests.dir/tests/workbook_links_tests.cpp.o
+[50/109] Linking CXX executable workbook_links_tests
+[51/109] Linking CXX executable vba_tests
+[52/109] Linking CXX executable robustness_mutation_tests
+[53/109] Building CXX object CMakeFiles/tigersheets_charts.dir/src/chart.cpp.o
+[54/109] Linking CXX static library libtigersheets_charts.a
+[55/109] Linking CXX executable solver_tests
+[56/109] Linking CXX executable printing_tests
+[57/109] Linking CXX executable chart_tests
+[58/109] Linking CXX executable chart_editor_tests
+[59/109] Linking CXX executable tigersheets-vba-worker
+[60/109] Building CXX object CMakeFiles/tigersheets-report-worker.dir/src/report_worker_main.cpp.o
+[61/109] Linking CXX executable tigersheets-report-worker
+[62/109] Building CXX object CMakeFiles/codex_host_tool_tests.dir/tests/codex_host_tool_tests.cpp.o
+[63/109] Linking CXX executable selection_statistics_tests
+[64/109] Building CXX object CMakeFiles/reporting_publication_tests.dir/tests/reporting_publication_tests.cpp.o
+[65/109] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[66/109] Linking CXX static library libtigersheets_desktop.a
+[67/109] Linking CXX executable tiger-sheets
+[68/109] Linking CXX executable workspace_tests
+[69/109] Linking CXX executable codex_host_tool_tests
+[70/109] Building CXX object CMakeFiles/reporting_snapshot_lifetime_tests.dir/tests/reporting_snapshot_lifetime_tests.cpp.o
+[71/109] Linking CXX executable manual_calculation_tests
+[72/109] Linking CXX executable selection_status_ui_tests
+[73/109] Linking CXX executable link_status_ui_tests
+[74/109] Linking CXX executable static_conversion_ui_tests
+[75/109] Linking CXX executable reporting_formula_header_tests
+[76/109] Linking CXX executable reporting_workspace_tests
+[77/109] Linking CXX executable reporting_publication_tests
+[78/109] Linking CXX executable reporting_snapshot_lifetime_tests
+[79/109] Linking CXX executable report_worker_tool_tests
+[80/109] Linking CXX executable live_reporting_workflow
+[81/109] Linking CXX executable native_platform_tests
+[82/109] Linking CXX executable reporting_calculation_ui_tests
+[83/109] Linking CXX executable print_settings_ui_tests
+[84/109] Linking CXX executable reporting_cached_consent_tests
+[85/109] Linking CXX executable reporting_input_benchmark
+[86/109] Linking CXX executable vba_draft_workspace_tests
+[87/109] Linking CXX executable worksheet_clipboard_ui_tests
+[88/109] Linking CXX executable codex_workspace_tests
+[89/109] Linking CXX executable codex_controls_tests
+[90/109] Linking CXX executable codex_panel_integration_tests
+[91/109] Linking CXX executable codex_financial_workflow_tests
+[92/109] Building CXX object CMakeFiles/report_worker_tests.dir/tests/report_worker_tests.cpp.o
+[93/109] Linking CXX executable report_worker_tests
+[94/109] Linking CXX executable formula_workspace_tests
+[95/109] Linking CXX executable ribbon_page_tests
+[96/109] Linking CXX executable theme_tests
+[97/109] Linking CXX executable workspace_ux_tests
+[98/109] Linking CXX executable chart_workspace_tests
+[99/109] Linking CXX executable chart_interaction_tests
+[100/109] Linking CXX executable workbook_ui_links_tests
+[101/109] Linking CXX executable financial_model_tests
+[102/109] Linking CXX executable preview_ui_tests
+[103/109] Linking CXX executable scheduler_tests
+[104/109] Linking CXX executable modeling_ui_tests
+[105/109] Linking CXX executable scheduler_preparation_tests
+[106/109] Linking CXX executable performance_benchmark
+[107/109] Linking CXX executable vba_worker_tests
+[108/109] Building CXX object CMakeFiles/reporting_capacity_benchmark.dir/tests/reporting_capacity_benchmark.cpp.o
+[109/109] Linking CXX executable reporting_capacity_benchmark

@@ -1,0 +1,2 @@
+Foreign result longest GUI dispatch ms: 1014.02
+FAILED: retiring a large refused result must keep every GUI dispatch below 100 ms

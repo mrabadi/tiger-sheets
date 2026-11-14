@@ -1,0 +1,5 @@
+[1/4] Building CXX object CMakeFiles/worksheet_io.dir/workspace/tiger-sheets/src/ooxml.cpp.o
+[2/4] Building CXX object CMakeFiles/worksheet_io.dir/workspace/tiger-sheets/src/pivot_ooxml.cpp.o
+[3/4] Linking CXX static library libworksheet_io.a
+[4/4] Linking CXX executable native_pivot_tests
+native pivot tests passed

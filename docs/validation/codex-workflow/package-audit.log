@@ -1,0 +1,449 @@
+$ ["dpkg-deb", "--field", "/workspace/tiger-sheets/dist/tiger-sheets_0.1.0~dev.2_amd64.deb"]
+Architecture: amd64
+Depends: qt6-qpa-plugins, qt6-wayland, libc6 (>= 2.34), libgcc-s1 (>= 4.2), libpugixml1v5 (>= 1.11), libqt6core6 (>= 6.2.0), libqt6gui6 (>= 6.1.2), libqt6printsupport6 (>= 6.1.2), libqt6widgets6 (>= 6.1.2), libseccomp2 (>= 0.0.0~20120605), libsqlite3-0 (>= 3.8.7), libstdc++6 (>= 12), libzip4 (>= 1.0)
+Description: TigerSheets development build
+ Local TigerSheets development build. Excel and VBA compatibility is incomplete; this package is for local evaluation.
+Maintainer: TigerSheets contributors
+Package: tiger-sheets
+Priority: optional
+Section: math
+Version: 0.1.0~dev.2
+Installed-Size: 184088
+
+
+exit: 0
+$ ["dpkg", "--compare-versions", "0.1.0~dev.2", "gt", "0.1.0~dev.1"]
+
+exit: 0
+$ ["dpkg", "--compare-versions", "0.1.0~dev.2", "lt", "0.1.0"]
+
+exit: 0
+CHECK developmentIdentityAndUpgradeOrdering: True
+$ ["dpkg-deb", "--extract", "/workspace/tiger-sheets/dist/tiger-sheets_0.1.0~dev.2_amd64.deb", "/tmp/tigersheets-dev2-audit-4pwbhalq/root"]
+
+exit: 0
+$ ["readelf", "-d", "/workspace/tiger-sheets/build-release/tiger-sheets"]
+
+Dynamic section at offset 0x1157958 contains 40 entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 (NEEDED)             Shared library: [libzip.so.4]
+ 0x0000000000000001 (NEEDED)             Shared library: [libpugixml.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libpagmo.so.9]
+ 0x0000000000000001 (NEEDED)             Shared library: [libsqlite3.so.0]
+ 0x0000000000000001 (NEEDED)             Shared library: [libQt6PrintSupport.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libQt6Widgets.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libQt6Gui.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libQt6Core.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]
+ 0x000000000000001d (RUNPATH)            Library runpath: [/workspace/tiger-sheets/.deps/solvers/prefix/lib:]
+ 0x000000000000000c (INIT)               0x132000
+ 0x000000000000000d (FINI)               0xd320b0
+ 0x0000000000000019 (INIT_ARRAY)         0x1011608
+ 0x000000000000001b (INIT_ARRAYSZ)       1392 (bytes)
+ 0x000000000000001a (FINI_ARRAY)         0x1011b78
+ 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)
+ 0x000000006ffffef5 (GNU_HASH)           0x3d8
+ 0x0000000000000005 (STRTAB)             0x9d00
+ 0x0000000000000006 (SYMTAB)             0x790
+ 0x000000000000000a (STRSZ)              56035 (bytes)
+ 0x000000000000000b (SYMENT)             24 (bytes)
+ 0x0000000000000015 (DEBUG)              0x0
+ 0x0000000000000003 (PLTGOT)             0x1158c18
+ 0x0000000000000002 (PLTRELSZ)           23160 (bytes)
+ 0x0000000000000014 (PLTREL)             RELA
+ 0x0000000000000017 (JMPREL)             0x12b8d8
+ 0x0000000000000007 (RELA)               0x18838
+ 0x0000000000000008 (RELASZ)             1126560 (bytes)
+ 0x0000000000000009 (RELAENT)            24 (bytes)
+ 0x000000000000001e (FLAGS)              BIND_NOW
+ 0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE
+ 0x000000006ffffffe (VERNEED)            0x18458
+ 0x000000006fffffff (VERNEEDNUM)         9
+ 0x000000006ffffff0 (VERSYM)             0x177e4
+ 0x000000006ffffff9 (RELACOUNT)          45692
+ 0x0000000000000000 (NULL)               0x0
+
+exit: 0
+$ ["cmake", "-P", "/tmp/tigersheets-dev2-audit-4pwbhalq/normalize-rpath.cmake"]
+-- Set runtime path of "/tmp/tigersheets-dev2-audit-4pwbhalq/normalized-final-build" to "$ORIGIN/../lib/tiger-sheets"
+
+exit: 0
+$ ["readelf", "-n", "/workspace/tiger-sheets/build-release/tiger-sheets"]
+
+Displaying notes found in: .note.gnu.property
+  Owner                Data size 	Description
+  GNU                  0x00000010	NT_GNU_PROPERTY_TYPE_0
+      Properties: x86 ISA needed: x86-64-baseline
+
+Displaying notes found in: .note.gnu.build-id
+  Owner                Data size 	Description
+  GNU                  0x00000014	NT_GNU_BUILD_ID (unique build ID bitstring)
+    Build ID: 5f78bd2f415bdb7d38e78b29da0dc6ebd793a375
+
+Displaying notes found in: .note.ABI-tag
+  Owner                Data size 	Description
+  GNU                  0x00000010	NT_GNU_ABI_TAG (ABI version tag)
+    OS: Linux, ABI: 3.2.0
+
+exit: 0
+$ ["readelf", "-n", "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/bin/tiger-sheets"]
+
+Displaying notes found in: .note.gnu.property
+  Owner                Data size 	Description
+  GNU                  0x00000010	NT_GNU_PROPERTY_TYPE_0
+      Properties: x86 ISA needed: x86-64-baseline
+
+Displaying notes found in: .note.gnu.build-id
+  Owner                Data size 	Description
+  GNU                  0x00000014	NT_GNU_BUILD_ID (unique build ID bitstring)
+    Build ID: 5f78bd2f415bdb7d38e78b29da0dc6ebd793a375
+
+Displaying notes found in: .note.ABI-tag
+  Owner                Data size 	Description
+  GNU                  0x00000010	NT_GNU_ABI_TAG (ABI version tag)
+    OS: Linux, ABI: 3.2.0
+
+exit: 0
+CHECK finalBuildBinaryMatchesInstalledPayload: True
+CHECK publishedFinancialWorkbookSchema: True
+$ ["readelf", "-d", "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/bin/tiger-sheets"]
+
+Dynamic section at offset 0x1157958 contains 40 entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 (NEEDED)             Shared library: [libzip.so.4]
+ 0x0000000000000001 (NEEDED)             Shared library: [libpugixml.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libpagmo.so.9]
+ 0x0000000000000001 (NEEDED)             Shared library: [libsqlite3.so.0]
+ 0x0000000000000001 (NEEDED)             Shared library: [libQt6PrintSupport.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libQt6Widgets.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libQt6Gui.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libQt6Core.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]
+ 0x000000000000001d (RUNPATH)            Library runpath: [$ORIGIN/../lib/tiger-sheets]
+ 0x000000000000000c (INIT)               0x132000
+ 0x000000000000000d (FINI)               0xd320b0
+ 0x0000000000000019 (INIT_ARRAY)         0x1011608
+ 0x000000000000001b (INIT_ARRAYSZ)       1392 (bytes)
+ 0x000000000000001a (FINI_ARRAY)         0x1011b78
+ 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)
+ 0x000000006ffffef5 (GNU_HASH)           0x3d8
+ 0x0000000000000005 (STRTAB)             0x9d00
+ 0x0000000000000006 (SYMTAB)             0x790
+ 0x000000000000000a (STRSZ)              56035 (bytes)
+ 0x000000000000000b (SYMENT)             24 (bytes)
+ 0x0000000000000015 (DEBUG)              0x0
+ 0x0000000000000003 (PLTGOT)             0x1158c18
+ 0x0000000000000002 (PLTRELSZ)           23160 (bytes)
+ 0x0000000000000014 (PLTREL)             RELA
+ 0x0000000000000017 (JMPREL)             0x12b8d8
+ 0x0000000000000007 (RELA)               0x18838
+ 0x0000000000000008 (RELASZ)             1126560 (bytes)
+ 0x0000000000000009 (RELAENT)            24 (bytes)
+ 0x000000000000001e (FLAGS)              BIND_NOW
+ 0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE
+ 0x000000006ffffffe (VERNEED)            0x18458
+ 0x000000006fffffff (VERNEEDNUM)         9
+ 0x000000006ffffff0 (VERSYM)             0x177e4
+ 0x000000006ffffff9 (RELACOUNT)          45692
+ 0x0000000000000000 (NULL)               0x0
+
+exit: 0
+$ ["ldd", "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/bin/tiger-sheets"]
+	linux-vdso.so.1 (0x00007ffe6819f000)
+	libzip.so.4 => /lib/x86_64-linux-gnu/libzip.so.4 (0x00007b9b108b3000)
+	libpugixml.so.1 => /lib/x86_64-linux-gnu/libpugixml.so.1 (0x00007b9b10877000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007b9b0f519000)
+	libpagmo.so.9 => /tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/bin/../lib/tiger-sheets/libpagmo.so.9 (0x00007b9b0e000000)
+	libsqlite3.so.0 => /lib/x86_64-linux-gnu/libsqlite3.so.0 (0x00007b9b0f3cc000)
+	libQt6PrintSupport.so.6 => /lib/x86_64-linux-gnu/libQt6PrintSupport.so.6 (0x00007b9b107f4000)
+	libQt6Widgets.so.6 => /lib/x86_64-linux-gnu/libQt6Widgets.so.6 (0x00007b9b0d800000)
+	libQt6Gui.so.6 => /lib/x86_64-linux-gnu/libQt6Gui.so.6 (0x00007b9b0d000000)
+	libQt6Core.so.6 => /lib/x86_64-linux-gnu/libQt6Core.so.6 (0x00007b9b0ca00000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007b9b0c600000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007b9b107d4000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007b9b0c200000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007b9b108f0000)
+	libbz2.so.1.0 => /lib/x86_64-linux-gnu/libbz2.so.1.0 (0x00007b9b107bf000)
+	libcrypto.so.3 => /lib/x86_64-linux-gnu/libcrypto.so.3 (0x00007b9b0bc00000)
+	libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007b9b107a3000)
+	libboost_serialization.so.1.74.0 => /tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/bin/../lib/tiger-sheets/libboost_serialization.so.1.74.0 (0x00007b9b0cf45000)
+	libtbb.so.12 => /tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/bin/../lib/tiger-sheets/libtbb.so.12 (0x00007b9b0f378000)
+	libEGL.so.1 => /lib/x86_64-linux-gnu/libEGL.so.1 (0x00007b9b0f365000)
+	libfontconfig.so.1 => /lib/x86_64-linux-gnu/libfontconfig.so.1 (0x00007b9b0dfb6000)
+	libX11.so.6 => /lib/x86_64-linux-gnu/libX11.so.6 (0x00007b9b0c8c0000)
+	libglib-2.0.so.0 => /lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x00007b9b0c4c5000)
+	libQt6DBus.so.6 => /lib/x86_64-linux-gnu/libQt6DBus.so.6 (0x00007b9b0c128000)
+	libxkbcommon.so.0 => /lib/x86_64-linux-gnu/libxkbcommon.so.0 (0x00007b9b0df6f000)
+	libGLX.so.0 => /lib/x86_64-linux-gnu/libGLX.so.0 (0x00007b9b0f331000)
+	libOpenGL.so.0 => /lib/x86_64-linux-gnu/libOpenGL.so.0 (0x00007b9b0d7d4000)
+	libpng16.so.16 => /lib/x86_64-linux-gnu/libpng16.so.16 (0x00007b9b0d799000)
+	libharfbuzz.so.0 => /lib/x86_64-linux-gnu/libharfbuzz.so.0 (0x00007b9b0c059000)
+	libmd4c.so.0 => /lib/x86_64-linux-gnu/libmd4c.so.0 (0x00007b9b0cf33000)
+	libfreetype.so.6 => /lib/x86_64-linux-gnu/libfreetype.so.6 (0x00007b9b0bb38000)
+	libicui18n.so.70 => /lib/x86_64-linux-gnu/libicui18n.so.70 (0x00007b9b0b800000)
+	libicuuc.so.70 => /lib/x86_64-linux-gnu/libicuuc.so.70 (0x00007b9b0b605000)
+	libzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x00007b9b0b536000)
+	libdouble-conversion.so.3 => /lib/x86_64-linux-gnu/libdouble-conversion.so.3 (0x00007b9b0c8ab000)
+	libb2.so.1 => /lib/x86_64-linux-gnu/libb2.so.1 (0x00007b9b0c88d000)
+	libpcre2-16.so.0 => /lib/x86_64-linux-gnu/libpcre2-16.so.0 (0x00007b9b0c43b000)
+	libGLdispatch.so.0 => /lib/x86_64-linux-gnu/libGLdispatch.so.0 (0x00007b9b0b47e000)
+	libexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x00007b9b0c85b000)
+	libuuid.so.1 => /lib/x86_64-linux-gnu/libuuid.so.1 (0x00007b9b10792000)
+	libxcb.so.1 => /lib/x86_64-linux-gnu/libxcb.so.1 (0x00007b9b0c831000)
+	libpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007b9b0b408000)
+	libdbus-1.so.3 => /lib/x86_64-linux-gnu/libdbus-1.so.3 (0x00007b9b0b3ba000)
+	libgraphite2.so.3 => /lib/x86_64-linux-gnu/libgraphite2.so.3 (0x00007b9b0b392000)
+	libbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x00007b9b0c42d000)
+	libicudata.so.70 => /lib/x86_64-linux-gnu/libicudata.so.70 (0x00007b9b09600000)
+	libgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x00007b9b0b348000)
+	libXau.so.6 => /lib/x86_64-linux-gnu/libXau.so.6 (0x00007b9b0d793000)
+	libXdmcp.so.6 => /lib/x86_64-linux-gnu/libXdmcp.so.6 (0x00007b9b0c051000)
+	libsystemd.so.0 => /lib/x86_64-linux-gnu/libsystemd.so.0 (0x00007b9b0b281000)
+	libbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x00007b9b0b25e000)
+	libbsd.so.0 => /lib/x86_64-linux-gnu/libbsd.so.0 (0x00007b9b0b246000)
+	liblzma.so.5 => /lib/x86_64-linux-gnu/liblzma.so.5 (0x00007b9b095d5000)
+	liblz4.so.1 => /lib/x86_64-linux-gnu/liblz4.so.1 (0x00007b9b0b226000)
+	libcap.so.2 => /lib/x86_64-linux-gnu/libcap.so.2 (0x00007b9b0c046000)
+	libgcrypt.so.20 => /lib/x86_64-linux-gnu/libgcrypt.so.20 (0x00007b9b09495000)
+	libmd.so.0 => /lib/x86_64-linux-gnu/libmd.so.0 (0x00007b9b09488000)
+	libgpg-error.so.0 => /lib/x86_64-linux-gnu/libgpg-error.so.0 (0x00007b9b09462000)
+
+exit: 0
+$ ["readelf", "-d", "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/libexec/tigersheets/tigersheets-vba-worker"]
+
+Dynamic section at offset 0x71a58 contains 31 entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 (NEEDED)             Shared library: [libseccomp.so.2]
+ 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+ 0x000000000000000c (INIT)               0x5000
+ 0x000000000000000d (FINI)               0x5f618
+ 0x0000000000000019 (INIT_ARRAY)         0x721c8
+ 0x000000000000001b (INIT_ARRAYSZ)       16 (bytes)
+ 0x000000000000001a (FINI_ARRAY)         0x721d8
+ 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)
+ 0x000000006ffffef5 (GNU_HASH)           0x3b0
+ 0x0000000000000005 (STRTAB)             0x1218
+ 0x0000000000000006 (SYMTAB)             0x4b0
+ 0x000000000000000a (STRSZ)              4818 (bytes)
+ 0x000000000000000b (SYMENT)             24 (bytes)
+ 0x0000000000000015 (DEBUG)              0x0
+ 0x0000000000000003 (PLTGOT)             0x72c88
+ 0x0000000000000002 (PLTRELSZ)           2328 (bytes)
+ 0x0000000000000014 (PLTREL)             RELA
+ 0x0000000000000017 (JMPREL)             0x42e8
+ 0x0000000000000007 (RELA)               0x2788
+ 0x0000000000000008 (RELASZ)             7008 (bytes)
+ 0x0000000000000009 (RELAENT)            24 (bytes)
+ 0x000000000000001e (FLAGS)              BIND_NOW
+ 0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE
+ 0x000000006ffffffe (VERNEED)            0x2608
+ 0x000000006fffffff (VERNEEDNUM)         4
+ 0x000000006ffffff0 (VERSYM)             0x24ea
+ 0x000000006ffffff9 (RELACOUNT)          234
+ 0x0000000000000000 (NULL)               0x0
+
+exit: 0
+$ ["ldd", "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/libexec/tigersheets/tigersheets-vba-worker"]
+	linux-vdso.so.1 (0x00007ffd88dfb000)
+	libseccomp.so.2 => /lib/x86_64-linux-gnu/libseccomp.so.2 (0x00007fc39e9cc000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fc39e600000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fc39e8e5000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fc39e8c5000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fc39e200000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fc39ea7f000)
+
+exit: 0
+$ ["readelf", "-d", "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libtbb.so.12.5"]
+
+Dynamic section at offset 0x39cb0 contains 28 entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]
+ 0x000000000000000e (SONAME)             Library soname: [libtbb.so.12]
+ 0x000000000000000c (INIT)               0xb000
+ 0x000000000000000d (FINI)               0x2ee00
+ 0x0000000000000019 (INIT_ARRAY)         0x3a088
+ 0x000000000000001b (INIT_ARRAYSZ)       16 (bytes)
+ 0x000000000000001a (FINI_ARRAY)         0x3a098
+ 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)
+ 0x000000006ffffef5 (GNU_HASH)           0x2f0
+ 0x0000000000000005 (STRTAB)             0x1cf8
+ 0x0000000000000006 (SYMTAB)             0x690
+ 0x000000000000000a (STRSZ)              8979 (bytes)
+ 0x000000000000000b (SYMENT)             24 (bytes)
+ 0x0000000000000003 (PLTGOT)             0x3b000
+ 0x0000000000000002 (PLTRELSZ)           3000 (bytes)
+ 0x0000000000000014 (PLTREL)             RELA
+ 0x0000000000000017 (JMPREL)             0xa318
+ 0x0000000000000007 (RELA)               0x4330
+ 0x0000000000000008 (RELASZ)             24552 (bytes)
+ 0x0000000000000009 (RELAENT)            24 (bytes)
+ 0x000000006ffffffe (VERNEED)            0x41f0
+ 0x000000006fffffff (VERNEEDNUM)         4
+ 0x000000006ffffff0 (VERSYM)             0x400c
+ 0x000000006ffffff9 (RELACOUNT)          919
+ 0x0000000000000000 (NULL)               0x0
+
+exit: 0
+$ ["ldd", "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libtbb.so.12.5"]
+	linux-vdso.so.1 (0x00007ffef14dd000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x000072272ca00000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000072272cc8a000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000072272c600000)
+	/lib64/ld-linux-x86-64.so.2 (0x000072272cd1d000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000072272c919000)
+
+exit: 0
+$ ["readelf", "-d", "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libpagmo.so.9.0"]
+
+Dynamic section at offset 0x131b1e8 contains 32 entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 (NEEDED)             Shared library: [libboost_serialization.so.1.74.0]
+ 0x0000000000000001 (NEEDED)             Shared library: [libtbb.so.12]
+ 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]
+ 0x000000000000000e (SONAME)             Library soname: [libpagmo.so.9]
+ 0x000000000000001d (RUNPATH)            Library runpath: [$ORIGIN]
+ 0x000000000000000c (INIT)               0xe5000
+ 0x000000000000000d (FINI)               0x3cafc0
+ 0x0000000000000019 (INIT_ARRAY)         0x12dfd20
+ 0x000000000000001b (INIT_ARRAYSZ)       720 (bytes)
+ 0x000000000000001a (FINI_ARRAY)         0x12dfff0
+ 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)
+ 0x000000006ffffef5 (GNU_HASH)           0x328
+ 0x0000000000000005 (STRTAB)             0x13398
+ 0x0000000000000006 (SYMTAB)             0x4cf8
+ 0x000000000000000a (STRSZ)              156688 (bytes)
+ 0x000000000000000b (SYMENT)             24 (bytes)
+ 0x0000000000000003 (PLTGOT)             0x131d000
+ 0x0000000000000002 (PLTRELSZ)           22632 (bytes)
+ 0x0000000000000014 (PLTREL)             RELA
+ 0x0000000000000017 (JMPREL)             0xdf5b8
+ 0x0000000000000007 (RELA)               0x3ad20
+ 0x0000000000000008 (RELASZ)             673944 (bytes)
+ 0x0000000000000009 (RELAENT)            24 (bytes)
+ 0x000000006ffffffe (VERNEED)            0x3aae0
+ 0x000000006fffffff (VERNEEDNUM)         5
+ 0x000000006ffffff0 (VERSYM)             0x397a8
+ 0x000000006ffffff9 (RELACOUNT)          21948
+ 0x0000000000000000 (NULL)               0x0
+
+exit: 0
+$ ["ldd", "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libpagmo.so.9.0"]
+	linux-vdso.so.1 (0x00007fffe4de5000)
+	libboost_serialization.so.1.74.0 => /tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libboost_serialization.so.1.74.0 (0x00007afd26b45000)
+	libtbb.so.12 => /tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libtbb.so.12 (0x00007afd27f7c000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007afd26800000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007afd26a5e000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007afd27f3d000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007afd26400000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007afd27fd2000)
+
+exit: 0
+$ ["readelf", "-d", "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libboost_serialization.so.1.74.0"]
+
+Dynamic section at offset 0xb7440 contains 27 entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+ 0x000000000000000e (SONAME)             Library soname: [libboost_serialization.so.1.74.0]
+ 0x000000000000000c (INIT)               0x64000
+ 0x000000000000000d (FINI)               0x9adcc
+ 0x0000000000000019 (INIT_ARRAY)         0xb5308
+ 0x000000000000001b (INIT_ARRAYSZ)       240 (bytes)
+ 0x000000000000001a (FINI_ARRAY)         0xb53f8
+ 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)
+ 0x000000006ffffef5 (GNU_HASH)           0x2f0
+ 0x0000000000000005 (STRTAB)             0xe960
+ 0x0000000000000006 (SYMTAB)             0x36c8
+ 0x000000000000000a (STRSZ)              297228 (bytes)
+ 0x000000000000000b (SYMENT)             24 (bytes)
+ 0x0000000000000003 (PLTGOT)             0xb9000
+ 0x0000000000000002 (PLTRELSZ)           7776 (bytes)
+ 0x0000000000000014 (PLTREL)             RELA
+ 0x0000000000000017 (JMPREL)             0x61b88
+ 0x0000000000000007 (RELA)               0x58270
+ 0x0000000000000008 (RELASZ)             39192 (bytes)
+ 0x0000000000000009 (RELAENT)            24 (bytes)
+ 0x000000006ffffffe (VERNEED)            0x58150
+ 0x000000006fffffff (VERNEEDNUM)         3
+ 0x000000006ffffff0 (VERSYM)             0x5726c
+ 0x000000006ffffff9 (RELACOUNT)          35
+ 0x0000000000000000 (NULL)               0x0
+
+exit: 0
+$ ["ldd", "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libboost_serialization.so.1.74.0"]
+	linux-vdso.so.1 (0x00007ffe789d1000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007c9e13000000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007c9e133d6000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007c9e12c00000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007c9e132ef000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007c9e134d0000)
+
+exit: 0
+CHECK fiveElfRelativeRuntimePathsAndResolvedLibraries: True
+$ ["/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/bin/tiger-sheets", "--demo", "--screenshot", "/workspace/tiger-sheets/docs/validation/codex-workflow/package-workspace.png"]
+
+exit: 0
+CHECK extractedPackagedApplicationLaunch: True
+$ ["/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/libexec/tigersheets/tigersheets-vba-worker", "--stdio"]
+stdin: {"version": 1, "snapshot": {"revision": 0, "sheets": [{"id": "sheet-1", "name": "Sheet1", "cells": []}]}, "source": "Sub Forecast()\nRange(\"A1\").Value = 42\nEnd Sub", "procedure": "Forecast", "enabled": true}
+
+{"diagnostics":[],"status":"completed","variables":{},"version":1,"workbook":{"revision":1,"sheets":[{"cells":[{"col":1,"input":"42","row":1}],"id":"sheet-1","name":"Sheet1"}]}}
+
+exit: 0
+CHECK packagedWorkerExecutes: True
+$ ["/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/libexec/tigersheets/tigersheets-vba-worker", "--stdio"]
+stdin: {"version": 1, "snapshot": {"revision": 0, "sheets": [{"id": "sheet-1", "name": "Sheet1", "cells": []}]}, "source": "Sub Forecast()\nRange(\"A1\").Value = 42\nEnd Sub", "procedure": "Forecast", "enabled": false}
+
+{"diagnostics":["Macros are disabled for this workbook"],"status":"disabled","variables":{},"version":1,"workbook":{"revision":0,"sheets":[{"cells":[],"id":"sheet-1","name":"Sheet1"}]}}
+
+exit: 0
+CHECK disabledMacrosPreserveWorkbook: True
+$ ["desktop-file-validate", "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/share/applications/tiger-sheets.desktop"]
+
+exit: 0
+CHECK desktopAndMimePayload: True
+CHECK eightLauncherIconSizes: True
+CHECK sourceArchivesAndLicenses: True
+$ ["apt-get", "-s", "install", "/workspace/tiger-sheets/dist/tiger-sheets_0.1.0~dev.2_amd64.deb"]
+NOTE: This is only a simulation!
+      apt-get needs root privileges for real execution.
+      Keep also in mind that locking is deactivated,
+      so don't depend on the relevance to the real current situation!
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  libfwupd2 libfwupdplugin5 libgcab-1.0-0 libsmbios-c2
+  python3-proton-vpn-local-agent python3-proton-vpn-network-manager
+Use 'apt autoremove' to remove them.
+The following packages will be upgraded:
+  tiger-sheets
+1 upgraded, 0 newly installed, 0 to remove and 32 not upgraded.
+Inst tiger-sheets [0.1.0~dev.1] (0.1.0~dev.2 local-deb [amd64])
+Conf tiger-sheets (0.1.0~dev.2 local-deb [amd64])
+
+exit: 0
+CHECK aptDependencyResolutionSimulation: True
+CHECK packageUnchangedDuringAudit: True
+
+Visual inspection: packaged native workspace screenshot opened and inspected; passed.
+Harness correction: MIME association verification combines Ubuntu shared MIME definitions with the packaged XLSM extension; first-pass overly narrow assertion was corrected without package changes.

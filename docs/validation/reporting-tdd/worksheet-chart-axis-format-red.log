@@ -1,0 +1,9 @@
+[1/2] Building CXX object CMakeFiles/chart_tests.dir/workspace/tiger-sheets/tests/chart_tests.cpp.o
+[2/2] Linking CXX executable chart_tests
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+FAILED: financial chart axes must apply the shared number format from their series

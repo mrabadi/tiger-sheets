@@ -1,0 +1,3 @@
+Connecting installed authenticated runtime; only a new fictional workbook will be shared.
+PASS: authenticated fictional report authored, reviewed, accepted, undone/redone and saved/reopened.
+Fixture: /tmp/tigersheets-live-reporting-XOEjQF/fictional-native-report.xlsx

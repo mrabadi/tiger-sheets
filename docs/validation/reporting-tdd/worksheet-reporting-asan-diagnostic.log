@@ -1,0 +1,12 @@
+/usr/include/c++/11/optional:279:12: runtime error: load of value 65, which is not a valid value for type 'bool'
+    #0 0x5d39510f4b8d in std::_Optional_payload_base<nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > >::_M_reset() /usr/include/c++/11/optional:279
+    #1 0x5d39510e94b3 in std::_Optional_payload<nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > >, false, false, false>::~_Optional_payload() /usr/include/c++/11/optional:401
+    #2 0x5d39510e224d in std::_Optional_base<nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > >, false, false>::~_Optional_base() /usr/include/c++/11/optional:472
+    #3 0x5d39510e22bf in std::optional<nlohmann::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > > >::~optional() /usr/include/c++/11/optional:662
+    #4 0x5d39510e2359 in tigersheets::WorkbookSession::~WorkbookSession() (/tmp/tigersheets-reporting-worksheet/asan/printing_tests+0xb00359)
+    #5 0x5d39510aff1d in selectedDisplayValues /workspace/tiger-sheets/tests/printing_tests.cpp:37
+    #6 0x5d39510dbf66 in main /workspace/tiger-sheets/tests/printing_tests.cpp:97
+    #7 0x7d47ed629d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #8 0x7d47ed629e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #9 0x5d39510a93d4 in _start (/tmp/tigersheets-reporting-worksheet/asan/printing_tests+0xac73d4)
+

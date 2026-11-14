@@ -1,0 +1,214 @@
+Internal ctest changing into directory: /workspace/tiger-sheets/build-release
+Test project /workspace/tiger-sheets/build-release
+        Start   1: analysis_tests
+  1/104 Test   #1: analysis_tests .............................   Passed    0.01 sec
+        Start   2: branding_tests
+  2/104 Test   #2: branding_tests .............................   Passed    5.49 sec
+        Start   3: release_gate_tests
+  3/104 Test   #3: release_gate_tests .........................   Passed    0.04 sec
+        Start   4: development_package_validation_tests
+  4/104 Test   #4: development_package_validation_tests .......   Passed    0.08 sec
+        Start   5: packaging_tests
+  5/104 Test   #5: packaging_tests ............................   Passed    0.13 sec
+        Start   6: dependency_bootstrap_tests
+  6/104 Test   #6: dependency_bootstrap_tests .................   Passed    0.40 sec
+        Start   7: compatibility_catalog_tests
+  7/104 Test   #7: compatibility_catalog_tests ................   Passed    0.04 sec
+        Start   8: codex_tests
+  8/104 Test   #8: codex_tests ................................   Passed    0.33 sec
+        Start   9: snapshot_capture_tests
+  9/104 Test   #9: snapshot_capture_tests .....................   Passed    0.98 sec
+        Start  10: recovery_tests
+ 10/104 Test  #10: recovery_tests .............................   Passed    0.37 sec
+        Start  11: calculation_tests
+ 11/104 Test  #11: calculation_tests ..........................   Passed    0.01 sec
+        Start  12: calculation_context_tests
+ 12/104 Test  #12: calculation_context_tests ..................   Passed    0.00 sec
+        Start  13: formula_catalog_tests
+ 13/104 Test  #13: formula_catalog_tests ......................   Passed    0.02 sec
+        Start  14: session_tests
+ 14/104 Test  #14: session_tests ..............................   Passed    0.01 sec
+        Start  15: session_foundation_tests
+ 15/104 Test  #15: session_foundation_tests ...................   Passed    0.06 sec
+        Start  16: session_lookup_tests
+ 16/104 Test  #16: session_lookup_tests .......................   Passed    0.10 sec
+        Start  17: prepared_session_tests
+ 17/104 Test  #17: prepared_session_tests .....................   Passed    0.24 sec
+        Start  18: prepared_native_tests
+ 18/104 Test  #18: prepared_native_tests ......................   Passed    0.11 sec
+        Start  19: financial_model_session_tests
+ 19/104 Test  #19: financial_model_session_tests ..............   Passed    0.00 sec
+        Start  20: financial_pivot_collision_tests
+ 20/104 Test  #20: financial_pivot_collision_tests ............   Passed    0.00 sec
+        Start  21: financial_models_tests
+ 21/104 Test  #21: financial_models_tests .....................   Passed    0.01 sec
+        Start  22: financial_workflow_tests
+ 22/104 Test  #22: financial_workflow_tests ...................   Passed    0.02 sec
+        Start  23: financial_example_tests
+ 23/104 Test  #23: financial_example_tests ....................   Passed    0.01 sec
+        Start  24: pivot_tests
+ 24/104 Test  #24: pivot_tests ................................   Passed    0.01 sec
+        Start  25: pivot_conversion_tests
+ 25/104 Test  #25: pivot_conversion_tests .....................   Passed    0.01 sec
+        Start  26: pivot_reference_tests
+ 26/104 Test  #26: pivot_reference_tests ......................   Passed    0.01 sec
+        Start  27: pivot_ownership_tests
+ 27/104 Test  #27: pivot_ownership_tests ......................   Passed    0.00 sec
+        Start  28: ooxml_tests
+ 28/104 Test  #28: ooxml_tests ................................   Passed    1.58 sec
+        Start  29: financial_model_persistence_tests
+ 29/104 Test  #29: financial_model_persistence_tests ..........   Passed    0.02 sec
+        Start  30: financial_metadata_authority_tests
+ 30/104 Test  #30: financial_metadata_authority_tests .........   Passed    0.02 sec
+        Start  31: financial_acceptance_tests
+ 31/104 Test  #31: financial_acceptance_tests .................   Passed    0.07 sec
+        Start  32: financial_acceptance_inspection
+ 32/104 Test  #32: financial_acceptance_inspection ............   Passed    0.43 sec
+        Start  33: native_pivot_tests
+ 33/104 Test  #33: native_pivot_tests .........................   Passed    0.44 sec
+        Start  34: printing_ooxml_tests
+ 34/104 Test  #34: printing_ooxml_tests .......................   Passed    0.02 sec
+        Start  35: ooxml_style_performance_tests
+ 35/104 Test  #35: ooxml_style_performance_tests ..............   Passed    0.64 sec
+        Start  36: csv_tests
+ 36/104 Test  #36: csv_tests ..................................   Passed    0.00 sec
+        Start  37: financial_tools_tests
+ 37/104 Test  #37: financial_tools_tests ......................   Passed    0.05 sec
+        Start  38: workbook_tools_tests
+ 38/104 Test  #38: workbook_tools_tests .......................   Passed    0.06 sec
+        Start  39: reporting_tools_tests
+ 39/104 Test  #39: reporting_tools_tests ......................   Passed    0.03 sec
+        Start  40: references_tests
+ 40/104 Test  #40: references_tests ...........................   Passed    0.00 sec
+        Start  41: formula_editor_tests
+ 41/104 Test  #41: formula_editor_tests .......................   Passed    0.49 sec
+        Start  42: worksheet_entry_tests
+ 42/104 Test  #42: worksheet_entry_tests ......................   Passed    0.32 sec
+        Start  43: workbook_links_tests
+ 43/104 Test  #43: workbook_links_tests .......................   Passed    0.03 sec
+        Start  44: grid_tests
+ 44/104 Test  #44: grid_tests .................................   Passed    0.03 sec
+        Start  45: worksheet_correctness_tests
+ 45/104 Test  #45: worksheet_correctness_tests ................   Passed    0.03 sec
+        Start  46: printing_tests
+ 46/104 Test  #46: printing_tests .............................   Passed    0.45 sec
+        Start  47: chart_tests
+ 47/104 Test  #47: chart_tests ................................   Passed    0.06 sec
+        Start  48: chart_editor_tests
+ 48/104 Test  #48: chart_editor_tests .........................   Passed    0.07 sec
+        Start  49: vba_tests
+ 49/104 Test  #49: vba_tests ..................................   Passed    0.02 sec
+        Start  50: robustness_mutation_tests
+ 50/104 Test  #50: robustness_mutation_tests ..................   Passed    0.18 sec
+        Start  51: solver_tests
+ 51/104 Test  #51: solver_tests ...............................   Passed    0.56 sec
+        Start  52: workspace_tests
+ 52/104 Test  #52: workspace_tests ............................   Passed    1.03 sec
+        Start  53: pivot_fields_pane_tests
+ 53/104 Test  #53: pivot_fields_pane_tests ....................   Passed    0.07 sec
+        Start  54: codex_host_tool_tests
+ 54/104 Test  #54: codex_host_tool_tests ......................   Passed    1.90 sec
+        Start  55: manual_calculation_tests
+ 55/104 Test  #55: manual_calculation_tests ...................   Passed    1.26 sec
+        Start  56: selection_status_ui_tests
+ 56/104 Test  #56: selection_status_ui_tests ..................   Passed    0.33 sec
+        Start  57: link_status_ui_tests
+ 57/104 Test  #57: link_status_ui_tests .......................   Passed    0.35 sec
+        Start  58: selection_statistics_tests
+ 58/104 Test  #58: selection_statistics_tests .................   Passed    0.46 sec
+        Start  59: static_conversion_ui_tests
+ 59/104 Test  #59: static_conversion_ui_tests .................   Passed    0.44 sec
+        Start  60: reporting_formula_header_tests
+ 60/104 Test  #60: reporting_formula_header_tests .............   Passed    0.40 sec
+        Start  61: reporting_workspace_tests
+ 61/104 Test  #61: reporting_workspace_tests ..................   Passed    0.37 sec
+        Start  62: reporting_publication_tests
+ 62/104 Test  #62: reporting_publication_tests ................   Passed    3.48 sec
+        Start  63: reporting_snapshot_lifetime_tests
+ 63/104 Test  #63: reporting_snapshot_lifetime_tests ..........   Passed    1.13 sec
+        Start  64: report_worker_retirement_tests
+ 64/104 Test  #64: report_worker_retirement_tests .............   Passed    2.91 sec
+        Start  65: financial_worker_frontend_tests
+ 65/104 Test  #65: financial_worker_frontend_tests ............   Passed    0.08 sec
+        Start  66: report_tool_worker_tests
+ 66/104 Test  #66: report_tool_worker_tests ...................   Passed    0.04 sec
+        Start  67: report_worker_tool_tests
+ 67/104 Test  #67: report_worker_tool_tests ...................   Passed    0.47 sec
+        Start  68: native_platform_tests
+ 68/104 Test  #68: native_platform_tests ......................   Passed    0.09 sec
+        Start  69: reporting_calculation_ui_tests
+ 69/104 Test  #69: reporting_calculation_ui_tests .............   Passed    0.24 sec
+        Start  70: print_settings_ui_tests
+ 70/104 Test  #70: print_settings_ui_tests ....................   Passed    0.26 sec
+        Start  71: reporting_cached_consent_tests
+ 71/104 Test  #71: reporting_cached_consent_tests .............   Passed    0.51 sec
+        Start  72: reporting_cached_consent_new_sheet_tests
+ 72/104 Test  #72: reporting_cached_consent_new_sheet_tests ...   Passed    0.50 sec
+        Start  73: report_worker_tests
+ 73/104 Test  #73: report_worker_tests ........................   Passed    2.64 sec
+        Start  74: native_financial_worker_tests
+ 74/104 Test  #74: native_financial_worker_tests ..............   Passed    1.22 sec
+        Start  75: vba_draft_workspace_tests
+ 75/104 Test  #75: vba_draft_workspace_tests ..................   Passed    0.26 sec
+        Start  76: worksheet_clipboard_ui_tests
+ 76/104 Test  #76: worksheet_clipboard_ui_tests ...............   Passed    0.28 sec
+        Start  77: codex_workspace_tests
+ 77/104 Test  #77: codex_workspace_tests ......................   Passed    0.26 sec
+        Start  78: codex_controls_tests
+ 78/104 Test  #78: codex_controls_tests .......................   Passed    0.04 sec
+        Start  79: codex_panel_integration_tests
+ 79/104 Test  #79: codex_panel_integration_tests ..............   Passed    0.31 sec
+        Start  80: codex_financial_workflow_tests
+ 80/104 Test  #80: codex_financial_workflow_tests .............   Passed    1.03 sec
+        Start  81: codex_panel_keyboard_tests
+ 81/104 Test  #81: codex_panel_keyboard_tests .................   Passed    0.36 sec
+        Start  82: workspace_ux_tests
+ 82/104 Test  #82: workspace_ux_tests .........................   Passed    4.04 sec
+        Start  83: formula_workspace_tests
+ 83/104 Test  #83: formula_workspace_tests ....................   Passed    2.75 sec
+        Start  84: theme_tests
+ 84/104 Test  #84: theme_tests ................................   Passed    0.07 sec
+        Start  85: ribbon_page_tests
+ 85/104 Test  #85: ribbon_page_tests ..........................   Passed    0.09 sec
+        Start  86: chart_workspace_tests
+ 86/104 Test  #86: chart_workspace_tests ......................   Passed    2.09 sec
+        Start  87: chart_interaction_tests
+ 87/104 Test  #87: chart_interaction_tests ....................   Passed    2.96 sec
+        Start  88: workbook_ui_links_tests
+ 88/104 Test  #88: workbook_ui_links_tests ....................   Passed    0.43 sec
+        Start  89: preview_ui_tests
+ 89/104 Test  #89: preview_ui_tests ...........................   Passed    0.83 sec
+        Start  90: financial_model_tests
+ 90/104 Test  #90: financial_model_tests ......................   Passed    0.41 sec
+        Start  91: modeling_ui_tests
+ 91/104 Test  #91: modeling_ui_tests ..........................   Passed    0.27 sec
+        Start  92: financial_model_pane_tests
+ 92/104 Test  #92: financial_model_pane_tests .................   Passed    0.25 sec
+        Start  93: financial_workspace_tests
+ 93/104 Test  #93: financial_workspace_tests ..................   Passed    0.39 sec
+        Start  94: financial_workspace_job_tests
+ 94/104 Test  #94: financial_workspace_job_tests ..............   Passed    0.57 sec
+        Start  95: financial_analysis_summary_tests
+ 95/104 Test  #95: financial_analysis_summary_tests ...........   Passed    0.01 sec
+        Start  96: financial_ui_job_tests
+ 96/104 Test  #96: financial_ui_job_tests .....................   Passed    0.48 sec
+        Start  97: financial_cancellation_ui_tests
+ 97/104 Test  #97: financial_cancellation_ui_tests ............   Passed    0.34 sec
+        Start  98: financial_desktop_acceptance_tests
+ 98/104 Test  #98: financial_desktop_acceptance_tests .........   Passed    1.99 sec
+        Start  99: financial_csv_tests
+ 99/104 Test  #99: financial_csv_tests ........................   Passed    0.59 sec
+        Start 100: financial_recovery_tests
+100/104 Test #100: financial_recovery_tests ...................   Passed    0.05 sec
+        Start 101: iteration_controls_tests
+101/104 Test #101: iteration_controls_tests ...................   Passed    0.09 sec
+        Start 102: scheduler_tests
+102/104 Test #102: scheduler_tests ............................   Passed    0.09 sec
+        Start 103: scheduler_preparation_tests
+103/104 Test #103: scheduler_preparation_tests ................   Passed    0.03 sec
+        Start 104: vba_worker_tests
+104/104 Test #104: vba_worker_tests ...........................   Passed    0.20 sec
+
+100% tests passed, 0 tests failed out of 104
+
+Total Test time (real) =  55.85 sec

@@ -1,0 +1,4 @@
+tests/structural_reference_tests.cpp: In function ‘int main()’:
+tests/structural_reference_tests.cpp:6:10: error: ‘editFormulaReferences’ was not declared in this scope
+    6 |  require(editFormulaReferences("=A1+$A$3+B$4+$C5+SUM(A2:A4)+\"A3\"","Data","Data",true,3,2,false)=="=A1+$A$5+B$6+$C7+SUM(A2:A6)+\"A3\"","row insertion rebases locked and unlocked cells and expands intersecting ranges while preserving text");
+      |          ^~~~~~~~~~~~~~~~~~~~~

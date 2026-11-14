@@ -1,0 +1,3 @@
+$ QT_QPA_PLATFORM=offscreen /tmp/tiger-chart-interactions preview-shortcut
+FAILED: F4 must not modify a readonly preview formula or leave a pending edit
+process return code: 1

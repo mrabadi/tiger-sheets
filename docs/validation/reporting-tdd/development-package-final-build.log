@@ -1,0 +1,7 @@
+-- Packaging TigerSheets development build 0.2.0~dev.1; full release acceptance is incomplete
+CPack: Create package using DEB
+CPack: Install projects
+CPack: - Install project: TigerSheets []
+CPack: Create package
+CPackDeb: - Generating dependency list
+CPack: - package: /workspace/tiger-sheets/build-release/tiger-sheets_0.2.0~dev.1_amd64.deb generated.

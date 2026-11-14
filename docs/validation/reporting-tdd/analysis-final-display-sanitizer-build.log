@@ -1,0 +1,3 @@
+ninja: Entering directory `/tmp/tigersheets-reporting-worksheet/asan'
+[1/2] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/grid.cpp.o
+[2/2] Linking CXX static library libworksheet_core.a

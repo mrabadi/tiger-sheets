@@ -1,0 +1,11 @@
+[0/2] Re-checking globbed directories...
+[1/10] Building CXX object CMakeFiles/tigersheets_io.dir/src/printing_ooxml.cpp.o
+[2/10] Building CXX object CMakeFiles/worksheet_layout_ui_tests.dir/tests/worksheet_layout_ui_tests.cpp.o
+[3/10] Linking CXX executable worksheet_layout_ui_tests
+[4/10] Building CXX object CMakeFiles/tigersheets_io.dir/src/pivot_ooxml.cpp.o
+[5/10] Building CXX object CMakeFiles/tigersheets_io.dir/src/ooxml.cpp.o
+[6/10] Linking CXX static library libtigersheets_io.a
+[7/10] Building CXX object CMakeFiles/tigersheets_links.dir/src/workbook_links.cpp.o
+[8/10] Linking CXX static library libtigersheets_links.a
+[9/10] Building CXX object CMakeFiles/worksheet_context_menu_tests.dir/tests/worksheet_context_menu_tests.cpp.o
+[10/10] Linking CXX executable worksheet_context_menu_tests

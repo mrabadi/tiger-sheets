@@ -1,0 +1,31 @@
+{
+  "rustSourcesRebuilt": false,
+  "calculationArchive": "/workspace/tiger-sheets/rust/ironcalc_bridge/target/release/libtigersheets_calc_bridge.a",
+  "archiveSha256": "6584e06cf9be92f23d8e73d20a0901d3f61335ccd5c14441044f5277e08978b1",
+  "cppBuildMode": "explicit TIGERSHEETS_PREBUILT_CALC_ARCHIVE",
+  "relatedTestCommand": [
+    "ctest",
+    "--test-dir",
+    "build-release",
+    "--output-on-failure",
+    "-R",
+    "^(worksheet_validation_tests|worksheet_validation_ooxml_tests|worksheet_layout_ooxml_tests|session_tests|structural_edit_tests|ooxml_tests|calculation_tests|calculation_context_tests)$"
+  ],
+  "relatedTestsExit": 8,
+  "managedValidationLimits": [
+    "single rectangular target",
+    "one-row or one-column local workbook range source, at most 10000 cells",
+    "unsupported native validations preserved as opaque",
+    "row and column structure changes refused on managed source or target",
+    "Imported-package worksheet rename/deletion keeps the pre-existing opaque-validation save guard"
+  ],
+  "redGreenLogs": "validation-*-{red,green}.log",
+  "sourceEditsStable": true,
+  "supersededChecks": {
+    "validation-native-rename-red.log": "Optional native-source rename-save experiment; removed to preserve existing opaque-structure guard",
+    "validation-native-rename-green.log": "Optional experiment later reverted after old ooxml_tests regression",
+    "validation-related-tests.log": "7/8 passed before reverting optional exemption; root must rebuild/re-run final suite"
+  },
+  "finalRegressionSummary": "execution-summary.json",
+  "finalRegressionResult": "133/133 passed after final full rebuild, including original ooxml_tests"
+}

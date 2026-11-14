@@ -1,0 +1,13 @@
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/tigersheets-reporting-worksheet/build
+[1/8] Building CXX object CMakeFiles/chart_core.dir/workspace/tiger-sheets/src/chart.cpp.o
+[2/8] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot.cpp.o
+[3/8] Linking CXX static library libworksheet_core.a
+[4/8] Building CXX object CMakeFiles/chart_core.dir/workspace/tiger-sheets/src/chart_editor.cpp.o
+[5/8] Linking CXX static library libchart_core.a
+[6/8] Building CXX object CMakeFiles/scheduler_core.dir/workspace/tiger-sheets/src/calculation_scheduler.cpp.o
+[7/8] Linking CXX static library libscheduler_core.a
+[8/8] Linking CXX executable scheduler_tests

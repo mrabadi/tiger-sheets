@@ -1,0 +1,21 @@
+[0/2] Re-checking globbed directories...
+[1/20] Building CXX object CMakeFiles/tigersheets_core.dir/src/session.cpp.o
+[2/20] Building CXX object CMakeFiles/tigersheets_references.dir/src/references.cpp.o
+[3/20] Linking CXX static library libtigersheets_references.a
+[4/20] Linking CXX static library libtigersheets_core.a
+[5/20] Building CXX object CMakeFiles/tigersheets_io.dir/src/ooxml.cpp.o
+[6/20] Linking CXX static library libtigersheets_io.a
+[7/20] Building CXX object CMakeFiles/tigersheets_worksheet_view.dir/src/worksheet_view.cpp.o
+[8/20] Building CXX object CMakeFiles/tigersheets_grid.dir/src/grid.cpp.o
+[9/20] Linking CXX static library libtigersheets_grid.a
+[10/20] Linking CXX static library libtigersheets_worksheet_view.a
+[11/20] Building CXX object CMakeFiles/tigersheets_charts.dir/src/chart_editor.cpp.o
+[12/20] Linking CXX static library libtigersheets_charts.a
+[13/20] Building CXX object CMakeFiles/tigersheets_vba_ui.dir/src/vba_ui.cpp.o
+[14/20] Linking CXX static library libtigersheets_vba_ui.a
+[15/20] Building CXX object CMakeFiles/tigersheets_modeling_ui.dir/src/modeling_ui.cpp.o
+[16/20] Linking CXX static library libtigersheets_modeling_ui.a
+[17/20] Building CXX object CMakeFiles/chart_workspace_tests.dir/tests/chart_workspace_tests.cpp.o
+[18/20] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[19/20] Linking CXX static library libtigersheets_desktop.a
+[20/20] Linking CXX executable chart_workspace_tests

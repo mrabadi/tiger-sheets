@@ -1,0 +1,94 @@
+{
+  "status": "passed-development-stage-only",
+  "stage": "/tmp/tigersheets-stage-gQj8f8",
+  "commands": [
+    {
+      "command": [
+        "cmake",
+        "--install",
+        "build-release",
+        "--prefix",
+        "/tmp/tigersheets-stage-gQj8f8/usr"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "desktop-file-validate",
+        "/tmp/tigersheets-stage-gQj8f8/usr/share/applications/tiger-sheets.desktop"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "update-mime-database",
+        "/tmp/tigersheets-stage-gQj8f8/usr/share/mime"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "/tmp/tigersheets-stage-gQj8f8/usr/bin/tiger-sheets",
+        "--version"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "ldd",
+        "/tmp/tigersheets-stage-gQj8f8/usr/bin/tiger-sheets"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "readelf",
+        "-d",
+        "/tmp/tigersheets-stage-gQj8f8/usr/bin/tiger-sheets"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "readelf",
+        "-d",
+        "/tmp/tigersheets-stage-gQj8f8/usr/lib/tiger-sheets/libpagmo.so.9"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "ldd",
+        "/tmp/tigersheets-stage-gQj8f8/usr/libexec/tigersheets/tigersheets-vba-worker"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "/tmp/tigersheets-stage-gQj8f8/usr/libexec/tigersheets/tigersheets-vba-worker",
+        "--stdio"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "/tmp/tigersheets-stage-gQj8f8/usr/bin/tiger-sheets",
+        "--demo",
+        "--screenshot",
+        "/workspace/tiger-sheets/output/tigersheets-workspace.png"
+      ],
+      "exit": 0
+    }
+  ],
+  "librariesResolved": true,
+  "bundledSolversResolved": true,
+  "actualInstalledWorkerExecuted": true,
+  "stagedAppScreenshot": "/workspace/tiger-sheets/output/tigersheets-workspace.png",
+  "appSha256": "5ac1890227ae02596daea643547de4539a4d874bd051ba8d743a93b4c5dd1115",
+  "cleanInstallQualified": false,
+  "x11WaylandQualified": false,
+  "notes": [
+    "Temporary prefix only; no system installation performed.",
+    "System Qt plugins on this host; new explicit Debian plugin dependencies are declared, but no clean-machine installation was run."
+  ]
+}

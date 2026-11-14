@@ -1,0 +1,4 @@
+# Some upstream crates contain real source directories named target.
+# Preserve them despite the repository-wide build-artifact ignore rule.
+!**/target/
+!**/target/**

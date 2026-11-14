@@ -1,0 +1,80 @@
+Internal ctest changing into directory: /workspace/tiger-sheets/build-release
+Test project /workspace/tiger-sheets/build-release
+      Start  2: branding_tests
+      Start 25: workspace_tests
+ 1/37 Test #25: workspace_tests ..................   Passed    0.67 sec
+      Start  5: dependency_bootstrap_tests
+ 2/37 Test  #5: dependency_bootstrap_tests .......   Passed    0.53 sec
+      Start 24: solver_tests
+ 3/37 Test #24: solver_tests .....................   Passed    0.37 sec
+      Start 33: preview_ui_tests
+ 4/37 Test #33: preview_ui_tests .................   Passed    0.43 sec
+      Start 34: financial_model_tests
+ 5/37 Test #34: financial_model_tests ............   Passed    0.24 sec
+      Start  8: recovery_tests
+ 6/37 Test  #8: recovery_tests ...................   Passed    0.11 sec
+      Start 19: printing_tests
+ 7/37 Test #19: printing_tests ...................   Passed    0.18 sec
+      Start  7: codex_tests
+ 8/37 Test  #7: codex_tests ......................   Passed    0.18 sec
+      Start 35: modeling_ui_tests
+ 9/37 Test #35: modeling_ui_tests ................   Passed    0.17 sec
+      Start 32: workbook_ui_links_tests
+10/37 Test #32: workbook_ui_links_tests ..........   Passed    0.20 sec
+      Start 23: robustness_mutation_tests
+11/37 Test #23: robustness_mutation_tests ........   Passed    0.13 sec
+      Start  4: packaging_tests
+12/37 Test  #4: packaging_tests ..................   Passed    0.12 sec
+      Start 37: vba_worker_tests
+13/37 Test #37: vba_worker_tests .................   Passed    0.07 sec
+      Start  3: release_gate_tests
+14/37 Test  #3: release_gate_tests ...............   Passed    0.05 sec
+      Start  6: compatibility_catalog_tests
+15/37 Test  #6: compatibility_catalog_tests ......   Passed    0.06 sec
+      Start 36: scheduler_tests
+16/37 Test #36: scheduler_tests ..................   Passed    0.06 sec
+      Start 12: ooxml_tests
+17/37 Test #12: ooxml_tests ......................   Passed    0.05 sec
+      Start 20: chart_tests
+18/37 Test #20: chart_tests ......................   Passed    0.04 sec
+      Start 10: formula_catalog_tests
+19/37 Test #10: formula_catalog_tests ............   Passed    0.03 sec
+      Start 17: workbook_links_tests
+20/37 Test #17: workbook_links_tests .............   Passed    0.02 sec
+      Start 18: grid_tests
+21/37 Test #18: grid_tests .......................   Passed    0.02 sec
+      Start 22: vba_tests
+22/37 Test #22: vba_tests ........................   Passed    0.01 sec
+      Start  9: calculation_tests
+23/37 Test  #9: calculation_tests ................   Passed    0.01 sec
+      Start 11: session_tests
+24/37 Test #11: session_tests ....................   Passed    0.01 sec
+      Start  1: analysis_tests
+25/37 Test  #1: analysis_tests ...................   Passed    0.00 sec
+      Start 13: csv_tests
+26/37 Test #13: csv_tests ........................   Passed    0.00 sec
+      Start 14: references_tests
+27/37 Test #14: references_tests .................   Passed    0.00 sec
+      Start 15: formula_editor_tests
+28/37 Test #15: formula_editor_tests .............   Passed    0.33 sec
+      Start 16: worksheet_entry_tests
+29/37 Test #16: worksheet_entry_tests ............   Passed    0.19 sec
+      Start 21: chart_editor_tests
+30/37 Test #21: chart_editor_tests ...............   Passed    0.06 sec
+      Start 26: workspace_ux_tests
+31/37 Test #26: workspace_ux_tests ...............   Passed    1.97 sec
+      Start 27: formula_workspace_tests
+32/37 Test #27: formula_workspace_tests ..........   Passed    1.98 sec
+      Start 28: theme_tests
+33/37 Test #28: theme_tests ......................   Passed    0.05 sec
+      Start 29: ribbon_page_tests
+34/37 Test #29: ribbon_page_tests ................   Passed    0.06 sec
+      Start 30: chart_workspace_tests
+35/37 Test  #2: branding_tests ...................   Passed    8.55 sec
+      Start 31: chart_interaction_tests
+36/37 Test #30: chart_workspace_tests ............   Passed    1.20 sec
+37/37 Test #31: chart_interaction_tests ..........   Passed    1.38 sec
+
+100% tests passed, 0 tests failed out of 37
+
+Total Test time (real) =   9.93 sec

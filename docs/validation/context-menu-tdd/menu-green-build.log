@@ -1,0 +1,34 @@
+[0/2] Re-checking globbed directories...
+[1/2] Re-running CMake...
+-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/tiger-sheets/build-release
+[0/2] Re-checking globbed directories...
+[1/26] Building CXX object CMakeFiles/tigersheets_core.dir/src/session.cpp.o
+[2/26] Building CXX object CMakeFiles/tigersheets_pivot.dir/src/pivot.cpp.o
+[3/26] Building CXX object CMakeFiles/tigersheets_pivot.dir/src/pivot_ownership.cpp.o
+[4/26] Building CXX object CMakeFiles/tigersheets_financial_models.dir/src/financial_models.cpp.o
+[5/26] Building CXX object CMakeFiles/tigersheets_io.dir/src/printing_ooxml.cpp.o
+[6/26] Building CXX object CMakeFiles/tigersheets_io.dir/src/ooxml.cpp.o
+[7/26] Building CXX object CMakeFiles/tigersheets_references.dir/src/references.cpp.o
+[8/26] Linking CXX static library libtigersheets_references.a
+[9/26] Linking CXX static library libtigersheets_pivot.a
+[10/26] Linking CXX static library libtigersheets_financial_models.a
+[11/26] Linking CXX static library libtigersheets_core.a
+[12/26] Linking CXX static library libtigersheets_io.a
+[13/26] Building CXX object CMakeFiles/tigersheets_worksheet_view.dir/src/worksheet_view.cpp.o
+[14/26] Building CXX object CMakeFiles/tigersheets_charts.dir/src/chart_editor.cpp.o
+[15/26] Linking CXX static library libtigersheets_charts.a
+[16/26] Building CXX object CMakeFiles/tigersheets_grid.dir/src/grid.cpp.o
+[17/26] Linking CXX static library libtigersheets_grid.a
+[18/26] Linking CXX static library libtigersheets_worksheet_view.a
+[19/26] Building CXX object CMakeFiles/tigersheets_modeling_ui.dir/src/modeling_ui.cpp.o
+[20/26] Linking CXX static library libtigersheets_modeling_ui.a
+[21/26] Building CXX object CMakeFiles/tigersheets_vba_ui.dir/src/vba_ui.cpp.o
+[22/26] Linking CXX static library libtigersheets_vba_ui.a
+[23/26] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/worksheet_context_menu.cpp.o
+[24/26] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/main_window.cpp.o
+[25/26] Linking CXX static library libtigersheets_desktop.a
+[26/26] Linking CXX executable worksheet_context_menu_tests

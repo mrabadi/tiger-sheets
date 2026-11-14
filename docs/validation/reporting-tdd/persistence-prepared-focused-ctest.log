@@ -1,0 +1,18 @@
+Internal ctest changing into directory: /workspace/tiger-sheets/build-release
+Test project /workspace/tiger-sheets/build-release
+    Start 17: prepared_session_tests
+    Start 16: session_lookup_tests
+1/6 Test #16: session_lookup_tests .............   Passed    0.20 sec
+    Start 15: session_foundation_tests
+2/6 Test #15: session_foundation_tests .........   Passed    0.13 sec
+    Start 20: pivot_conversion_tests
+3/6 Test #20: pivot_conversion_tests ...........   Passed    0.02 sec
+    Start 14: session_tests
+4/6 Test #14: session_tests ....................   Passed    0.01 sec
+    Start 18: prepared_native_tests
+5/6 Test #17: prepared_session_tests ...........   Passed    0.48 sec
+6/6 Test #18: prepared_native_tests ............   Passed    0.25 sec
+
+100% tests passed, 0 tests failed out of 6
+
+Total Test time (real) =   0.61 sec

@@ -1,0 +1,4 @@
+Observed during the first isolated linked test run before the root fix.
+$ QT_QPA_PLATFORM=offscreen /tmp/tiger-chart-interactions selection
+FAILED: selecting another chart must remove the previous selection handles
+exit status: 1

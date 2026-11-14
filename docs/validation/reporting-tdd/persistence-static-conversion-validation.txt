@@ -1,0 +1,41 @@
+Explicit static-summary conversion backend (2026-11-11)
+
+Public lightweight API:
+  staticPivotConversionDefinition(book, legacyId, newSheetId, newPivotId, newPivotName)
+Validates supported legacy metadata and returns only a requested native definition.
+It does not calculate or copy source worksheet cells or native caches. The caller
+adds the fresh destination worksheet before worker generation, then removes the
+selected legacy metadata alongside native report publication in one preview.
+
+Complete API:
+  convertStaticPivotOperations(book, calculated, legacyId, newSheetId, newSheetName,
+                               newPivotId, newPivotName, contextGeneration, cancelled)
+Returns three operations: add_sheet, set_metadata removing the selected legacy
+entry, replace_pivot. The old summary worksheet inputs/styles remain unchanged.
+No conversion occurs merely by constructing/opening the workbook.
+
+Initial RED: persistence-static-conversion-red.log (new public symbol missing).
+Initial GREEN: persistence-static-conversion-green.log. Native coexistence RED:
+persistence-static-conversion-native-red.log; native GREEN:
+persistence-static-conversion-native-green.log. Fast definition RED:
+persistence-static-definition-red.log; GREEN:
+persistence-static-definition-green.log.
+
+Final build/verification:
+  cmake --build build-release --target pivot_conversion_tests pivot_ownership_tests -j2
+  build-release/pivot_conversion_tests
+  build-release/pivot_ownership_tests
+Evidence: persistence-static-conversion-verify-build.log and
+persistence-static-conversion-verify.log; both suites pass.
+
+Acceptance covers all five aggregates; preview/discard/accept and single undo;
+unchanged old summary cells/styles; preservation of coexisting native metadata
+and owned cells; no generic native definition injection/mutation/deletion; exact
+supported static shape; unknown/native/non-static/missing fields; fractional or
+overflow coordinates; invalid output; stale/error/cancelled calculations; fresh
+worksheet identities/names; and source overlap with existing native owned output.
+
+The narrow pivot metadata guard now permits legacy-only metadata changes only
+when the ordered set of complete native version1 entries remains exactly equal.
+It continues requiring typed report operations for every native definition change.
+Frontend/worker integration is owned by the parent task and is separately tested.

@@ -1,0 +1,11 @@
+[1/5] Building CXX object CMakeFiles/chart_core.dir/workspace/tiger-sheets/src/chart.cpp.o
+[2/5] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot.cpp.o
+[3/5] Linking CXX static library libworksheet_core.a
+[4/5] Linking CXX static library libchart_core.a
+[5/5] Linking CXX executable chart_tests
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard

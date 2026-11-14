@@ -1,0 +1,11 @@
+[0/2] Re-checking globbed directories...
+[1/10] Building CXX object CMakeFiles/tigersheets_worksheet_layout.dir/src/worksheet_layout.cpp.o
+[2/10] Linking CXX static library libtigersheets_worksheet_layout.a
+[3/10] Building CXX object CMakeFiles/tigersheets_grid.dir/src/grid.cpp.o
+[4/10] Linking CXX static library libtigersheets_grid.a
+[5/10] Building CXX object CMakeFiles/tigersheets_io.dir/src/ooxml.cpp.o
+[6/10] Linking CXX static library libtigersheets_io.a
+[7/10] Building CXX object CMakeFiles/worksheet_dimension_action_tests.dir/tests/worksheet_dimension_action_tests.cpp.o
+[8/10] Building CXX object CMakeFiles/tigersheets_desktop.dir/src/worksheet_edit_actions.cpp.o
+[9/10] Linking CXX static library libtigersheets_desktop.a
+[10/10] Linking CXX executable worksheet_dimension_action_tests

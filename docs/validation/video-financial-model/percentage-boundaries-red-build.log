@@ -1,0 +1,4 @@
+[1/4] Building CXX object CMakeFiles/worksheet_percentage_entry_tests.dir/tests/worksheet_percentage_entry_tests.cpp.o
+[2/4] Linking CXX executable worksheet_percentage_entry_tests
+[3/4] Building CXX object CMakeFiles/worksheet_validation_ui_tests.dir/tests/worksheet_validation_ui_tests.cpp.o
+[4/4] Linking CXX executable worksheet_validation_ui_tests

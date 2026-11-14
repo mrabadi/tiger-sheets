@@ -1,0 +1,10 @@
+Internal ctest changing into directory: /workspace/tiger-sheets/build-release
+Test project /workspace/tiger-sheets/build-release
+    Start 3: release_gate_tests
+1/2 Test #3: release_gate_tests ...............   Passed    0.04 sec
+    Start 4: packaging_tests
+2/2 Test #4: packaging_tests ..................   Passed    0.11 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   0.15 sec

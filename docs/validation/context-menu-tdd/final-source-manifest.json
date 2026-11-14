@@ -1,0 +1,3152 @@
+{
+  "version": "0.3.0~dev.2",
+  "buildType": "Release",
+  "compiler": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "scope": "Build/test/schema/compatibility/packaging inputs, pinned engine inputs and locked dependencies; docs validation artifacts are recorded separately.",
+  "files": {
+    ".cargo/config.toml": {
+      "bytes": 281,
+      "sha256": "557bcd004168cfb5af4821e69793e54edddabbc0fb1b6821e6c0a8799973c8c3"
+    },
+    "CMakeLists.txt": {
+      "bytes": 27104,
+      "sha256": "983f4e13bdd9a0b40debd408ef8aefabc7e69ab93db2731965e5bc8e038cf216"
+    },
+    "README.md": {
+      "bytes": 9790,
+      "sha256": "d280540dfb8d32e7da86e54d511c8c626c7f29e7fec015d6812d783ea69702fd"
+    },
+    "cmake/CPackDevelopmentConfig.cmake.in": {
+      "bytes": 171,
+      "sha256": "b80d06d26b095d3b20bc82f46ad7c476468e051471aeba0880d686be8affe2b9"
+    },
+    "cmake/CPackGate.cmake.in": {
+      "bytes": 880,
+      "sha256": "d15a1a718e0d18e65acf812c7a8a734d428980090a33dd30590be68627272581"
+    },
+    "cmake/Packaging.cmake": {
+      "bytes": 2710,
+      "sha256": "6dbedc7d4cb099481affd1784ac9f296f92a4dfeb61834d1bf5c88e733d2d4d6"
+    },
+    "cmake/ReleasePackageGate.cmake": {
+      "bytes": 695,
+      "sha256": "ecfc5ea6666ad92c5ce73d84bda28a117da314e647dc5fd9ff7b59c9f46e001c"
+    },
+    "cmake/SolverDependencies.cmake": {
+      "bytes": 973,
+      "sha256": "af64a7c8131b2e42c5a0cc81b34b4023269c93f4051d3ff9f010930d58a0217f"
+    },
+    "compatibility/features.json": {
+      "bytes": 1216,
+      "sha256": "bf3222993c27c6ffc11e36a74b21c2584f9f84b5d2a5d7b6fdf311817f885d9e"
+    },
+    "compatibility/functions.json": {
+      "bytes": 71362,
+      "sha256": "0056948e792a2d0f8a665c55147266bb937ff750cf92a6dd066cdfbf9fe5307e"
+    },
+    "compatibility/shortcuts.json": {
+      "bytes": 57148,
+      "sha256": "2b0c1d2d6b493b14b92802a7bf3d31c08db87f7191cd986e75499d7efdd8921e"
+    },
+    "compatibility/sources/manifest.json": {
+      "bytes": 243,
+      "sha256": "08e267017d054920e7e84e86cd88b4eb4b59438d30b9bcbf321401722836cf15"
+    },
+    "include/tigersheets/analysis.hpp": {
+      "bytes": 1414,
+      "sha256": "008dc578bfc497648b6a5e370d8810c50d5a1be758ee7b50125d1cd693aea2be"
+    },
+    "include/tigersheets/calc_bridge.h": {
+      "bytes": 2357,
+      "sha256": "451cf5ebfe79bfcd6cc0cda6505fe56952ffdfb59e7ef54d91bb1f6e8619685c"
+    },
+    "include/tigersheets/calculation.hpp": {
+      "bytes": 1418,
+      "sha256": "141595f8eafa935ea43d7cf1b326204646bc9c156587d4597bc3618c38779a75"
+    },
+    "include/tigersheets/calculation_scheduler.hpp": {
+      "bytes": 647,
+      "sha256": "7a7a3234e2fc8ed19dd5e8f7432ee70d7d23cbc30387f42de7298ba8a555afdd"
+    },
+    "include/tigersheets/chart.hpp": {
+      "bytes": 1518,
+      "sha256": "3211f728dc25e9280ee25cdb7370959d289206617980ec2098973995cbbfac4d"
+    },
+    "include/tigersheets/chart_editor.hpp": {
+      "bytes": 763,
+      "sha256": "b3300134d57a63f9a5de4172de93664eccba72aedd56f92fd8e304aff7dfb03f"
+    },
+    "include/tigersheets/codex.hpp": {
+      "bytes": 1279,
+      "sha256": "09e6d54854c0db50834a703e689e51c24a999690e284eaba2fb5a4f2e7144bbd"
+    },
+    "include/tigersheets/codex_controls.hpp": {
+      "bytes": 637,
+      "sha256": "19ebc32e2ef6b93190aad40eacffea9597acadb100b3fa05d4aa6a7e9116143c"
+    },
+    "include/tigersheets/csv.hpp": {
+      "bytes": 542,
+      "sha256": "e9ec3e84ac7614cc617bfb1a1906c9c71ba9cd2f4398e0b92e0c51e903f6c0bf"
+    },
+    "include/tigersheets/financial_example.hpp": {
+      "bytes": 133,
+      "sha256": "3e8d33388605b7e91926c3201e93b5a83ccde28848f0bc3a0f08aa4529558a02"
+    },
+    "include/tigersheets/financial_model_pane.hpp": {
+      "bytes": 1251,
+      "sha256": "33899f9a4acaf162258918f8dd3d1061b576ec5424ca26280d0d06a5548df432"
+    },
+    "include/tigersheets/financial_models.hpp": {
+      "bytes": 934,
+      "sha256": "3cf2226e506ac08e5a34cc486912bfe528e2e1f846c60e98b701270e451836ec"
+    },
+    "include/tigersheets/financial_workflows.hpp": {
+      "bytes": 342,
+      "sha256": "e307f6374fc83d38063f583db8341a9f091596e9ede5e54157e8dc6d5441b50e"
+    },
+    "include/tigersheets/financial_workspace.hpp": {
+      "bytes": 1059,
+      "sha256": "e78d04c2fdf7e6ecc654bd0dc51dfbaec8656a4851ddc4e03b09cb94e060ad1f"
+    },
+    "include/tigersheets/formatting.hpp": {
+      "bytes": 1296,
+      "sha256": "f9cc48173607d0c8f10a1933665ce5077ce10e05790c71e76bac50f64c07bc70"
+    },
+    "include/tigersheets/formula_editor.hpp": {
+      "bytes": 1210,
+      "sha256": "0bb1fd09c51a88e4adb4ef7d5a899d76ec4cbaaecd8a8fc6255cd5c40c7c5d74"
+    },
+    "include/tigersheets/grid.hpp": {
+      "bytes": 2229,
+      "sha256": "0da23d9b7042175091d4a2f23f361ebe759343d6ba63b10bb293fb0abeeee7de"
+    },
+    "include/tigersheets/iteration_controls.hpp": {
+      "bytes": 613,
+      "sha256": "67566d35ae329aa823f5c0c15659056d48c161f367df84f144b0a3e29ce5e870"
+    },
+    "include/tigersheets/main_window.hpp": {
+      "bytes": 1474,
+      "sha256": "00e0fc04cf6caf0b118efb708912a26ef7a5b5204649e1f391ca06497776092a"
+    },
+    "include/tigersheets/modeling_ui.hpp": {
+      "bytes": 514,
+      "sha256": "c6febc026c38166b82049a5e3e94a0201b1b6f3f400b350fd330ab02c63b99be"
+    },
+    "include/tigersheets/ooxml.hpp": {
+      "bytes": 688,
+      "sha256": "e8e006ee32a54d3393be441121226a4768a45afbfff3c15ce31835a3bbd38990"
+    },
+    "include/tigersheets/pivot.hpp": {
+      "bytes": 1567,
+      "sha256": "a116dd90fba536b7c7b3b517bf7d5acdc7118a8490e56387c34eb7c32f8fdb7a"
+    },
+    "include/tigersheets/pivot_conversion.hpp": {
+      "bytes": 1041,
+      "sha256": "c7a272add52076fbbae73e0c8799279eb235c158120b8a3b6aa7e6db0542d5b2"
+    },
+    "include/tigersheets/pivot_fields_pane.hpp": {
+      "bytes": 905,
+      "sha256": "9882d341f402abef202637765239adbe20906ad0e4fb2feafa8881c81ba82266"
+    },
+    "include/tigersheets/pivot_ooxml.hpp": {
+      "bytes": 541,
+      "sha256": "85cad6244ad36e4cbd491cb5ebd4b42dcb1f46730108cbd878de3bb694c03232"
+    },
+    "include/tigersheets/pivot_ownership.hpp": {
+      "bytes": 308,
+      "sha256": "9532f421e3aa4165daddcccd55db83db9e8156ee74357f784ae9819fd2e5650b"
+    },
+    "include/tigersheets/print_settings.hpp": {
+      "bytes": 1646,
+      "sha256": "504c6328eae28e2bfe32b334f7c310b3f99cef6ea80b0056528c4ab3046dced6"
+    },
+    "include/tigersheets/printing.hpp": {
+      "bytes": 404,
+      "sha256": "c320c080f72bd628f6d624e61f3bb6a313e8709c70e8355414e74f082d3fc23b"
+    },
+    "include/tigersheets/printing_ooxml.hpp": {
+      "bytes": 421,
+      "sha256": "f3efe85ae411dda749306e99d389f5ec91d30ea763daddde7fb4da68d4a367d2"
+    },
+    "include/tigersheets/recovery.hpp": {
+      "bytes": 1603,
+      "sha256": "f7a2f04b938cd70c2b33c49760ace8d1d7429568f226670d62f6e23b70f2198b"
+    },
+    "include/tigersheets/references.hpp": {
+      "bytes": 1531,
+      "sha256": "014e7ca37255fcc9ef51e401096f96ca0813e4a2a63aad9998e9a3548f6cdb5b"
+    },
+    "include/tigersheets/report_worker.hpp": {
+      "bytes": 735,
+      "sha256": "91c7fd3a7f9e04b801998e43fcdf608e50ad11b31ff87d9cbd1e8f6ded3396ec"
+    },
+    "include/tigersheets/ribbon_page.hpp": {
+      "bytes": 677,
+      "sha256": "8dd96b01547ab4629a278567b3d42737fb1cc14ea327a1db8e0500a2fc395c8a"
+    },
+    "include/tigersheets/selection_statistics.hpp": {
+      "bytes": 705,
+      "sha256": "372b97554d90238eb8e9b1964f35e72e1033153a65bf4cc85dde838d212bde61"
+    },
+    "include/tigersheets/session.hpp": {
+      "bytes": 2751,
+      "sha256": "184c663380d7aed2c44dc55ef4b0b83199391b529d83dbe7d8f377a113070108"
+    },
+    "include/tigersheets/snapshot_capture.hpp": {
+      "bytes": 743,
+      "sha256": "31fb98e399a835c1c799a198d266ed3f187e687b73f74da36974da2763fd488e"
+    },
+    "include/tigersheets/solver.hpp": {
+      "bytes": 357,
+      "sha256": "b3ab5e6912aa63c52e440da57f64bc7e4eee5128eb072029ef0b5a79567143bf"
+    },
+    "include/tigersheets/theme.hpp": {
+      "bytes": 195,
+      "sha256": "7e55db43a35138cb93cadb2b413068f5f9da960b61e792256f346f492a5121ce"
+    },
+    "include/tigersheets/vba.hpp": {
+      "bytes": 366,
+      "sha256": "35b96ea0ac68c65218cc563839bf4a2b59341d4e4ed620d19a776c61dda3e692"
+    },
+    "include/tigersheets/vba_ui.hpp": {
+      "bytes": 1374,
+      "sha256": "b1f4a7c1a15df4ba7150d0da01a35c5074276096616c770d3430e08473c8aed2"
+    },
+    "include/tigersheets/workbook_links.hpp": {
+      "bytes": 1369,
+      "sha256": "b48386c2ea516db0f21d4e5cf3f7264a718df6cfc7fd9d06567494967659fc3c"
+    },
+    "include/tigersheets/workbook_tools.hpp": {
+      "bytes": 1122,
+      "sha256": "0215cc492e939cf23683387edbbb0959d76f28b0064478a2774387519b4009f7"
+    },
+    "include/tigersheets/worksheet_cell_format.hpp": {
+      "bytes": 382,
+      "sha256": "012dc73e72542d07cc0140a44e2386f9a924ca4a9bb62391ebaa8006f3548406"
+    },
+    "include/tigersheets/worksheet_context_menu.hpp": {
+      "bytes": 344,
+      "sha256": "3ba2625a8f65eed02d36011bacae318aa7fcd42f0a1b8f86cb56a5eca805c241"
+    },
+    "include/tigersheets/worksheet_edit_actions.hpp": {
+      "bytes": 341,
+      "sha256": "da29d8fde6fff4843445aef04f03611130cc72f81dd52562132d1b17b247f085"
+    },
+    "include/tigersheets/worksheet_layout.hpp": {
+      "bytes": 759,
+      "sha256": "05a68e79b31d4fa0b4fe911c19e4c2fa9bb6a9249bb65ee6b88e24d50504258a"
+    },
+    "include/tigersheets/worksheet_view.hpp": {
+      "bytes": 1745,
+      "sha256": "8901b4848c6f67276688a3c56301b4156ede1c91a78f8c7051eea5c3f2b8bfd7"
+    },
+    "packaging/icons/hicolor/128x128/apps/tiger-sheets.png": {
+      "bytes": 29758,
+      "sha256": "6f19203eaea4db146586d936ba978a51c70a01e85ad0f9012b03867247223578"
+    },
+    "packaging/icons/hicolor/16x16/apps/tiger-sheets.png": {
+      "bytes": 952,
+      "sha256": "631627d098b0794549984f67d0777865652f10a0beb332bfde88b214871f7f5e"
+    },
+    "packaging/icons/hicolor/24x24/apps/tiger-sheets.png": {
+      "bytes": 1908,
+      "sha256": "a7b04b8391654b9391694504a198ac8b30d153229702975b39543707f9d5f01e"
+    },
+    "packaging/icons/hicolor/256x256/apps/tiger-sheets.png": {
+      "bytes": 86804,
+      "sha256": "7f52af9e2de9ffed7b57a8cf88334e26c4e09f85cf5d026dc55ceb707670ad3d"
+    },
+    "packaging/icons/hicolor/32x32/apps/tiger-sheets.png": {
+      "bytes": 3079,
+      "sha256": "2c7b80292518809ab7def5ea4b9c4b4dc784ef755da2fb60ca5cb694222e766e"
+    },
+    "packaging/icons/hicolor/48x48/apps/tiger-sheets.png": {
+      "bytes": 6018,
+      "sha256": "33967bc43b45c7f29188c6be38adcfece4ba18c22d24427c4d39828ddd373e80"
+    },
+    "packaging/icons/hicolor/512x512/apps/tiger-sheets.png": {
+      "bytes": 261629,
+      "sha256": "bf941b8bfb536c29d61b9273c5527945d40905ff6374ed3c01a0a2cdd3d93ac9"
+    },
+    "packaging/icons/hicolor/64x64/apps/tiger-sheets.png": {
+      "bytes": 9709,
+      "sha256": "d3f8de748fe7d93f734423a79ddc4e93c7ea999693118800214f2e9d0fa40064"
+    },
+    "packaging/icons/tiger-sheets-master.png": {
+      "bytes": 1346760,
+      "sha256": "ce5b5f3a0841c24d37aea46a105dc1f9523c5b5cd4edfddf85e119ec9cd25ee6"
+    },
+    "packaging/tiger-sheets-mime.xml": {
+      "bytes": 290,
+      "sha256": "e45db3641e07949df1a8b374623bda8121bafa2f049aca62a948bce8d98b1b23"
+    },
+    "packaging/tiger-sheets.desktop": {
+      "bytes": 398,
+      "sha256": "c109db672a42d81b78cad0dae93adf2cd371f9e970e70fc1798800c95cc1f46d"
+    },
+    "resources/tiger-sheets.qrc": {
+      "bytes": 992,
+      "sha256": "53f0faf8441599d60fcb8264fdd7e44cc7f511375da28333eb35328fe9995e78"
+    },
+    "rust/ironcalc_bridge/Cargo.lock": {
+      "bytes": 16933,
+      "sha256": "18e95f9670b4a5737e0b474ad1fb0c46060fde28ef57a41ef146fe4cca555c30"
+    },
+    "rust/ironcalc_bridge/Cargo.toml": {
+      "bytes": 320,
+      "sha256": "15e44c73c554aa272b7bbd71651463a7ac60eae2bd31a4d3234426e65a955276"
+    },
+    "rust/ironcalc_bridge/build.rs": {
+      "bytes": 1372,
+      "sha256": "a5105d1bc41bb7efa8c8dedc79607eaeb5c8ac9a3bf7a3ca921db562c15dd161"
+    },
+    "rust/ironcalc_bridge/src/lib.rs": {
+      "bytes": 32720,
+      "sha256": "dca18a596653a0b48ec89d4f448f765adb310acbc8b668b97c73599a5878aa68"
+    },
+    "schemas/workbook.v1.json": {
+      "bytes": 119453,
+      "sha256": "2ab9553433777fff08e38c9432340aaa20f96ffc6de69f03266fad2aa295b869"
+    },
+    "src/analysis.cpp": {
+      "bytes": 14141,
+      "sha256": "2bd9fdcd77d130da2351b28e00820c8fc5f51457f3108eb1f20cd105398e5a08"
+    },
+    "src/calculation.cpp": {
+      "bytes": 5199,
+      "sha256": "e7bc64175d0ea9d24159dc5e6ba7e0c82e17e32ca2ca5ab4bce83b041be27f94"
+    },
+    "src/calculation_scheduler.cpp": {
+      "bytes": 5934,
+      "sha256": "b799b7a7b0be30e8dcdc3d17c44f3e465c210b009b829167ab6a1e6000c5bd48"
+    },
+    "src/chart.cpp": {
+      "bytes": 16432,
+      "sha256": "7a12881a2087414d29871a57139d0c195f7deaf8092b0a5178a4e3ac954ab73a"
+    },
+    "src/chart_editor.cpp": {
+      "bytes": 5040,
+      "sha256": "44cb24b9ebcba64d23e5aae2269ec65e823ff345b26203fc33b48f8d75ad558d"
+    },
+    "src/codex.cpp": {
+      "bytes": 19615,
+      "sha256": "eaac7360b7c5763b48cf1ded784b87c8594457ef7c68fc7e2fb750f000b731b3"
+    },
+    "src/codex_controls.cpp": {
+      "bytes": 6318,
+      "sha256": "bd133ff689a7583d97bb396992e27cb9b0afce1de162d851b98bc21f4253be11"
+    },
+    "src/csv.cpp": {
+      "bytes": 8533,
+      "sha256": "a8091c68be6b6591845a0b48ca35e8bbd3d8abeb95fad98d07f0460e6347d1bf"
+    },
+    "src/financial_example.cpp": {
+      "bytes": 3878,
+      "sha256": "e894e7d3d9b45bf43bb568f1933c51d91f513be8ca296fed80300491013a79e0"
+    },
+    "src/financial_model_pane.cpp": {
+      "bytes": 54299,
+      "sha256": "3a818cc8a984b3b6b2a1c61f6fa77c209ffaea8b6e35409a1a26542b15b12466"
+    },
+    "src/financial_models.cpp": {
+      "bytes": 45812,
+      "sha256": "046e5cc7a7243c3a95c8fbd282d42f76656f5b392a603c5bd530ba4abadbe9d7"
+    },
+    "src/financial_workflows.cpp": {
+      "bytes": 6666,
+      "sha256": "80693355aa282cfb812d745f994a2e2ec84d304efa601fad6e7da3a90d527a85"
+    },
+    "src/financial_workspace.cpp": {
+      "bytes": 8304,
+      "sha256": "cfeb7a5d43e1cb49ebeeaf02aea1bb6f945c3d034d98f269142a83f50c03c6ff"
+    },
+    "src/formula_editor.cpp": {
+      "bytes": 29964,
+      "sha256": "563f30a06682bd53355a12b9fe014573d4fe709ffded0205de1b6987050638bf"
+    },
+    "src/grid.cpp": {
+      "bytes": 25855,
+      "sha256": "799c3ca72d3b5f3029edb0b8fb219f00ddd883cd2c59ea904202ca4e9e8c120d"
+    },
+    "src/iteration_controls.cpp": {
+      "bytes": 4759,
+      "sha256": "249eac9a7063b8078cea33dd2fe07ddc60119700ff7c191b1273c92be30e5f09"
+    },
+    "src/main.cpp": {
+      "bytes": 1449,
+      "sha256": "705fd526f59ed135ff76f232aa3bc99a2f02994fb7dd574f2d0fa90f72289ce2"
+    },
+    "src/main_window.cpp": {
+      "bytes": 123289,
+      "sha256": "8f7c19fb97977ff078c32c9fc614c457a7134727c31a61add261aebb40e4c916"
+    },
+    "src/modeling_ui.cpp": {
+      "bytes": 37726,
+      "sha256": "5bdd5cce1f93cca837a4a2b66528262d342fef76d08a1720fe36a1b8e695fafb"
+    },
+    "src/number_formatter.cpp": {
+      "bytes": 687,
+      "sha256": "6df72a01d769238dbc43188279c5ea944a757d1059949926a07b8cfa9f49ee8f"
+    },
+    "src/ooxml.cpp": {
+      "bytes": 85713,
+      "sha256": "7f89578884504ea5bdee3576ac9e24ccd564d3d387b81cec3722bd888a392a3c"
+    },
+    "src/pivot.cpp": {
+      "bytes": 31538,
+      "sha256": "9d6e8638137cb35226775f07bcf03ebecccbdc82c07fb89337b7ccd18853b723"
+    },
+    "src/pivot_conversion.cpp": {
+      "bytes": 6121,
+      "sha256": "3d33478fe316da764a7e5cab291af3ee9f4fe59182d3ab56f226b4b20ececae4"
+    },
+    "src/pivot_fields_pane.cpp": {
+      "bytes": 26617,
+      "sha256": "ec9e8df23a1e33e9edaf2dfe55b0e846b865f7bd5f481e7bb2352d6f59fb4871"
+    },
+    "src/pivot_ooxml.cpp": {
+      "bytes": 58280,
+      "sha256": "6241e8b0dbc2af0b94fe593a7e19494c59dbb2ae4a7c9e40c9b7961270ca22d8"
+    },
+    "src/pivot_ownership.cpp": {
+      "bytes": 13401,
+      "sha256": "e548177dacaa3305db1699a933ebcb9b1146745afd9c2fa5778f397602252733"
+    },
+    "src/prepared_native_transaction.cpp": {
+      "bytes": 6007,
+      "sha256": "e5b51b222ce43585cbafc9229b03bda778210a17b1ac6a247bfafcd06256ed96"
+    },
+    "src/prepared_native_transaction.hpp": {
+      "bytes": 1025,
+      "sha256": "6ba4253e51b1300073dd26722977e5bb36fb6db200664e167509e2295700aed0"
+    },
+    "src/printing.cpp": {
+      "bytes": 10165,
+      "sha256": "00a64dd2e3333f847ade904dfe7dedad9f1e4a5e59772a403acd76a4527409ed"
+    },
+    "src/printing_ooxml.cpp": {
+      "bytes": 10005,
+      "sha256": "33ee57a74fb55c4bd040bbaf6ee931da089a8ef9e69539fa3d03569f6c37cdd7"
+    },
+    "src/recovery.cpp": {
+      "bytes": 24108,
+      "sha256": "2c477cd70ca30a830045132f2d7cf0a5549d42a7ac20a5cd85b3e395580841f2"
+    },
+    "src/references.cpp": {
+      "bytes": 16157,
+      "sha256": "0356ea084fd68060b6aee98338e3edc14b0bf6e7d9d6b455d0c6d2926cfe26a5"
+    },
+    "src/report_worker.cpp": {
+      "bytes": 12103,
+      "sha256": "9fce217cf57c802fc79d9396caf8ca386d2c5d205a0628967838a4b14c1461be"
+    },
+    "src/report_worker_main.cpp": {
+      "bytes": 16810,
+      "sha256": "8a46b0628e0d2fe3680cc13bb2048001cee6984cd27dc7ede29392235bf850e2"
+    },
+    "src/ribbon_page.cpp": {
+      "bytes": 1624,
+      "sha256": "5011b4d8acf0060cff3c9bdcb3527f49a21223ff6fb6aa146cdd98d0ba7a2ea2"
+    },
+    "src/session.cpp": {
+      "bytes": 37452,
+      "sha256": "2ab22acac631dc6a8c74e3eee2375018592cffd089f44ea5a20ff02964c8bf01"
+    },
+    "src/snapshot_capture.cpp": {
+      "bytes": 3204,
+      "sha256": "c116342b9d80a788e788d882e563cfc33c46cf0bede23472f4a88eeb2034b6b5"
+    },
+    "src/solver.cpp": {
+      "bytes": 25401,
+      "sha256": "bdcc038d003724878754f5bac29892219f26314481dbb1668e601f44066c5498"
+    },
+    "src/theme.cpp": {
+      "bytes": 6392,
+      "sha256": "546d3e8c184876509795daaabdb36f2859d5153c906f23c2a90808759a882641"
+    },
+    "src/vba.cpp": {
+      "bytes": 19949,
+      "sha256": "73a5c5739769f6328788ea4e4e38c2faed752617abbb139f3f0880930ef7e269"
+    },
+    "src/vba_ui.cpp": {
+      "bytes": 26092,
+      "sha256": "4b109a1ad24f74de43577d4cccbe50bd0e59e501af9cf574838fb6dd8d330f98"
+    },
+    "src/vba_worker_main.cpp": {
+      "bytes": 3239,
+      "sha256": "e293dcba8e6ce84a63f80e991240c8cfa4ef6ef4c88032ba5fa40bc3f29f9f7d"
+    },
+    "src/workbook_links.cpp": {
+      "bytes": 21756,
+      "sha256": "addc46471df38e745fb25ed7219e736ec585c826b395f6b4113a005af184f88d"
+    },
+    "src/workbook_tools.cpp": {
+      "bytes": 66156,
+      "sha256": "f7cf572e493f2dec59aa074eb33faba5c02a11de8e9084ed388b115810f8878f"
+    },
+    "src/worksheet_cell_format.cpp": {
+      "bytes": 9333,
+      "sha256": "330d2ce0ce3107f60eb43a7901c00bdf549a49d848b9436d8631b25f293ed942"
+    },
+    "src/worksheet_context_menu.cpp": {
+      "bytes": 9460,
+      "sha256": "01f8a2d5a5255fc5ca60f41122ca7a8141f0ab0d383af3a0bcc6a43b115a9900"
+    },
+    "src/worksheet_edit_actions.cpp": {
+      "bytes": 8052,
+      "sha256": "8e1bca4509d0ec3bb71d6f4205354fce1f77bb03f66d0fcf14e685654bf2f557"
+    },
+    "src/worksheet_layout.cpp": {
+      "bytes": 9163,
+      "sha256": "c622ba9da21bf39d70fbff77530272a00058f5a2255af74e6ea5485ca14b9cc5"
+    },
+    "src/worksheet_view.cpp": {
+      "bytes": 15028,
+      "sha256": "98852083d09dad12ca45e78c6bac412143dbe28b6cc590f618da611e8168cf9f"
+    },
+    "tests/analysis_tests.cpp": {
+      "bytes": 9411,
+      "sha256": "dc3a41bb1798134350519f88f322170930e1fa85c934e85b0c8dc06af14ce8a7"
+    },
+    "tests/branding_tests.py": {
+      "bytes": 4590,
+      "sha256": "e5d26bd893b7450b2afe650640a7e5595d2118fdcaa2a700bbee11494c06bbc6"
+    },
+    "tests/calculation_context_tests.cpp": {
+      "bytes": 2060,
+      "sha256": "2505a236561d71146cb2bbc488f43e1c3f0ada76b6221a61c5370baaf2a80d63"
+    },
+    "tests/calculation_tests.cpp": {
+      "bytes": 26745,
+      "sha256": "598a392e5f5e7b0f781fd3ae80e442b687ba477883f1b8b2a840a3a5b7d20c67"
+    },
+    "tests/chart_editor_tests.cpp": {
+      "bytes": 6046,
+      "sha256": "5d6a4b979fd12dfe85b1d562f931654666678bbdedf3c6100f0af21a1ee12bbd"
+    },
+    "tests/chart_interaction_tests.cpp": {
+      "bytes": 9672,
+      "sha256": "03eca453bfd60c2e6a92557d6bd9603ba3c5d9cf2997a078d2036d76a0cb20eb"
+    },
+    "tests/chart_tests.cpp": {
+      "bytes": 14244,
+      "sha256": "54dbe5e0c30d85f59c6304b5f3befe43e72ea2c35c67e1aa6ba53065664aa447"
+    },
+    "tests/chart_workspace_tests.cpp": {
+      "bytes": 6578,
+      "sha256": "93f56b2671d798ffe16c87a0c171bea9de76e7084d219f6fd08396e62a7ad3cf"
+    },
+    "tests/codex_async_tools_tests.cpp": {
+      "bytes": 4356,
+      "sha256": "9777ab84afc0330b4cb84af1571ed4497bec570d4c0f036e7ca6e610e3717ac0"
+    },
+    "tests/codex_controls_tests.cpp": {
+      "bytes": 4713,
+      "sha256": "0d97b07e3e5509a0ece3f88e28878ef3acc1752933cda9f6126ea1c1afa458be"
+    },
+    "tests/codex_financial_workflow_tests.cpp": {
+      "bytes": 14835,
+      "sha256": "0f2c75ccb1443134c9a57a8ea4f0ff0e61dfb9a264a4b110902c9b52b757b09f"
+    },
+    "tests/codex_host_tool_tests.cpp": {
+      "bytes": 8345,
+      "sha256": "2ae690cf477259ccf1ad1e0238f99a80ec3d9f9faca2e3e54fef85cd153d335d"
+    },
+    "tests/codex_panel_integration_tests.cpp": {
+      "bytes": 11202,
+      "sha256": "241c9830f3bd67e03fc01d6c8c760feec44e8a7a620b9a9669aaacdb03153a6b"
+    },
+    "tests/codex_preview_test.hpp": {
+      "bytes": 4018,
+      "sha256": "0217eac9ec33b947e1640c1041d0e14fa845dbc5229be376b050331ed058deab"
+    },
+    "tests/codex_tests.cpp": {
+      "bytes": 20233,
+      "sha256": "0828502a38d64cfd724b6505ae53325afaf7b70c443126aaf64839601aa95dcc"
+    },
+    "tests/codex_workspace_tests.cpp": {
+      "bytes": 1773,
+      "sha256": "76b0dcadc25a2f3673afcea0536c06b986377b8ddef7f4743308310b12e15072"
+    },
+    "tests/compatibility_catalog_tests.py": {
+      "bytes": 765,
+      "sha256": "92113b65e5f55cd38729dd009ff19a81bd8ec4f2f43da9ef4c03444f5f09ba26"
+    },
+    "tests/csv_tests.cpp": {
+      "bytes": 8115,
+      "sha256": "12ad4c85ea772a25aeeb01080dc9f70fff44486de734c595b622bc2d7dcff1b2"
+    },
+    "tests/dependency_bootstrap_tests.py": {
+      "bytes": 10468,
+      "sha256": "55bbec955e48b1e4188c3f5d75dc07ecbdfb90000f9ebf0c7d62514f1cfc68e7"
+    },
+    "tests/development_package_validation_tests.py": {
+      "bytes": 5684,
+      "sha256": "c2cca3e2251691175968a9421c02138ebfa992e85b9876905cd3dfee765a2478"
+    },
+    "tests/financial_acceptance_inspector.py": {
+      "bytes": 9076,
+      "sha256": "560762574c428f7f892ea5c0e485358394aa602caf3dca7b570599d691d423e6"
+    },
+    "tests/financial_acceptance_tests.cpp": {
+      "bytes": 12715,
+      "sha256": "1f2f80bd77a773a826058128868affa8db59803e85e68848e0060ede8b2046af"
+    },
+    "tests/financial_analysis_summary_tests.cpp": {
+      "bytes": 2262,
+      "sha256": "d2d7e700b097a668162960e3b8334f10e27e9880c176bb60dcde3431b50252cc"
+    },
+    "tests/financial_cancellation_ui_tests.cpp": {
+      "bytes": 1556,
+      "sha256": "0b438d04965c5c037057d6908554d69dfa88ac1f7dd3452507f9448d9686ab09"
+    },
+    "tests/financial_csv_tests.cpp": {
+      "bytes": 1429,
+      "sha256": "64d597d3403ef7cb506ead836713d604b4fa298a41a6bf72190e3987df576097"
+    },
+    "tests/financial_desktop_acceptance_tests.cpp": {
+      "bytes": 9671,
+      "sha256": "bdbd42488e5e905c6ee1b1cc3ed9cad081fae2b46894f14e98a0c546a10a70b3"
+    },
+    "tests/financial_example_tests.cpp": {
+      "bytes": 2601,
+      "sha256": "8a57ee4070d0a2739035ec9feaa3077601cb0265f99c2af76726124edeb7965c"
+    },
+    "tests/financial_metadata_authority_tests.cpp": {
+      "bytes": 5288,
+      "sha256": "e6f6b32953b1bec671e82074c3fef6f87f73089fe96177d6d0fdad7973731855"
+    },
+    "tests/financial_model_pane_tests.cpp": {
+      "bytes": 21844,
+      "sha256": "d6e59d2b0d7d5df35c49c21ec1c8e845c1470a8b77fb4373157233a07956788e"
+    },
+    "tests/financial_model_persistence_tests.cpp": {
+      "bytes": 3528,
+      "sha256": "8366dd85dadfa4416ff71ba480e56d5c03740ec2f3f2cc9a88c12247b4d772a9"
+    },
+    "tests/financial_model_session_tests.cpp": {
+      "bytes": 3618,
+      "sha256": "2d255c00e8e3fd1dc52201b5c8c64d8760e1bca2c5f6221b92df002b444ce511"
+    },
+    "tests/financial_model_tests.cpp": {
+      "bytes": 2057,
+      "sha256": "d7552b44da7704c8bc2a6194aa1f770377a0e84e7b28e66aeb44eb342ea38d9d"
+    },
+    "tests/financial_models_tests.cpp": {
+      "bytes": 22568,
+      "sha256": "7e2edc728270af0a0b4be285487d3c8b74a084091c168f867f97cea3df676620"
+    },
+    "tests/financial_pivot_collision_tests.cpp": {
+      "bytes": 2186,
+      "sha256": "cc1490522f06916be4f876729fe6b7e3f0839c9d21fe5fde2d6375456966e7ec"
+    },
+    "tests/financial_recovery_tests.cpp": {
+      "bytes": 2107,
+      "sha256": "4504ec43490d424190a11dc26997020fca69551ea10f95cd01f58652ff440b1f"
+    },
+    "tests/financial_tools_tests.cpp": {
+      "bytes": 12074,
+      "sha256": "0439d1cd12de7273e46d2d2f78711c813fe0de5f7f93b8278ea7c11c89f4b72b"
+    },
+    "tests/financial_ui_job_tests.cpp": {
+      "bytes": 4355,
+      "sha256": "89a731fe3c312a9c645ad53512641cd32d065d844911628a12fdc5a089d59fd9"
+    },
+    "tests/financial_worker_frontend_tests.cpp": {
+      "bytes": 3246,
+      "sha256": "96bb931130024bdf6e5ec8cd043736809fe244bdedd4795409d6135d76dd4d17"
+    },
+    "tests/financial_workflow_tests.cpp": {
+      "bytes": 6417,
+      "sha256": "2de63aebda3dcd3f711c03011bcb50fdb3d1c632101c241e7f17a52bc21db485"
+    },
+    "tests/financial_workspace_job_tests.cpp": {
+      "bytes": 4284,
+      "sha256": "a667530221cceb3aac1e820e1866b1819273693da4854dd65c6830493b4b0206"
+    },
+    "tests/financial_workspace_tests.cpp": {
+      "bytes": 2077,
+      "sha256": "f8e8f284490d392448ec9bd9c210e922c7e2001bb7c85acd731047c6a2f1cf2c"
+    },
+    "tests/fixtures/forecast-circular-financing.json": {
+      "bytes": 1780,
+      "sha256": "2182a248304357c648a1ed853f6ec7bbeb8c59b1cd5f077e9b7ccb9e2d7aed92"
+    },
+    "tests/fixtures/formulas.json": {
+      "bytes": 85453,
+      "sha256": "01edd11e0f13e63a3f2c67af56f4131bb60d72f8b74d3a80c50f6291dd06f5f4"
+    },
+    "tests/fixtures/reporting-financial-context.json": {
+      "bytes": 13091,
+      "sha256": "263202db900f550fae2d063d6cc24ccff686c0dfdfd159273efea9c54cdc88c7"
+    },
+    "tests/formula_catalog_tests.cpp": {
+      "bytes": 2762,
+      "sha256": "e4ee0e9f9276c39de539cc3b47f2bd155d1417e53c3321aa4949460db9b56a1a"
+    },
+    "tests/formula_editor_tests.cpp": {
+      "bytes": 28130,
+      "sha256": "3e3886dfb0dfc5489f98bce0ef04df73292189e9655c04fa435ea248604d4af3"
+    },
+    "tests/formula_workspace_tests.cpp": {
+      "bytes": 12514,
+      "sha256": "f5c08850aa25fec1bc4e1dd3a17c14c89b129fdf7f4c402cf462464191cfeec1"
+    },
+    "tests/grid_tests.cpp": {
+      "bytes": 11095,
+      "sha256": "5cc3d90f3b03a0ab7ae7945b0f2b2e9ef48930940d184b36484db581c06a83fc"
+    },
+    "tests/iteration_controls_tests.cpp": {
+      "bytes": 3220,
+      "sha256": "188d5069c2ac34ab84a56e1808d587fe2d449d55031e7681eded614eee891ebd"
+    },
+    "tests/link_status_ui_tests.cpp": {
+      "bytes": 2827,
+      "sha256": "6ae3c3d03a343e2c0314e7e5b61844ecd2716cc7712348054474259cd0597d44"
+    },
+    "tests/live_reporting_workflow.cpp": {
+      "bytes": 7449,
+      "sha256": "564df2bd59443ca1e19301f04e9e8d1f7e217c4396436bb0e0cff76fa15cddda"
+    },
+    "tests/manual_calculation_tests.cpp": {
+      "bytes": 6305,
+      "sha256": "48f4c9a61dfe55e8217d45331991b2878e201b2c2a17ffbde3c228617684ce07"
+    },
+    "tests/modeling_ui_tests.cpp": {
+      "bytes": 16303,
+      "sha256": "955124d815a91a7f60ef60efed7d5806a37b7a3c751db45bd28d0230ada1f7e7"
+    },
+    "tests/native_financial_worker_tests.cpp": {
+      "bytes": 10797,
+      "sha256": "ef170d878c1e5915d924e69a222bb5555356f417a24468c5724c04156fc6d294"
+    },
+    "tests/native_pivot_inspector.py": {
+      "bytes": 6254,
+      "sha256": "c6ec2ac34067756285a6618bc3c98cbd9f1e8a4bffd5e62e79519189b0dfc4fa"
+    },
+    "tests/native_pivot_tests.cpp": {
+      "bytes": 29980,
+      "sha256": "6c6c97283d1d197a10154648e491911d1f7a6d07ddcad9c86842f63a8036c52f"
+    },
+    "tests/native_platform_tests.cpp": {
+      "bytes": 3422,
+      "sha256": "a2a1231e4bc7aed28478f0354bff0c3eacbafda646b6828ec83f425c35c8cf40"
+    },
+    "tests/ooxml_style_performance_tests.cpp": {
+      "bytes": 1817,
+      "sha256": "35afc74f6b35aacd57d552be233e5bf5e2f408acdad79f6db9353af939266885"
+    },
+    "tests/ooxml_tests.cpp": {
+      "bytes": 28567,
+      "sha256": "134bb16fed4c0a8aaf65e7a59a0702d8f9c6cdfa23295724f43e2b602eb107f8"
+    },
+    "tests/packaging_tests.py": {
+      "bytes": 7399,
+      "sha256": "09367b9ecbcc2ad1338c7218ef9be640dba28539071b6c4e0a8377028814dcdf"
+    },
+    "tests/performance_benchmark.cpp": {
+      "bytes": 2779,
+      "sha256": "599199d25948fbb3ebf1140dff0c6cba90308503a31d1374dd4f6fdf9f3eb9fe"
+    },
+    "tests/pivot_benchmark.cpp": {
+      "bytes": 2168,
+      "sha256": "1b15ef50362c93435d78e46d4ee943a11437c9cfe569929ae8df04559f8b90de"
+    },
+    "tests/pivot_conversion_tests.cpp": {
+      "bytes": 8557,
+      "sha256": "205236fdc6e5cc84ec073fcce05167e475de801a0acc6496c5faa5db2b729a31"
+    },
+    "tests/pivot_fields_pane_tests.cpp": {
+      "bytes": 7645,
+      "sha256": "e26cba24d36c007d2c091ca34536efc276d3a4b01dee58fd06ab1a3bca2aca67"
+    },
+    "tests/pivot_ownership_tests.cpp": {
+      "bytes": 3696,
+      "sha256": "a3de656bc616779fb90a6394d0d17f6ba0017bd869183e08b8453944fb02ccb7"
+    },
+    "tests/pivot_reference_tests.cpp": {
+      "bytes": 6992,
+      "sha256": "6b7e6c9b7327dfec4f25ac117d73025c9aa1875bd5cef4946f4c7dcc7e749350"
+    },
+    "tests/pivot_tests.cpp": {
+      "bytes": 17610,
+      "sha256": "79971bf72fee9b57cec7edfdff472934e4afcba7e0040633c7025c060a1ac86f"
+    },
+    "tests/prepared_native_tests.cpp": {
+      "bytes": 15784,
+      "sha256": "d6b61842c3e2a0a4e0bdf25cda50b9057aae6892d8d44424a7f84ba1a6a58adc"
+    },
+    "tests/prepared_session_tests.cpp": {
+      "bytes": 6762,
+      "sha256": "d0ef12571526f0a8f70104f79617a71fa136cb65fe6dee16220952cf9621cdc2"
+    },
+    "tests/preview_ui_tests.cpp": {
+      "bytes": 1915,
+      "sha256": "04336a52c68cff52618437b0c030cd5c637793dd8e4394aae1b18332abff09ce"
+    },
+    "tests/print_settings_ui_tests.cpp": {
+      "bytes": 1490,
+      "sha256": "96f1adadf6f22a568c71a72d891e494664d2f6f212e02093aabca43674b47e0f"
+    },
+    "tests/printing_ooxml_tests.cpp": {
+      "bytes": 6374,
+      "sha256": "c42df13e62fffe152371b845ead8841a9a983f1192cb47c7d12c6bc1e20764ca"
+    },
+    "tests/printing_tests.cpp": {
+      "bytes": 13251,
+      "sha256": "a9895b038870abd6171ec86490382441445380c6ac97bde68d74e5804716487e"
+    },
+    "tests/recovery_tests.cpp": {
+      "bytes": 21657,
+      "sha256": "2b13553b650e29a912ff26fd3d04194b29b9d51ff0baac6064efbecd358b02a5"
+    },
+    "tests/references_tests.cpp": {
+      "bytes": 6769,
+      "sha256": "bf1a8ac68f2a269a968cf4272050120a3f19175aae1611777eb175c44263f65d"
+    },
+    "tests/release_gate_tests.py": {
+      "bytes": 1230,
+      "sha256": "152dcfbc8e3c1e88cb16af4f3de65d1cfd9546b222ca89a4e6a9d5a0d84a22c1"
+    },
+    "tests/report_tool_worker_tests.cpp": {
+      "bytes": 1816,
+      "sha256": "6e57f8784687f71704358f4cd2c3d7b16c8b42ed88c5ba20fa1977f29d9e2922"
+    },
+    "tests/report_worker_retirement_tests.cpp": {
+      "bytes": 3877,
+      "sha256": "421d4502fa5d2281ff9a3dff320bb428629fa7614c260959d36e7f84b587e3c0"
+    },
+    "tests/report_worker_tests.cpp": {
+      "bytes": 16260,
+      "sha256": "07abf822675ee21be1d0b3c021c837a62440691b84e7f67d3d5eac66fa659041"
+    },
+    "tests/report_worker_tool_tests.cpp": {
+      "bytes": 5212,
+      "sha256": "70a921c94e9e394f0360c650e70f13c3330c3a733541590b6623b687490ba842"
+    },
+    "tests/reporting_cached_consent_tests.cpp": {
+      "bytes": 2386,
+      "sha256": "63241f5fb8d053883b880dfcc571edd607947279918d44d74149ec0320df5337"
+    },
+    "tests/reporting_calculation_ui_tests.cpp": {
+      "bytes": 1243,
+      "sha256": "057bf1d3d6c7beb8a5cba0dbe7fe5e6f85fe4d05e6e81951fa33e2453d4a16f6"
+    },
+    "tests/reporting_capacity_benchmark.cpp": {
+      "bytes": 22272,
+      "sha256": "9df91d0191b171bdd7a14f074056f0540d5e69b4979c443cfbf9fcee1d4cd091"
+    },
+    "tests/reporting_context_tests.cpp": {
+      "bytes": 4058,
+      "sha256": "932dc4197c097e4d5e68b70bd26e8582c046071ae40465a99e01956464636701"
+    },
+    "tests/reporting_formula_header_tests.cpp": {
+      "bytes": 1845,
+      "sha256": "050a8e49491b8c3218e4a4e561bbcff858ec4d00cd5f88440effb65771cabb3f"
+    },
+    "tests/reporting_input_benchmark.cpp": {
+      "bytes": 2351,
+      "sha256": "f6f5b0786c57ec2af09f1f485ada24e8d7e569f6d2b323bec350b12869841ad0"
+    },
+    "tests/reporting_publication_tests.cpp": {
+      "bytes": 6041,
+      "sha256": "636b612544ca4fc80cd1ccd16d0fd6567d97759e5c768f9675ee49a984edd467"
+    },
+    "tests/reporting_read_bounds_tests.cpp": {
+      "bytes": 2461,
+      "sha256": "9f1c983e0f089e6fbf4c27b699c4c16f446433678a362e85748bc292a06be244"
+    },
+    "tests/reporting_snapshot_lifetime_tests.cpp": {
+      "bytes": 4228,
+      "sha256": "c0de18808232e694ea1983d9bdb27a6ad56de5632a6eefc8ad58cc44b7520ce2"
+    },
+    "tests/reporting_tools_tests.cpp": {
+      "bytes": 9958,
+      "sha256": "ec33fb861aa7914ebcbd884ad122520f8dbc3419def5c75781bf7e68febf2df1"
+    },
+    "tests/reporting_workspace_tests.cpp": {
+      "bytes": 4274,
+      "sha256": "0304bd368ae18cec827135589c60a968d6e6c916984d949fb2c32719cd3a2949"
+    },
+    "tests/ribbon_page_tests.cpp": {
+      "bytes": 5217,
+      "sha256": "3e163e0ea6df8bb3d7820ccb805bcb29c174b5685449a909009d7257543e4346"
+    },
+    "tests/robustness_mutation_tests.cpp": {
+      "bytes": 1886,
+      "sha256": "fabe3d1e85c070887b62cadb21b280be29d2a927cf4e467f32e583876980061f"
+    },
+    "tests/run_reporting_capacity_benchmark.py": {
+      "bytes": 6183,
+      "sha256": "23ed71e563ff657500a7ce2ce6ee5595e84587bb1272bfc8a4a605db055bbc16"
+    },
+    "tests/scheduler_preparation_tests.cpp": {
+      "bytes": 1174,
+      "sha256": "a9d890029eb5c5b49c798bc026440b99fe964f92a91507df013d75718dcb3511"
+    },
+    "tests/scheduler_tests.cpp": {
+      "bytes": 8643,
+      "sha256": "4a2dfce8ca335464601fbe26cd554d2e6ecc83ce16e08cd50e85fd15cecc1118"
+    },
+    "tests/selection_statistics_tests.cpp": {
+      "bytes": 5538,
+      "sha256": "783c4ab1cdd42529d43326aab1f31e8b8918e8e93c18013f3da53c1be395b3de"
+    },
+    "tests/selection_status_ui_tests.cpp": {
+      "bytes": 1127,
+      "sha256": "03792259d643a58819db62d6bb1f573b3e26d58c204e37a49433ca12b419d5b7"
+    },
+    "tests/session_foundation_tests.cpp": {
+      "bytes": 5946,
+      "sha256": "2c98d3de55fa7150f0eb80963b029e7703b267d3f1d8dcd1a6e103ab19267dea"
+    },
+    "tests/session_lookup_tests.cpp": {
+      "bytes": 966,
+      "sha256": "f1f091287f5b79d35a890b94b810db6d4e1a5c0fd734bfd86e195cb596329cc2"
+    },
+    "tests/session_tests.cpp": {
+      "bytes": 16776,
+      "sha256": "5e3305a851c333ca66403a9d5670cc6bdac67f29af0d3231aafe4e65b8ba7da2"
+    },
+    "tests/snapshot_capture_tests.cpp": {
+      "bytes": 2716,
+      "sha256": "fe155826b19ab8fe195525b2e90b6fa621954e0c149f822a6a90fd8dde6c6561"
+    },
+    "tests/solver_tests.cpp": {
+      "bytes": 17990,
+      "sha256": "13a48f851fe9b0a8eb42d81baa494f18898c611e3e0abd1be94fb39720d40341"
+    },
+    "tests/static_conversion_ui_tests.cpp": {
+      "bytes": 2519,
+      "sha256": "723d8a8db77abce6777d165b4c9e47f79bbcd2b797645a16d6024a143d4c66fd"
+    },
+    "tests/structural_edit_tests.cpp": {
+      "bytes": 5920,
+      "sha256": "ad3cf5080ecb177921178b8939a342241709716ce13dc6564cce7c1e9daa2a88"
+    },
+    "tests/structural_reference_tests.cpp": {
+      "bytes": 2022,
+      "sha256": "c1e3bc45daa2f4dfd7fb7c26b260beabe4b1db2de95b80a041ed027dd414f45b"
+    },
+    "tests/theme_tests.cpp": {
+      "bytes": 5486,
+      "sha256": "b5ac1ce271bb44ed41929c2419c52c6a5aebb0a40ce1458176df2d7e824bdee3"
+    },
+    "tests/tool_proposal_state_tests.cpp": {
+      "bytes": 3037,
+      "sha256": "a0a73617f521df27e0c2dd319cea64403f99c070972030a8bf4d1c988806394f"
+    },
+    "tests/vba_draft_workspace_tests.cpp": {
+      "bytes": 2124,
+      "sha256": "b9cdda1365b13569bf3efd604a28437bb68d88de47a3be03103e09a4c4e99329"
+    },
+    "tests/vba_tests.cpp": {
+      "bytes": 4472,
+      "sha256": "f1ee560792733dc99bfc0a4be2b9ce4e253f80f8adcaeead0d60643fde686221"
+    },
+    "tests/vba_worker_tests.cpp": {
+      "bytes": 12922,
+      "sha256": "dc40f921a4ab02ee610aba24ab9ac7244a9349c50e7de2f3f5899a4293df8b90"
+    },
+    "tests/workbook_links_tests.cpp": {
+      "bytes": 18619,
+      "sha256": "8d09bbcc43ed3be1e7c88a7d3ee8940c395da49eb16b6f2b278dd2e807944d75"
+    },
+    "tests/workbook_tools_tests.cpp": {
+      "bytes": 17495,
+      "sha256": "bacff171f60dcf676d1103dc0bf6959e46190ee916e72e8fc97f414d077aa0a9"
+    },
+    "tests/workbook_ui_links_tests.cpp": {
+      "bytes": 2134,
+      "sha256": "1c7dc3e24e036bbc0c8ad5c1fc05a0d1b845d529f12b99e084f810e8cd8cdaf5"
+    },
+    "tests/worksheet_action_ui_tests.cpp": {
+      "bytes": 3951,
+      "sha256": "7d904b1469cc693f674f2a0c3cc6d91a0c5c5259b9cef1d5fed9c65ff1b238ab"
+    },
+    "tests/worksheet_cell_format_tests.cpp": {
+      "bytes": 10941,
+      "sha256": "680f20f0648e59430130e9fded7df999522bcb175288bceb9eac8936d679f0fd"
+    },
+    "tests/worksheet_clipboard_ui_tests.cpp": {
+      "bytes": 2060,
+      "sha256": "fe3e35b8d1c129a559877abd7998ead7f524b0749c7cd9649e2d4663e9b4e222"
+    },
+    "tests/worksheet_column_width_tests.cpp": {
+      "bytes": 2832,
+      "sha256": "b00ed9edb32de930caee36c5ba9f4ea4074043219b6c2375c781d2f9efd2d7d0"
+    },
+    "tests/worksheet_column_width_ui_tests.cpp": {
+      "bytes": 1145,
+      "sha256": "1f0476eb86e83bced68fb394b87de3c46c57986c033d84a89ff551e27e18ff3a"
+    },
+    "tests/worksheet_context_menu_tests.cpp": {
+      "bytes": 12352,
+      "sha256": "36fb1af015cbbab0a2704ea92f83b9b3a2044e308381e72d9b0790b08ea71f99"
+    },
+    "tests/worksheet_correctness_tests.cpp": {
+      "bytes": 8469,
+      "sha256": "667f912e7bf122035194deac7001e361bb3f4ef982e80f173227a2b8fa639bac"
+    },
+    "tests/worksheet_dimension_action_tests.cpp": {
+      "bytes": 2791,
+      "sha256": "555877d8c93fb7e3eb0d306d1dfa0643fe206c837ead4c3f065819546d278d8a"
+    },
+    "tests/worksheet_entry_tests.cpp": {
+      "bytes": 14328,
+      "sha256": "0558268b0970034fd04b2eae03f8ed1da02f6781f415db184b9ca2bbdf1a20d2"
+    },
+    "tests/worksheet_format_shortcut_tests.cpp": {
+      "bytes": 1894,
+      "sha256": "ae7927f13bce7d33d32cb6ce53717ec3fdb68b165c0716a1d7ea3c9385eb18b9"
+    },
+    "tests/worksheet_layout_csv_tests.cpp": {
+      "bytes": 1688,
+      "sha256": "c6b63450e0625828d8e89ed72cf81af86f196c0be31fe9fdddfd69dcefa137a2"
+    },
+    "tests/worksheet_layout_ooxml_tests.cpp": {
+      "bytes": 6330,
+      "sha256": "4fe878a7a42508ca5bceee74c145a1738987d3249099691b274e2846d1115640"
+    },
+    "tests/worksheet_layout_pivot_tests.cpp": {
+      "bytes": 2997,
+      "sha256": "2ae944ee47588ecfa913d43213d54cb51701034a07a00ea43abc4b91575f62f9"
+    },
+    "tests/worksheet_layout_tests.cpp": {
+      "bytes": 5215,
+      "sha256": "ff75c9d640d488f281216c5a2ff95acbb8b6c833b307714cc7cb7fe55307b9c2"
+    },
+    "tests/worksheet_layout_ui_tests.cpp": {
+      "bytes": 2816,
+      "sha256": "851cd875e4e7dc01adf32d90c4b29f8e70e41d7bd8a8893b164d9154d0d87312"
+    },
+    "tests/worksheet_merge_action_tests.cpp": {
+      "bytes": 3275,
+      "sha256": "d2999780ee530462a1262b395533a7b5add241fbae30fbee8aaa85ae588dac0f"
+    },
+    "tests/worksheet_merge_edit_guard_tests.cpp": {
+      "bytes": 6941,
+      "sha256": "64f6509961c87755388f6a36511f846015512390aa11cea6d6c5cccb6cba9d74"
+    },
+    "tests/worksheet_merged_write_tests.cpp": {
+      "bytes": 3123,
+      "sha256": "13f9ddeb22a2d52b59312e35d3d919e4944ce798f453765ccaa0739de3e57bc3"
+    },
+    "tests/worksheet_structural_style_tests.cpp": {
+      "bytes": 3190,
+      "sha256": "d6f7d0c1ea7214b240e82b67fd222aedf9541dd5ddc62ab3c673309a55ca4168"
+    },
+    "tests/worksheet_wrap_tests.cpp": {
+      "bytes": 3095,
+      "sha256": "a1e59386c2a0b736c75b832a3e591e25c60b40293c891ce2b84cf9d61045b838"
+    },
+    "tests/workspace_tests.cpp": {
+      "bytes": 7845,
+      "sha256": "3ef7b627e6c88f94ca705153bd19150b175bc0be16279e271072218304128fd0"
+    },
+    "tests/workspace_ux_tests.cpp": {
+      "bytes": 9629,
+      "sha256": "0e950e96e6a3079a339893f90cb693ca68e513928777d96168959eb4786a14a2"
+    },
+    "third_party/SOLVER_DEPS.json": {
+      "bytes": 2266,
+      "sha256": "326ac4e20b41e85bd0a1248f88475154c3adffc8aaa0c7402a43dffecb65fcbf"
+    },
+    "third_party/ironcalc/PINNED.md": {
+      "bytes": 2366,
+      "sha256": "6c5b2d69063478f3c612bb3e4934f235637013815087305ca350f0112f97c1c1"
+    },
+    "third_party/ironcalc/base/Cargo.toml": {
+      "bytes": 1145,
+      "sha256": "7c12de049874a99844c89df0bcd2fb4030774d02b6c40378cda54c144671dc1d"
+    },
+    "third_party/ironcalc/base/build.rs": {
+      "bytes": 343,
+      "sha256": "eaec71a8cc759973a507f62d1be4354860d255c3f89f9513f5b3018dcb54ccc0"
+    },
+    "third_party/ironcalc/base/src/actions.rs": {
+      "bytes": 69567,
+      "sha256": "2cdcd6c6659f99ad0adf6aa467a7cd3643859b085975c0fd4f0121ad3eb63cf5"
+    },
+    "third_party/ironcalc/base/src/arithmetic.rs": {
+      "bytes": 18551,
+      "sha256": "b6c30d76ab4012192dddd22f09b7fdfa29736a1e70151d2451d9029802e9e860"
+    },
+    "third_party/ironcalc/base/src/builtin_styles.rs": {
+      "bytes": 12261,
+      "sha256": "5920ecdc66ba8d6f7e8a1cba43029b1e341de5b5643240f003b163221459501a"
+    },
+    "third_party/ironcalc/base/src/calc_result.rs": {
+      "bytes": 3687,
+      "sha256": "c3e4d253a5c64a2b122acc68f5aeba2c76459bb38f020d332351b0780d4812ab"
+    },
+    "third_party/ironcalc/base/src/cast.rs": {
+      "bytes": 18226,
+      "sha256": "d7f09ea42f67c3dbf2b91dbaf6cfde8614f9ce525170f0690b7e209e973a41bc"
+    },
+    "third_party/ironcalc/base/src/cell.rs": {
+      "bytes": 7024,
+      "sha256": "9f7d4ef259e277606bd898e074dd48e5032251c989e9a5686d119b82273ad3d7"
+    },
+    "third_party/ironcalc/base/src/cf_types.rs": {
+      "bytes": 14682,
+      "sha256": "af1d2d256b470feb7299afe602688e6b891963f44c1b621ea1466ba0c255f98e"
+    },
+    "third_party/ironcalc/base/src/colors.rs": {
+      "bytes": 9690,
+      "sha256": "1ee8f7fb24defb95208b6d36c7fe340329447ba4c90c42975d850a962af81024"
+    },
+    "third_party/ironcalc/base/src/conditional_formatting.rs": {
+      "bytes": 63277,
+      "sha256": "f96ee659558d9b76e339afcab45509f40cbb20d9163ed05e5cf63bca6c2a2df9"
+    },
+    "third_party/ironcalc/base/src/constants.rs": {
+      "bytes": 1607,
+      "sha256": "16bcd27d5a308db93d9a261229d0703710d33b3be376525210686266ee21f696"
+    },
+    "third_party/ironcalc/base/src/cut_paste.rs": {
+      "bytes": 17769,
+      "sha256": "4ddf48fa9b9a9ef953f82d4e064aa0842879eb87ce8b3394a991ccb8dc45dbd5"
+    },
+    "third_party/ironcalc/base/src/evaluation.rs": {
+      "bytes": 51242,
+      "sha256": "84f4c8ab8c367adcd924e7dfad6b1e05fe8ef9a633a9a54304912c6a3abb5d3b"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/mod.rs": {
+      "bytes": 34495,
+      "sha256": "a21a8a1c7093027ba8810878740227337412a0a8c354d601f1f7451bff174557"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/ranges.rs": {
+      "bytes": 12853,
+      "sha256": "f3c2e74a0cc749c111980eca53b4329c276f4f6af8a12ed58f6ca6316f71b122"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/structured_references.rs": {
+      "bytes": 7219,
+      "sha256": "20f516f27be561dfe86c20f14c5d0313a755b7baad591d6b4dff44821ea65fc0"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/test/mod.rs": {
+      "bytes": 159,
+      "sha256": "1cd804192a7e63be89146b3951751cff2a370a6a517afec94150b13c7ef666ef"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/test/test_common.rs": {
+      "bytes": 18634,
+      "sha256": "3043f876729a4c2392544b938b25cddf5d2d1d780b2e8b9f2cd549f0a0a06cc9"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/test/test_implicit_intersection.rs": {
+      "bytes": 754,
+      "sha256": "097f0dae6d8200d67005badadf403035a110c14a24f38f567ba1d4a14016b163"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/test/test_language.rs": {
+      "bytes": 3689,
+      "sha256": "5f78c56ae606d01c200e74c1c838aec146934b07c0b62895afbc00fb2d5206cc"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/test/test_locale.rs": {
+      "bytes": 1490,
+      "sha256": "339eaa242c3fedd2a66975b51b353da846c12e7992a0a574faa202428f6aa3b4"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/test/test_ranges.rs": {
+      "bytes": 13181,
+      "sha256": "7bef069802ead2d3482cc74f29b8c3ee119e5a2d875bef11628ec1486d95bbee"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/test/test_spill_operator.rs": {
+      "bytes": 751,
+      "sha256": "3319ce33317d029e9c19bbaed7cf13d7394b3857980b32431dcebde51e996be8"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/test/test_tables.rs": {
+      "bytes": 2012,
+      "sha256": "dbe12401fbb62a6aadd8ea7955d09f272e6148890749b2a635fc06bcaf49688c"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/test/test_util.rs": {
+      "bytes": 4417,
+      "sha256": "6b7f72cd97f5341a328d7ad69701aec8eb45bcfb9d36af69be86cbb0b9d7d813"
+    },
+    "third_party/ironcalc/base/src/expressions/lexer/util.rs": {
+      "bytes": 8778,
+      "sha256": "06a706d01de9d51ba01490493bb34e2ba80acde4be8ca1ced77abd537fcf98cc"
+    },
+    "third_party/ironcalc/base/src/expressions/mod.rs": {
+      "bytes": 94,
+      "sha256": "10f2cd253688705555bdee26ee120a805b8b7629869798886ef21fad6d10f2d1"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/lambda.rs": {
+      "bytes": 5185,
+      "sha256": "e649c3998c722d8c3427bd07d5d4d5ef42f762d39a7332c6b7cdb1a3ec98de85"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/mod.rs": {
+      "bytes": 52645,
+      "sha256": "b332bce82068b276d04685bad8f5014e09fe011134eab629d76d291acc167778"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/move_formula.rs": {
+      "bytes": 19091,
+      "sha256": "2e117696de4b1e4dc878d45ea08a7a83e61f8db6d5871c28ffcd7d9be6c62b59"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/static_analysis.rs": {
+      "bytes": 101306,
+      "sha256": "ad832eb81e40ccab8dd0455fb7703da550e99ca2869b9940a896a7f4385e669b"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/stringify.rs": {
+      "bytes": 47504,
+      "sha256": "4da16ac48c6bfc00ebe4dc6fef967fe5ce7805c2af030379d3ccf49a5bd95ea3"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/mod.rs": {
+      "bytes": 428,
+      "sha256": "16f5d912fd6a098b1123fed7d43791f71f1d95e30c779e420c017225be42435b"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_add_implicit_intersection.rs": {
+      "bytes": 4162,
+      "sha256": "af11e24bd4d808314c29a882cb473b44741fec5a6a2c943b90d1670dcf0215fd"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_arrays.rs": {
+      "bytes": 2873,
+      "sha256": "ef2b1bf2cc7b674dbd7b20094912af1f6db3bd61661250efbcc049b46a5cb415"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_complex_precedence.rs": {
+      "bytes": 2399,
+      "sha256": "aa01e3ea9a9102a90054e7e11d38c6beb349081ecf566d1986d5796f8b5eaac3"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_excel_export_lambda_let.rs": {
+      "bytes": 2873,
+      "sha256": "871a43139fd5b9b1834f0787cd7d90ba038466ea9aa01d88f1dc5ebbc8aa11f7"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_general.rs": {
+      "bytes": 14350,
+      "sha256": "a5b8e08a1fe98f857777ae5527a7ecbda2629383979d1a6367817cc6f33a87a6"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_implicit_intersection.rs": {
+      "bytes": 1975,
+      "sha256": "df208271b929d35147178234351a11c0e6088cfac154fc8dcddcf729a2fb395b"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_implicit_intersection_export.rs": {
+      "bytes": 7332,
+      "sha256": "877c6008346ce65da608f832c7573d607ce5bb288d333ed87aa286298b8a37a1"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_issue_155.rs": {
+      "bytes": 2115,
+      "sha256": "07fcf99c58940d0f2837eff1c8d2246ac285740401eb436bffcba445c9a2a96a"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_issue_483.rs": {
+      "bytes": 939,
+      "sha256": "c3bbec33309ed5204bbb14356aaaf906a73f827688553ec66bf1abcf6c9f6c0d"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_lambda.rs": {
+      "bytes": 10966,
+      "sha256": "5ed0f0ff06b28ee5e9fc526a6143fd107ffcf68c9fb0e10fa3c163fadebc0875"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_languages.rs": {
+      "bytes": 2013,
+      "sha256": "0a64a5b3a31274fd00e4c9324c329a787b27421dac37ad44f1989209a4ab2dd2"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_let.rs": {
+      "bytes": 1449,
+      "sha256": "2c4972b5c599cf2f24d97287f06837458641c1c090c9b8cb2ac2da2dfc733eca"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_locales.rs": {
+      "bytes": 1646,
+      "sha256": "2bdbe20a5d1763bcb8add9a878e69304c93c8b1755ebd08497c6df1ce07bf688"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_move_formula.rs": {
+      "bytes": 16656,
+      "sha256": "78d61e6860a28dfd6926c050c6cfb7cee067c28f7fead19eb6629cb7f2dc3309"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_partial_parsing.rs": {
+      "bytes": 14117,
+      "sha256": "63210b4c0895459db01f14b85ed3903fd98bf7959301fff9c48efa836f5d3d34"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_ranges.rs": {
+      "bytes": 3091,
+      "sha256": "d4d82cb86fc7df28d02c686e3ec1d44a432ddb7b1ea63095610f3377a6334ff8"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_stringify.rs": {
+      "bytes": 2564,
+      "sha256": "6700ab63273ab427af25e81f04b92c89c9749643fc828b0eb8ac7567d4f95964"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/test_tables.rs": {
+      "bytes": 3252,
+      "sha256": "5ca3cfab3cbed820f251a5472c6f7ef5b8de1fb14e67946dc184bff236f3532e"
+    },
+    "third_party/ironcalc/base/src/expressions/parser/tests/utils.rs": {
+      "bytes": 838,
+      "sha256": "acb71ee6b6e4f1ef1d14adbc2c938d5df11a5afec375593d10d3a1e5e4150501"
+    },
+    "third_party/ironcalc/base/src/expressions/test.rs": {
+      "bytes": 592,
+      "sha256": "62ba38d2e7e4f73976ee2e7fe6ff28d9aaf1eba210870eed975b29a662a979e6"
+    },
+    "third_party/ironcalc/base/src/expressions/token.rs": {
+      "bytes": 7637,
+      "sha256": "85f4908145b3c34a2c0c4799ef8dfe025eb19f9935343012c3e2d0aea12dc35b"
+    },
+    "third_party/ironcalc/base/src/expressions/types.rs": {
+      "bytes": 1322,
+      "sha256": "33d0a4c53fc7dc11f1f7cdacd36f56a494ee57211e24a8d81c041e3ac8b54749"
+    },
+    "third_party/ironcalc/base/src/expressions/utils/mod.rs": {
+      "bytes": 9562,
+      "sha256": "e5fd652e8b98c1a37025325b0fc05818a2e97fd898b26a129a9d9990ebb130e8"
+    },
+    "third_party/ironcalc/base/src/expressions/utils/test.rs": {
+      "bytes": 5918,
+      "sha256": "4bad40f63c17eaabc144e224e3f23db22b1e9d8eac0d6b7aa2bf623bfa74c5ec"
+    },
+    "third_party/ironcalc/base/src/formatter/dates.rs": {
+      "bytes": 5224,
+      "sha256": "8c6bcb63f6aa20c91ad0443e550aabdbcb7fdfee7530f79f16438e1adb643f9c"
+    },
+    "third_party/ironcalc/base/src/formatter/format.rs": {
+      "bytes": 41962,
+      "sha256": "9345099277894a8ee6cdc176218209b5785ef591b232c6ab0e0fd7d4e238c72c"
+    },
+    "third_party/ironcalc/base/src/formatter/lexer.rs": {
+      "bytes": 20835,
+      "sha256": "9c332a01a1e8265cdb272f3624fb5d1855b1584a87cd7c57545d0b0b29374910"
+    },
+    "third_party/ironcalc/base/src/formatter/mod.rs": {
+      "bytes": 3781,
+      "sha256": "68a424b1a039dd26387e962d59c3516a1626228abb6ab7a43021e1a4c6493514"
+    },
+    "third_party/ironcalc/base/src/formatter/parser.rs": {
+      "bytes": 13261,
+      "sha256": "0e621ce0c52474bb41a4ed3c6f04ad8f0a19b4190d3b3bd90f66de46f79c4617"
+    },
+    "third_party/ironcalc/base/src/formatter/test/mod.rs": {
+      "bytes": 214,
+      "sha256": "84532152a90a5f96b50a28fb3e9ac4a013d69fe846d3143ca26354bf6bebcfa9"
+    },
+    "third_party/ironcalc/base/src/formatter/test/test_condition.rs": {
+      "bytes": 4385,
+      "sha256": "0e853c4160b49248a6c2f98a205d2590e7ca5cb1a59fed841cebbc59ad278008"
+    },
+    "third_party/ironcalc/base/src/formatter/test/test_dates.rs": {
+      "bytes": 388,
+      "sha256": "10ff54d6ad026d361bf3d65720d5333f27c73bf0dcac531b8081f7df744e4e4d"
+    },
+    "third_party/ironcalc/base/src/formatter/test/test_de_examples.rs": {
+      "bytes": 5392,
+      "sha256": "a4542aaaae841fbe7072fd3a6e71fa9533ed1281da0c7af4cd05c8c135e2cc7b"
+    },
+    "third_party/ironcalc/base/src/formatter/test/test_en_examples.rs": {
+      "bytes": 7436,
+      "sha256": "bf56bf906df8dd2951d9d348c0e4947451c54db3fe2abcb6eb4ad05e2d245f55"
+    },
+    "third_party/ironcalc/base/src/formatter/test/test_fr_examples.rs": {
+      "bytes": 2334,
+      "sha256": "12e8d63eb932772fce6175dc08fd349fa072aa6056d3c3f816fa7fd923700712"
+    },
+    "third_party/ironcalc/base/src/formatter/test/test_general.rs": {
+      "bytes": 9718,
+      "sha256": "a2de736ca2c17caaa61e4cd4a249ff2466d9416c15137b115768a6b52682509f"
+    },
+    "third_party/ironcalc/base/src/formatter/test/test_parse_formatted_number.rs": {
+      "bytes": 8710,
+      "sha256": "ad3f28cad4becc349fd9de3cf9595978b8bd64b9a6f97e9fbe705dcd5eb1febe"
+    },
+    "third_party/ironcalc/base/src/formatter/test/test_scientific.rs": {
+      "bytes": 926,
+      "sha256": "4d9e1bd149a07013c42f7ebe7159017ae6425541fd689b9dec817c0338f87b09"
+    },
+    "third_party/ironcalc/base/src/formatter/test/test_special_dollar.rs": {
+      "bytes": 485,
+      "sha256": "313e2abcd979dab5117e8f020105da143e2b48f96f3e577e3c9400bcb829184c"
+    },
+    "third_party/ironcalc/base/src/formatter/test/test_time.rs": {
+      "bytes": 1963,
+      "sha256": "3b1f9244252fe9459ace5692a3d15ec51c0510e1544f5a43c37602289df89eeb"
+    },
+    "third_party/ironcalc/base/src/functions/aggregate.rs": {
+      "bytes": 7081,
+      "sha256": "072a9da49598f7a9bc7352eca51ec75f8550742305993949065860b4ff6ee24a"
+    },
+    "third_party/ironcalc/base/src/functions/binary_search.rs": {
+      "bytes": 5922,
+      "sha256": "ea8abc8b43727b4a5593ba8b94110b0207f5ebcb336bc30585c1bc68c08f01b8"
+    },
+    "third_party/ironcalc/base/src/functions/database.rs": {
+      "bytes": 32827,
+      "sha256": "5910ecaf17a63cdb612e44215c72fffbd579b5642a46eb7aa23523cbcd3b82de"
+    },
+    "third_party/ironcalc/base/src/functions/date_and_time.rs": {
+      "bytes": 78642,
+      "sha256": "f5f3034c4ffc0f073abb1af9811c525e46cdebc3770aa052a3f77cbcdabdadbd"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/bessel.rs": {
+      "bytes": 6069,
+      "sha256": "90a15f134001919826a66da4ab96f40a6076e91b864135fa60834df09570e207"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/bit_operations.rs": {
+      "bytes": 7484,
+      "sha256": "c74d67d6cb22dd4af485cd5c539f4dd5d561d616a4b115578ed487d6a64a686d"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/complex.rs": {
+      "bytes": 26374,
+      "sha256": "ebacdeb609c911cb6f635cef753a46a772c084cc66292ed1c68cdb41d01bb591"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/convert.rs": {
+      "bytes": 14946,
+      "sha256": "23c8ed2f6d0874cfb0815a25ff1b579935a34e9eb0341fc691bf52c20eca5da1"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/misc.rs": {
+      "bytes": 1828,
+      "sha256": "51ab50a845216f1ad3079edac6584cb85c0a6325a4f9aa08e3042a947e7f470b"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/mod.rs": {
+      "bytes": 106,
+      "sha256": "8e2973d92a01757fb12d81fbe51773448eab2594502e2449a67cefa515ae5d64"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/number_basis.rs": {
+      "bytes": 19389,
+      "sha256": "f079e500c9b3361af83e2476597c5ccb3fbe096ed7ab8bc679fe73700a9b2f2e"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/transcendental/bessel_i.rs": {
+      "bytes": 3343,
+      "sha256": "3a8506c9262ee53af62333b696a2dad1d4b58058d10b4a77c8165005853dfba3"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/transcendental/bessel_j0_y0.rs": {
+      "bytes": 15289,
+      "sha256": "a3d212ed7d7850e9636855c4e282c1ee740daa4448241283b145391b540a149c"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/transcendental/bessel_j1_y1.rs": {
+      "bytes": 14807,
+      "sha256": "082dfafd499f601262d2562c6180c7ea256eccbb841bfa5790efe014fe816e06"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/transcendental/bessel_jn_yn.rs": {
+      "bytes": 9695,
+      "sha256": "b1699c08c08a5a6df93cbffaff60df4896487d245d2a363781e635fce5cbc09e"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/transcendental/bessel_k.rs": {
+      "bytes": 2187,
+      "sha256": "6f09c15aead7619f62bec4de5a2cc234025b5698990ada103c16e50963593a3c"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/transcendental/bessel_util.rs": {
+      "bytes": 669,
+      "sha256": "7c9ac2b350539da0b62df8b90656d62fe6ac64f6f9e95c7492b56733a75c420a"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/transcendental/mod.rs": {
+      "bytes": 291,
+      "sha256": "44c8e4563f359960cbad1c17a76fe404044cd425987258f9a71f4751d6b2c13c"
+    },
+    "third_party/ironcalc/base/src/functions/engineering/transcendental/test_bessel.rs": {
+      "bytes": 5004,
+      "sha256": "34492a235b00a9973b74181e0dfd76285ef1f630fe748e9e09779b5633a2f607"
+    },
+    "third_party/ironcalc/base/src/functions/financial/accrint.rs": {
+      "bytes": 14119,
+      "sha256": "7ff954ccf8ccde5e614cd3aca2c6d4e63d571f09213c854f4bb6d7985f79992a"
+    },
+    "third_party/ironcalc/base/src/functions/financial/financial_bonds.rs": {
+      "bytes": 47130,
+      "sha256": "eed949efafe3f33a272c3b5b6facf78aadb75057481f319c0cf4d2b2a918e134"
+    },
+    "third_party/ironcalc/base/src/functions/financial/financial_depreciation.rs": {
+      "bytes": 18350,
+      "sha256": "7dcd7e7f446ac5d07d022b8d04a557f9b85b4665868c9bfd148c334d67852534"
+    },
+    "third_party/ironcalc/base/src/functions/financial/financial_util.rs": {
+      "bytes": 8938,
+      "sha256": "9f516e32e9fcb0bc5e16d4f684dbe8e4ed03464e1c34b5f2a7e52dc5f0d4db33"
+    },
+    "third_party/ironcalc/base/src/functions/financial/mod.rs": {
+      "bytes": 83421,
+      "sha256": "82c6c1be5bf0340526ca5697273bcfab9e7512b10c35ba02290b395d68937ee9"
+    },
+    "third_party/ironcalc/base/src/functions/information/isomitted.rs": {
+      "bytes": 531,
+      "sha256": "eea5bc4bdf896e5002be7739fd9d7194077e8117fc8d3216703ff950a9d782ec"
+    },
+    "third_party/ironcalc/base/src/functions/information/mod.rs": {
+      "bytes": 21788,
+      "sha256": "464d0e6d3692c5c69bd2f03cc218543f995c367cd2d8c822677a7c9e1e3b93f5"
+    },
+    "third_party/ironcalc/base/src/functions/logical/and_or_xor_not.rs": {
+      "bytes": 8682,
+      "sha256": "3f27c1b072dba43bd90c1796dcc194e29f08cc0cfa8de1d443d4650a6f463dd4"
+    },
+    "third_party/ironcalc/base/src/functions/logical/bycol_byrow.rs": {
+      "bytes": 5298,
+      "sha256": "c24780fa94282a2018a1b9d93dbc5f57e81b251d694d1907458aabed00c2da01"
+    },
+    "third_party/ironcalc/base/src/functions/logical/lambda.rs": {
+      "bytes": 6180,
+      "sha256": "4b429e31e86408e4cfc83ec88ef6cc13f40cf693b678554fa173e99b62c1bb0f"
+    },
+    "third_party/ironcalc/base/src/functions/logical/let.rs": {
+      "bytes": 6543,
+      "sha256": "cd6bce797ae8c4792d4461400a6ba8323c78c58078b05b1575679b12e21290cd"
+    },
+    "third_party/ironcalc/base/src/functions/logical/map_reduce.rs": {
+      "bytes": 5128,
+      "sha256": "b6a70368fea88eee91b6bb85dacb57456721c7881ba02a891989130b309f9342"
+    },
+    "third_party/ironcalc/base/src/functions/logical/mod.rs": {
+      "bytes": 13006,
+      "sha256": "cc429a23cc8709ba9003fb9442d7066956c1a3985d9964097ec81be8a44e989d"
+    },
+    "third_party/ironcalc/base/src/functions/logical/scan.rs": {
+      "bytes": 3697,
+      "sha256": "0ed03579ae537caf69bbbe1f0278bb775c7d689bedeabb0266ce78d5d5d99ade"
+    },
+    "third_party/ironcalc/base/src/functions/logical/switch.rs": {
+      "bytes": 1582,
+      "sha256": "f181353c0d01f266d0ebe59c1188d5e70d2f53728256209da6d659a6202be685"
+    },
+    "third_party/ironcalc/base/src/functions/lookup_and_reference/address_areas.rs": {
+      "bytes": 5003,
+      "sha256": "b1bdcfd6f49da17f883e4c6b264d96f8576f724b4c6e34106d00b5ce7875c47c"
+    },
+    "third_party/ironcalc/base/src/functions/lookup_and_reference/choosecols_chooserows.rs": {
+      "bytes": 3506,
+      "sha256": "9838960a7427947b816d07610b1ce6a8f2cd45f2f402b4e6c7fb4dff4d674527"
+    },
+    "third_party/ironcalc/base/src/functions/lookup_and_reference/drop_take.rs": {
+      "bytes": 5057,
+      "sha256": "a6d664226c33e83e34cc28bd75438401a38eaef6c8892903b7c7d07c7dc09922"
+    },
+    "third_party/ironcalc/base/src/functions/lookup_and_reference/expand.rs": {
+      "bytes": 3214,
+      "sha256": "4a9ebaa22b03ff567654bd8ff519f345cb0e8d6d5e9b85fd5996005d3baf70da"
+    },
+    "third_party/ironcalc/base/src/functions/lookup_and_reference/hstack_vstack.rs": {
+      "bytes": 3467,
+      "sha256": "3a5c968e323940a4941d32ceb4aa3ac867e413e02f29a875694405ab943950ba"
+    },
+    "third_party/ironcalc/base/src/functions/lookup_and_reference/mod.rs": {
+      "bytes": 43547,
+      "sha256": "4e6471ebca676676ac271536dc4ae8b0618977bce48aa4eeea1ccc4749300e70"
+    },
+    "third_party/ironcalc/base/src/functions/lookup_and_reference/tocol_torow.rs": {
+      "bytes": 3922,
+      "sha256": "3409ec62d7de2a8a1a7a2957c4d9c0759a3e7164418c56d7317652283a4b592a"
+    },
+    "third_party/ironcalc/base/src/functions/lookup_and_reference/transpose.rs": {
+      "bytes": 905,
+      "sha256": "4cb0139d1046296ed2ed09caca449416acdfdb4ee77d85eb8d5d0c142ff70cb7"
+    },
+    "third_party/ironcalc/base/src/functions/lookup_and_reference/trimrange.rs": {
+      "bytes": 4111,
+      "sha256": "06f0e4cf00399eb70fe36512cf9cd1587b3487175182ff6178acd33b0658dc63"
+    },
+    "third_party/ironcalc/base/src/functions/lookup_and_reference/wrapcols_wraprows.rs": {
+      "bytes": 5958,
+      "sha256": "5efb0fd7d437c8a64e9eb31da41072631179f0964c3fc2f961d92281d3eafc66"
+    },
+    "third_party/ironcalc/base/src/functions/lookup_and_reference/xmatch.rs": {
+      "bytes": 12027,
+      "sha256": "636a6c5b91ac8523c15f93aca036e2c5cf72461f22b0cb395e1171102d406a04"
+    },
+    "third_party/ironcalc/base/src/functions/macros.rs": {
+      "bytes": 5692,
+      "sha256": "9349480afe9317ae7d3a61a644ad99429210f18f3f0a0a2415d4703be8ccf65b"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/arabic_roman.rs": {
+      "bytes": 8681,
+      "sha256": "b6e18624fb4eac0a0cecba8faec611d6c5ad638e25767ca65b98e8744c65cc0a"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/array_size.rs": {
+      "bytes": 1075,
+      "sha256": "c6bb97c172b4f014836dd9529e1453c80a8bfe039dd4d1dfcf8f65f38ee622da"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/gcd_lcm.rs": {
+      "bytes": 10812,
+      "sha256": "01cdaed671ec2c65aecad33c7871daefb820ff30f491b4c06082ae0c0ff9ed1f"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/mathematical.rs": {
+      "bytes": 48994,
+      "sha256": "ed9abbc78bbb63d57dde1789f05380d7b61b00d1f5e3634b16e23b345f348643"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/matrix.rs": {
+      "bytes": 7762,
+      "sha256": "807da788cf6586ce7a6e44c54d37a61721d293022e731a9fd176d01b547bfb60"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/mmult.rs": {
+      "bytes": 15327,
+      "sha256": "6dc81fc2517a949e30182199942b98b6694890b6edd9b930cae04b0a72c4d4bc"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/mod.rs": {
+      "bytes": 182,
+      "sha256": "7d2660174ec4ed1cab77bde5273720bfea6f5d1246574c8919bb61bbc17705bf"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/multinomial.rs": {
+      "bytes": 6103,
+      "sha256": "26e587ec18afd1a8357464347496e8848b03795340e995787705da820d8b25c9"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/random.rs": {
+      "bytes": 6422,
+      "sha256": "b373a53713a32e4f8c78bf4340c5952a1b3b29e03c6069eec2c6dd769c6194f0"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/sequence.rs": {
+      "bytes": 4392,
+      "sha256": "d675cbbfe83c082f34f4c2004bc3e540f2045c82150c99bcf37d108a247dec97"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/seriessum.rs": {
+      "bytes": 2920,
+      "sha256": "ec4613ae2837b4cf2fc2a5ea0146c916a0f1ba32dafe38d5f7ba203b1e6d380d"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/sum.rs": {
+      "bytes": 8793,
+      "sha256": "ce48d6cee47a61c380984579d39def87c8dff6eb629cf128a32ae45244d52369"
+    },
+    "third_party/ironcalc/base/src/functions/math_and_trigonometry/sumproduct.rs": {
+      "bytes": 3148,
+      "sha256": "40c72964b0d0741660efcb6da715348628e071626891fd53077d5c2811f99f13"
+    },
+    "third_party/ironcalc/base/src/functions/mod.rs": {
+      "bytes": 112635,
+      "sha256": "18cc1cde9a055c3a97d87dc00a7752dda20c627abc3ae282c1f8dfb5765252af"
+    },
+    "third_party/ironcalc/base/src/functions/spill_functions.rs": {
+      "bytes": 24086,
+      "sha256": "d0f3d9621f71ca507e5fb9a8182f5a6ae46dd518fe30828497dacf97bde7a8e7"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/beta.rs": {
+      "bytes": 7061,
+      "sha256": "460b1ddb7344e62ea6a5e2f22394be900a224ee8ebf181be64dda847325b5e69"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/binom.rs": {
+      "bytes": 9644,
+      "sha256": "ce8a2d06838a4db97b838c3816a0cab87e6b3149949c0a5ebf97ba34ceedf42d"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/chisq.rs": {
+      "bytes": 12050,
+      "sha256": "5fa61c390e20549d9bce22e90835eb62f977efc8359f78fec9008d08117f345d"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/correl.rs": {
+      "bytes": 7088,
+      "sha256": "75d0f37ade3c9b24e08ae11d80dd5b72031e44f4d37e803eed5b27f6d3f70c1c"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/count_and_average.rs": {
+      "bytes": 38461,
+      "sha256": "54bc33b6d4d0d32a9296b76e3494f5925dabf543f29f020ec66ec2c89715f418"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/covariance.rs": {
+      "bytes": 8521,
+      "sha256": "e9a1364476641fc28ea83f3ebd3f6d0e229c6700fb6413eea291a64979d32652"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/devsq.rs": {
+      "bytes": 4472,
+      "sha256": "f05b1135630a902a8f17493d1d0a52ba30cce7b033fe968ec0a6d677f085bb9a"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/exponential.rs": {
+      "bytes": 1539,
+      "sha256": "7b2bb0b287d0d908ff07e70084da51ffb9df69eb0d8565e6ffa4a3b662e27e5b"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/fisher.rs": {
+      "bytes": 13151,
+      "sha256": "479b85f4514dc6eab7685bdbe11388e1487c952c25a33f1a3364fb8602bc847d"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/forecast.rs": {
+      "bytes": 3918,
+      "sha256": "3a54d74b65116730d1483b51a87379e630e4dc932b9cde315ec36f75e2fee629"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/frequency.rs": {
+      "bytes": 3530,
+      "sha256": "008c9565108f95112bd62c3f4e8fa973c9a2ff2d3d651732c3ac5b66d09af7f0"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/gamma.rs": {
+      "bytes": 5933,
+      "sha256": "d45188a816bce630d79fca20573b6bf8a89f2394e0fb9bc743d06505584a8dee"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/gauss.rs": {
+      "bytes": 1223,
+      "sha256": "29f647961447059505594b50a9d1f460bccda2f8cea43c72235072e8d433ba8e"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/geomean.rs": {
+      "bytes": 1226,
+      "sha256": "cb1b306270867b9db793d27e49b91274ffe12b2d135f5a390112b4241ace2ef9"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/hypegeom.rs": {
+      "bytes": 3964,
+      "sha256": "47573cfc4cd0df8509e231f0d349cb4f735c52db500bc642990f6db597b9c60c"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/if_ifs.rs": {
+      "bytes": 19107,
+      "sha256": "3eda4e0c64d1d5a0ac56ee9ad82433bd47cc8bd1b64c218e16c507e63eb0dc0b"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/linest.rs": {
+      "bytes": 23619,
+      "sha256": "2fc9068cc10089fb553d733e1927d50279687ea9803ddbe0b34dad855ad2ae69"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/log_normal.rs": {
+      "bytes": 4060,
+      "sha256": "a168093bdb010756f8e6311cdbef3c404223420d7c599b15c639cb379c080e4a"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/mod.rs": {
+      "bytes": 477,
+      "sha256": "c29e3979119f64bce04fe1df944461ac35b8b4bd0868cab94f8eb94e7cc1f12e"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/mode_functions.rs": {
+      "bytes": 4368,
+      "sha256": "ffff1d756910d2e3826f62916b55a64d789355ef8337e62e9bc13c11d4b6dbd2"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/normal.rs": {
+      "bytes": 10233,
+      "sha256": "0552e468ce2676b9ff409ceadec15a117abdf23bf972e95a8baf0dd8ea69362a"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/pearson.rs": {
+      "bytes": 3693,
+      "sha256": "acead4288557e2612e55cb94dd93c651fcd3bdd99a85aeebc0c811594f4f92cd"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/percentile.rs": {
+      "bytes": 9257,
+      "sha256": "4ff6713af5a65bdd061a7563e21010a27a3804aca96fa5e8a1ac08b027bc4204"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/permut.rs": {
+      "bytes": 2006,
+      "sha256": "1e6d7ba5fb5e9ba6a875c3705614a000e07dcebc2cecec4024167fd5e3019cad"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/phi.rs": {
+      "bytes": 710,
+      "sha256": "ef2a6631cb04ed6a6920a5082b410e2f3a1a57a17044394e640feaa1074dc546"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/poisson.rs": {
+      "bytes": 2636,
+      "sha256": "f789cd79ae9ae98a2472f46fe36a01e085d8701119955bf7067095cd39acc570"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/prob.rs": {
+      "bytes": 3631,
+      "sha256": "0c8c2ea82a5f181607444fbcf68880d8bbc37eff7da9819e997623e6ac543b84"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/quartile.rs": {
+      "bytes": 3082,
+      "sha256": "a9311550f74ecfbd3ff699cc0fcf191473d1346bc078562bd7c748a5022953c7"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/rank_eq_avg.rs": {
+      "bytes": 6117,
+      "sha256": "720d4ebb94e80304cbc867b5acb241b7b6270f54a58046a2a2cdfe40358e690e"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/standard_dev.rs": {
+      "bytes": 17250,
+      "sha256": "2091040f8fc2cafb12b6c6a2ee907ad4192b06b6fa3104eb1ac599fe67cf9b80"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/standardize.rs": {
+      "bytes": 1154,
+      "sha256": "97108e4dc0f5ce0df335fda479277ae47594a9289dabf8aedef549be640ce4ae"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/t_dist.rs": {
+      "bytes": 19141,
+      "sha256": "8a0c54339d56695ee793028a2aad0f280d5158e9bc8be6d4aa57aebb0b94a37d"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/trimmean.rs": {
+      "bytes": 1767,
+      "sha256": "8597010197922b8c5bf839947887cd30db7dc986a2c47537c681559cb6a7c1d4"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/variance.rs": {
+      "bytes": 17230,
+      "sha256": "9ecc89c84bb824f1111589094530d56b7ffda6e1c9508538d62520ccb3111a34"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/weibull.rs": {
+      "bytes": 2092,
+      "sha256": "3b87542f417c41c14087f3b3f7dc881e556801ec1c435ab28e3c462a299d717d"
+    },
+    "third_party/ironcalc/base/src/functions/statistical/z_test.rs": {
+      "bytes": 5537,
+      "sha256": "d4ed998b5330a2ebd44d21a287f3aa191ec6d93fc1e1dcc7bf9d2d0c20511cd1"
+    },
+    "third_party/ironcalc/base/src/functions/subtotal.rs": {
+      "bytes": 22901,
+      "sha256": "ef612ad22e6b80d829f216d5e4df3aadd109e774eadcbf7494f3620a3fdce3d9"
+    },
+    "third_party/ironcalc/base/src/functions/text/arraytotext.rs": {
+      "bytes": 3861,
+      "sha256": "53220c4232a1de61205a20114ddf49962f46ea6cd440885ec49a1318c64a0f75"
+    },
+    "third_party/ironcalc/base/src/functions/text/byte_functions.rs": {
+      "bytes": 1346,
+      "sha256": "363e21d230e56be6621da38f82e15d380d3b781a86c6b1d29d2d9f800c783182"
+    },
+    "third_party/ironcalc/base/src/functions/text/char_code.rs": {
+      "bytes": 5732,
+      "sha256": "813b34fb39022d42943f658541f8c8d9288575fa36a6b1f5b798e6ea1ee9d0ea"
+    },
+    "third_party/ironcalc/base/src/functions/text/common.rs": {
+      "bytes": 49418,
+      "sha256": "22edcf13f82e9bcacd9689564f274ee37aeab3be3c09cf2d6f82d7e3d6040617"
+    },
+    "third_party/ironcalc/base/src/functions/text/encodeurl.rs": {
+      "bytes": 1125,
+      "sha256": "9bdc5d811e1b3d6372a378674e0d8748a4fd4276d3a7953435ec93919b2e5c08"
+    },
+    "third_party/ironcalc/base/src/functions/text/mod.rs": {
+      "bytes": 144,
+      "sha256": "acd8baa779af1d0c538dca8ca1f3c104e021fd5ae6813cdd4c6e6898698efd21"
+    },
+    "third_party/ironcalc/base/src/functions/text/regex_functions.rs": {
+      "bytes": 5170,
+      "sha256": "3a2a7acab3d168ebaeead4ef93cd778866e5b932d93abe221de6821a47bd042a"
+    },
+    "third_party/ironcalc/base/src/functions/text/string_format.rs": {
+      "bytes": 9534,
+      "sha256": "55aa18c54d20518a15f4a1c64cab589ac014c4b0e3ac2321fd4b192339b21207"
+    },
+    "third_party/ironcalc/base/src/functions/text/textsplit.rs": {
+      "bytes": 10529,
+      "sha256": "92b16e284716f5a6612846262db9d73a78c03f3fa043f88f74ba9bc3438526a9"
+    },
+    "third_party/ironcalc/base/src/functions/text/util.rs": {
+      "bytes": 5813,
+      "sha256": "3fbd7b5d29cbb807404d62059338770ad3a599d2c91a3bc8349937ac8b5c6d79"
+    },
+    "third_party/ironcalc/base/src/functions/util.rs": {
+      "bytes": 18071,
+      "sha256": "fcfdfa795db84c144df4c5cbac4e240471fb42c33a7a1ce3a4d08f66ab51777a"
+    },
+    "third_party/ironcalc/base/src/functions/xlookup.rs": {
+      "bytes": 16640,
+      "sha256": "fceafa2c16717f1acf841b7e15c6e2f6deb0f8eeb70b8f9e04f3eefa1e06efc4"
+    },
+    "third_party/ironcalc/base/src/implicit_intersection.rs": {
+      "bytes": 1966,
+      "sha256": "6ccb8b63873e396dfcfdde6f37ce205ebccfb026fcc6dbbc1ed88988c5086d9a"
+    },
+    "third_party/ironcalc/base/src/language/mod.rs": {
+      "bytes": 14026,
+      "sha256": "b67c4a533cc77d1b9e0199be771d200b93e360886ce56dc5046b67c8627f29f6"
+    },
+    "third_party/ironcalc/base/src/lib.rs": {
+      "bytes": 1774,
+      "sha256": "c94abfeca221a6d8fbd9396e9e48292dc93461a61d5241b60d0ff2a59e81483f"
+    },
+    "third_party/ironcalc/base/src/links.rs": {
+      "bytes": 9042,
+      "sha256": "aa205b6d73e5cfd10978c71def00c9099a6eab6eedd20651e7950d8d2a24088f"
+    },
+    "third_party/ironcalc/base/src/locale/mod.rs": {
+      "bytes": 2701,
+      "sha256": "dd20937d0b904cc9d4ba82e04a1699d43e4bbc85e744db0413587f2a601e29a0"
+    },
+    "third_party/ironcalc/base/src/merged_cells.rs": {
+      "bytes": 15402,
+      "sha256": "2418ca91a9d63eba1b379e36bc54378eeb9476a15e42fd98cb09cff7eebec175"
+    },
+    "third_party/ironcalc/base/src/mock_time.rs": {
+      "bytes": 918,
+      "sha256": "532a5f24047ea6946458d4db91b3f564522bb6406679fd46c1db6a9b7b760546"
+    },
+    "third_party/ironcalc/base/src/model.rs": {
+      "bytes": 171493,
+      "sha256": "8a52f5ab218d95f86ce6c4323454e66959a388c8240dc585f4daba7679a89b28"
+    },
+    "third_party/ironcalc/base/src/new_empty.rs": {
+      "bytes": 38289,
+      "sha256": "3bc23a48236583c340f785b55c589e1862ccc59cc817bc8ce9f9305b2d663385"
+    },
+    "third_party/ironcalc/base/src/number_format.rs": {
+      "bytes": 11730,
+      "sha256": "1f13898268ab419cb03e30ec8762d8589467abb97b0929966395607d8eac536c"
+    },
+    "third_party/ironcalc/base/src/sheet_data/chunks.rs": {
+      "bytes": 9215,
+      "sha256": "41a06be0501b3d652d37114faf7a06c9aaecfb98c25d7f25959eeb4a41716ef0"
+    },
+    "third_party/ironcalc/base/src/sheet_data/mod.rs": {
+      "bytes": 2022,
+      "sha256": "8014def42fd361e989c1506efdc32989a982f954e41e3a51c81fcb78c520ace1"
+    },
+    "third_party/ironcalc/base/src/sheet_data/row.rs": {
+      "bytes": 11479,
+      "sha256": "b5ad2392f9a3048cb692e7c218bf54b1cac6775cf2a56da056aab525c2296b7b"
+    },
+    "third_party/ironcalc/base/src/sheet_data/saved.rs": {
+      "bytes": 1604,
+      "sha256": "300390144d6da826abe4a2e727f993b24e587d42a9ee23ed17bd6289f24564ef"
+    },
+    "third_party/ironcalc/base/src/sheet_data/test.rs": {
+      "bytes": 14292,
+      "sha256": "d1074102e28633963de241a342e34c3a579680c5cfd26117154cb48347e1c230"
+    },
+    "third_party/ironcalc/base/src/styles.rs": {
+      "bytes": 28025,
+      "sha256": "e926153e673ae384eede06c83b462e401b4f042b236b54dfb42b49c68b26a931"
+    },
+    "third_party/ironcalc/base/src/test/array_formulas/mod.rs": {
+      "bytes": 139,
+      "sha256": "4c8e78867fe381a9b04a39693ef6bfae8f3e8e6372259f45861a307858fe45e3"
+    },
+    "third_party/ironcalc/base/src/test/array_formulas/test_array_insert_delete.rs": {
+      "bytes": 24124,
+      "sha256": "23271d9b73944e653ce8a5945c0f0208039e492e1e232fffce99a960a83c3fb7"
+    },
+    "third_party/ironcalc/base/src/test/array_formulas/test_arrays_formulas.rs": {
+      "bytes": 2865,
+      "sha256": "f50b3318225de854d21fce3efcb27c30a156c613a3044704d13231b41ee375d7"
+    },
+    "third_party/ironcalc/base/src/test/array_formulas/test_copy_paste.rs": {
+      "bytes": 6743,
+      "sha256": "f460451007022bb8b422e477c86e8c5a5878c4fc203efaf006829c2bbef8da50"
+    },
+    "third_party/ironcalc/base/src/test/array_formulas/test_dynamic_arrays.rs": {
+      "bytes": 12868,
+      "sha256": "eb41f9f8249332a95aff6bc63386d4815b15d8deb828e9301049fa68a1209113"
+    },
+    "third_party/ironcalc/base/src/test/array_formulas/test_whole_column_row_reference.rs": {
+      "bytes": 6064,
+      "sha256": "a6ee187552b237770ff95317a3b1b7b2f1b6bd6b7b7528d0c755e84d5ec926f5"
+    },
+    "third_party/ironcalc/base/src/test/compatibility/mod.rs": {
+      "bytes": 29661,
+      "sha256": "fcd7792c799309e9281d06b988b268b248ae6d4203173c9ffcaf337ece5dd55b"
+    },
+    "third_party/ironcalc/base/src/test/conditional_formatting/average.rs": {
+      "bytes": 5319,
+      "sha256": "609db8a458fc988c8eb4e7d1d7d3e2887079ae900bd4eac0312b25a2f9727627"
+    },
+    "third_party/ironcalc/base/src/test/conditional_formatting/cell_is.rs": {
+      "bytes": 6921,
+      "sha256": "118f5e3329afac930b20a269d4c0d3bc40df0fec5eb84a993a1eb5809948d488"
+    },
+    "third_party/ironcalc/base/src/test/conditional_formatting/duplicates.rs": {
+      "bytes": 7653,
+      "sha256": "eccf7434c2bcd5c8f814b79d755d812855299a060f096159ac5f9e0f6e9a44c6"
+    },
+    "third_party/ironcalc/base/src/test/conditional_formatting/formula.rs": {
+      "bytes": 8548,
+      "sha256": "029c0571d8bd1df4253aa30a2bacc3aa7dbbcf5b41dcd0fff2218709c4f2bb52"
+    },
+    "third_party/ironcalc/base/src/test/conditional_formatting/mod.rs": {
+      "bytes": 28658,
+      "sha256": "3ef3007daa27dc787067c6553fbbfc12888827d8f00f16fa2423ed1acc18a493"
+    },
+    "third_party/ironcalc/base/src/test/conditional_formatting/priority.rs": {
+      "bytes": 15436,
+      "sha256": "771e6261d5398c687587b664fdba9c1c65a0ece638e382070945569d2fa5e1a4"
+    },
+    "third_party/ironcalc/base/src/test/conditional_formatting/stop_if_true.rs": {
+      "bytes": 6817,
+      "sha256": "7dbc999cf7ffd7575ca746cbc262880473a19f4e2afc146e0b4caa4b82fd6dd1"
+    },
+    "third_party/ironcalc/base/src/test/conditional_formatting/text.rs": {
+      "bytes": 6406,
+      "sha256": "f9f581c0d73455738a14a306d5e4abe6e9a7a28a48527c18552a91623e2a186b"
+    },
+    "third_party/ironcalc/base/src/test/conditional_formatting/time_period.rs": {
+      "bytes": 15829,
+      "sha256": "09afa2383613fcd362d956fa16a1fcfcc2f392de5001cb72d1cb4738f5a6a2a1"
+    },
+    "third_party/ironcalc/base/src/test/conditional_formatting/top_bottom.rs": {
+      "bytes": 8274,
+      "sha256": "dc9bd51e1661c262ce80e71cfa1be17053e82f91ca50f8e3875391b7a17368d0"
+    },
+    "third_party/ironcalc/base/src/test/dynamic_evaluation/mod.rs": {
+      "bytes": 264,
+      "sha256": "a03edb954d30aa74e1c7e7dced3ca1987efd603bed3b66d0ccfe3064de93d036"
+    },
+    "third_party/ironcalc/base/src/test/dynamic_evaluation/oracle.rs": {
+      "bytes": 17338,
+      "sha256": "6d3bfb3fa4ad9876a7354e259358ccf13c1e00e11e206c211459cd84a6c75b22"
+    },
+    "third_party/ironcalc/base/src/test/dynamic_evaluation/test_bug_hunt.rs": {
+      "bytes": 34836,
+      "sha256": "cb31a5fcc0c0fab1fdd870f44856f49fce8668c3110f30634f68f6f2a5d7a30c"
+    },
+    "third_party/ironcalc/base/src/test/dynamic_evaluation/test_evaluation_order.rs": {
+      "bytes": 4491,
+      "sha256": "633f9383530703b9301c76ec83f79cbb2268aa0489e36d0d255449eb96a1cf14"
+    },
+    "third_party/ironcalc/base/src/test/dynamic_evaluation/test_history_independence.rs": {
+      "bytes": 10704,
+      "sha256": "7f0c82083636d635c79d37de5c1e10a1319242ea82634502a4f903e32710f069"
+    },
+    "third_party/ironcalc/base/src/test/dynamic_evaluation/test_known_gaps.rs": {
+      "bytes": 17070,
+      "sha256": "892d43594610f5bed3db40b9961140331369b87d646da61bb35d4aa647133879"
+    },
+    "third_party/ironcalc/base/src/test/dynamic_evaluation/test_order_independence.rs": {
+      "bytes": 6979,
+      "sha256": "cfdcfd87cdc08c7a3177eb9a417672e4e28dfe5b11f531976ecf4a248ee61cd6"
+    },
+    "third_party/ironcalc/base/src/test/dynamic_evaluation/test_ordered_restart.rs": {
+      "bytes": 20196,
+      "sha256": "410f586a0266a978210b363140a39c3d467b5e0f530e677097609fc9b748d74c"
+    },
+    "third_party/ironcalc/base/src/test/dynamic_evaluation/test_randarray.rs": {
+      "bytes": 1126,
+      "sha256": "350b78e479b14c22be1ba651b5589e24ee2aead2c40df2c63cf5cda6edd3e79b"
+    },
+    "third_party/ironcalc/base/src/test/dynamic_evaluation/test_range_reads.rs": {
+      "bytes": 5833,
+      "sha256": "3dd2c130126d2ad60733ae4a538ff4bcf5926047d03ba82a5bba1ee58e0c3522"
+    },
+    "third_party/ironcalc/base/src/test/dynamic_evaluation/test_unwind_replay.rs": {
+      "bytes": 9905,
+      "sha256": "4810b4d6afef3cb69441f974d849b9f686338221e25fd30850778c1e6e0adc46"
+    },
+    "third_party/ironcalc/base/src/test/dynamic_evaluation/test_wrong_order.rs": {
+      "bytes": 2388,
+      "sha256": "a28fdf8c88f7b746b374a8f968feaab30f0df737bbfaa30aa163f46f768e522d"
+    },
+    "third_party/ironcalc/base/src/test/engineering/mod.rs": {
+      "bytes": 116,
+      "sha256": "aa81edac2890d10687d852c79c750c912e245372cc5875445ce575460f2bce48"
+    },
+    "third_party/ironcalc/base/src/test/engineering/test_bessel.rs": {
+      "bytes": 1132,
+      "sha256": "c1cc783303dcb2938078e3d1e20cb606dad471bbc233568803b5114a84087875"
+    },
+    "third_party/ironcalc/base/src/test/engineering/test_bit_operations.rs": {
+      "bytes": 2690,
+      "sha256": "7e31e23845455228d3eddd8e14407cf267a285cbbb43a222c79b2d66958c8842"
+    },
+    "third_party/ironcalc/base/src/test/engineering/test_complex.rs": {
+      "bytes": 3952,
+      "sha256": "46b61771968f787c068093793694fd913c2d2dfd6d89be5c33e04ba6afdf1eab"
+    },
+    "third_party/ironcalc/base/src/test/engineering/test_convert.rs": {
+      "bytes": 1317,
+      "sha256": "91b8447eb78bde4a8c337d5988349ebb834b8a5530f98de477626b305fceb686"
+    },
+    "third_party/ironcalc/base/src/test/engineering/test_misc.rs": {
+      "bytes": 1795,
+      "sha256": "fd53e3d2a31537d4f209fdc1a7b457e3eed55364623d1066de627b78a37df2d4"
+    },
+    "third_party/ironcalc/base/src/test/engineering/test_number_basis.rs": {
+      "bytes": 9690,
+      "sha256": "71503a9f060795c4132f92a1fef0578d2a974b7f50e646c9c5f66158a179ff1b"
+    },
+    "third_party/ironcalc/base/src/test/logical/mod.rs": {
+      "bytes": 49,
+      "sha256": "ed611a5a09d90c052a0e04f87b97355a8c5a2fb177b0d1f2cf688e573f0d3a34"
+    },
+    "third_party/ironcalc/base/src/test/logical/test_fn_if_array.rs": {
+      "bytes": 9109,
+      "sha256": "5af7c2ef143247c70c12414b29839ed4bc4786215dc871253d68e75ac13036bb"
+    },
+    "third_party/ironcalc/base/src/test/logical/test_fn_iferror_array.rs": {
+      "bytes": 11527,
+      "sha256": "e112199aae5d4fd82d2f8a6a8ad5446bdee337816dd591dd0c74e208a9e9daec"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/mod.rs": {
+      "bytes": 309,
+      "sha256": "2aa476422f8e00078a562805844d7aa6be4c9ee72598b5833aae2802f3490aaa"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_address_areas.rs": {
+      "bytes": 3318,
+      "sha256": "17fcb19261853669d6cc150deb52942e8c8da58661437c7efdca8160310564d0"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_choosecols_chooserows.rs": {
+      "bytes": 2540,
+      "sha256": "8dc1f83987e507521501f7a9fedae7467d725b4ebb57ca92da65479684c1f785"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_expand.rs": {
+      "bytes": 1501,
+      "sha256": "c84eddd87f7885a3ff33e43cbee2e1e432951a29c0b49452cf0e41ad17470bde"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_hlookup.rs": {
+      "bytes": 2414,
+      "sha256": "b9f817ef0e2e4acd6b0a42ded37025ce58570d683a9f06fb356f1ccbf8e1c1f9"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_hstack_vstack.rs": {
+      "bytes": 2357,
+      "sha256": "c4961552565a9549a29cfc34e8369c4760b3d9e09c5cd93e4de12572e996cc4c"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_index.rs": {
+      "bytes": 4957,
+      "sha256": "3d2d4c2634f805455b101d1e9f8c64b61c3dc3aa5cfea40eb736f59c14d1aba4"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_lookup.rs": {
+      "bytes": 3908,
+      "sha256": "1eb9c0449f13943f7b16ee9cb0bd8b0d2c2ff22442f326799d181b3b3211d492"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_match.rs": {
+      "bytes": 2055,
+      "sha256": "27e5cbf85dc8834e4d9520b194b031471033a044dd0429bfb4c804a0e8c26cd6"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_rows_columns.rs": {
+      "bytes": 3933,
+      "sha256": "6f151ba99048f8c668abe00818a19fb41144117975884212994e3a09a43a5aa1"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_trimrange.rs": {
+      "bytes": 4404,
+      "sha256": "11a3fe278077a171d4740de83923304305e13031b08187ef113c720f2f265fb0"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_vlookup.rs": {
+      "bytes": 2426,
+      "sha256": "f317dfadd93075eb17b8c13c14e5fb91968aad553d96c715e5e724f03e4bfc0e"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_wrapcols_wraprows.rs": {
+      "bytes": 3313,
+      "sha256": "f3a54abe0f77b94f440e1ee959b542c57ed2c0ea3436f3e551bd98ae184bdd28"
+    },
+    "third_party/ironcalc/base/src/test/lookup_and_reference/test_fn_xmatch.rs": {
+      "bytes": 9261,
+      "sha256": "6dcd881b0e23c31f81bd3f5c2fa4c9483e75c916a55797910cf10948784a2ef4"
+    },
+    "third_party/ironcalc/base/src/test/mathematical/mod.rs": {
+      "bytes": 116,
+      "sha256": "799c0b0d4469c5afa103420c4e7a38c4b4cb16d879e9a0f473492e109f00fb33"
+    },
+    "third_party/ironcalc/base/src/test/mathematical/test_mdeterm.rs": {
+      "bytes": 1879,
+      "sha256": "db17fe0f46e97a615fb4e61e3463cb637b762390e824cb333fdb338f7e47fa07"
+    },
+    "third_party/ironcalc/base/src/test/mathematical/test_minverse.rs": {
+      "bytes": 1769,
+      "sha256": "e35a1f3d22b7a797da06cfd196b2dc7bf231f3e299cde45648e676cf5f06a3a0"
+    },
+    "third_party/ironcalc/base/src/test/mathematical/test_multinomial.rs": {
+      "bytes": 1835,
+      "sha256": "0a4931f22daa46c1d8645314fa42baaa68e638cbf3a487b5e5ab0cd1985fad83"
+    },
+    "third_party/ironcalc/base/src/test/mathematical/test_munit.rs": {
+      "bytes": 1943,
+      "sha256": "83373a3689d5304dd19ed4a26ca375e63b93fa60d928e2d79d798efa25e49547"
+    },
+    "third_party/ironcalc/base/src/test/mathematical/test_seriessum.rs": {
+      "bytes": 2337,
+      "sha256": "cf4453e519ffe67498b9cfda6c25a2c87af6b84cfa1f950806c9d684e4830d6a"
+    },
+    "third_party/ironcalc/base/src/test/mathematical/test_sumproduct.rs": {
+      "bytes": 2459,
+      "sha256": "5601b37e4a804a5059be1d950d7b173c37b2367c08de35f88902c02ae043caa7"
+    },
+    "third_party/ironcalc/base/src/test/mod.rs": {
+      "bytes": 3606,
+      "sha256": "d0f5e12340d434b0f5995869cf4df6409853850141794dc5c56cfaa8434ce884"
+    },
+    "third_party/ironcalc/base/src/test/statistical/mod.rs": {
+      "bytes": 537,
+      "sha256": "b93577308be5a3b91f6d4c42e198d8c3a42af6ed45b8e561b4154a8bf1ddbcdc"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_avedev.rs": {
+      "bytes": 2255,
+      "sha256": "5421f3f4ada7a5bee7a5b18dd797c899594bfc24cd8bd6f943e66553cdf0b8c1"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_beta_dist.rs": {
+      "bytes": 2507,
+      "sha256": "84c33ae5c1114529b26a40a6f7df1ab174ff501140ab2cbffdbb43dca26f17b9"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_binom.rs": {
+      "bytes": 6992,
+      "sha256": "9a7d2b76e2a914c1a695d95a60046606b33df08c66385ab207c0ddbb1501bf16"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_chisq.rs": {
+      "bytes": 7441,
+      "sha256": "0dea5ccafbb2af2b174447dc9aeef2717fe7c9cbbf5a455e35dd63301ff2975e"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_chisq_test.rs": {
+      "bytes": 3996,
+      "sha256": "f740879c3d4e74f6fe074e89711f3305f9acb24ace2dc04f9aa46b15e4dc2606"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_confidence.rs": {
+      "bytes": 2901,
+      "sha256": "8947afff127e738cf32c931acb9e8495d8c9267e6c679e8ff710a5c6dd54e04d"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_covariance.rs": {
+      "bytes": 2250,
+      "sha256": "42e7c687f009a14de2b0e36b4f20036fcd609adf34117bdc02d31bb130cee210"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_devsq.rs": {
+      "bytes": 2253,
+      "sha256": "544bd1c5b6ed9d2e7da5d94d79b26b4bfb9f3b507a5b5d38a84a88c9a4023f63"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_expon_dist.rs": {
+      "bytes": 1153,
+      "sha256": "6249be3cac70a603c9c7fef43bd45de3bce6b2506058dd3563dbb1659eb8bbd5"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_f.rs": {
+      "bytes": 2003,
+      "sha256": "1803a35aeabbc64556e053ea7cdffd25fed267ea7849b6ba06dfc055e68cd937"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_f_test.rs": {
+      "bytes": 870,
+      "sha256": "59cb03a4841bd55f1a3bfcc00ce4657ddb9da0bd241ff4bc4c44a9ddc2ec4022"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_fisher.rs": {
+      "bytes": 1650,
+      "sha256": "ad288621c0659a1c84b24a2373d4458df1c3747350098836b77c11c4e01c62cf"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_gamma.rs": {
+      "bytes": 4757,
+      "sha256": "ad4385e21105ea8eb4a67d7bfb9b891eb8ceb85048a11ca6a968d73516aa3071"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_gauss.rs": {
+      "bytes": 1443,
+      "sha256": "a25f69a5d96af0fe6c686308e40afe6c4f95fb8115d8a50e2939c5da3d32deb1"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_hyp_geom_dist.rs": {
+      "bytes": 1264,
+      "sha256": "8b28f5a32e88294ebeb683bde27be4e1efa450389e4e8f9fbcd445ed9745cc46"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_log_norm.rs": {
+      "bytes": 3094,
+      "sha256": "fec99629020ddfedfd4e63a201cdfcd961e25ab7dcb735d4ec8b2a6bbd598497"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_norm_dist.rs": {
+      "bytes": 5411,
+      "sha256": "6171b32cd109e7bc4d0a52ec1a27702e89e19a1f376fafc8dc37ba22ad2e5b8a"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_pearson.rs": {
+      "bytes": 794,
+      "sha256": "7de80c74f6ee2bdf8ecb51f35fca6ac78afc03374afa30429842d70600b956fd"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_phi.rs": {
+      "bytes": 675,
+      "sha256": "79ffd47cf9dac9383a0b11a31a0d5d4f40019f3d94a09da3170a75c22fad3349"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_poisson.rs": {
+      "bytes": 1895,
+      "sha256": "ac8da0b553ba35340b9eb9e35dfdb33fafac23a08861fa0303cadc94768fea67"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_stdev.rs": {
+      "bytes": 2373,
+      "sha256": "77d40cd0439ec8f874e972271b0e7cd846daba96e464c02955238308e6334526"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_t_dist.rs": {
+      "bytes": 5591,
+      "sha256": "805fe68b2f6c9d07736c91ca46d4314a80390c5db926bd4508f570005a532e98"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_t_test.rs": {
+      "bytes": 1326,
+      "sha256": "0e379f4789a9a1908d77ab2f8f2c57b2783c2cb9694c764adf5aa6e744db30f8"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_var.rs": {
+      "bytes": 2322,
+      "sha256": "7cd0cadade3bada3a0fbd9288af5683ba94742506446a91f34186e7c06f0458a"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_weibull.rs": {
+      "bytes": 1363,
+      "sha256": "1ba7a4fe9841e8616bb8a6f986d6d778d668e7ae0a8fafbc361a318397b28e3c"
+    },
+    "third_party/ironcalc/base/src/test/statistical/test_fn_z_test.rs": {
+      "bytes": 940,
+      "sha256": "b5dc394dea488f58b41efaf83b9932038bf640b7d97b68499b45f042c02c33e6"
+    },
+    "third_party/ironcalc/base/src/test/test_actions.rs": {
+      "bytes": 22641,
+      "sha256": "712a905364966af9929017a07df320b27233eb20f1b002406c3a89eb7e2a30e8"
+    },
+    "third_party/ironcalc/base/src/test/test_arabic_roman.rs": {
+      "bytes": 770,
+      "sha256": "2f6f7d75cd78854cf663c886fd53673f1ecf1ce39e4143d8d90cc3073d94d7ff"
+    },
+    "third_party/ironcalc/base/src/test/test_arrays.rs": {
+      "bytes": 4645,
+      "sha256": "4c4ddca67cdf3580ff084d987475ee8ebf9acf4bba6b84c54fd22b2793c9f39e"
+    },
+    "third_party/ironcalc/base/src/test/test_arrays_and_errors.rs": {
+      "bytes": 16372,
+      "sha256": "56fad76d7069e209a691758a97ece1719e7ac19236c5609a205136dfeb1af525"
+    },
+    "third_party/ironcalc/base/src/test/test_binary_search.rs": {
+      "bytes": 1071,
+      "sha256": "02ebae1b487c82d128defd5a4074fbc230aa35aa36e5693e4445cc845b8b4900"
+    },
+    "third_party/ironcalc/base/src/test/test_ceiling_floor.rs": {
+      "bytes": 2599,
+      "sha256": "6c0a27208b29530d57fa26c21a56cf81b49eb096dea6c88fb7f6ae04d6c17667"
+    },
+    "third_party/ironcalc/base/src/test/test_cell.rs": {
+      "bytes": 4291,
+      "sha256": "4c7383b3408d84ae91c236ae481df3d661f4041d3cd31035702dcc21d31e018b"
+    },
+    "third_party/ironcalc/base/src/test/test_cell_clear_contents.rs": {
+      "bytes": 1682,
+      "sha256": "44a67302c2110084c7a9f7788b8fb8a5eae8e2ae42996bf55f57c08077b2ec6a"
+    },
+    "third_party/ironcalc/base/src/test/test_cell_info_n_sheets.rs": {
+      "bytes": 2013,
+      "sha256": "8a59773dffbfc91618da045534379a3a8fc79e73435a637f52199ad54f686c0f"
+    },
+    "third_party/ironcalc/base/src/test/test_circular_references.rs": {
+      "bytes": 752,
+      "sha256": "bcb5733591e30e42aa6bfc988a986ba8f2d4eca7a79848864449932fce3c8daf"
+    },
+    "third_party/ironcalc/base/src/test/test_column_width.rs": {
+      "bytes": 3409,
+      "sha256": "9e852666eb460b26fd2db6a0cfc3897ddf128a36e21953b1861d86661bcf4b8b"
+    },
+    "third_party/ironcalc/base/src/test/test_combin_combina.rs": {
+      "bytes": 867,
+      "sha256": "ac3c4071ed248eccaa9517f88a86efad70a3d69c4291b15e7a2b1b7a32340a5d"
+    },
+    "third_party/ironcalc/base/src/test/test_criteria.rs": {
+      "bytes": 11203,
+      "sha256": "60c717e077435c97e6e7aa32c4b2921b1b9e613540f919166af63bbbb2125921"
+    },
+    "third_party/ironcalc/base/src/test/test_cycle_reference.rs": {
+      "bytes": 9934,
+      "sha256": "9d2da43f526292cf8072cd6f4349ed3ce282566642f831b9bef8da381056b246"
+    },
+    "third_party/ironcalc/base/src/test/test_database.rs": {
+      "bytes": 16929,
+      "sha256": "cd343650f38ed671f7034f6e1297098527024c4d58d7bd1c1534c9eb05ce82c2"
+    },
+    "third_party/ironcalc/base/src/test/test_date_and_time.rs": {
+      "bytes": 33415,
+      "sha256": "1fc3aabce741c6fc885fa22b3e7fe0941fdd53219eba0b0eabd1342860e84842"
+    },
+    "third_party/ironcalc/base/src/test/test_datedif_leap_month_end.rs": {
+      "bytes": 962,
+      "sha256": "9b4543277c38c96c1c9c1eab0e69696e4f1abb82407a92f4c3c5c8a4db306956"
+    },
+    "third_party/ironcalc/base/src/test/test_datetime_format.rs": {
+      "bytes": 1851,
+      "sha256": "a88cf5b69719b9435fe552f97205955e08b89a70388b1d92dea7ce673110ce26"
+    },
+    "third_party/ironcalc/base/src/test/test_datevalue_rollover.rs": {
+      "bytes": 845,
+      "sha256": "f639179f88b8cdccf62e05e0fd886bff400843f9a672007653c5dbbed990ad94"
+    },
+    "third_party/ironcalc/base/src/test/test_datevalue_timevalue_spaces.rs": {
+      "bytes": 1799,
+      "sha256": "2050af9921f4f34979c68d6c76538f450dc00f80ff65b8db4aaaa5fdc6e8610f"
+    },
+    "third_party/ironcalc/base/src/test/test_days360_month_end.rs": {
+      "bytes": 1624,
+      "sha256": "6591314db2b36721ca398c30af0e95068e53d17a1a94e477740d839eddaa8262"
+    },
+    "third_party/ironcalc/base/src/test/test_days_days360.rs": {
+      "bytes": 1166,
+      "sha256": "8939be5c92648f898224947bc68f08de13f5bbbea4a9ccbb3da699592dfd711c"
+    },
+    "third_party/ironcalc/base/src/test/test_degrees_radians.rs": {
+      "bytes": 728,
+      "sha256": "28cc60ab79032b6c740895fb2b8cb9a25e8f24e0cfb6adbc636817adc7691a60"
+    },
+    "third_party/ironcalc/base/src/test/test_ecma_ceiling.rs": {
+      "bytes": 364,
+      "sha256": "789094a8352e3300ca6d7972d2ce17b613d68815a427162be8af6ea968e4259a"
+    },
+    "third_party/ironcalc/base/src/test/test_error_propagation.rs": {
+      "bytes": 1175,
+      "sha256": "7c3b31c30805358d2f3e37f83b8f723c3cf8a390624649e29d996ac44c857011"
+    },
+    "third_party/ironcalc/base/src/test/test_escape_quotes.rs": {
+      "bytes": 262,
+      "sha256": "1296dadb3196319e14156dfd9616005582c131930091f6f90c76b8b8ebea4be9"
+    },
+    "third_party/ironcalc/base/src/test/test_even_odd.rs": {
+      "bytes": 662,
+      "sha256": "8eaef84e222966da42575aa3e529e86de8dfba679d87da3a7328adc4f73077ec"
+    },
+    "third_party/ironcalc/base/src/test/test_exp_sign.rs": {
+      "bytes": 671,
+      "sha256": "ee45486f5eb7054369a5210c055db019a0242fdcf87a45f56e37b492f200cc76"
+    },
+    "third_party/ironcalc/base/src/test/test_extend.rs": {
+      "bytes": 2948,
+      "sha256": "17720d9dbe03c5a5ee1962835893f341095955b0dec65fb1f6eb4a100c7e6bac"
+    },
+    "third_party/ironcalc/base/src/test/test_fact_factdouble.rs": {
+      "bytes": 683,
+      "sha256": "5e588fd0076a353a30d88bd7dc04e20014ca9c3211d9f88f5a4bd1154d0af7b6"
+    },
+    "third_party/ironcalc/base/src/test/test_floor.rs": {
+      "bytes": 3577,
+      "sha256": "05562f1d5d678ca6f0dc5c1ce1b15d3fa7efd616e5e01b7cbb64175c782abdc3"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_accrint.rs": {
+      "bytes": 23975,
+      "sha256": "e4888355cffab4ab0ab74bba5fcc6d6af67615e4d5928ad554b49d08edd6962f"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_accrintm.rs": {
+      "bytes": 7042,
+      "sha256": "743010faaac82a0c578d3f069790dfdbcd21b7876a4075383365bb3df6f6ceb6"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_average.rs": {
+      "bytes": 790,
+      "sha256": "a1a2f75de85cbe5facc01d4f13bc06b3692dc9771b4765b74551d5d7447802dd"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_averageifs.rs": {
+      "bytes": 2210,
+      "sha256": "d8dc8c1c9e60b1ca3ec721f6bd68a575f9cfbe43450fae818306fdb5e41e274e"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_bond_functions.rs": {
+      "bytes": 24661,
+      "sha256": "cb795a3b992060277be4af4a4a2768d57dbcedb5d126e380c0514e2a9cac53c3"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_bycol_byrow.rs": {
+      "bytes": 7030,
+      "sha256": "55f711537318080f5e18274dfdf7d53dffe6919eb57a13ad61f44d7567326a94"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_choose.rs": {
+      "bytes": 4296,
+      "sha256": "c55d31e108cdf5c5d4626eab9c9515bda5f12c8e95949d949040b77b41e572f7"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_concatenate.rs": {
+      "bytes": 1044,
+      "sha256": "c34e2b83a257c3153fbf8cb1834db78a2b2a19cde06f73263063aee034ae298a"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_count.rs": {
+      "bytes": 3347,
+      "sha256": "f72a350c48b2b0119295eaa8a4e965e3098c7d554d092575be7335391fa8698c"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_datevalue_datedif.rs": {
+      "bytes": 5249,
+      "sha256": "ed408007b1556d674764634a9de370e4459266016a8096199c33d62f34ac9d73"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_datevalue_timevalue.rs": {
+      "bytes": 742,
+      "sha256": "70f0d466d85c580989c3e8c7dd9e37683a44283ecba4b0477e40ec3e96566738"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_day.rs": {
+      "bytes": 350,
+      "sha256": "f3b65e59f2365a8587f054ad5cf191c87a5b9c1886829e2e3d1689dbbfeccd3c"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_depreciation.rs": {
+      "bytes": 4884,
+      "sha256": "9d7c52e0c32d986e312c13764e808b5e2da18dca12b41caa0df4bdb548c64589"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_drop_take.rs": {
+      "bytes": 4148,
+      "sha256": "8a9a95563315a6597f07eda8bb1aff6243e9dc5a5a8d2d9585c89c2782497ef9"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_encodeurl.rs": {
+      "bytes": 1967,
+      "sha256": "ee5f51918cc8c07a67f99ae7affc6ff407592a56e5d591671e4d197296514d28"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_exact.rs": {
+      "bytes": 5471,
+      "sha256": "32ddfd74e01157b60a3334a78e3ba58742817f0af0d8812909300b3d9992f189"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_financial.rs": {
+      "bytes": 14146,
+      "sha256": "a0ff39187ef3466d6b12b138fe284cb5aeca5c2ff20cf9cabb5aef4924d22e17"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_financial_simple.rs": {
+      "bytes": 7628,
+      "sha256": "66c081d6c52f706b438383f8afac7bf0eb427af6712cf6e37d1b6504860dd823"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_formulatext.rs": {
+      "bytes": 2919,
+      "sha256": "270283606870100a5e88336d6190bfb08b1e5bcd5d9328d20baad41c5c699550"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_fv.rs": {
+      "bytes": 758,
+      "sha256": "b3d0b4e29b12ee46b6d4d59fe52928c99aa8c1c5b08ad721c355d7e94e8d9033"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_hyperlink.rs": {
+      "bytes": 6049,
+      "sha256": "1d6f4c4fdf8705ad02f04e9852d1a587c053d5e45354eceada7451e7a4eac076"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_if.rs": {
+      "bytes": 889,
+      "sha256": "1b17015f69887b8d4e184caa4f57fcb815f1434e50ea9d106518aa3538935f49"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_indirect.rs": {
+      "bytes": 10737,
+      "sha256": "06fc9539e0ed13c5c981581dddbd69ea65e686c26b9a825ec2e453b87147591c"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_isomitted.rs": {
+      "bytes": 1869,
+      "sha256": "356ba785187e7664102b56eac47cbbcbf2b2918c69d331700749b404746e2630"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_isref.rs": {
+      "bytes": 3635,
+      "sha256": "95d55d61e2cf4bbecbeeb5819b0f388311d8686082cb5a9370d12139a6e20430"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_lambda.rs": {
+      "bytes": 7682,
+      "sha256": "e3bf932f51d04ac64512b4cae47a3dc82947390b6dace1a07198324205a2bee5"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_let.rs": {
+      "bytes": 2191,
+      "sha256": "b05e1b13b2d6ba4ba47a18375c4144f0129c8793669ae2f4d183a904d5b2dcf1"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_map_reduce.rs": {
+      "bytes": 4385,
+      "sha256": "f3146a6219a7b50e1fb9aa39801dce21a63ab84b9e8e601c8ea53b9ff1a13529"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_max_min.rs": {
+      "bytes": 9302,
+      "sha256": "9341c6f9086ab86bf5236a94daaa936846f0f53c7c52128c42227f9e2412aa13"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_maxifs.rs": {
+      "bytes": 2103,
+      "sha256": "01f0e075a8b4b498e5efad21c35a1eff0e659617e534260fae4576ec4647f3e9"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_minifs.rs": {
+      "bytes": 2102,
+      "sha256": "b9a4727b08299fe34f70bbb49db989678e7da69ecaa24ccbfb49154780d86017"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_minute_second_rounding.rs": {
+      "bytes": 895,
+      "sha256": "1dbc25f490e2e5a853b0f51bcb7f9be51556ee30ba5ebf14e367386b42a43043"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_mmult.rs": {
+      "bytes": 9527,
+      "sha256": "524fa16ec647753ee2168d29b0d56400bddda5155c343e10d484689a4db9a0a4"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_oddfprice.rs": {
+      "bytes": 4159,
+      "sha256": "cc6cab254d8daba97e8fd70e3362a3abc93bc9a646dc498f74d9a8cd776c7f27"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_offset.rs": {
+      "bytes": 1542,
+      "sha256": "5cd9dd473c0b28e795b97e4971b7c25a9f6cd4d93539fc8c7c91189f607d91c9"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_or_xor.rs": {
+      "bytes": 8830,
+      "sha256": "1006e384571aecbcec940d68e8c8a082048e50cd6ff00b0a7f218dff72da00c9"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_power.rs": {
+      "bytes": 9739,
+      "sha256": "650ae22c120900ce6881cc9449b149a88ccd475e29772e3014815930cce98d00"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_product.rs": {
+      "bytes": 3602,
+      "sha256": "4d5e6bd1ad4cd67aa2ac84d321b65b8a1ad27b24216808020b07f6e8ab85d6db"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_randarray.rs": {
+      "bytes": 7224,
+      "sha256": "170eb308c6ef7d606a1f62150c1fa775b33543be353de6b38afe6aa9532e797d"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_rept.rs": {
+      "bytes": 605,
+      "sha256": "bfb731bc98b17bbc1192ad0011fc4aed7a1914f2cc7072445940e9b581873be2"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_round.rs": {
+      "bytes": 1882,
+      "sha256": "e06c23b106cc29ca649a77fe7ee3c9015693d9fe98964c6ec751cdaabb7c1e9c"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_row_column.rs": {
+      "bytes": 5508,
+      "sha256": "e9f3b703a76553b3129db187e8d6160f4ae4a62012d79de6a5ddbf6d5bdbfb97"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_scan.rs": {
+      "bytes": 3382,
+      "sha256": "7aa626839d0e0638245286af0318e9dbbe5fa61986b838a17dc016ead2be911d"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_sequence.rs": {
+      "bytes": 4159,
+      "sha256": "e53d9e637f2a61d5a17ce69f56b8d1b6cc2a21ba40ba092155f776fa008f6534"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_sum.rs": {
+      "bytes": 4117,
+      "sha256": "2eff566842f1c2476a04ec28d7f1fcf53455266e015c8064a88c1597badabc99"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_sumif_array.rs": {
+      "bytes": 4433,
+      "sha256": "0c4b796eafe7c4d908073cca2e70f17de114cdb663eb2a8b3e800676b579199f"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_sumifs.rs": {
+      "bytes": 6136,
+      "sha256": "425b6b47c6dc9f88edf61ae0e3e046378148154f4dc64f41846370633308ccc5"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_time.rs": {
+      "bytes": 27096,
+      "sha256": "a1a5cea9b40de00007366e43616e75ad5d55a8b4d4ff76ef1a3db0fef82a3e10"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_tocol_torow.rs": {
+      "bytes": 3152,
+      "sha256": "4a1c903668dfcaab0019d7fd9573dd80a628863e63d814ad89ae9d67d27eb468"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_transpose.rs": {
+      "bytes": 1789,
+      "sha256": "05c0b454cfa45e494843625548f698e4168cb18180844e85abfaa7d59eebc894"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_type.rs": {
+      "bytes": 336,
+      "sha256": "b51582f7232f6db91398d2134db6c2830b7923d49253ba0e26e8e2e29cd6ac9b"
+    },
+    "third_party/ironcalc/base/src/test/test_fn_type_array.rs": {
+      "bytes": 566,
+      "sha256": "698607f311e98c9e3aab70e981440c21be10e3938bc2e4524d38f80681884eea"
+    },
+    "third_party/ironcalc/base/src/test/test_forecast.rs": {
+      "bytes": 2549,
+      "sha256": "d221dc4855a11cb9f80218fec33d2dbafa1912aebdcf45996f58db1d93340fab"
+    },
+    "third_party/ironcalc/base/src/test/test_format_case.rs": {
+      "bytes": 2098,
+      "sha256": "05467231829d21af355f5a520141337d4ec7cfb334aaeed326b3071c8e426845"
+    },
+    "third_party/ironcalc/base/src/test/test_frozen_rows_and_columns.rs": {
+      "bytes": 1994,
+      "sha256": "068cf4bb3e7bf6e2bbd517de54b369c95c70ee051785c6ca1f2d905a453842e0"
+    },
+    "third_party/ironcalc/base/src/test/test_frozen_rows_columns.rs": {
+      "bytes": 1527,
+      "sha256": "95e13cf8a5d447feed834a8a0663b4c9bc6c36bc695001219a8b1c3811b2ab8b"
+    },
+    "third_party/ironcalc/base/src/test/test_gcd_lcm.rs": {
+      "bytes": 3738,
+      "sha256": "03362ca959e50fa06a0098a477684d9d8ad1f102fe1e823dc22f50cc93946f06"
+    },
+    "third_party/ironcalc/base/src/test/test_general.rs": {
+      "bytes": 16351,
+      "sha256": "fb13b0be2a5ae884cee16057836a048b8ba81d0352c8b16de717e278a982408f"
+    },
+    "third_party/ironcalc/base/src/test/test_geomean.rs": {
+      "bytes": 1983,
+      "sha256": "e6b0fdeb3ad44dac0c53bf2014438b8da4898d84f75ed2a42267d88b93b22978"
+    },
+    "third_party/ironcalc/base/src/test/test_get_cell_content.rs": {
+      "bytes": 690,
+      "sha256": "1b8e70ed1fbd1724a7e7db07161d1d837c7ca1d56e41a64015c1ed300e471ec7"
+    },
+    "third_party/ironcalc/base/src/test/test_implicit_intersection.rs": {
+      "bytes": 7949,
+      "sha256": "3a9ec5f9006af684d7902ad91387d458e1ed058992f16b5cff3bedf1f38061a1"
+    },
+    "third_party/ironcalc/base/src/test/test_indirect_r1c1.rs": {
+      "bytes": 695,
+      "sha256": "95924cae64c17fb09ec7f1fabf1aaf2d2943992f7a36f3bb1433634c8b5d86d2"
+    },
+    "third_party/ironcalc/base/src/test/test_inverted_ranges.rs": {
+      "bytes": 9240,
+      "sha256": "2120c5f7c11846608471335be8606e396b35e55f4e1320b44d1200deb049386e"
+    },
+    "third_party/ironcalc/base/src/test/test_issue_155.rs": {
+      "bytes": 314,
+      "sha256": "9aafdf17d2902ee26d5be97b8487f30afd3892d48daf3f23638397f1b877a18d"
+    },
+    "third_party/ironcalc/base/src/test/test_issue_483.rs": {
+      "bytes": 297,
+      "sha256": "d58b0da192a6a9140730e7fc7d9de4a77ed12b29e2828a84365198e9d58d78eb"
+    },
+    "third_party/ironcalc/base/src/test/test_issue_623.rs": {
+      "bytes": 418,
+      "sha256": "4c0d9adc844eb843bea580f81ab8ea9e466bf3136861e3378b8b90976c5ccef5"
+    },
+    "third_party/ironcalc/base/src/test/test_language.rs": {
+      "bytes": 1447,
+      "sha256": "a4ce7b99fff56c7cc2bc923226928ffa719911683684d3891fcb4899724a6453"
+    },
+    "third_party/ironcalc/base/src/test/test_language_switch.rs": {
+      "bytes": 7859,
+      "sha256": "9a010db93ba4a1689f9232ce3e4b3ce925e75154705be6255b69cedde1fc70fd"
+    },
+    "third_party/ironcalc/base/src/test/test_ln.rs": {
+      "bytes": 423,
+      "sha256": "2b8982779316d1a6b765eb444cacdb10ae08a888df7b76a400a4705f2df9aff8"
+    },
+    "third_party/ironcalc/base/src/test/test_locale.rs": {
+      "bytes": 628,
+      "sha256": "824feda9cd3c3099d20f79ba5e147138efd6633b428d878dedf4165e75a06a87"
+    },
+    "third_party/ironcalc/base/src/test/test_log.rs": {
+      "bytes": 505,
+      "sha256": "381bf3f8b5983d831638e064b8322d4286beeabea677e7bac038ac92a78c6f02"
+    },
+    "third_party/ironcalc/base/src/test/test_log10.rs": {
+      "bytes": 817,
+      "sha256": "1993f3d9fdd0f0ffaaf7a529851e3f518ad1b1d6a4ceca180aa4bd93fa3b0060"
+    },
+    "third_party/ironcalc/base/src/test/test_math.rs": {
+      "bytes": 709,
+      "sha256": "d23d552442b390cd99295eff8ca4208b32ca23b57c23aed476c5636120f0dcaf"
+    },
+    "third_party/ironcalc/base/src/test/test_merged_cells.rs": {
+      "bytes": 29206,
+      "sha256": "6bd18a84c97ca3efa6c472118c66463e4a52850f89ae842476aa41501372eea3"
+    },
+    "third_party/ironcalc/base/src/test/test_metadata.rs": {
+      "bytes": 519,
+      "sha256": "32918cd07dacb51b8b6a8a7a6255404442b81fa0ce536d30799ed8195c4cad5c"
+    },
+    "third_party/ironcalc/base/src/test/test_mod_quotient.rs": {
+      "bytes": 684,
+      "sha256": "dabcdb5ce9dddeaa850bc34954d5a467fe341808575c6bfcbc619f9f22e674cc"
+    },
+    "third_party/ironcalc/base/src/test/test_model_cell_clear_all.rs": {
+      "bytes": 1523,
+      "sha256": "1fe8a5bcb32e601fa5a60a202b8d922f24f5e0c61044c67aa9c2fb38d229cb55"
+    },
+    "third_party/ironcalc/base/src/test/test_model_is_empty_cell.rs": {
+      "bytes": 1533,
+      "sha256": "4caff94d2bda6f9e1dc31ea60dc69dd4a5926ae525988136a6ce06e3847c9c99"
+    },
+    "third_party/ironcalc/base/src/test/test_move_formula.rs": {
+      "bytes": 6118,
+      "sha256": "1521283b79757ef011f429f4fe7f86f13d5828532a343a0fd2b9eb688888b56d"
+    },
+    "third_party/ironcalc/base/src/test/test_mround_trunc_int.rs": {
+      "bytes": 1227,
+      "sha256": "96a9eee22d3a0bc6b1ed0304b2752adf7ccf2e264f0457dddcebd547e5ae3756"
+    },
+    "third_party/ironcalc/base/src/test/test_nan_inf.rs": {
+      "bytes": 12136,
+      "sha256": "fdc5efd80109da1b9df8dc72371027c7516010a6b9f0f1a978aad1e9b5646874"
+    },
+    "third_party/ironcalc/base/src/test/test_networkdays.rs": {
+      "bytes": 8125,
+      "sha256": "1ad5037786dfea7aaa09050435f593610e78a0f0d94c514ef543b7d196a798cf"
+    },
+    "third_party/ironcalc/base/src/test/test_networkdays_networkdaysintl.rs": {
+      "bytes": 1388,
+      "sha256": "a9252a3e25eac9721238299f3c51fae896a09deb36fbc0bc7adb994d6fc29ce2"
+    },
+    "third_party/ironcalc/base/src/test/test_now.rs": {
+      "bytes": 970,
+      "sha256": "54fa3bc0c1d26a2cd166d181ce44f10101d8a8770ab724e705455aee97cd1ce1"
+    },
+    "third_party/ironcalc/base/src/test/test_number_format.rs": {
+      "bytes": 1904,
+      "sha256": "6922d9c5b74e6a7be673cfcb202b53410a9966a182cd84e897d53f1c4216e1cf"
+    },
+    "third_party/ironcalc/base/src/test/test_percentage.rs": {
+      "bytes": 477,
+      "sha256": "54edd3f174f6637e399869d22ea2f0d71a852830a7af0b402d89b5c6b4819018"
+    },
+    "third_party/ironcalc/base/src/test/test_quote_prefix.rs": {
+      "bytes": 5325,
+      "sha256": "698626f9d6ee2b8565c1de6e06a4d6913b3e0497f5612681f5054891a23cad46"
+    },
+    "third_party/ironcalc/base/src/test/test_range_evaluation.rs": {
+      "bytes": 2980,
+      "sha256": "2f057a37b8a1474aaa9c2ba8073a2906b39a3c819f8db1171e74b08ea9d2b7de"
+    },
+    "third_party/ironcalc/base/src/test/test_row_column_styles.rs": {
+      "bytes": 971,
+      "sha256": "110e22e19d04f0e5d0fd86ac500c19e96e50f5cc51dc43e5c1a9154b0cf0fae2"
+    },
+    "third_party/ironcalc/base/src/test/test_set_functions_error_handling.rs": {
+      "bytes": 13602,
+      "sha256": "1ebd47a1e252ddd801a02ab26ad0af5fbacf2f3b8f5a6055e79b2788d23475bb"
+    },
+    "third_party/ironcalc/base/src/test/test_set_user_input.rs": {
+      "bytes": 15193,
+      "sha256": "2352e9b43474e005b59f479c22648c805c2de9f8f344089971a2ba1b9aa83c09"
+    },
+    "third_party/ironcalc/base/src/test/test_shared_formulas.rs": {
+      "bytes": 7002,
+      "sha256": "eb460d670a86d2dc0fc5b7c5cb95204d0a1628666976be6349889af663caedfd"
+    },
+    "third_party/ironcalc/base/src/test/test_sheet_markup.rs": {
+      "bytes": 803,
+      "sha256": "b0e15b3156ee0f8b2bff500b5967c70ccb7abe7849872a7d4695968f1a9f7af4"
+    },
+    "third_party/ironcalc/base/src/test/test_sheet_names.rs": {
+      "bytes": 446,
+      "sha256": "ce45e1c38f7593e1ef2d0fa77eedd72a53531a06cb6b076bdd73847f28d4d70b"
+    },
+    "third_party/ironcalc/base/src/test/test_sheets.rs": {
+      "bytes": 7847,
+      "sha256": "e9143603857fb64f813900bdeb4f04a1ed7b356c65fa74fc43f57508ca39b2db"
+    },
+    "third_party/ironcalc/base/src/test/test_spill_functions.rs": {
+      "bytes": 15124,
+      "sha256": "c70d2a3d7bfc3720014fae3a1701b5edc1fede5f58c36309ca4f4c7ec25289a5"
+    },
+    "third_party/ironcalc/base/src/test/test_statistical_functions.rs": {
+      "bytes": 12648,
+      "sha256": "7d560e4e9b266bad5dc675896615d234423c8361664bc753341e6decbfb376ab"
+    },
+    "third_party/ironcalc/base/src/test/test_styles.rs": {
+      "bytes": 24869,
+      "sha256": "cafe68b74836a810b141e7520435c2a6b73b908e86d201b3b673e241ea31a01a"
+    },
+    "third_party/ironcalc/base/src/test/test_sumsq.rs": {
+      "bytes": 1334,
+      "sha256": "0146b1a0a995cc8efd16b7062fd6ecb05ecadac391c49812a60d3cc9332be693"
+    },
+    "third_party/ironcalc/base/src/test/test_today.rs": {
+      "bytes": 2773,
+      "sha256": "2c5e7d27f896a4ebd05cc20d389c1c392fec3c6f3793fc973478517ff6ef0674"
+    },
+    "third_party/ironcalc/base/src/test/test_trigonometric.rs": {
+      "bytes": 3047,
+      "sha256": "e2554e19ff57079b585ba8ad70b8e3dfb393a67bed6445f7cdd16b4555221a3b"
+    },
+    "third_party/ironcalc/base/src/test/test_trigonometric_reciprocals.rs": {
+      "bytes": 1548,
+      "sha256": "3a63f6b2ba8e31e094691ad7237da39d609165a967e5823a040e9cd77b03d9fd"
+    },
+    "third_party/ironcalc/base/src/test/test_true_false.rs": {
+      "bytes": 737,
+      "sha256": "d759df787c11818a4502803d0b2001a5a51658a2a68a124e6440dadfb02cec7a"
+    },
+    "third_party/ironcalc/base/src/test/test_types.rs": {
+      "bytes": 605,
+      "sha256": "d7a0f083aecb8e1d530130f30b38a8bce6948e94fbb603f067601d99d08536c2"
+    },
+    "third_party/ironcalc/base/src/test/test_unary_operators.rs": {
+      "bytes": 7567,
+      "sha256": "c95559cbae4e7446e494912ba64ec76fd1bdb871268e96346f5759ef9f46fb91"
+    },
+    "third_party/ironcalc/base/src/test/test_weekday_arg_order.rs": {
+      "bytes": 1314,
+      "sha256": "1964561baf37c6fad68a071cba02f4aa851aaf320eb9158c4a62539a9381cad0"
+    },
+    "third_party/ironcalc/base/src/test/test_weekday_return_types.rs": {
+      "bytes": 1221,
+      "sha256": "3cbf2a8aff1ee2f7b5dc8dd166f672f451dc4fc74fdc10a1c03e1c957a294755"
+    },
+    "third_party/ironcalc/base/src/test/test_weekday_weeknum_isoweeknum.rs": {
+      "bytes": 2697,
+      "sha256": "ac320eebe8d57989b9c4c66c26ebe22fcfe2cee4c6450b6032196455cd9f0dca"
+    },
+    "third_party/ironcalc/base/src/test/test_weeknum_return_types.rs": {
+      "bytes": 1060,
+      "sha256": "05abacafa1f6f307b618b290d4dcce6ae08d90f748b8ed7f2212279f73fb261c"
+    },
+    "third_party/ironcalc/base/src/test/test_workbook.rs": {
+      "bytes": 902,
+      "sha256": "a147d6424f836b0e54d27944de411ca4cc2a357aa79f9257e96ac1431761de13"
+    },
+    "third_party/ironcalc/base/src/test/test_workday_workdayintl.rs": {
+      "bytes": 1315,
+      "sha256": "96139f85716fc6f263a97397206ebedaf8299ca49a26797c057759a1f357ebee"
+    },
+    "third_party/ironcalc/base/src/test/test_worksheet.rs": {
+      "bytes": 8937,
+      "sha256": "8c65158a12ab967f69859909480dd3a4e68e1c505661dfb20a149e3893c7ca94"
+    },
+    "third_party/ironcalc/base/src/test/test_yearfrac_basis.rs": {
+      "bytes": 1673,
+      "sha256": "30067036578c610b64a36aee68c4506228d5e11f2c1e97a5f2c8c5b53e83580e"
+    },
+    "third_party/ironcalc/base/src/test/test_yearfrac_datedif.rs": {
+      "bytes": 1203,
+      "sha256": "7359378ac9cd63f507a8cbca4b12ab8f0d399ce23c4f910abbb43dd38f89e262"
+    },
+    "third_party/ironcalc/base/src/test/text_functions/byte_variants.rs": {
+      "bytes": 2080,
+      "sha256": "67446c7a5f5e2f7900b647cf279539418fa9a37fdaf353d2803c6b42ac803e14"
+    },
+    "third_party/ironcalc/base/src/test/text_functions/fn_arraytotext.rs": {
+      "bytes": 663,
+      "sha256": "a9791e2d3d0a29d958c5a914231eda68453eeb692ea706c486b041a41ee27b68"
+    },
+    "third_party/ironcalc/base/src/test/text_functions/fn_char_code.rs": {
+      "bytes": 2580,
+      "sha256": "368ed2a495b9bee093c816d92def7431dcc3f81728b9873306fbc68d86686ce6"
+    },
+    "third_party/ironcalc/base/src/test/text_functions/fn_clean.rs": {
+      "bytes": 422,
+      "sha256": "0040e1136f5bb8aa152e59c3dda602632cc35899ea6637819008059bd974582d"
+    },
+    "third_party/ironcalc/base/src/test/text_functions/fn_left_right_mid_arrays.rs": {
+      "bytes": 4551,
+      "sha256": "e33c174ebae497fca978e5dc5d8132e6cf67bdf1537601caf6f25f2047ce62e0"
+    },
+    "third_party/ironcalc/base/src/test/text_functions/fn_regex.rs": {
+      "bytes": 5578,
+      "sha256": "0ef90dd107187309c6355d24311acee9bb9f9bd5310d5581e9fcf01bea45f72e"
+    },
+    "third_party/ironcalc/base/src/test/text_functions/fn_text_arrays.rs": {
+      "bytes": 13095,
+      "sha256": "85911ffb0d31fe4dd1b78c69fbd261601d5e51da0be3537b7acad8d58eeddbdb"
+    },
+    "third_party/ironcalc/base/src/test/text_functions/fn_textbefore.rs": {
+      "bytes": 934,
+      "sha256": "86481b96afb9536e94b626f8802291c082ab9b9a764334d628e4a6785000b924"
+    },
+    "third_party/ironcalc/base/src/test/text_functions/fn_textjoin.rs": {
+      "bytes": 2214,
+      "sha256": "c6354493ab82b67ad7e3823bc01c1c3f58bb30da8c2fd27c4b13f962291da59c"
+    },
+    "third_party/ironcalc/base/src/test/text_functions/fn_textsplit.rs": {
+      "bytes": 4987,
+      "sha256": "b5aab3d624a4006dd7eaa989f30b7419f8c09c4f422529311fe0a42c9b9c787c"
+    },
+    "third_party/ironcalc/base/src/test/text_functions/fn_unicode.rs": {
+      "bytes": 1993,
+      "sha256": "cc69a9dced209448c42041c3192db6e24f21b3aa1f6024cf0f1bc3a46d8603b3"
+    },
+    "third_party/ironcalc/base/src/test/text_functions/mod.rs": {
+      "bytes": 6123,
+      "sha256": "5b92d22a41e3adf99645f91cc3d907ebb5dcbdefdd0823c15bf1d4a8746c6775"
+    },
+    "third_party/ironcalc/base/src/test/user_model/mod.rs": {
+      "bytes": 1146,
+      "sha256": "7ff492265444533bdca5dc6e88d9a04a2559edf90523e6096c26ef216bba0ae8"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_add_delete_sheets.rs": {
+      "bytes": 3189,
+      "sha256": "d61a0f24f39d771a665902bd96fea309004d48ca5881c4f65381f52a6602fe62"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_array_formulas.rs": {
+      "bytes": 1429,
+      "sha256": "1148a92bcc33d0875e4833e4948e1ee69575d8288e3e29066760f630f4cfe1b1"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_auto_link.rs": {
+      "bytes": 8834,
+      "sha256": "92a12a759f3aaa42f43dcc0425ebb0f782de816e5976b2285585ab327cfa5ecb"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_autofill_columns.rs": {
+      "bytes": 28171,
+      "sha256": "f0b913a9d7faf7d950fe158c50da0c38a7e67f161ff281b20ce953b89e0e9330"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_autofill_merged_cells.rs": {
+      "bytes": 20620,
+      "sha256": "2ce902be9f033f8fea9ade0f264f49781926fb6dafd0c37e938867834a074aa2"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_autofill_rows.rs": {
+      "bytes": 28599,
+      "sha256": "5150c59f000c0ef4043ad2e606e797d9cb8e9983d14450b42e7dd3b8e9054e21"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_batch_row_column_diff.rs": {
+      "bytes": 22752,
+      "sha256": "670f1ad97361d59d42d783d314cbda63962f0d668d9599af38202ae88b8e994e"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_border.rs": {
+      "bytes": 32269,
+      "sha256": "bbda4aaf019bbd304fbb2c6729ec55dd6e4cbb2e22ec6dac5cf27283ab6cd417"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_clear_cells.rs": {
+      "bytes": 4016,
+      "sha256": "4620df88e20da36c6646b7434b4b5848f98878c2433bfce1fa269b4129be97bc"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_column_style.rs": {
+      "bytes": 12320,
+      "sha256": "c246b96a71ff623ffef4e7d7432ecdc3c965c227be3351fbbdb494ea27ef8b2f"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_conditional_formatting.rs": {
+      "bytes": 39121,
+      "sha256": "14ba2a1df3c7378cd0b50c08a2537f14171e5766aa2cea9bd69ca72b16b460b1"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_cut_n_paste.rs": {
+      "bytes": 29504,
+      "sha256": "a1056598445dfe82d13fa8ac83d45b0d3c84d028bc55c7fda510e2d0acdd3923"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_defined_names.rs": {
+      "bytes": 17874,
+      "sha256": "a200e45d3bd23c50198d17e894aa20d2633d27d00e46754b86680da3d9a76f3b"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_delete_row_column_formatting.rs": {
+      "bytes": 10059,
+      "sha256": "cb14edb46bf5325147716840826589c59415af3f1688851bf6a00c60011b3707"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_diff_queue.rs": {
+      "bytes": 4896,
+      "sha256": "d488df1797a6e1a01b19d4f74b69579e96cb93cc2cc6d1b8767ee73eacbe7aef"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_duplicate_sheet.rs": {
+      "bytes": 7783,
+      "sha256": "c02e81363252f45089c2272ef17a102a861fd29cfab783fe60ae920c544cfde0"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_dynamic_arrays.rs": {
+      "bytes": 7639,
+      "sha256": "58410650f66e26526b116d056d7e2d4a28258acd9603653397dd65d317e4a30d"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_evaluation.rs": {
+      "bytes": 2226,
+      "sha256": "a25407be5b1663f1907171676cdd43ea1b163a95173a0f5b905a5393862ecbbd"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_fn_formulatext.rs": {
+      "bytes": 447,
+      "sha256": "f67b2ef3110e25c2ad3242102945f078a962702acaeed922110fe776d875a3cf"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_general.rs": {
+      "bytes": 5637,
+      "sha256": "b342f7778da8c33de433024a3c008b2af248fb4a04485bb10525c42459639d64"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_grid_lines.rs": {
+      "bytes": 1226,
+      "sha256": "07a10d3b5db025dafd4c168d01fed60c1cffcd6bc87b6859eb457c847bd27aab"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_hidden_columns.rs": {
+      "bytes": 4119,
+      "sha256": "9469254f2e1c22a4cd124cf8a111b0d53172498eb4f3a83c1580788423b98bf7"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_keyboard_navigation.rs": {
+      "bytes": 3952,
+      "sha256": "a89994854eaacffa2f5bf9113e499dc8f99b9b7a0e23db498fd4f6d148aaf758"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_language_switch.rs": {
+      "bytes": 12565,
+      "sha256": "354d008979ec2d4acf3449cfa54d27c17b27d00e2f9f48a4dced41494c8fc730"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_last_empty_cell.rs": {
+      "bytes": 1271,
+      "sha256": "a35ab873efef4d74c67d2a4e77e5ce367b0cf6c9a26bfff109d9450223c29860"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_links.rs": {
+      "bytes": 21140,
+      "sha256": "de6e15f78c1714e809e585fa081e7e4a8866e3b8d0d44c3aafb76e86d4d4a12a"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_merged_cells.rs": {
+      "bytes": 40314,
+      "sha256": "e6b03ce33abd11c05532b639b624fa1d6d2fd5cc87adcbf24a31bb005a52b6ea"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_move_sheet.rs": {
+      "bytes": 5777,
+      "sha256": "29527d8c09b75052710e2e4ad36a372fb85cd4c38fd0c2830955e0903082412e"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_multi_row_column.rs": {
+      "bytes": 5455,
+      "sha256": "2754abd77f1010c6ddd28da887d2d67af93a7e6a35f96acbe0e0af1d3b6551b6"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_named_styles.rs": {
+      "bytes": 15181,
+      "sha256": "8929154ba221dd1aeb3dd4f46fdfd6a2170cf0ed6f9b1007d430881b0f1652e4"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_on_area_selection.rs": {
+      "bytes": 4034,
+      "sha256": "c94ea2b3e07f6836b281123435cb344b33cff4f6c8b280ef94d2ea1c015ff7ff"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_on_expand_selected_range.rs": {
+      "bytes": 11006,
+      "sha256": "cc0db5828f121e1924b762225bb840f922a806d01d3040d9ed212343431d4a31"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_on_paste_styles.rs": {
+      "bytes": 1278,
+      "sha256": "7f4f2ff899f5a29b43c74e7fa6e3988d7de6df30016d837469602264f36f117f"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_paste_csv.rs": {
+      "bytes": 6029,
+      "sha256": "d533ab737975ec9a9fb494c10dbd452065f4dbd573b4d246ca57ba00b7ba5da0"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_paste_merged_cells.rs": {
+      "bytes": 15949,
+      "sha256": "0a591cc7b0a518bdf03c1625a0063b11e235909f877566961e15118a3607dfba"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_recursive.rs": {
+      "bytes": 1066,
+      "sha256": "227ca1bf1ee9c3d3add8202f1bdb3f88549f6e635c4e84fd2abb4ebfa031db69"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_rename_sheet.rs": {
+      "bytes": 1310,
+      "sha256": "b9ea1e47adcfcea03b7aff5cf1e541eb12637e1dc61643d8024f93b376d8f360"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_row_column.rs": {
+      "bytes": 11615,
+      "sha256": "74c61abc2bb3a9e8c4e72522d13771d6c990b06dc3d841b83bf545db71c6f3e2"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_sheet_state.rs": {
+      "bytes": 1753,
+      "sha256": "d10f4b97e3a9509d4957bf81c42b8b0b2ec99dd012457be1f3ac68a34c4c522c"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_sheets_undo_redo.rs": {
+      "bytes": 1436,
+      "sha256": "a10c991ddcf1367be278d88d5f8414be771f2865a4db9da0e5fa57e2f1e04096"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_styles.rs": {
+      "bytes": 14588,
+      "sha256": "828bc9d1f9706394e0daf55f7965a105a04270eaba6891e487dfe82683e21b9c"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_to_from_bytes.rs": {
+      "bytes": 1969,
+      "sha256": "7c6f6bb71f059a8e72f350a90028f94c74718d81df4528c8a95e2024febbadd7"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_undo_redo.rs": {
+      "bytes": 2254,
+      "sha256": "782ea69fb5cdaf3875ffb67dc3568cc567802c5e950ea45bce9942814e41d7a2"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_user_input_dates_quote.rs": {
+      "bytes": 1165,
+      "sha256": "4bfd451566006deb94f7d40debc0857736b02f2e7a127874c9a3c837908afc2e"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_view.rs": {
+      "bytes": 7302,
+      "sha256": "15441550ab3d71c539c6d9b21e1e125ac1633888d05217db0fdbe28bbf498866"
+    },
+    "third_party/ironcalc/base/src/test/user_model/test_window_size.rs": {
+      "bytes": 1028,
+      "sha256": "1aa97c669ca4393421bd232d5e0db40482dcfbc31f78a0e338310ecc7f4ef42a"
+    },
+    "third_party/ironcalc/base/src/test/user_model/themes/mod.rs": {
+      "bytes": 27,
+      "sha256": "57e72f229b0973e6a6d1ae641a59616074bf9bcf8a57f5e1b47a83d27c7bdcba"
+    },
+    "third_party/ironcalc/base/src/test/user_model/themes/test_themes_and_names.rs": {
+      "bytes": 970,
+      "sha256": "af0ef49d9d1bd0702ff4d5e465e5586beccc90edfb12c28afbddea8cfb242154"
+    },
+    "third_party/ironcalc/base/src/test/user_model/util.rs": {
+      "bytes": 2480,
+      "sha256": "7a2753d4ace5f5e62a456e7c2ec9cb2d8591b3af6d74785280241d9aaa5741c0"
+    },
+    "third_party/ironcalc/base/src/test/util.rs": {
+      "bytes": 2713,
+      "sha256": "31422f237e4faa9701fc67f98821ec20120fadf38b58e04f6437ec27b95b5584"
+    },
+    "third_party/ironcalc/base/src/themes.rs": {
+      "bytes": 7035,
+      "sha256": "e9e9ec1ee495629ffa77123c2185b0a869c6add36418ac0bcbb1dbb1b353c3ee"
+    },
+    "third_party/ironcalc/base/src/types.rs": {
+      "bytes": 28816,
+      "sha256": "d1351e99cb23e3bf907019dd8bb05b8d9a5ace51c11840290a91bab0bea56c7c"
+    },
+    "third_party/ironcalc/base/src/tz/browser_tz.rs": {
+      "bytes": 3200,
+      "sha256": "32b0fd1635909212a7d3d31f733c3013ab26520ec3ee630fbafef1c8ce47569c"
+    },
+    "third_party/ironcalc/base/src/tz/mod.rs": {
+      "bytes": 329,
+      "sha256": "753da32cc45df33d6e05d04633f2c9ed010b0611913519b47dbf89e740641cae"
+    },
+    "third_party/ironcalc/base/src/tz/os_tz.rs": {
+      "bytes": 907,
+      "sha256": "6818ba2c2eb65719d66cad705463e8a48b7db4e4ee220958af3a4edf54235f07"
+    },
+    "third_party/ironcalc/base/src/units.rs": {
+      "bytes": 16093,
+      "sha256": "00a171d53f33ea719be44e579d963d6ff1228aff284391439c50090fae016857"
+    },
+    "third_party/ironcalc/base/src/user_model/autofill.rs": {
+      "bytes": 29339,
+      "sha256": "adb3ebc2fc57aa8322eb673cbdf1f7fecf485160679221e896256f654e348670"
+    },
+    "third_party/ironcalc/base/src/user_model/border.rs": {
+      "bytes": 19632,
+      "sha256": "c5f92a1b37ec7c2aa05761cec5f744cdfe6050ed3e313716c4e7edbb896c90bd"
+    },
+    "third_party/ironcalc/base/src/user_model/border_utils.rs": {
+      "bytes": 4286,
+      "sha256": "dd9940be7ebf1c36187a62d3713ad6334cb4e84e82c281e827e7fdd9ae330d0c"
+    },
+    "third_party/ironcalc/base/src/user_model/clipboard.rs": {
+      "bytes": 32573,
+      "sha256": "6666cbc6b112326c05d856aa7e68c3e96bf8d1cbd3bc1079916ecad888ebca24"
+    },
+    "third_party/ironcalc/base/src/user_model/common.rs": {
+      "bytes": 80705,
+      "sha256": "0165dbf0b335d6d17d1a08705fabc0bc3cc4ff8d3304a54799041e27b49ee331"
+    },
+    "third_party/ironcalc/base/src/user_model/conditional_formatting.rs": {
+      "bytes": 6568,
+      "sha256": "eeb7f92fd60d26012a3bbbba94c70f36feff88b919cff6cc8822afeaa4654d8e"
+    },
+    "third_party/ironcalc/base/src/user_model/history.rs": {
+      "bytes": 8615,
+      "sha256": "6e5866b05a439e81579ff1e8bd4d8a838c34197af32a1b430d64f9b00d085296"
+    },
+    "third_party/ironcalc/base/src/user_model/links.rs": {
+      "bytes": 4854,
+      "sha256": "5f0d9501f30e92fada107f04b727ae9d821d9f33047dbaa754a9e7f6202944a9"
+    },
+    "third_party/ironcalc/base/src/user_model/merged_cells.rs": {
+      "bytes": 11256,
+      "sha256": "929507bd55282e38edd5df9f850ffb8adfbad7a9ec70012dc8f7c91c1c1c4b5c"
+    },
+    "third_party/ironcalc/base/src/user_model/mod.rs": {
+      "bytes": 376,
+      "sha256": "1227792db99c5eb3bf9fa9ad25cc15f67323ae97214942cad9ed612bbe108151"
+    },
+    "third_party/ironcalc/base/src/user_model/named_cell_styles.rs": {
+      "bytes": 5812,
+      "sha256": "c0c3f8dbcd336a6ae7174964aa7431a47be568b9536d959776ccb9040f3b2951"
+    },
+    "third_party/ironcalc/base/src/user_model/sequence_detector.rs": {
+      "bytes": 28762,
+      "sha256": "00ea1d3a5e3fc3c7b73dd96984638915a772ba06baf8814bb408ac1b373daefa"
+    },
+    "third_party/ironcalc/base/src/user_model/ui.rs": {
+      "bytes": 35390,
+      "sha256": "49a606259f3f648886ac278e428522b267dba1f7d18e6305e2ea572a0661d0fe"
+    },
+    "third_party/ironcalc/base/src/user_model/undo_redo.rs": {
+      "bytes": 43618,
+      "sha256": "487ca9398134be9411a8a657702aa799f2333ffabf39ecb7ca5f40c316367bda"
+    },
+    "third_party/ironcalc/base/src/utils.rs": {
+      "bytes": 26655,
+      "sha256": "28e82c2a23e9955306a012cc5ea45a17061172ee619b9e0d7d5f4507d8dd0189"
+    },
+    "third_party/ironcalc/base/src/workbook.rs": {
+      "bytes": 1749,
+      "sha256": "447691baaf3c7b02c92fb246194f5f93590d1f1e010e8193bb422fabf135153e"
+    },
+    "third_party/ironcalc/base/src/worksheet.rs": {
+      "bytes": 31304,
+      "sha256": "e17effae5e6659c94895a367c4833566d02f8166cf8bd7c7fcad623168b09b0a"
+    },
+    "tools/build_solver_dependencies.py": {
+      "bytes": 14343,
+      "sha256": "baae7f530db2b8e7dc7e3d34e85c765038c7d8aba42bc7f35faa67789b4719c6"
+    },
+    "tools/generate_app_icons.py": {
+      "bytes": 2460,
+      "sha256": "e09bffa63e065524848abd9a1640fdabe15cb96350e1d87d11cb96ffe26c3e0e"
+    },
+    "tools/release_gate.py": {
+      "bytes": 1707,
+      "sha256": "a268e9bb67f242d87fe6465af9d1bb4c0e1c9f0f238e301aebbb341a6ec1f705"
+    },
+    "tools/verify_development_package.py": {
+      "bytes": 14683,
+      "sha256": "df6f838290da4e42d6f23174074cdbe5c2d972a2ebb7c4aea3921f70db59f2b1"
+    }
+  }
+}

@@ -1,0 +1,2 @@
+This plugin does not support propagateSizeHints()
+Direct workbook replacement must flush pending VBA source into recovery before destroying its editor

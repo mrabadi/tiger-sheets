@@ -1,0 +1,5 @@
+[0/2] Re-checking globbed directories...
+[1/4] Building CXX object CMakeFiles/recovery_tests.dir/tests/recovery_tests.cpp.o
+[2/4] Building CXX object CMakeFiles/tigersheets_recovery.dir/src/recovery.cpp.o
+[3/4] Linking CXX static library libtigersheets_recovery.a
+[4/4] Linking CXX executable recovery_tests

@@ -1,0 +1,2 @@
+Qt platform: xcb
+FAILED: standalone closing fixture focuses its active editor

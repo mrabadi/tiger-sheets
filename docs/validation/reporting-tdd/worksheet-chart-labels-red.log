@@ -1,0 +1,14 @@
+[1/7] Building CXX object CMakeFiles/chart_core.dir/workspace/tiger-sheets/src/chart.cpp.o
+[2/7] Building CXX object CMakeFiles/worksheet_core.dir/workspace/tiger-sheets/src/pivot.cpp.o
+[3/7] Linking CXX static library libworksheet_core.a
+[4/7] Building CXX object CMakeFiles/chart_core.dir/workspace/tiger-sheets/src/chart_editor.cpp.o
+[5/7] Linking CXX static library libchart_core.a
+[6/7] Building CXX object CMakeFiles/chart_tests.dir/workspace/tiger-sheets/tests/chart_tests.cpp.o
+[7/7] Linking CXX executable chart_tests
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+This plugin does not support raise()
+This plugin does not support grabbing the keyboard
+FAILED: chart labels must use calculated formatted values while numeric X remains numeric

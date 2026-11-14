@@ -1,0 +1,6 @@
+[0/2] Re-checking globbed directories...
+[1/4] Building CXX object CMakeFiles/reporting_tools_tests.dir/tests/reporting_tools_tests.cpp.o
+[2/4] Linking CXX executable reporting_tools_tests
+[3/4] Building CXX object CMakeFiles/snapshot_capture_tests.dir/tests/snapshot_capture_tests.cpp.o
+[4/4] Linking CXX executable snapshot_capture_tests
+completion callback must remain alive when it replaces itself for the next capture phase

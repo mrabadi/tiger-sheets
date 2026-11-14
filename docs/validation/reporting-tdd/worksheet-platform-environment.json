@@ -1,0 +1,14 @@
+{
+  "system": "Linux; host-specific system details redacted",
+  "qt": "6.2.4",
+  "Xvfb": null,
+  "weston": null,
+  "nativeX11": "passed focused keyboard and Qt accessibility-interface smoke; actual backend xcb",
+  "nativeWayland": "backend loaded and window exposed; compositor does not grant programmatic focus, keyboard unqualified",
+  "limitations": [
+    "No screen-reader/AT-SPI acceptance",
+    "No global window-manager shortcut acceptance",
+    "No desktop settings changed or packages installed",
+    "Native display sockets required sandbox escalation; initial socket failures are environmental"
+  ]
+}

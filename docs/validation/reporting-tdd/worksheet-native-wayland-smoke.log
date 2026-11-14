@@ -1,0 +1,4 @@
+qt.qpa.wayland: Wayland does not support QWindow::requestActivate()
+qWaitForWindowActive was called on a platform that doesn't support window activation. This means there is an error in the test and it should either check for the WindowActivation platform capability before calling qWaitForWindowActivate, use qWaitForWindowExposed instead, or skip the test. Falling back to qWaitForWindowExposed.
+Qt platform: wayland
+FAILED: formula bar receives native keyboard focus

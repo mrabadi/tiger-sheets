@@ -1,0 +1,10 @@
+[0/2] Re-checking globbed directories...
+[1/2] Building CXX object CMakeFiles/ooxml_tests.dir/tests/ooxml_tests.cpp.o
+[2/2] Linking CXX executable ooxml_tests
+Unprotected native RGB export: fill=red
+Unprotected native RGB export: fill=#GG9900
+Unprotected native RGB export: fill=#12345
+Unprotected native RGB export: color=red
+Unprotected native RGB export: color=#GG9900
+Unprotected native RGB export: color=#12345
+invalid named malformed and short RGB colors must fail before changing an existing workbook

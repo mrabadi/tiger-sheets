@@ -1,0 +1,8 @@
+[0/2] Re-checking globbed directories...
+[1/6] Building CXX object CMakeFiles/pivot_tests.dir/tests/pivot_tests.cpp.o
+[2/6] Building CXX object CMakeFiles/tigersheets_core.dir/src/session.cpp.o
+[3/6] Building CXX object CMakeFiles/tigersheets_references.dir/src/references.cpp.o
+[4/6] Linking CXX static library libtigersheets_references.a
+[5/6] Linking CXX static library libtigersheets_core.a
+[6/6] Linking CXX executable pivot_tests
+January date decomposes into chronological numeric components

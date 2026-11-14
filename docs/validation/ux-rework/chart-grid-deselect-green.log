@@ -1,0 +1,4 @@
+$ QT_QPA_PLATFORM=offscreen /tmp/tiger-chart-interactions grid
+grid passed
+chart interaction tests passed
+process return code: 0

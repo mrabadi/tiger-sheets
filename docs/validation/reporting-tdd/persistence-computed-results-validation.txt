@@ -1,0 +1,45 @@
+Opt-in computed results (2026-11-11)
+
+Contract: top-level snapshot `_tigersheetsComputedResults: true` omits only literal
+results that the strict C++ raw-input fallback reconstructs exactly. Default false
+preserves the full response. Formula anchors, spill cells, every error and parsed
+literal exceptions remain explicit results. In particular percentages, parsed
+dates, lowercase booleans and leading-plus numbers remain explicit when their
+calculated type/value differs from raw fallback. Diagnostics, cancellation and
+nonconvergence behavior remain unchanged.
+
+Rust C ABI RED: persistence-computed-results-red.log (opt-in still returned every
+ordinary literal). GREEN: persistence-computed-results-green.log. Broader Cargo
+unit/doctest verification: persistence-computed-results-verify.log. Two unit tests
+cover omission/default behavior, typed exceptions, formulas, spills, literal
+errors, diagnostics, cancellation and nonconvergence. Offline pinned command:
+  env PATH=/tmp/tigersheets-toolchain/cargo/bin:$PATH
+      CARGO_HOME=/tmp/tigersheets-toolchain/cargo
+      RUSTUP_HOME=/tmp/tigersheets-toolchain/rustup
+      cargo test --offline --locked
+      --manifest-path rust/ironcalc_bridge/Cargo.toml
+
+C++ native report RED: persistence-computed-pivot-red.log, using the isolated
+sparseCalculationEquality function linked to actual release calculation, pivot
+and reference libraries. The old bridge failed the omission assertion. GREEN:
+persistence-computed-pivot-green.log. Native cache dictionaries/records, layout
+and rendered output match the full response for percent/date/lowercase boolean,
+numeric text, formula and blank inputs. Source errors remain explicit and prevent
+report generation. Isolation avoided an unrelated in-progress chart date-format
+assertion earlier in the full pivot test runner; the test is included permanently
+in tests/pivot_tests.cpp.
+
+The source-only performance benchmark supports --computed-results and optional
+--calculation-only. The original full pipeline report is retained unchanged under
+docs/validation/reporting-capacity; compact measurements use a separate directory.
+
+Exact-capacity compact measurement is GREEN in
+docs/validation/reporting-capacity-computed/reporting-capacity.json. Current-source
+calculation 4526 ms plus generation 1796 ms = 6322 ms, compared with full baseline
+10544 ms + 2114 ms = 12658 ms. The compact result contains 10000 formula values.
+Initial isolated worker 11172 ms (creation including validation 12726 ms) still
+exceeds 10 seconds; it includes request/source preparation and process work.
+Filter regeneration 1262 ms, commit 6352 ms, undo 139 ms. Sampled tree peak 2795684
+KiB versus full baseline 4686968 KiB. This run measures calculation and report
+refresh, not native save/reopen/recovery. It does not qualify the 16-GiB reference
+host or desktop event latency. Binary hashes and host identity are retained.

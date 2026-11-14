@@ -1,0 +1,17 @@
+workbook tools tests passed
+reporting tools tests passed
+codex tests passed
+ninja: error: unknown target 'codex_async_tools_tests'
+Traceback (most recent call last):
+  File "/tmp/tigersheets-forecast-analysis/build-related.py", line 4, in <module>
+    cmds=subprocess.check_output(['ninja','-C',str(b),'-t','commands',target],text=True).splitlines()
+  File "/usr/lib/python3.10/subprocess.py", line 421, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['ninja', '-C', '/workspace/tiger-sheets/build-release', '-t', 'commands', 'codex_async_tools_tests']' returned non-zero exit status 1.
+Final directly executed related suite verification:
+workbook tools tests passed
+reporting tools tests passed
+codex tests passed
+Codex asynchronous tools passed

@@ -1,0 +1,1 @@
+{"path": "/workspace/tiger-sheets/docs/validation/reporting-capacity/capacity-first.xlsx", "openpyxl": "3.0.9", "pivots": ["CapacitySales", "CapacityMinimum"], "records": [100000, 100000], "pivot_charts": ["xl/charts/tigersheets-chart3.xml", "xl/charts/tigersheets-chart2.xml", "xl/charts/tigersheets-chart1.xml"], "validated_chart_points": 960}

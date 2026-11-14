@@ -1,0 +1,30 @@
+Bounded persistence/runtime regressions, reporting iteration
+
+Workflow: /home/developer/.codex/plugins/cache/personal/tdd/1.0.0/skills/tdd/SKILL.md.
+No Superpowers workflow loaded. Each behavior was tested RED before production changes.
+
+Tests and commands:
+- cmake --build build-release --target ooxml_tests -j2; ./build-release/ooxml_tests
+  style RED: style-only edits preserve native error cells
+  GREEN: native error/date/rich-text/array/shared structure survives formatting; shared-master edits still pass.
+  budget RED: Workbook expanded size limit exceeded
+  GREEN: 65 MiB preserved member read/save/reopen succeeds with 256 MiB/member and 1 GiB expanded total.
+  export preflight RED: oversized exports must fail preflight without replacing the target or baseline
+  GREEN: oversized preserved entry rejects before atomic replacement; target bytes/hash unchanged.
+- cmake --build build-release --target vba_tests -j2; ./build-release/vba_tests
+  Exit Sub RED: Exit Sub inside nested If and For exits the entire procedure
+  CInt RED: CInt rounds to nearest integer with even ties
+  exponent RED: VBA exponentiation binds before unary signs and accepts signed exponents
+  GREEN: complete vba tests pass, including 16-bit conversion overflow rollback.
+- cmake --build build-release --target vba_worker_tests -j2
+  QT_QPA_PLATFORM=offscreen ./build-release/vba_worker_tests /workspace/tiger-sheets/build-release/tigersheets-vba-worker
+  draft RED: deliberate new flushVbaDrafts symbol absent.
+  GREEN: flush commits pending source without waiting for debounce; preview-blocked flush preserves source for retry.
+  During GREEN test development, preview JSON was incorrectly converted to bool; fixed the test setup to assert hasPreview.
+- cmake --build build-release --target codex_tests -j2; ./build-release/codex_tests
+  Stop RED: Stop rejects late workbook tools and streamed text before interrupted completion
+  GREEN: interrupted turn rejects late tools/text while still consuming its completion.
+
+Raw commands/build output/failures and success logs: persistence-*-{build,red,green}.log in this directory.
+MainWindow parent save/close/replacement integration is owned by root, using flushVbaDrafts(QWidget*,QString*).
+Full VBA/project authoring and Excel runtime acceptance remain unimplemented/unverified.

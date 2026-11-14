@@ -1,0 +1,6 @@
+[0/2] Re-checking globbed directories...
+[1/4] Building CXX object CMakeFiles/tigersheets_pivot.dir/src/pivot.cpp.o
+[2/4] Linking CXX static library libtigersheets_pivot.a
+[3/4] Linking CXX executable pivot_benchmark
+[4/4] Linking CXX executable pivot_tests
+pivot tests passed

@@ -1,0 +1,15 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running unittests src/lib.rs (rust/ironcalc_bridge/target/debug/deps/tigersheets_calc_bridge-49acdc708141ec2d)
+
+running 2 tests
+test computed_result_tests::computed_results_preserve_failed_calculation_contracts ... ok
+test computed_result_tests::computed_results_omit_only_exactly_reconstructible_literals ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests tigersheets_calc_bridge
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

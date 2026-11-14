@@ -1,0 +1,561 @@
+{
+  "version": 1,
+  "contextGeneration": 42,
+  "retainedLinks": [
+    {
+      "name": "FinanceDrivers.xlsx",
+      "path": "/never-read/FinanceDrivers.xlsx",
+      "enabled": true,
+      "workbook": {
+        "revision": 0,
+        "sheets": [
+          {
+            "id": "inputs",
+            "name": "Inputs",
+            "cells": [
+              {
+                "row": 1,
+                "col": 1,
+                "input": "7"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "workbook": {
+    "revision": 0,
+    "sheets": [
+      {
+        "id": "source",
+        "name": "Financial cash flows",
+        "cells": [
+          {
+            "row": 1,
+            "col": 1,
+            "input": "Department"
+          },
+          {
+            "row": 1,
+            "col": 2,
+            "input": "Net cash"
+          },
+          {
+            "row": 1,
+            "col": 3,
+            "input": "Date"
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "input": "Finance"
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "input": "=NetCash(1000,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 2,
+            "col": 3,
+            "input": "45292",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 3,
+            "col": 1,
+            "input": "Operations"
+          },
+          {
+            "row": 3,
+            "col": 2,
+            "input": "=NetCash(1025,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 3,
+            "col": 3,
+            "input": "45323",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 4,
+            "col": 1,
+            "input": "Sales"
+          },
+          {
+            "row": 4,
+            "col": 2,
+            "input": "=NetCash(1050,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 4,
+            "col": 3,
+            "input": "45354",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 5,
+            "col": 1,
+            "input": "Finance"
+          },
+          {
+            "row": 5,
+            "col": 2,
+            "input": "=NetCash(1075,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 5,
+            "col": 3,
+            "input": "45385",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 6,
+            "col": 1,
+            "input": "Operations"
+          },
+          {
+            "row": 6,
+            "col": 2,
+            "input": "=NetCash(1100,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 6,
+            "col": 3,
+            "input": "45292",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 7,
+            "col": 1,
+            "input": "Sales"
+          },
+          {
+            "row": 7,
+            "col": 2,
+            "input": "=NetCash(1125,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 7,
+            "col": 3,
+            "input": "45323",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 8,
+            "col": 1,
+            "input": "Finance"
+          },
+          {
+            "row": 8,
+            "col": 2,
+            "input": "=NetCash(1150,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 8,
+            "col": 3,
+            "input": "45354",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 9,
+            "col": 1,
+            "input": "Operations"
+          },
+          {
+            "row": 9,
+            "col": 2,
+            "input": "=NetCash(1175,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 9,
+            "col": 3,
+            "input": "45385",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 10,
+            "col": 1,
+            "input": "Sales"
+          },
+          {
+            "row": 10,
+            "col": 2,
+            "input": "=NetCash(1200,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 10,
+            "col": 3,
+            "input": "45292",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 11,
+            "col": 1,
+            "input": "Finance"
+          },
+          {
+            "row": 11,
+            "col": 2,
+            "input": "=NetCash(1225,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 11,
+            "col": 3,
+            "input": "45323",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 12,
+            "col": 1,
+            "input": "Operations"
+          },
+          {
+            "row": 12,
+            "col": 2,
+            "input": "=NetCash(1250,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 12,
+            "col": 3,
+            "input": "45354",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 13,
+            "col": 1,
+            "input": "Sales"
+          },
+          {
+            "row": 13,
+            "col": 2,
+            "input": "=NetCash(1275,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 13,
+            "col": 3,
+            "input": "45385",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 14,
+            "col": 1,
+            "input": "Finance"
+          },
+          {
+            "row": 14,
+            "col": 2,
+            "input": "=NetCash(1300,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 14,
+            "col": 3,
+            "input": "45292",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 15,
+            "col": 1,
+            "input": "Operations"
+          },
+          {
+            "row": 15,
+            "col": 2,
+            "input": "=NetCash(1325,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 15,
+            "col": 3,
+            "input": "45323",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 16,
+            "col": 1,
+            "input": "Sales"
+          },
+          {
+            "row": 16,
+            "col": 2,
+            "input": "=NetCash(1350,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 16,
+            "col": 3,
+            "input": "45354",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 17,
+            "col": 1,
+            "input": "Finance"
+          },
+          {
+            "row": 17,
+            "col": 2,
+            "input": "=NetCash(1375,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 17,
+            "col": 3,
+            "input": "45385",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 18,
+            "col": 1,
+            "input": "Operations"
+          },
+          {
+            "row": 18,
+            "col": 2,
+            "input": "=NetCash(1400,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 18,
+            "col": 3,
+            "input": "45292",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 19,
+            "col": 1,
+            "input": "Sales"
+          },
+          {
+            "row": 19,
+            "col": 2,
+            "input": "=NetCash(1425,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 19,
+            "col": 3,
+            "input": "45323",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 20,
+            "col": 1,
+            "input": "Finance"
+          },
+          {
+            "row": 20,
+            "col": 2,
+            "input": "=NetCash(1450,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 20,
+            "col": 3,
+            "input": "45354",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          },
+          {
+            "row": 21,
+            "col": 1,
+            "input": "Operations"
+          },
+          {
+            "row": 21,
+            "col": 2,
+            "input": "=NetCash(1475,10)+'[FinanceDrivers.xlsx]Inputs'!A1",
+            "style": {
+              "numberFormat": "\"$\"#,##0.00"
+            }
+          },
+          {
+            "row": 21,
+            "col": 3,
+            "input": "45385",
+            "style": {
+              "numberFormat": "yyyy-mm-dd"
+            }
+          }
+        ]
+      },
+      {
+        "id": "report",
+        "name": "Financial report",
+        "cells": []
+      }
+    ],
+    "vba": {
+      "enabled": true,
+      "modules": [
+        {
+          "name": "FinancialFunctions",
+          "source": "Function NetCash(amount As Double, fee As Double) As Double\nNetCash=amount-fee\nEnd Function"
+        }
+      ]
+    },
+    "links": [
+      {
+        "name": "FinanceDrivers.xlsx",
+        "path": "/never-read/FinanceDrivers.xlsx",
+        "enabled": true
+      }
+    ]
+  },
+  "definition": {
+    "id": "financial-context",
+    "name": "FinancialCashReport",
+    "source": {
+      "sheet": "source",
+      "row1": 1,
+      "col1": 1,
+      "row2": 21,
+      "col2": 3
+    },
+    "rows": [
+      {
+        "field": "Department"
+      }
+    ],
+    "columns": [
+      {
+        "field": "Date",
+        "group": "quarter"
+      }
+    ],
+    "values": [
+      {
+        "field": "Net cash",
+        "aggregate": "sum",
+        "name": "Total net cash",
+        "numberFormat": "\"$\"#,##0.00"
+      },
+      {
+        "field": "Net cash",
+        "aggregate": "average",
+        "name": "Average net cash",
+        "numberFormat": "\"$\"#,##0.00"
+      },
+      {
+        "field": "Net cash",
+        "aggregate": "min",
+        "name": "Minimum net cash",
+        "numberFormat": "\"$\"#,##0.00"
+      },
+      {
+        "field": "Net cash",
+        "aggregate": "max",
+        "name": "Maximum net cash",
+        "numberFormat": "\"$\"#,##0.00"
+      }
+    ],
+    "output": {
+      "sheet": "report",
+      "row1": 1,
+      "col1": 1
+    }
+  },
+  "expected": {
+    "records": 20,
+    "netCashFormula": "1000 + 25*i - 10 + 7",
+    "grandTotals": [
+      24690,
+      1234.5,
+      997,
+      1472
+    ],
+    "retainedSourceState": "retained",
+    "nativeVbaAuthoring": "unsupported; this fixture validates frozen report computation, not XLSM source export",
+    "enabledUdfFormulaCells": 20,
+    "retainedLinkFormulaCells": 20
+  }
+}

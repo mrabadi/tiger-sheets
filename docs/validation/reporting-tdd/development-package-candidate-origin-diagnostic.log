@@ -1,0 +1,1 @@
+{"status": "failed", "package": "/workspace/tiger-sheets/build-release/tiger-sheets_0.2.0~dev.1_amd64.deb", "error": "Staged app resolved pagmo outside its bundled runtime directory"}

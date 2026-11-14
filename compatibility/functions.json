@@ -1,0 +1,3592 @@
+{
+  "schemaVersion": 1,
+  "baseline": "Microsoft 365 Windows, captured 2026-11-11",
+  "source": "https://support.microsoft.com/en-us/excel/excel-functions-alphabetical",
+  "entries": [
+    {
+      "name": "ABS",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ACCRINT",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ACCRINTM",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ACOS",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ACOSH",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ACOT",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ACOTH",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "AGGREGATE",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ADDRESS",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "AMORDEGRC",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "AMORLINC",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "AND",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ARABIC",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "AREAS",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ARRAYTOTEXT",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ASC",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ASIN",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ASINH",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ATAN",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ATAN2",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ATANH",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "AVEDEV",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "AVERAGE",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "AVERAGEA",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "AVERAGEIF",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "AVERAGEIFS",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BAHTTEXT",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BASE",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BESSELI",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BESSELJ",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BESSELK",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BESSELY",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BETADIST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BETA.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BETAINV",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BETA.INV",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": [],
+      "sourceCorrection": "The alphabetical page has link text BETA.INVn; its linked function reference identifies BETA.INV."
+    },
+    {
+      "name": "BIN2DEC",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BIN2HEX",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BIN2OCT",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BINOMDIST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BINOM.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BINOM.DIST.RANGE",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BINOM.INV",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BITAND",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BITLSHIFT",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BITOR",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BITRSHIFT",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BITXOR",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BYCOL",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "BYROW",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CALL",
+      "category": "Add-in and Automation",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "CEILING",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CEILING.MATH",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CEILING.PRECISE",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CELL",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CHAR",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CHIDIST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CHIINV",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CHITEST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CHISQ.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CHISQ.DIST.RT",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CHISQ.INV",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CHISQ.INV.RT",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CHISQ.TEST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CHOOSE",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CHOOSECOLS",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CHOOSEROWS",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CLEAN",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CODE",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COLUMN",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COLUMNS",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COMBIN",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COMBINA",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COMPLEX",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CONCAT",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CONCATENATE",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CONFIDENCE",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CONFIDENCE.NORM",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CONFIDENCE.T",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CONVERT",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CORREL",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COS",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COSH",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COT",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COTH",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COUNT",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COUNTA",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COUNTBLANK",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COUNTIF",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COUNTIFS",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COUPDAYBS",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COUPDAYS",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COUPDAYSNC",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COUPNCD",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COUPNUM",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COUPPCD",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COVAR",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COVARIANCE.P",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "COVARIANCE.S",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CRITBINOM",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CSC",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CSCH",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CUBEKPIMEMBER",
+      "category": "Cube",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "CUBEMEMBER",
+      "category": "Cube",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "CUBEMEMBERPROPERTY",
+      "category": "Cube",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "CUBERANKEDMEMBER",
+      "category": "Cube",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "CUBESET",
+      "category": "Cube",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "CUBESETCOUNT",
+      "category": "Cube",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "CUBEVALUE",
+      "category": "Cube",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "CUMIPMT",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "CUMPRINC",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DATE",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DATEDIF",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DATEVALUE",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DAVERAGE",
+      "category": "Database",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DAY",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DAYS",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DAYS360",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DB",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DBCS",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DCOUNT",
+      "category": "Database",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DCOUNTA",
+      "category": "Database",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DDB",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DEC2BIN",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DEC2HEX",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DEC2OCT",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DECIMAL",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DEGREES",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DELTA",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DEVSQ",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DGET",
+      "category": "Database",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DISC",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DMAX",
+      "category": "Database",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DMIN",
+      "category": "Database",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DOLLAR",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DOLLARDE",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DOLLARFR",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DPRODUCT",
+      "category": "Database",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DROP",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DSTDEV",
+      "category": "Database",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DSTDEVP",
+      "category": "Database",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DSUM",
+      "category": "Database",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DURATION",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DVAR",
+      "category": "Database",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "DVARP",
+      "category": "Database",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "EDATE",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "EFFECT",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ENCODEURL",
+      "category": "Web",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "EOMONTH",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ERF",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ERF.PRECISE",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ERFC",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ERFC.PRECISE",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ERROR.TYPE",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "EUROCONVERT",
+      "category": "Add-in and Automation",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "EVEN",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "EXACT",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "EXP",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "EXPAND",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "EXPON.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "EXPONDIST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FACT",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FACTDOUBLE",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FALSE",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "F.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FDIST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "F.DIST.RT",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FILTER",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FILTERXML",
+      "category": "Web",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "FIND",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FINDB",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "F.INV",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "F.INV.RT",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FINV",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FISHER",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FISHERINV",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FIXED",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FLOOR",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FLOOR.MATH",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FLOOR.PRECISE",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FORECAST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FORECAST.ETS",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FORECAST.ETS.CONFINT",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FORECAST.ETS.SEASONALITY",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FORECAST.ETS.STAT",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FORECAST.LINEAR",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FORMULATEXT",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FREQUENCY",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "F.TEST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FTEST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FV",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "FVSCHEDULE",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GAMMA",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GAMMA.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GAMMADIST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GAMMA.INV",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GAMMAINV",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GAMMALN",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GAMMALN.PRECISE",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GAUSS",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GCD",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GEOMEAN",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GESTEP",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GETPIVOTDATA",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "GROWTH",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "HARMEAN",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "HEX2BIN",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "HEX2DEC",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "HEX2OCT",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "HLOOKUP",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "HOUR",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "HSTACK",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "HYPERLINK",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "HYPGEOM.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "HYPGEOMDIST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IF",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IFERROR",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IFNA",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IFS",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMABS",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMAGE",
+      "category": "Lookup and reference",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "IMAGINARY",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMARGUMENT",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMCONJUGATE",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMCOS",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMCOSH",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMCOT",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMCSC",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMCSCH",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMDIV",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMEXP",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMLN",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMLOG10",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMLOG2",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMPOWER",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMPRODUCT",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMREAL",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMSEC",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMSECH",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMSIN",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMSINH",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMSQRT",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMSUB",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMSUM",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IMTAN",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "INDEX",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "INDIRECT",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "INFO",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "INT",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "INTERCEPT",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "INTRATE",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IPMT",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "IRR",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISBLANK",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISERR",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISERROR",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISEVEN",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISFORMULA",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISLOGICAL",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISNA",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISNONTEXT",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISNUMBER",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISODD",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISOMITTED",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISREF",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISTEXT",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISO.CEILING",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISOWEEKNUM",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ISPMT",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "JIS",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "KURT",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LAMBDA",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LARGE",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LCM",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LEFT",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LEFTB",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LEN",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LENB",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LET",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LINEST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LN",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LOG",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LOG10",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LOGEST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LOGINV",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LOGNORM.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LOGNORMDIST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LOGNORM.INV",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LOOKUP",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "LOWER",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MAKEARRAY",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MAP",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MATCH",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MAX",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MAXA",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MAXIFS",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MDETERM",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MDURATION",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MEDIAN",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MID",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MIDB",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MIN",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MINIFS",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MINA",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MINUTE",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MINVERSE",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MIRR",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MMULT",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MOD",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MODE",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MODE.MULT",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MODE.SNGL",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MONTH",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MROUND",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MULTINOMIAL",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "MUNIT",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "N",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NA",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NEGBINOM.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NEGBINOMDIST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NETWORKDAYS",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NETWORKDAYS.INTL",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NOMINAL",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NORM.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NORMDIST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NORMINV",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NORM.INV",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NORM.S.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NORMSDIST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NORM.S.INV",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NORMSINV",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NOT",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NOW",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NPER",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NPV",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "NUMBERVALUE",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "OCT2BIN",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "OCT2DEC",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "OCT2HEX",
+      "category": "Engineering",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ODD",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ODDFPRICE",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ODDFYIELD",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ODDLPRICE",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ODDLYIELD",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "OFFSET",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "OR",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PDURATION",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PEARSON",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PERCENTILE.EXC",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PERCENTILE.INC",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PERCENTILE",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PERCENTRANK.EXC",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PERCENTRANK.INC",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PERCENTRANK",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PERMUT",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PERMUTATIONA",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PHI",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PHONETIC",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PI",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PMT",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "POISSON.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "POISSON",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "POWER",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PPMT",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PRICE",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PRICEDISC",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PRICEMAT",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PROB",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PRODUCT",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PROPER",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "PV",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "QUARTILE",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "QUARTILE.EXC",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "QUARTILE.INC",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "QUOTIENT",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RADIANS",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RAND",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RANDARRAY",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RANDBETWEEN",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RANK.AVG",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RANK.EQ",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RANK",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RATE",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RECEIVED",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "REDUCE",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "REGISTER.ID",
+      "category": "Add-in and Automation",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "REPLACE",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "REPLACEB",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "REPT",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RIGHT",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RIGHTB",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ROMAN",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ROUND",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ROUNDDOWN",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ROUNDUP",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ROW",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ROWS",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RRI",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RSQ",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "RTD",
+      "category": "Lookup and reference",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "SCAN",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SEARCH",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SEARCHB",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SEC",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SECH",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SECOND",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SEQUENCE",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SERIESSUM",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SHEET",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SHEETS",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SIGN",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SIN",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SINH",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SKEW",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SKEW.P",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SLN",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SLOPE",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SMALL",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SORT",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SORTBY",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SQRT",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SQRTPI",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "STANDARDIZE",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "STDEV",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "STDEV.P",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "STDEV.S",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "STDEVA",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "STDEVP",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "STDEVPA",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "STEYX",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "STOCKHISTORY",
+      "category": "Information",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "SUBSTITUTE",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SUBTOTAL",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SUM",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SUMIF",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SUMIFS",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SUMPRODUCT",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SUMSQ",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SUMX2MY2",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SUMX2PY2",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SUMXMY2",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SWITCH",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "SYD",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "T",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TAN",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TANH",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TAKE",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TBILLEQ",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TBILLPRICE",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TBILLYIELD",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "T.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "T.DIST.2T",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "T.DIST.RT",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TDIST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TEXT",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TEXTAFTER",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TEXTBEFORE",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TEXTJOIN",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TEXTSPLIT",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TIME",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TIMEVALUE",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "T.INV",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "T.INV.2T",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TINV",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TOCOL",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TOROW",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TODAY",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TRANSPOSE",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TREND",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TRIM",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TRIMMEAN",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TRUE",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TRUNC",
+      "category": "Math and trigonometry",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "T.TEST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TTEST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "TYPE",
+      "category": "Information",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "UNICHAR",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "UNICODE",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "UNIQUE",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "UPPER",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "VALUE",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "VALUETOTEXT",
+      "category": "Text",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "VAR",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "VAR.P",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "VAR.S",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "VARA",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "VARP",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "VARPA",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "VDB",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "VLOOKUP",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "VSTACK",
+      "category": "Look and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "WEBSERVICE",
+      "category": "Web",
+      "scope": "excluded",
+      "reason": "Service, provider, OS integration or excluded data model",
+      "tests": []
+    },
+    {
+      "name": "WEEKDAY",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "WEEKNUM",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "WEIBULL",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "WEIBULL.DIST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "WORKDAY",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "WORKDAY.INTL",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "WRAPCOLS",
+      "category": "Look and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "WRAPROWS",
+      "category": "Look and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "XIRR",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "XLOOKUP",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "XMATCH",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "XNPV",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "XOR",
+      "category": "Logical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "YEAR",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "YEARFRAC",
+      "category": "Date and time",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "YIELD",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "YIELDDISC",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "YIELDMAT",
+      "category": "Financial",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "Z.TEST",
+      "category": "Statistical",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    },
+    {
+      "name": "ZTEST",
+      "category": "Compatibility",
+      "scope": "required",
+      "reason": "",
+      "tests": []
+    }
+  ]
+}

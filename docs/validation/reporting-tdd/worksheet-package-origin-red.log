@@ -1,0 +1,13 @@
+.E...
+======================================================================
+ERROR: test_loader_origin_paths_resolve_inside_the_staged_bundle (__main__.ManifestTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/tiger-sheets/tests/development_package_validation_tests.py", line 59, in test_loader_origin_paths_resolve_inside_the_staged_bundle
+    MODULE.validate_pagmo_linkage(self.stage, valid)
+AttributeError: module 'development_package_validation' has no attribute 'validate_pagmo_linkage'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.017s
+
+FAILED (errors=1)

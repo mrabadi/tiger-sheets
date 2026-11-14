@@ -1,0 +1,4 @@
+[0/2] Re-checking globbed directories...
+[1/2] Building CXX object CMakeFiles/pivot_tests.dir/tests/pivot_tests.cpp.o
+[2/2] Linking CXX executable pivot_tests
+Pivot headers must be unique nonempty text

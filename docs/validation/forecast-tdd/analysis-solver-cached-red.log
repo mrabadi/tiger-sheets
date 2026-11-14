@@ -1,0 +1,1 @@
+solver test failed: Solver must refuse a saved scenario-comparison literal objective that does not recalculate for trial inputs

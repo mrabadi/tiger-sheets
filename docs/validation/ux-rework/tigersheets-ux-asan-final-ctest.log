@@ -1,0 +1,18 @@
+Internal ctest changing into directory: /tmp/tigersheets-ux-asan
+Test project /tmp/tigersheets-ux-asan
+    Start 15: formula_editor_tests
+1/6 Test #15: formula_editor_tests .............   Passed    2.26 sec
+    Start 16: worksheet_entry_tests
+2/6 Test #16: worksheet_entry_tests ............   Passed    0.85 sec
+    Start 26: workspace_ux_tests
+3/6 Test #26: workspace_ux_tests ...............   Passed    4.29 sec
+    Start 27: formula_workspace_tests
+4/6 Test #27: formula_workspace_tests ..........   Passed    3.41 sec
+    Start 30: chart_workspace_tests
+5/6 Test #30: chart_workspace_tests ............   Passed    2.84 sec
+    Start 31: chart_interaction_tests
+6/6 Test #31: chart_interaction_tests ..........   Passed    3.23 sec
+
+100% tests passed, 0 tests failed out of 6
+
+Total Test time (real) =  16.89 sec

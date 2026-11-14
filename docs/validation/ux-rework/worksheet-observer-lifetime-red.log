@@ -1,0 +1,27 @@
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qpointer.h:77:14: runtime error: downcast of address 0x504000091f10 which does not point to an object of type 'QLineEdit'
+0x504000091f10: note: object is of type 'QWidget'
+ 00 00 00 00  20 cd 92 54 d5 72 00 00  80 9e 06 00 70 51 00 00  d0 ce 92 54 d5 72 00 00  00 00 be be
+              ^~~~~~~~~~~~~~~~~~~~~~~
+              vptr for 'QWidget'
+    #0 0x5b42e01a610a in QPointer<QLineEdit>::data() const /usr/include/x86_64-linux-gnu/qt6/QtCore/qpointer.h:77
+    #1 0x5b42e01a5f8f in bool operator==<QObject>(QObject*, QPointer<QLineEdit> const&) /usr/include/x86_64-linux-gnu/qt6/QtCore/qpointer.h:109
+    #2 0x5b42e018bbbe in tigersheets::WorksheetView::eventFilter(QObject*, QEvent*) /workspace/tiger-sheets/src/worksheet_view.cpp:57
+    #3 0x72d553553817 in QCoreApplicationPrivate::sendThroughObjectEventFilters(QObject*, QEvent*) (/lib/x86_64-linux-gnu/libQt6Core.so.6+0x153817)
+    #4 0x72d55437fd24 in QApplicationPrivate::notify_helper(QObject*, QEvent*) (/lib/x86_64-linux-gnu/libQt6Widgets.so.6+0x17fd24)
+    #5 0x72d553553a57 in QCoreApplication::notifyInternal2(QObject*, QEvent*) (/lib/x86_64-linux-gnu/libQt6Core.so.6+0x153a57)
+    #6 0x72d5543d48e7 in QWidget::~QWidget() (/lib/x86_64-linux-gnu/libQt6Widgets.so.6+0x1d48e7)
+    #7 0x5b42e0129b77 in tigersheets::FormulaLineEdit::~FormulaLineEdit() /workspace/tiger-sheets/src/formula_editor.cpp:229
+    #8 0x5b42e0129ba7 in tigersheets::FormulaLineEdit::~FormulaLineEdit() /workspace/tiger-sheets/src/formula_editor.cpp:229
+    #9 0x72d5535a799a in QObjectPrivate::deleteChildren() (/lib/x86_64-linux-gnu/libQt6Core.so.6+0x1a799a)
+    #10 0x72d5543d4ab7 in QWidget::~QWidget() (/lib/x86_64-linux-gnu/libQt6Widgets.so.6+0x1d4ab7)
+    #11 0x72d5543d4afc in QWidget::~QWidget() (/lib/x86_64-linux-gnu/libQt6Widgets.so.6+0x1d4afc)
+    #12 0x72d5535a799a in QObjectPrivate::deleteChildren() (/lib/x86_64-linux-gnu/libQt6Core.so.6+0x1a799a)
+    #13 0x72d5543d4ab7 in QWidget::~QWidget() (/lib/x86_64-linux-gnu/libQt6Widgets.so.6+0x1d4ab7)
+    #14 0x72d5543d4afc in QWidget::~QWidget() (/lib/x86_64-linux-gnu/libQt6Widgets.so.6+0x1d4afc)
+    #15 0x5b42dff28b1b in tigersheets::MainWindow::~MainWindow() /workspace/tiger-sheets/src/main_window.cpp:151
+    #16 0x5b42dfe6d0db in fileOnIdentityRow() /workspace/tiger-sheets/tests/workspace_ux_tests.cpp:24
+    #17 0x5b42dfe84675 in main /workspace/tiger-sheets/tests/workspace_ux_tests.cpp:64
+    #18 0x72d552429d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #19 0x72d552429e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #20 0x5b42dfe63334 in _start (/tmp/tigersheets-ux-asan/workspace_ux_tests+0x1ccf334)
+

@@ -1,0 +1,91 @@
+{
+  "generatedUtc": "2026-11-11T22:31:06.262630+00:00",
+  "package": "/workspace/tiger-sheets/dist/tiger-sheets_0.1.0~dev.2_amd64.deb",
+  "version": "0.1.0~dev.2",
+  "architecture": "amd64",
+  "sizeBytes": 50338322,
+  "sha256": "f2bcc0530094d1190f05496df63cb427e939a331864c8fdaaafae5fdc32ae435",
+  "extractedRoot": "/tmp/tigersheets-dev2-audit-4pwbhalq/root",
+  "checks": {
+    "developmentIdentityAndUpgradeOrdering": true,
+    "finalBuildBinaryMatchesInstalledPayload": true,
+    "publishedFinancialWorkbookSchema": true,
+    "fiveElfRelativeRuntimePathsAndResolvedLibraries": true,
+    "extractedPackagedApplicationLaunch": true,
+    "packagedWorkerExecutes": true,
+    "disabledMacrosPreserveWorkbook": true,
+    "desktopAndMimePayload": true,
+    "eightLauncherIconSizes": true,
+    "sourceArchivesAndLicenses": true,
+    "aptDependencyResolutionSimulation": true,
+    "packageUnchangedDuringAudit": true
+  },
+  "failures": {},
+  "globalInstallationPerformed": false,
+  "liveAccountOrNetworkInferenceUsed": false,
+  "limits": "Extraction and dependency simulation on the current Ubuntu host; no clean-machine installation, global upgrade, or X11/Wayland interaction was performed.",
+  "rawLog": "/workspace/tiger-sheets/docs/validation/codex-workflow/package-audit.log",
+  "control": "Architecture: amd64\nDepends: qt6-qpa-plugins, qt6-wayland, libc6 (>= 2.34), libgcc-s1 (>= 4.2), libpugixml1v5 (>= 1.11), libqt6core6 (>= 6.2.0), libqt6gui6 (>= 6.1.2), libqt6printsupport6 (>= 6.1.2), libqt6widgets6 (>= 6.1.2), libseccomp2 (>= 0.0.0~20120605), libsqlite3-0 (>= 3.8.7), libstdc++6 (>= 12), libzip4 (>= 1.0)\nDescription: TigerSheets development build\n Local TigerSheets development build. Excel and VBA compatibility is incomplete; this package is for local evaluation.\nMaintainer: TigerSheets contributors\nPackage: tiger-sheets\nPriority: optional\nSection: math\nVersion: 0.1.0~dev.2\nInstalled-Size: 184088\n\n",
+  "applicationBinarySha256": "1a9c70039e5d841cb9b0866cf6216ee1f264be85a42842a868272c2383c42c2e",
+  "unrelocatedBuildBinarySha256": "8b9b09971d437b6692741c39d6db07c96aab8297c8d27aab0c4249ab47e31146",
+  "relocatedBuildBinarySha256": "1a9c70039e5d841cb9b0866cf6216ee1f264be85a42842a868272c2383c42c2e",
+  "applicationBuildId": "5f78bd2f415bdb7d38e78b29da0dc6ebd793a375",
+  "binaryComparison": "Byte-exact after the same CMake install RUNPATH relocation; the original build artifact was not modified.",
+  "workbookSchemaSha256": "1ae2c80044df765b776bb7c19a2a502526f623db2a1940834d7b8655f6deffc3",
+  "elf": {
+    "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/bin/tiger-sheets": {
+      "runtimePaths": [
+        "$ORIGIN/../lib/tiger-sheets"
+      ],
+      "ldd": "\tlinux-vdso.so.1 (0x00007ffe6819f000)\n\tlibzip.so.4 => /lib/x86_64-linux-gnu/libzip.so.4 (0x00007b9b108b3000)\n\tlibpugixml.so.1 => /lib/x86_64-linux-gnu/libpugixml.so.1 (0x00007b9b10877000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007b9b0f519000)\n\tlibpagmo.so.9 => /tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/bin/../lib/tiger-sheets/libpagmo.so.9 (0x00007b9b0e000000)\n\tlibsqlite3.so.0 => /lib/x86_64-linux-gnu/libsqlite3.so.0 (0x00007b9b0f3cc000)\n\tlibQt6PrintSupport.so.6 => /lib/x86_64-linux-gnu/libQt6PrintSupport.so.6 (0x00007b9b107f4000)\n\tlibQt6Widgets.so.6 => /lib/x86_64-linux-gnu/libQt6Widgets.so.6 (0x00007b9b0d800000)\n\tlibQt6Gui.so.6 => /lib/x86_64-linux-gnu/libQt6Gui.so.6 (0x00007b9b0d000000)\n\tlibQt6Core.so.6 => /lib/x86_64-linux-gnu/libQt6Core.so.6 (0x00007b9b0ca00000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007b9b0c600000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007b9b107d4000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007b9b0c200000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007b9b108f0000)\n\tlibbz2.so.1.0 => /lib/x86_64-linux-gnu/libbz2.so.1.0 (0x00007b9b107bf000)\n\tlibcrypto.so.3 => /lib/x86_64-linux-gnu/libcrypto.so.3 (0x00007b9b0bc00000)\n\tlibz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007b9b107a3000)\n\tlibboost_serialization.so.1.74.0 => /tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/bin/../lib/tiger-sheets/libboost_serialization.so.1.74.0 (0x00007b9b0cf45000)\n\tlibtbb.so.12 => /tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/bin/../lib/tiger-sheets/libtbb.so.12 (0x00007b9b0f378000)\n\tlibEGL.so.1 => /lib/x86_64-linux-gnu/libEGL.so.1 (0x00007b9b0f365000)\n\tlibfontconfig.so.1 => /lib/x86_64-linux-gnu/libfontconfig.so.1 (0x00007b9b0dfb6000)\n\tlibX11.so.6 => /lib/x86_64-linux-gnu/libX11.so.6 (0x00007b9b0c8c0000)\n\tlibglib-2.0.so.0 => /lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x00007b9b0c4c5000)\n\tlibQt6DBus.so.6 => /lib/x86_64-linux-gnu/libQt6DBus.so.6 (0x00007b9b0c128000)\n\tlibxkbcommon.so.0 => /lib/x86_64-linux-gnu/libxkbcommon.so.0 (0x00007b9b0df6f000)\n\tlibGLX.so.0 => /lib/x86_64-linux-gnu/libGLX.so.0 (0x00007b9b0f331000)\n\tlibOpenGL.so.0 => /lib/x86_64-linux-gnu/libOpenGL.so.0 (0x00007b9b0d7d4000)\n\tlibpng16.so.16 => /lib/x86_64-linux-gnu/libpng16.so.16 (0x00007b9b0d799000)\n\tlibharfbuzz.so.0 => /lib/x86_64-linux-gnu/libharfbuzz.so.0 (0x00007b9b0c059000)\n\tlibmd4c.so.0 => /lib/x86_64-linux-gnu/libmd4c.so.0 (0x00007b9b0cf33000)\n\tlibfreetype.so.6 => /lib/x86_64-linux-gnu/libfreetype.so.6 (0x00007b9b0bb38000)\n\tlibicui18n.so.70 => /lib/x86_64-linux-gnu/libicui18n.so.70 (0x00007b9b0b800000)\n\tlibicuuc.so.70 => /lib/x86_64-linux-gnu/libicuuc.so.70 (0x00007b9b0b605000)\n\tlibzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x00007b9b0b536000)\n\tlibdouble-conversion.so.3 => /lib/x86_64-linux-gnu/libdouble-conversion.so.3 (0x00007b9b0c8ab000)\n\tlibb2.so.1 => /lib/x86_64-linux-gnu/libb2.so.1 (0x00007b9b0c88d000)\n\tlibpcre2-16.so.0 => /lib/x86_64-linux-gnu/libpcre2-16.so.0 (0x00007b9b0c43b000)\n\tlibGLdispatch.so.0 => /lib/x86_64-linux-gnu/libGLdispatch.so.0 (0x00007b9b0b47e000)\n\tlibexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x00007b9b0c85b000)\n\tlibuuid.so.1 => /lib/x86_64-linux-gnu/libuuid.so.1 (0x00007b9b10792000)\n\tlibxcb.so.1 => /lib/x86_64-linux-gnu/libxcb.so.1 (0x00007b9b0c831000)\n\tlibpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007b9b0b408000)\n\tlibdbus-1.so.3 => /lib/x86_64-linux-gnu/libdbus-1.so.3 (0x00007b9b0b3ba000)\n\tlibgraphite2.so.3 => /lib/x86_64-linux-gnu/libgraphite2.so.3 (0x00007b9b0b392000)\n\tlibbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x00007b9b0c42d000)\n\tlibicudata.so.70 => /lib/x86_64-linux-gnu/libicudata.so.70 (0x00007b9b09600000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x00007b9b0b348000)\n\tlibXau.so.6 => /lib/x86_64-linux-gnu/libXau.so.6 (0x00007b9b0d793000)\n\tlibXdmcp.so.6 => /lib/x86_64-linux-gnu/libXdmcp.so.6 (0x00007b9b0c051000)\n\tlibsystemd.so.0 => /lib/x86_64-linux-gnu/libsystemd.so.0 (0x00007b9b0b281000)\n\tlibbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x00007b9b0b25e000)\n\tlibbsd.so.0 => /lib/x86_64-linux-gnu/libbsd.so.0 (0x00007b9b0b246000)\n\tliblzma.so.5 => /lib/x86_64-linux-gnu/liblzma.so.5 (0x00007b9b095d5000)\n\tliblz4.so.1 => /lib/x86_64-linux-gnu/liblz4.so.1 (0x00007b9b0b226000)\n\tlibcap.so.2 => /lib/x86_64-linux-gnu/libcap.so.2 (0x00007b9b0c046000)\n\tlibgcrypt.so.20 => /lib/x86_64-linux-gnu/libgcrypt.so.20 (0x00007b9b09495000)\n\tlibmd.so.0 => /lib/x86_64-linux-gnu/libmd.so.0 (0x00007b9b09488000)\n\tlibgpg-error.so.0 => /lib/x86_64-linux-gnu/libgpg-error.so.0 (0x00007b9b09462000)\n"
+    },
+    "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/libexec/tigersheets/tigersheets-vba-worker": {
+      "runtimePaths": [],
+      "ldd": "\tlinux-vdso.so.1 (0x00007ffd88dfb000)\n\tlibseccomp.so.2 => /lib/x86_64-linux-gnu/libseccomp.so.2 (0x00007fc39e9cc000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fc39e600000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fc39e8e5000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fc39e8c5000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fc39e200000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007fc39ea7f000)\n"
+    },
+    "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libtbb.so.12.5": {
+      "runtimePaths": [],
+      "ldd": "\tlinux-vdso.so.1 (0x00007ffef14dd000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x000072272ca00000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000072272cc8a000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000072272c600000)\n\t/lib64/ld-linux-x86-64.so.2 (0x000072272cd1d000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000072272c919000)\n"
+    },
+    "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libpagmo.so.9.0": {
+      "runtimePaths": [
+        "$ORIGIN"
+      ],
+      "ldd": "\tlinux-vdso.so.1 (0x00007fffe4de5000)\n\tlibboost_serialization.so.1.74.0 => /tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libboost_serialization.so.1.74.0 (0x00007afd26b45000)\n\tlibtbb.so.12 => /tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libtbb.so.12 (0x00007afd27f7c000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007afd26800000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007afd26a5e000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007afd27f3d000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007afd26400000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007afd27fd2000)\n"
+    },
+    "/tmp/tigersheets-dev2-audit-4pwbhalq/home/developer/usr/lib/tiger-sheets/libboost_serialization.so.1.74.0": {
+      "runtimePaths": [],
+      "ldd": "\tlinux-vdso.so.1 (0x00007ffe789d1000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007c9e13000000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007c9e133d6000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007c9e12c00000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007c9e132ef000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007c9e134d0000)\n"
+    }
+  },
+  "screenshot": "/workspace/tiger-sheets/docs/validation/codex-workflow/package-workspace.png",
+  "enabledWorkerStatus": "completed",
+  "disabledWorkerStatus": "disabled",
+  "mimeRegistryValidation": "Ubuntu shared MIME definitions plus the packaged XLSM extension; desktop declares all three workbook types.",
+  "iconSizes": [
+    16,
+    24,
+    32,
+    48,
+    64,
+    128,
+    256,
+    512
+  ],
+  "sourceArchiveSha256": {
+    "HiGHS": "a840d269dff2fafb371dd247df13ad5e026d7ce3b35ad3dc1eedd59bf0c2fb16",
+    "NLopt": "53e552d83e9294d67db37f0f4a23f15933a9ef698485301a18b98b40004cf0de",
+    "pagmo": "8d684e9a3667dcccc844489083906c35aba7610594c5fce0f4eccce9c2264f4d",
+    "oneTBB": "e5b57537c741400cf6134b428fc1689a649d7d38d9bb9c1b6d64f092ea28178a",
+    "Boost.Serialization": "159cfd8bcc1004683ec788ef9e70ef836cd1402c57979b2a558257ab9615ce13"
+  },
+  "rustVendorCrates": 72,
+  "aptSimulationOnly": true,
+  "passed": true,
+  "visualInspection": {
+    "performed": true,
+    "image": "/workspace/tiger-sheets/docs/validation/codex-workflow/package-workspace.png",
+    "result": "Packaged native workspace shows the compact suite header, populated financial example, calculated forecasts and revenue/EBITDA chart without clipping."
+  },
+  "auditHarnessCorrection": "The first audit incorrectly required XLSX and CSV globs in the application-specific MIME extension file. The corrected audit checks Ubuntu shared MIME definitions plus the packaged XLSM extension and verifies all three types are declared by the desktop launcher. No package change was needed."
+}

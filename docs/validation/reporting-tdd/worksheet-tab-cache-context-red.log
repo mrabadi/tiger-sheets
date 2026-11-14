@@ -1,0 +1,2 @@
+Cached sheet switch ms: 0.089087
+FAILED: cached sheet switch must reuse the current destination formula value rather than only raw literal fallback

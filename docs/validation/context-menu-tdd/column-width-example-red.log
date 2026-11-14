@@ -1,0 +1,10 @@
+tests/worksheet_column_width_tests.cpp: In function ‘int main()’:
+tests/worksheet_column_width_tests.cpp:11:10: error: ‘spreadsheetColumnWidth’ was not declared in this scope
+   11 |  require(spreadsheetColumnWidth(8.0,7)==8.7109375,"eight characters encode as native width 8.7109375 at maximum digit width seven");
+      |          ^~~~~~~~~~~~~~~~~~~~~~
+tests/worksheet_column_width_tests.cpp:12:10: error: ‘spreadsheetColumnPixels’ was not declared in this scope
+   12 |  require(spreadsheetColumnPixels(8.7109375,7)==61,"documented native width renders 61 pixels without adding padding twice");
+      |          ^~~~~~~~~~~~~~~~~~~~~~~
+tests/worksheet_column_width_tests.cpp:13:10: error: ‘spreadsheetColumnCharacters’ was not declared in this scope
+   13 |  require(spreadsheetColumnCharacters(8.7109375,7)==8.0,"61-pixel native width displays eight characters in Column Width");
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~

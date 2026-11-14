@@ -1,0 +1,12 @@
+{
+  "constructorCanonicalizationMs": 2604.102389,
+  "factoryMs": 6592.882418,
+  "fixtureMs": 682.060088,
+  "generationMs": 602.84837,
+  "genericApplyMs": 3770.015271,
+  "genericRetirementMs": 592.738671,
+  "records": 100000,
+  "sourceAllocationRetained": false,
+  "sourceCells": 1000000
+}
+native report preparation must retain the owned source allocation without cloning

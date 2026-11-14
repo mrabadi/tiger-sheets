@@ -1,0 +1,33 @@
+/workspace/tiger-sheets/tests/analysis_tests.cpp: In function ‘void workbookGoalSeek()’:
+/workspace/tiger-sheets/tests/analysis_tests.cpp:9:50: error: ‘goalSeekWorkbook’ is not a member of ‘tigersheets’
+    9 |  const auto before=book;auto solved=tigersheets::goalSeekWorkbook(book,specification);
+      |                                                  ^~~~~~~~~~~~~~~~
+/workspace/tiger-sheets/tests/analysis_tests.cpp:10:31: error: expected primary-expression before ‘bool’
+   10 |  if(!solved.at("success").get<bool>()||solved.at("status")!="converged"||std::abs(solved.at("value").get<double>()-75)>1e-7||solved.at("operations").size()!=1||solved.at("revision")!=11||book!=before)throw std::runtime_error("Workbook Goal Seek must offer one isolated converged proposal and preserve input/style/formula state");
+      |                               ^~~~
+/workspace/tiger-sheets/tests/analysis_tests.cpp:10:31: error: expected ‘)’ before ‘bool’
+   10 |  if(!solved.at("success").get<bool>()||solved.at("status")!="converged"||std::abs(solved.at("value").get<double>()-75)>1e-7||solved.at("operations").size()!=1||solved.at("revision")!=11||book!=before)throw std::runtime_error("Workbook Goal Seek must offer one isolated converged proposal and preserve input/style/formula state");
+      |    ~                          ^~~~
+      |                               )
+/workspace/tiger-sheets/tests/analysis_tests.cpp:11:62: error: ‘goalSeekWorkbook’ is not a member of ‘tigersheets’
+   11 |  specification["maxEvaluations"]=1;auto limited=tigersheets::goalSeekWorkbook(book,specification);if(limited.at("status")!="evaluation_limit"||limited.at("success").get<bool>()||!limited.at("operations").empty())throw std::runtime_error("Incomplete workbook Goal Seek must never offer accepted operations");
+      |                                                              ^~~~~~~~~~~~~~~~
+/workspace/tiger-sheets/tests/analysis_tests.cpp:11:170: error: expected primary-expression before ‘bool’
+   11 |  specification["maxEvaluations"]=1;auto limited=tigersheets::goalSeekWorkbook(book,specification);if(limited.at("status")!="evaluation_limit"||limited.at("success").get<bool>()||!limited.at("operations").empty())throw std::runtime_error("Incomplete workbook Goal Seek must never offer accepted operations");
+      |                                                                                                                                                                          ^~~~
+/workspace/tiger-sheets/tests/analysis_tests.cpp:11:170: error: expected ‘)’ before ‘bool’
+   11 |  specification["maxEvaluations"]=1;auto limited=tigersheets::goalSeekWorkbook(book,specification);if(limited.at("status")!="evaluation_limit"||limited.at("success").get<bool>()||!limited.at("operations").empty())throw std::runtime_error("Incomplete workbook Goal Seek must never offer accepted operations");
+      |                                                                                                     ~                                                                    ^~~~
+      |                                                                                                                                                                          )
+/workspace/tiger-sheets/tests/analysis_tests.cpp:12:65: error: ‘goalSeekWorkbook’ is not a member of ‘tigersheets’
+   12 |  specification["maxEvaluations"]=30;auto cancelled=tigersheets::goalSeekWorkbook(book,specification,nullptr,[]{return true;});if(cancelled.at("status")!="cancelled"||cancelled.at("evaluations")!=0||!cancelled.at("operations").empty())throw std::runtime_error("Goal Seek cancellation must perform no calculations or mutations");
+      |                                                                 ^~~~~~~~~~~~~~~~
+/workspace/tiger-sheets/tests/analysis_tests.cpp:13:76: error: ‘goalSeekWorkbook’ is not a member of ‘tigersheets’
+   13 |  auto invalid=specification;invalid["changing"]["row"]=1.5;if(tigersheets::goalSeekWorkbook(book,invalid).at("status")!="invalid_input")throw std::runtime_error("Financial model addresses must retain integer coordinate semantics");
+      |                                                                            ^~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "/tmp/tigersheets-forecast-analysis/build.py", line 10, in <module>
+    subprocess.run(args,cwd=b,check=True);objects.append(str(dst))
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/bin/c++', '-DJSON_DIAGNOSTICS=0', '-DJSON_USE_IMPLICIT_CONVERSIONS=1', '-I/workspace/tiger-sheets/include', '-O3', '-DNDEBUG', '-std=c++20', '-o', '/tmp/tigersheets-forecast-analysis/analysis_tests.o', '-c', '/workspace/tiger-sheets/tests/analysis_tests.cpp']' returned non-zero exit status 1.

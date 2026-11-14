@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=TigerSheets
+GenericName=Spreadsheet
+Comment=Local spreadsheets and financial models
+Exec=tiger-sheets %F
+Icon=tiger-sheets
+Terminal=false
+StartupNotify=true
+StartupWMClass=tiger-sheets
+Categories=Office;Spreadsheet;
+MimeType=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;application/vnd.ms-excel.sheet.macroEnabled.12;text/csv;
