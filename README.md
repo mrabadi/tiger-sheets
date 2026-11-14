@@ -6,16 +6,16 @@ TigerSheets is an independent C++20/Qt 6 spreadsheet application for Ubuntu. It 
 
 ## Install on Ubuntu
 
-The current Ubuntu amd64 development installer is `dist/tiger-sheets_0.3.0~dev.2_amd64.deb`. Check its checksum against `dist/SHA256SUMS`; evidence and limits are recorded in [context-menu validation](docs/CONTEXT_MENU_VALIDATION.md).
+The current Ubuntu amd64 development version is `0.3.0~dev.3`. Build the application and development installer using the commands below; the resulting package is `build-release/tiger-sheets_0.3.0~dev.3_amd64.deb`. The latest changes and test evidence are recorded in [cell formatting validation](docs/TDD_CELL_FORMATS.md).
 From this repository directory:
 
 ```sh
-sudo apt install ./dist/tiger-sheets_0.3.0~dev.2_amd64.deb
+sudo apt install ./build-release/tiger-sheets_0.3.0~dev.3_amd64.deb
 ```
 
 Right-click cells or row/column headers for [worksheet context menus](docs/CONTEXT_MENUS.md), including merge/unmerge, insert/delete, Format Cells, sizing and hide/unhide. Use **Data → Forecast** for [forecasts and what-if workflows](docs/FORECAST_WORKFLOWS.md).
 
-The current source build also supports draggable fill handles, persistent column auto-fit, repeated Paste into selected cells, and **Data → Data Validation** range-backed list dropdowns. The original financial-model tutorial walkthrough is retained as [historical evidence](docs/VIDEO_FINANCIAL_MODEL_VALIDATION.md); its replay test has been removed. These additions are not in the older development installer above.
+The current source build also supports draggable fill handles, persistent column auto-fit, repeated Paste into selected cells, and **Data → Data Validation** range-backed list dropdowns. The original financial-model tutorial walkthrough is retained as [historical evidence](docs/VIDEO_FINANCIAL_MODEL_VALIDATION.md); its replay test has been removed.
 
 Then launch **TigerSheets** from the application menu, or run `tiger-sheets --demo`.
 APT installs the required Qt platform packages and other runtime dependencies.

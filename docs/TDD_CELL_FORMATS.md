@@ -39,4 +39,8 @@ ctest --test-dir build-release --output-on-failure \
 
 Final verification: `cmake --build build-release -j2` passed; `ctest --test-dir build-release --output-on-failure -j2` passed **133/133**, with zero failures (28.86 seconds). CTest's registered-test inventory contains the new ribbon test and no video replay target. `git diff --check` passed.
 
+The initial installer audit passed metadata, runtime and worker checks but rejected the unchanged `dev.2` version because that version was already installed. A real temporary DEB regression then failed expecting `dev.3`; the development package suffix, validator defaults and desktop version were advanced to `0.3.0~dev.3`. The real-package fixture verifies `dev.3 > dev.2` through `dpkg`. `python3 tests/packaging_tests.py` passed 7/7 and `python3 tests/development_package_validation_tests.py` passed 9/9. A direct `build-release/tiger-sheets --version` assertion failed before the desktop version change and passed afterward with `TigerSheets 0.3.0~dev.3`. After the version changes, the complete CTest suite passed again: **133/133**, zero failures (22.26 seconds).
+
+The final `tiger-sheets_0.3.0~dev.3_amd64.deb` passed the staged metadata/runtime/worker checks and read-only APT upgrade simulation from installed `0.3.0~dev.2`. No system installation was performed. The audited package is 82,766,194 bytes; SHA-256: `abb3a62a95ee9b490160510884f556f759a7f199fa3d18a7087f935ca6b2a897`.
+
 The calculation archive is reused explicitly for this C++-only development build; no Rust or vendored engine source changed. These tests qualify the described interactions, not complete Excel compatibility or Microsoft Excel interoperability.

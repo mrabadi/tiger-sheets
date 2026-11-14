@@ -58,16 +58,16 @@ set(CPACK_TIGERSHEETS_CHANNEL development)
             package = packages[0]
             fields = subprocess.check_output(['dpkg-deb', '-f', str(package), 'Package', 'Version', 'Description'], text=True)
             self.assertIn('Package: tiger-sheets', fields)
-            self.assertIn('Version: 0.3.0~dev.2', fields)
+            self.assertIn('Version: 0.3.0~dev.3', fields)
             version = subprocess.check_output(['dpkg-deb', '-f', str(package), 'Version'], text=True).strip()
-            subprocess.run(['dpkg', '--compare-versions', version, 'gt', '0.3.0~dev.1'],
+            subprocess.run(['dpkg', '--compare-versions', version, 'gt', '0.3.0~dev.2'],
                            check=True)
             self.assertIn('development', fields.lower())
             self.assertIn('incomplete', fields.lower())
             description = subprocess.check_output(['dpkg-deb', '-f', str(package), 'Description'], text=True)
             self.assertEqual(sum(line.strip() == 'TigerSheets development build' for line in description.splitlines()),
                              1, 'the installer description must contain its summary only once')
-            self.assertEqual(package.name, 'tiger-sheets_0.3.0~dev.2_amd64.deb')
+            self.assertEqual(package.name, 'tiger-sheets_0.3.0~dev.3_amd64.deb')
             subprocess.run(['dpkg-deb', '-x', str(package), str(target / 'installed')], check=True)
             self.assertEqual((target / 'installed/usr/share/tiger-sheets/development.txt').read_text(),
                              'Local development build\n')

@@ -23,7 +23,7 @@ MIMES = ('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
          'application/vnd.ms-excel.sheet.macroEnabled.12', 'text/csv')
 
 
-def validate_manifest(stage, fields, expected_version='0.3.0~dev.2'):
+def validate_manifest(stage, fields, expected_version='0.3.0~dev.3'):
     stage = Path(stage).resolve()
     errors = []
     for key, expected in [('Package', 'tiger-sheets'), ('Version', expected_version), ('Architecture', 'amd64')]:
@@ -237,7 +237,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('package', type=Path)
     parser.add_argument('--output', type=Path)
-    parser.add_argument('--expect-version', default='0.3.0~dev.2')
+    parser.add_argument('--expect-version', default='0.3.0~dev.3')
     args = parser.parse_args()
     report = {'status': 'failed', 'commands': [], 'limitations': [
         'Private extraction uses this Ubuntu host and its installed runtime libraries; it is not a clean VM install.',
