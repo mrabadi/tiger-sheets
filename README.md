@@ -6,11 +6,11 @@ TigerSheets is an independent C++20/Qt 6 spreadsheet application for Ubuntu. It 
 
 ## Install on Ubuntu
 
-The current Ubuntu amd64 development version is `0.3.0~dev.3`. Build the application and development installer using the commands below; the resulting package is `build-release/tiger-sheets_0.3.0~dev.3_amd64.deb`. The latest changes and test evidence are recorded in [cell formatting validation](docs/TDD_CELL_FORMATS.md).
+The current Ubuntu amd64 development version is `0.3.0~dev.4`. Build the application and development installer using the commands below; the resulting package is `build-release/tiger-sheets_0.3.0~dev.4_amd64.deb`. The latest changes and test evidence are recorded in [worksheet interaction validation](docs/TDD_WORKSHEET_INTERACTIONS.md).
 From this repository directory:
 
 ```sh
-sudo apt install ./build-release/tiger-sheets_0.3.0~dev.3_amd64.deb
+sudo apt install ./build-release/tiger-sheets_0.3.0~dev.4_amd64.deb
 ```
 
 Right-click cells or row/column headers for [worksheet context menus](docs/CONTEXT_MENUS.md), including merge/unmerge, insert/delete, Format Cells, sizing and hide/unhide. Use **Data → Forecast** for [forecasts and what-if workflows](docs/FORECAST_WORKFLOWS.md).
@@ -35,6 +35,10 @@ The optimized application target in this checkout is `build-release/tiger-sheets
 Use **File → Financial model example** for the editable forecast and DCF. The Data ribbon contains **PivotTable**, **Convert summary…**, Goal Seek, Solver, scenarios and sensitivity tables. Native reporting supports row/column/filter fields, multiple measures, date grouping, explicit refresh and linked line/column/bar PivotCharts. See the [reporting guide](docs/REPORTING_USER_GUIDE.md). Developer opens the supported VBA editor and recorder. Codex connects only through explicit interaction in its panel; ordinary editing works without it.
 
 Formula entry now offers available functions as you type in either the cell or formula bar. Up/Down selects a suggestion and Tab inserts it with its opening parenthesis. `=AVG` suggests canonical `AVERAGE` functions. Argument hints follow nested calls. Defined names and enabled workbook functions are included. Click/drag cells or use arrows and Shift to build references; F2 switches between pointing and moving the text cursor, and F4 cycles absolute/mixed references. Enter accepts and moves down; Tab accepts and moves right when no completion is open. Escape dismisses formula help, then cancels the draft.
+
+Copy and Cut show an animated dashed source border. Escape cancels copy mode; repeated Paste retains the source border. Right-click a worksheet tab for Rename… or Delete, or double-click a tab to rename it. Deletion asks for confirmation and supports Undo.
+
+Selecting cells, rows or columns preserves their formatting under a light tint and outlines the selected range. The workbook header shows **Not saved**, **Unsaved changes** or **Saved locally**, with a matching native modified-title indicator. A successful save clears the modified status; cancelled saves and CSV exports keep source-workbook changes marked unsaved.
 
 Calculate now and worksheet switching retain typed numeric results, percentages/dates and Values-paste behavior. Show formulas keeps numeric selection totals and literal number formats. Reporting headers can use calculated formula names.
 
@@ -64,7 +68,7 @@ ctest --test-dir build-release --output-on-failure
 
 An isolated Rust installation can additionally set `TIGERSHEETS_CARGO_HOME` and `TIGERSHEETS_RUSTUP_HOME`. The native build invokes Cargo with `--offline --locked`; the 72 registry dependencies are vendored with verified checksums, so no populated registry cache is required. See [Rust dependency verification](docs/RUST_DEPENDENCIES.md). No toolchain or system configuration is installed by CMake.
 
-For this development session, Cargo is `/tmp/tigersheets-toolchain/cargo/bin/cargo`, Cargo home is `/tmp/tigersheets-toolchain/cargo`, and rustup home is `/tmp/tigersheets-toolchain/rustup`. These temporary paths are not portable build dependencies.
+For C++-only development with an existing calculation archive, configure `TIGERSHEETS_PREBUILT_CALC_ARCHIVE` with its absolute path. That mode does not rebuild or verify Rust source compilation; the current worksheet-interaction validation used it.
 
 ## Compatibility and validation
 

@@ -18,6 +18,8 @@ public:
  QLineEdit* activeCellEditor() const;
  bool commitPendingEditor(bool force=false);
  void cancelEntry();
+ void setCopyRange(const QString& sheet,const QItemSelectionRange& range);
+ void clearCopyRange();
  bool handleEditorKey(QLineEdit* editor,QKeyEvent* key);
  QLineEdit* createCellEditor(QWidget* parent,const QModelIndex& index);
  std::function<QLineEdit*(QWidget*)> editorFactory;
@@ -25,6 +27,9 @@ public:
  std::function<bool(QLineEdit*,QKeyEvent*)> beforeEditorKey;
 protected:
  void currentChanged(const QModelIndex& current,const QModelIndex& previous) override;
+ void selectionChanged(const QItemSelection& selected,const QItemSelection& deselected) override;
+ void resizeEvent(QResizeEvent* event) override;
+ void scrollContentsBy(int dx,int dy) override;
  void paintEvent(QPaintEvent* event) override;
  void keyPressEvent(QKeyEvent* event) override;
  bool eventFilter(QObject* object,QEvent* event) override;
@@ -33,6 +38,10 @@ protected:
  void mouseReleaseEvent(QMouseEvent* event) override;
 private:
  QString currentSheetName_;
+ QWidget* copyBorder_=nullptr;
+ QString copySheet_;
+ QItemSelectionRange copyRange_;
+ void updateCopyBorder();
  QString layoutSheet_,mergedDefinition_;
  QMetaObject::Connection layoutChanged_;
  std::vector<int> layoutRows_,layoutColumns_;

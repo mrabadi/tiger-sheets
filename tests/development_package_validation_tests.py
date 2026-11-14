@@ -17,7 +17,7 @@ class ManifestTests(unittest.TestCase):
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory(prefix='tiger-staged-manifest-')
         self.stage = Path(self.directory.name)
-        self.fields = {'Package': 'tiger-sheets', 'Version': '0.3.0~dev.3', 'Architecture': 'amd64',
+        self.fields = {'Package': 'tiger-sheets', 'Version': '0.3.0~dev.4', 'Architecture': 'amd64',
                        'Description': 'TigerSheets development build\n incomplete compatibility',
                        'Depends': 'qt6-qpa-plugins, qt6-wayland, libc6 (>= 2.34)'}
         for name in ('usr/bin/tiger-sheets', 'usr/libexec/tigersheets/tigersheets-report-worker',
@@ -43,9 +43,9 @@ class ManifestTests(unittest.TestCase):
         self.assertEqual(MODULE.validate_manifest(self.stage, self.fields), [])
 
     def test_previous_development_version_requires_an_upgrade(self):
-        self.fields['Version'] = '0.3.0~dev.2'
+        self.fields['Version'] = '0.3.0~dev.3'
         errors = MODULE.validate_manifest(self.stage, self.fields)
-        self.assertTrue(any('Version must be 0.3.0~dev.3' in error for error in errors))
+        self.assertTrue(any('Version must be 0.3.0~dev.4' in error for error in errors))
 
     def test_cli_defaults_to_current_development_version(self):
         package = self.stage / 'fixture.deb'
@@ -53,7 +53,7 @@ class ManifestTests(unittest.TestCase):
         with patch('sys.argv', ['verify_development_package.py', str(package)]), \
                 patch.object(MODULE, 'verify_package') as verify, patch('sys.stdout', io.StringIO()):
             self.assertEqual(MODULE.main(), 0)
-        self.assertEqual(verify.call_args.args[2], '0.3.0~dev.3')
+        self.assertEqual(verify.call_args.args[2], '0.3.0~dev.4')
 
     def test_missing_worker_and_icon_are_actionable(self):
         (self.stage / 'usr/libexec/tigersheets/tigersheets-report-worker').unlink()

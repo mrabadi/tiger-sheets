@@ -12,9 +12,25 @@
 #include <QHeaderView>
 #include <QScrollBar>
 #include <QTimer>
+#include <QVariantAnimation>
+#include <QShowEvent>
+#include <QHideEvent>
 #include <algorithm>
 namespace tigersheets {
 namespace {
+QRegion copyBorderRegion(const QRect& rect){return QRegion(rect.adjusted(-2,-2,2,2))-QRegion(rect.adjusted(2,2,-2,-2));}
+class CopyBorder final:public QWidget {
+public:
+ explicit CopyBorder(QWidget* parent):QWidget(parent){
+  setObjectName("worksheet.copyBorder");setAccessibleName("Copied cells");setAttribute(Qt::WA_TransparentForMouseEvents);setAttribute(Qt::WA_NoSystemBackground);setFocusPolicy(Qt::NoFocus);setProperty("dashOffset",0.0);hide();
+  animation=new QVariantAnimation(this);animation->setObjectName("worksheet.copyAnimation");animation->setStartValue(0.0);animation->setEndValue(6.0);animation->setDuration(600);animation->setLoopCount(-1);connect(animation,&QVariantAnimation::valueChanged,this,[this](const QVariant& value){setProperty("dashOffset",value);update(copyBorderRegion(property("sourceRect").toRect()));});
+ }
+ QVariantAnimation* animation;
+protected:
+ void paintEvent(QPaintEvent*)override{const auto source=property("sourceRect").toRect();if(source.isEmpty())return;QPainter painter(this);painter.setBrush(Qt::NoBrush);painter.setPen(QPen(Qt::white,2));painter.drawRect(source);QPen ants(QColor("#245648"),2);ants.setDashPattern({3,3});ants.setDashOffset(property("dashOffset").toReal());painter.setPen(ants);painter.drawRect(source);}
+ void showEvent(QShowEvent* event)override{QWidget::showEvent(event);if(animation->state()==QAbstractAnimation::Paused)animation->resume();else if(animation->state()!=QAbstractAnimation::Running)animation->start();}
+ void hideEvent(QHideEvent* event)override{if(animation->state()==QAbstractAnimation::Running)animation->pause();QWidget::hideEvent(event);}
+};
 int normalDigitWidth(const QTableView& view){const QFontMetrics metrics(QFont("Calibri",11),view.viewport());int width=1;for(char digit='0';digit<='9';++digit)width=std::max(width,metrics.horizontalAdvance(QChar(digit)));return width;}
 class CellDelegate:public QStyledItemDelegate {
 public:
@@ -25,6 +41,7 @@ public:
 protected:
  void initStyleOption(QStyleOptionViewItem* option,const QModelIndex& index)const override{
   QStyledItemDelegate::initStyleOption(option,index);const auto* model=dynamic_cast<const WorksheetModel*>(index.model());if(!model)return;const auto style=model->cellStyle(index.row(),index.column());if(style.contains("wrap")&&style.at("wrap").is_boolean())option->features.setFlag(QStyleOptionViewItem::WrapText,style.at("wrap").get<bool>());
+  if(option->state&QStyle::State_Selected){const auto base=option->backgroundBrush.style()==Qt::NoBrush?option->palette.color(QPalette::Base):option->backgroundBrush.color();const QColor tint("#245648");option->backgroundBrush=QColor(qRound(base.red()*0.86+tint.red()*0.14),qRound(base.green()*0.86+tint.green()*0.14),qRound(base.blue()*0.86+tint.blue()*0.14));option->state&=~QStyle::State_Selected;}option->state&=~QStyle::State_HasFocus;
  }
  bool eventFilter(QObject* object,QEvent* event)override{if(event->type()==QEvent::KeyPress)if(auto* edit=qobject_cast<QLineEdit*>(object))if(view_->handleEditorKey(edit,static_cast<QKeyEvent*>(event)))return true;return QStyledItemDelegate::eventFilter(object,event);}
 private:WorksheetView* view_;
@@ -32,9 +49,20 @@ private:WorksheetView* view_;
 }
 WorksheetView::WorksheetView(QWidget* parent):QTableView(parent){verticalHeader()->setMinimumSectionSize(1);horizontalHeader()->setMinimumSectionSize(1);setMouseTracking(true);setFocusPolicy(Qt::TabFocus);setItemDelegate(new CellDelegate(this));fillScrollTimer_=new QTimer(this);fillScrollTimer_->setInterval(50);connect(fillScrollTimer_,&QTimer::timeout,this,[this]{scrollFillViewport();});connect(horizontalHeader(),&QHeaderView::sectionHandleDoubleClicked,this,[this](int column){persistAutoFitColumn(column);});connect(itemDelegate(),&QAbstractItemDelegate::closeEditor,this,[this](QWidget* editor,QAbstractItemDelegate::EndEditHint){if(editor==cellEditor_){cellEditor_.clear();if(formulaBar_){formulaBar_->setText(model()?model()->data(currentIndex(),Qt::EditRole).toString():QString());formulaBar_->setModified(false);}}});}
 void WorksheetView::setModel(QAbstractItemModel* model){
- cancelFill();QObject::disconnect(layoutChanged_);QTableView::setModel(model);layoutSheet_.clear();mergedDefinition_.clear();
- if(model)layoutChanged_=connect(model,&QAbstractItemModel::dataChanged,this,[this](const QModelIndex& first,const QModelIndex& last){synchronizeLayout();const auto current=currentIndex();if(current.isValid()&&current.row()>=first.row()&&current.row()<=last.row()&&current.column()>=first.column()&&current.column()<=last.column())viewport()->update();});synchronizeLayout();
+ cancelFill();clearCopyRange();QObject::disconnect(layoutChanged_);QTableView::setModel(model);layoutSheet_.clear();mergedDefinition_.clear();
+ if(model)layoutChanged_=connect(model,&QAbstractItemModel::dataChanged,this,[this](const QModelIndex& first,const QModelIndex& last){synchronizeLayout();updateCopyBorder();const auto current=currentIndex();if(current.isValid()&&current.row()>=first.row()&&current.row()<=last.row()&&current.column()>=first.column()&&current.column()<=last.column())viewport()->update();});synchronizeLayout();
 }
+void WorksheetView::setCopyRange(const QString& sheet,const QItemSelectionRange& range){
+ if(sheet.isEmpty()||!range.isValid()||range.model()!=model()){clearCopyRange();return;}if(!copyBorder_){copyBorder_=new CopyBorder(viewport());connect(horizontalHeader(),&QHeaderView::sectionResized,this,[this]{updateCopyBorder();});connect(verticalHeader(),&QHeaderView::sectionResized,this,[this]{updateCopyBorder();});}copySheet_=sheet;copyRange_=range;updateCopyBorder();
+}
+void WorksheetView::clearCopyRange(){copySheet_.clear();copyRange_=QItemSelectionRange();if(copyBorder_){static_cast<CopyBorder*>(copyBorder_)->animation->stop();copyBorder_->hide();copyBorder_->setProperty("sourceRect",QRect());}}
+void WorksheetView::updateCopyBorder(){
+ if(!copyBorder_)return;const auto* worksheet=dynamic_cast<const WorksheetModel*>(model());if(!worksheet||!copyRange_.isValid()||worksheet->sheetId()!=copySheet_){copyBorder_->hide();return;}
+ const auto previous=copyBorder_->property("sourceRect").toRect();QRect source(columnViewportPosition(copyRange_.left()),rowViewportPosition(copyRange_.top()),columnViewportPosition(copyRange_.right())+columnWidth(copyRange_.right())-columnViewportPosition(copyRange_.left())-1,rowViewportPosition(copyRange_.bottom())+rowHeight(copyRange_.bottom())-rowViewportPosition(copyRange_.top())-1);
+ if(source.isEmpty()){copyBorder_->hide();return;}source=source.united(visualRect(copyRange_.topLeft())).united(visualRect(copyRange_.bottomRight())).adjusted(1,1,-1,-1);if(property("worksheet.frozenBody").toBool()&&copyRange_.top()==0&&isRowHidden(0))source.setTop(-2);copyBorder_->setGeometry(viewport()->rect());copyBorder_->setProperty("sourceRect",source);copyBorder_->setVisible(source.intersects(viewport()->rect()));copyBorder_->raise();copyBorder_->update(copyBorderRegion(previous)|copyBorderRegion(source));
+}
+void WorksheetView::resizeEvent(QResizeEvent* event){QTableView::resizeEvent(event);updateCopyBorder();}
+void WorksheetView::scrollContentsBy(int dx,int dy){QTableView::scrollContentsBy(dx,dy);updateCopyBorder();}
 void WorksheetView::synchronizeLayout(){
  const auto* worksheet=dynamic_cast<WorksheetModel*>(model());if(!worksheet)return;
  for(const auto& sheet:worksheet->workbookView().at("sheets"))if(sheet.at("id")==worksheet->sheetId().toStdString()){
@@ -63,11 +91,13 @@ WorksheetView::~WorksheetView(){
 void WorksheetView::setFormulaBar(QLineEdit* editor){formulaBar_=editor;editor->installEventFilter(this);connect(editor,&QLineEdit::textChanged,this,[this]{if(!insertingReference_){referenceStart_=-1;referenceLength_=0;}viewport()->update();});}
 void WorksheetView::setCurrentSheetName(const QString& name){if(currentSheetName_!=name){currentSheetName_=name;viewport()->update();}}
 void WorksheetView::currentChanged(const QModelIndex& current,const QModelIndex& previous){QTableView::currentChanged(current,previous);viewport()->update();}
+void WorksheetView::selectionChanged(const QItemSelection& selected,const QItemSelection& deselected){QTableView::selectionChanged(selected,deselected);viewport()->update();}
 void WorksheetView::paintEvent(QPaintEvent* event){
  QTableView::paintEvent(event);
  QPainter painter(viewport());painter.setClipRect(event->rect());
- if(currentIndex().isValid()){
-  const auto current=visualRect(currentIndex());if(current.intersects(viewport()->rect())){painter.setPen(QPen(QColor("#245648"),2));painter.setBrush(Qt::NoBrush);painter.drawRect(current.adjusted(1,1,-1,-1));}
+ if(selectionModel()){
+  painter.setPen(QPen(QColor("#245648"),2));painter.setBrush(Qt::NoBrush);
+  for(const auto& range:selectionModel()->selection()){QRect bounds(columnViewportPosition(range.left()),rowViewportPosition(range.top()),columnViewportPosition(range.right())+columnWidth(range.right())-columnViewportPosition(range.left())-1,rowViewportPosition(range.bottom())+rowHeight(range.bottom())-rowViewportPosition(range.top())-1);bounds=bounds.united(visualRect(range.topLeft())).united(visualRect(range.bottomRight())).adjusted(1,1,-1,-1);if(property("worksheet.frozenBody").toBool()&&range.top()==0&&isRowHidden(0))bounds.setTop(-2);if(bounds.intersects(viewport()->rect()))painter.drawRect(bounds);}
  }
  if(filling_&&fillSource_.isValid()&&fillTarget_.isValid()){
   painter.setPen(QPen(QColor("#245648"),1,Qt::DashLine));painter.setBrush(Qt::NoBrush);painter.drawRect(visualRect(fillSource_).united(visualRect(fillTarget_)).adjusted(1,1,-1,-1));
@@ -163,6 +193,7 @@ void WorksheetView::mousePressEvent(QMouseEvent* event){
 }
 QRect WorksheetView::fillHandleRect()const{
  const auto index=currentIndex();if(!dynamic_cast<WorksheetModel*>(model())||!index.isValid()||cellEditor_||!(model()->flags(index)&Qt::ItemIsEditable)||rowSpan(index.row(),index.column())!=1||columnSpan(index.row(),index.column())!=1)return {};
+ if(!selectionModel()||!selectionModel()->isSelected(index))return {};for(const auto& range:selectionModel()->selection())if(range.width()==model()->columnCount()||range.height()==model()->rowCount())return {};
  const auto rect=visualRect(index);return QRect(rect.bottomRight()-QPoint(4,4),QSize(7,7));
 }
 void WorksheetView::cancelFill(){if(fillScrollTimer_)fillScrollTimer_->stop();filling_=false;fillSource_=QModelIndex();fillTarget_=QModelIndex();viewport()->unsetCursor();viewport()->update();}
