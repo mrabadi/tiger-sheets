@@ -15,7 +15,7 @@ sudo apt install ./dist/tiger-sheets_0.3.0~dev.2_amd64.deb
 
 Right-click cells or row/column headers for [worksheet context menus](docs/CONTEXT_MENUS.md), including merge/unmerge, insert/delete, Format Cells, sizing and hide/unhide. Use **Data → Forecast** for [forecasts and what-if workflows](docs/FORECAST_WORKFLOWS.md).
 
-The current source build also supports draggable fill handles, persistent column auto-fit, repeated Paste into selected cells, and **Data → Data Validation** range-backed list dropdowns. The financial-model tutorial replay and its bounded evidence are documented in [video acceptance](docs/VIDEO_FINANCIAL_MODEL_VALIDATION.md); these additions are not in the older development installer above.
+The current source build also supports draggable fill handles, persistent column auto-fit, repeated Paste into selected cells, and **Data → Data Validation** range-backed list dropdowns. The original financial-model tutorial walkthrough is retained as [historical evidence](docs/VIDEO_FINANCIAL_MODEL_VALIDATION.md); its replay test has been removed. These additions are not in the older development installer above.
 
 Then launch **TigerSheets** from the application menu, or run `tiger-sheets --demo`.
 APT installs the required Qt platform packages and other runtime dependencies.
@@ -37,6 +37,8 @@ Use **File → Financial model example** for the editable forecast and DCF. The 
 Formula entry now offers available functions as you type in either the cell or formula bar. Up/Down selects a suggestion and Tab inserts it with its opening parenthesis. `=AVG` suggests canonical `AVERAGE` functions. Argument hints follow nested calls. Defined names and enabled workbook functions are included. Click/drag cells or use arrows and Shift to build references; F2 switches between pointing and moving the text cursor, and F4 cycles absolute/mixed references. Enter accepts and moves down; Tab accepts and moves right when no completion is open. Escape dismisses formula help, then cancels the draft.
 
 Calculate now and worksheet switching retain typed numeric results, percentages/dates and Values-paste behavior. Show formulas keeps numeric selection totals and literal number formats. Reporting headers can use calculated formula names.
+
+Use **Home → Format…** or **Ctrl+1** for number-format options: decimal places, thousands separators, currency symbols, minus signs or parentheses for negative currency, percentage precision, and date display choices. The Sample shows the result before applying it; rounding changes display without changing the stored value. Entered numeric dates retain their input format, and dragging the fill handle copies cell formatting along with values or adjusted formulas. The Home format selector follows the active cell. Selecting a formula cell outlines its local cell references; cell editing stays inside the cell.
 
 Click a chart to select it. Double-click or F2 opens its title, type and data-range editor; right-click exposes the same commands. Drag to move, use a selected corner to resize, and Escape cancels a gesture. Delete removes the selected chart. Edits, movements and resizes are undoable and persist through XLSX saves. Selecting another chart or returning to cells clears the previous handles.
 

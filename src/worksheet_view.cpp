@@ -33,7 +33,7 @@ private:WorksheetView* view_;
 WorksheetView::WorksheetView(QWidget* parent):QTableView(parent){verticalHeader()->setMinimumSectionSize(1);horizontalHeader()->setMinimumSectionSize(1);setMouseTracking(true);setFocusPolicy(Qt::TabFocus);setItemDelegate(new CellDelegate(this));fillScrollTimer_=new QTimer(this);fillScrollTimer_->setInterval(50);connect(fillScrollTimer_,&QTimer::timeout,this,[this]{scrollFillViewport();});connect(horizontalHeader(),&QHeaderView::sectionHandleDoubleClicked,this,[this](int column){persistAutoFitColumn(column);});connect(itemDelegate(),&QAbstractItemDelegate::closeEditor,this,[this](QWidget* editor,QAbstractItemDelegate::EndEditHint){if(editor==cellEditor_){cellEditor_.clear();if(formulaBar_){formulaBar_->setText(model()?model()->data(currentIndex(),Qt::EditRole).toString():QString());formulaBar_->setModified(false);}}});}
 void WorksheetView::setModel(QAbstractItemModel* model){
  cancelFill();QObject::disconnect(layoutChanged_);QTableView::setModel(model);layoutSheet_.clear();mergedDefinition_.clear();
- if(model)layoutChanged_=connect(model,&QAbstractItemModel::dataChanged,this,[this]{synchronizeLayout();});synchronizeLayout();
+ if(model)layoutChanged_=connect(model,&QAbstractItemModel::dataChanged,this,[this](const QModelIndex& first,const QModelIndex& last){synchronizeLayout();const auto current=currentIndex();if(current.isValid()&&current.row()>=first.row()&&current.row()<=last.row()&&current.column()>=first.column()&&current.column()<=last.column())viewport()->update();});synchronizeLayout();
 }
 void WorksheetView::synchronizeLayout(){
  const auto* worksheet=dynamic_cast<WorksheetModel*>(model());if(!worksheet)return;
@@ -62,6 +62,7 @@ WorksheetView::~WorksheetView(){
 }
 void WorksheetView::setFormulaBar(QLineEdit* editor){formulaBar_=editor;editor->installEventFilter(this);connect(editor,&QLineEdit::textChanged,this,[this]{if(!insertingReference_){referenceStart_=-1;referenceLength_=0;}viewport()->update();});}
 void WorksheetView::setCurrentSheetName(const QString& name){if(currentSheetName_!=name){currentSheetName_=name;viewport()->update();}}
+void WorksheetView::currentChanged(const QModelIndex& current,const QModelIndex& previous){QTableView::currentChanged(current,previous);viewport()->update();}
 void WorksheetView::paintEvent(QPaintEvent* event){
  QTableView::paintEvent(event);
  QPainter painter(viewport());painter.setClipRect(event->rect());
@@ -72,8 +73,8 @@ void WorksheetView::paintEvent(QPaintEvent* event){
   painter.setPen(QPen(QColor("#245648"),1,Qt::DashLine));painter.setBrush(Qt::NoBrush);painter.drawRect(visualRect(fillSource_).united(visualRect(fillTarget_)).adjusted(1,1,-1,-1));
  }
  const auto handle=fillHandleRect();if(!handle.isEmpty()){painter.setPen(Qt::NoPen);painter.setBrush(QColor("#245648"));painter.drawRect(handle);}
- auto* editor=referenceCandidate();if(!model()||!editor||!editor->text().startsWith('='))return;
- const auto utf8=editor->text().toUtf8();const auto references=formulaReferences(std::string_view(utf8.constData(),static_cast<std::size_t>(utf8.size())));
+ if(!model())return;auto* editor=referenceCandidate();const auto formula=editor?editor->text():model()->data(currentIndex(),Qt::EditRole).toString();if(!formula.startsWith('='))return;
+ const auto utf8=formula.toUtf8();const auto references=formulaReferences(std::string_view(utf8.constData(),static_cast<std::size_t>(utf8.size())));
  const QColor colors[]={QColor("#2b66df"),QColor("#159567"),QColor("#9d4edd"),QColor("#e1822f"),QColor("#d1495b")};
  const auto width=viewport()->width(),height=viewport()->height();
  for(std::size_t i=0;i<references.size();++i){
@@ -132,6 +133,9 @@ QLineEdit* WorksheetView::activeCellEditor()const{return cellEditor_;}
 QLineEdit* WorksheetView::createCellEditor(QWidget* parent,const QModelIndex& index){
  pointMode_=true;referenceStart_=-1;referenceLength_=0;referenceCursor_={};
  auto* editor=editorFactory?editorFactory(parent):new QLineEdit(parent);cellEditor_=editor;editIndex_=index;editor->setObjectName("worksheet.cellEditor");editor->setAccessibleName(QString("Cell %1%2").arg(QString::fromStdString(columnName(index.column()+1))).arg(index.row()+1));
+ // The delegate already supplies the cell's padded content rectangle. Toolbar
+ // line-edit minimums and chrome would make a compact-row editor protrude.
+ editor->setFrame(false);editor->setStyleSheet("QLineEdit { min-height: 0px; min-width: 0px; padding: 0px; border: 0px; border-radius: 0px; }");
  connect(editor,&QLineEdit::textChanged,this,[this](const QString& text){if(formulaBar_){formulaBar_->setText(text);formulaBar_->setModified(false);}});
  connect(editor,&QLineEdit::textChanged,this,[this]{if(!insertingReference_){referenceStart_=-1;referenceLength_=0;}viewport()->update();});
  return editor;

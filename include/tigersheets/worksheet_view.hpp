@@ -24,6 +24,7 @@ public:
  std::function<QString(QModelIndex,QModelIndex)> pointedReference;
  std::function<bool(QLineEdit*,QKeyEvent*)> beforeEditorKey;
 protected:
+ void currentChanged(const QModelIndex& current,const QModelIndex& previous) override;
  void paintEvent(QPaintEvent* event) override;
  void keyPressEvent(QKeyEvent* event) override;
  bool eventFilter(QObject* object,QEvent* event) override;

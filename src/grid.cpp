@@ -17,12 +17,46 @@
 #include <QTimer>
 namespace tigersheets {
 namespace {
-QString numberText(double value,const Json& style,bool date1904){return QString::fromStdString(formattedValue(value,style,date1904));}
+QString numberText(double value,const Json& style,bool date1904){
+ // The formatter uses a fixed December 30 origin; Excel serials before its
+ // fictitious February 29 require one extra day only when rendering a date.
+ if(!date1904&&value>0&&value<60&&dateNumberFormat(style.value("numberFormat",std::string())))value+=1;
+ return QString::fromStdString(formattedValue(value,style,date1904));
+}
 std::optional<double> numericLiteral(const std::string& input){
  if(input.empty()||input[0]=='\''||input[0]=='=')return std::nullopt;double number=0;const auto parsed=std::from_chars(input.data(),input.data()+input.size(),number);bool okay=parsed.ec==std::errc()&&parsed.ptr==input.data()+input.size();if(!okay)number=QString::fromStdString(input).toDouble(&okay);return okay&&std::isfinite(number)?std::optional<double>(number):std::nullopt;
 }
 bool percentageFormat(std::string_view format){
  bool quoted=false;for(std::size_t i=0;i<format.size();++i){const char ch=format[i];if(ch=='"'){quoted=!quoted;continue;}if(quoted)continue;if(ch=='\\'||ch=='_'||ch=='*'){if(i+1<format.size())++i;continue;}if(ch=='['){while(i+1<format.size()&&format[i+1]!=']')++i;if(i+1<format.size())++i;continue;}if(ch=='%')return true;}return false;
+}
+QString inferredDateFormulaFormat(const QString& input){
+ if(!input.startsWith('='))return {};static const QRegularExpression expression("^=\\s*(EOMONTH|EDATE|DATE|TODAY|NOW)\\s*\\(",QRegularExpression::CaseInsensitiveOption);const auto head=expression.match(input);if(!head.hasMatch())return {};
+ int depth=1;QChar quote;
+ for(int pos=head.capturedLength();pos<input.size();++pos){const auto ch=input.at(pos);if(!quote.isNull()){if(ch==quote){if(pos+1<input.size()&&input.at(pos+1)==quote)++pos;else quote=QChar();}continue;}if(ch=='\"'||ch=='\''){quote=ch;continue;}if(ch=='(')++depth;else if(ch==')'&&--depth==0)return input.mid(pos+1).trimmed().isEmpty()?(head.captured(1).compare("NOW",Qt::CaseInsensitive)==0?QString("m/d/yyyy h:mm"):QString("m/d/yyyy")):QString();}
+ return {};
+}
+struct DateLiteral {QDate date;QString format;};
+std::optional<DateLiteral> dateLiteral(const QString& input){
+ static const QRegularExpression iso("^([0-9]{4})([-/])([0-9]{1,2})\\2([0-9]{1,2})$");
+ static const QRegularExpression localized("^([0-9]{1,2})([-/])([0-9]{1,2})\\2([0-9]{2}|[0-9]{4})$");
+ const auto token=[](const QString& input,QChar symbol){return QString(input.size()==2?2:1,symbol);};
+ const auto standard=iso.match(input);if(standard.hasMatch()){
+  const int year=standard.captured(1).toInt();const QDate date(year,standard.captured(3).toInt(),standard.captured(4).toInt());const auto separator=standard.captured(2);
+  return year>=1900&&date.isValid()?std::optional<DateLiteral>({date,"yyyy"+separator+token(standard.captured(3),'m')+separator+token(standard.captured(4),'d')}):std::nullopt;
+ }
+ const auto separated=localized.match(input);if(!separated.hasMatch())return std::nullopt;
+ const int first=separated.captured(1).toInt(),second=separated.captured(3).toInt();int year=separated.captured(4).toInt();if(separated.captured(4).size()==2)year+=year<30?2000:1900;if(year<1900||first<1||second<1)return std::nullopt;
+ const bool dayFirst=first>12;const QDate date(year,dayFirst?second:first,dayFirst?first:second);
+ const auto separator=separated.captured(2),format=token(separated.captured(1),dayFirst?'d':'m')+separator+token(separated.captured(3),dayFirst?'m':'d')+separator+(separated.captured(4).size()==2?"yy":"yyyy");
+ return date.isValid()?std::optional<DateLiteral>({date,format}):std::nullopt;
+}
+QString dateEditText(const QString& input,const Json& style,bool date1904){
+ const auto number=numericLiteral(input.toStdString());if(!number||std::trunc(*number)!=*number||!dateNumberFormat(style.value("numberFormat",std::string())))return input;
+ // Keep fractional times, out-of-range values and Excel's fictitious leap day
+ // as serials so accepting an unchanged editor cannot alter their value.
+ if(*number<-1460||*number>2958465||(!date1904&&*number==60))return input;
+ const auto serial=static_cast<qint64>(*number);const auto date=date1904?QDate(1904,1,1).addDays(serial):QDate(1899,12,31).addDays(serial-(serial>60?1:0));
+ return date.isValid()&&date.year()>=1900&&date.year()<=9999?date.toString(Qt::ISODate):input;
 }
 const Json* previewCell(const Json& book,const QString& sheet,int row,int col){
  const auto id=sheet.toStdString();for(const auto& entry:book.at("sheets"))if(entry.at("id")==id){const auto& cells=entry.at("cells").get_ref<const Json::array_t&>();const auto coordinate=std::pair{row+1,col+1};const auto found=std::lower_bound(cells.begin(),cells.end(),coordinate,[](const Json& cell,const auto& point){return std::pair{cell.at("row").get<int>(),cell.at("col").get<int>()}<point;});return found!=cells.end()&&found->at("row")==row+1&&found->at("col")==col+1?&*found:nullptr;}return nullptr;
@@ -60,7 +94,7 @@ void WorksheetModel::setCalculated(const Json& result){
 }
 QVariant WorksheetModel::data(const QModelIndex&i,int role)const{
  if(!i.isValid())return {};
- if(role==Qt::EditRole)return raw(i.row(),i.column());
+ if(role==Qt::EditRole)return dateEditText(raw(i.row(),i.column()),cellStyle(i.row(),i.column()),date1904_);
  if(role==Qt::DisplayRole){
   if(property("showFormulas").toBool()){const auto input=raw(i.row(),i.column());if(input.startsWith('='))return input;}
   auto style=cellStyle(i.row(),i.column());
@@ -175,16 +209,26 @@ bool WorksheetModel::apply(const Json& ops){
 }
 bool WorksheetModel::setData(const QModelIndex&i,const QVariant&v,int role){
  if(!i.isValid()||role!=Qt::EditRole)return false;
- const auto text=v.toString();Json operation={{"type","set_cell"},{"sheet",sheet_.toStdString()},{"row",i.row()+1},{"col",i.column()+1},{"input",text.toStdString()}};
+ const auto text=v.toString();const auto style=cellStyle(i.row(),i.column());Json operation={{"type","set_cell"},{"sheet",sheet_.toStdString()},{"row",i.row()+1},{"col",i.column()+1},{"input",text.toStdString()}};
+ const auto previous=raw(i.row(),i.column()),edit=dateEditText(previous,style,date1904_);if(edit!=previous&&text==edit){operation["input"]=previous.toStdString();return apply(Json::array({std::move(operation)}));}
+ if(style.value("numberFormat",std::string())=="@"){
+  if(text!=previous&&!text.isEmpty()&&!text.startsWith('\''))operation["input"]="'"+text.toStdString();
+  return apply(Json::array({std::move(operation)}));
+ }
+ if(!style.contains("numberFormat")){const auto inferred=inferredDateFormulaFormat(text);if(!inferred.isEmpty())operation["style"]={{"numberFormat",inferred.toStdString()}};}
  const auto trimmed=text.trimmed();if(trimmed.endsWith('%')){
   bool okay=false;const double number=trimmed.chopped(1).trimmed().toDouble(&okay)/100.0;
   if(okay&&std::isfinite(number)){
    char buffer[128];const auto converted=std::to_chars(buffer,buffer+sizeof(buffer),number);if(converted.ec!=std::errc())return false;operation["input"]=std::string(buffer,converted.ptr);
-   const auto style=cellStyle(i.row(),i.column());const auto format=style.value("numberFormat",std::string("General"));
+   const auto format=style.value("numberFormat",std::string("General"));
    if(!percentageFormat(format)){const int decimal=static_cast<int>(trimmed.indexOf('.'));const auto digits=decimal<0?0:std::min(12,static_cast<int>(trimmed.size())-decimal-2);operation["style"]={{"numberFormat",digits>0?"0."+std::string(digits,'0')+"%":"0%"}};}
   }
- }else if(percentageFormat(cellStyle(i.row(),i.column()).value("numberFormat",std::string()))){
+ }else if(percentageFormat(style.value("numberFormat",std::string()))){
   bool okay=false;const double number=trimmed.toDouble(&okay);if(okay&&std::isfinite(number)&&std::abs(number)>=1.0){char buffer[128];const auto converted=std::to_chars(buffer,buffer+sizeof(buffer),number/100.0);if(converted.ec!=std::errc())return false;operation["input"]=std::string(buffer,converted.ptr);}
+ }
+ if(const auto parsed=dateLiteral(trimmed)){
+  const auto serial=date1904_?QDate(1904,1,1).daysTo(parsed->date):QDate(1899,12,31).daysTo(parsed->date)+(parsed->date>=QDate(1900,3,1)?1:0);
+  operation["input"]=QString::number(serial).toStdString();if(!style.contains("numberFormat")||style.value("numberFormat",std::string())=="General")operation["style"]={{"numberFormat",parsed->format.toStdString()}};
  }
  return apply(Json::array({std::move(operation)}));
 }

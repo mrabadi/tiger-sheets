@@ -34,6 +34,7 @@
 #include "tigersheets/report_worker.hpp"
 #include "tigersheets/snapshot_capture.hpp"
 #include "tigersheets/selection_statistics.hpp"
+#include "tigersheets/formatting.hpp"
 #include <QAction>
 #include <algorithm>
 #include <atomic>
@@ -90,6 +91,27 @@
 static void initializeTigerResources(){Q_INIT_RESOURCE(tiger_sheets);}
 namespace tigersheets {
 namespace {
+int numberFormatCategory(const std::string& format){
+ const auto code=QString::fromStdString(format).trimmed();
+ if(code.isEmpty()||code.compare("General",Qt::CaseInsensitive)==0)return 0;
+ if(code=="@")return 6;
+ if(dateNumberFormat(format))return 5;
+ const auto isCurrency=[](QChar ch){return ch=='$'||ch==QChar(0x20ac)||ch==QChar(0x00a3)||ch==QChar(0x00a5);};
+ bool quoted=false,spacing=false,percent=false,currency=false;
+ for(int i=0;i<code.size();++i){
+  const auto ch=code[i];if(ch=='"'){quoted=!quoted;continue;}
+  if(ch=='\\'){if(i+1<code.size())currency|=isCurrency(code[++i]);continue;}
+  if(!quoted&&ch=='['){const auto close=code.indexOf(']',i+1);if(close<0)break;auto directive=code.mid(i+1,close-i-1);if(directive.startsWith('$')){directive.remove(0,1);const auto locale=directive.lastIndexOf('-');if(locale>=0)directive.truncate(locale);currency|=!directive.isEmpty();}i=close;continue;}
+  currency|=isCurrency(ch);if(quoted)continue;
+  if(ch=='_'||ch=='*'){spacing=true;++i;continue;}if(ch=='%')percent=true;
+ }
+ if(percent)return 4;
+ static const QRegularExpression zeroDash(";\\s*(?:\"-\"|-)\\s*$");
+ if((currency&&spacing)||(code.count(';')>=2&&zeroDash.match(code).hasMatch()))return 3;
+ if(currency)return 2;
+ static const QRegularExpression number("^[0#?,]+(?:\\.[0#?]+)?(?:;(?:-?[0#?,]+(?:\\.[0#?]+)?|\\([0#?,]+(?:\\.[0#?]+)?\\)))?$");
+ return number.match(code).hasMatch()?1:7;
+}
 struct CodexToolJob {
  std::shared_ptr<Json> request;
  WorkbookTools::ProposalState previous;
@@ -107,7 +129,7 @@ std::shared_ptr<CodexToolJob> newCodexToolJob(){return {new CodexToolJob,[](Code
 }
 struct MainWindow::State {
  WorkbookSession session;WorksheetModel* model{};QTableView* grid{};QLineEdit* formula{};QLineEdit* name{};
- QTabWidget* ribbon{};QTabBar* sheets{};QLabel* saveState{};QLabel* selection{};QLabel* filename{};QTimer* timer{};SelectionStatistics* statistics{};std::uint64_t selectionSerial=0;
+ QTabWidget* ribbon{};QTabBar* sheets{};QComboBox* numberFormats{};QLabel* saveState{};QLabel* selection{};QLabel* filename{};QTimer* timer{};SelectionStatistics* statistics{};std::uint64_t selectionSerial=0;
  QDockWidget* dock{};CodexClient* codex{};CodexControls* codexControls{};QTextBrowser* transcript{};QPlainTextEdit* composer{};QLabel* connection{};QPushButton* codexConnection{};QPushButton* codexSend{};QPushButton* codexStop{};QWidget* previewBar{};
  std::optional<WorkbookPackage> package;std::string originalBytes;QString path,error;Json calculated=Json::object();std::optional<std::uint64_t> previewContext;bool dirty=false,showFormulas=false;
  QTableView* frozen{};CalculationScheduler* scheduler{};Json retainedLinks=Json::array();std::uint64_t contextGeneration=0;QLabel* linkStatus{};
@@ -137,6 +159,8 @@ struct MainWindow::State {
   if(auto* editor=dynamic_cast<FormulaLineEdit*>(formula))editor->setWorkbookCompletions(completionNames,completionFunctions);
  }
  QItemSelectionRange range()const{auto r=grid->selectionModel()->selection();auto i=grid->currentIndex();if(!i.isValid())i=model->index(0,0);return r.isEmpty()?QItemSelectionRange(i,i):r.front();}
+ void syncNumberFormat(){const QSignalBlocker blocked(numberFormats);const auto current=grid->currentIndex();numberFormats->setCurrentIndex(current.isValid()?numberFormatCategory(model->cellStyle(current.row(),current.column()).value("numberFormat",std::string("General"))):0);}
+ void syncFormulaBar(){if(formula->isModified()||static_cast<WorksheetView*>(grid)->activeCellEditor())return;const auto current=grid->currentIndex();if(!current.isValid())return;const auto text=model->data(current,Qt::EditRole).toString();if(formula->text()!=text)formula->setText(text);}
  const Json& bookView()const{const auto* preview=session.previewView();return preview?*preview:session.snapshotView();}
  void rebuildSheets(){QSignalBlocker block(sheets);while(sheets->count())sheets->removeTab(0);int i=0,current=0;const auto& book=bookView();for(const auto& sh:book["sheets"]){sheets->addTab(QString::fromStdString(sh["name"].get<std::string>()));sheets->setTabData(i,QString::fromStdString(sh["id"].get<std::string>()));if(sh["id"]==model->sheetId().toStdString())current=i;++i;}sheets->setCurrentIndex(current);refreshCompletions(book);}
  void refreshFinancialFields(){if(!financialPane)return;Json sheetList=Json::array();for(const auto& sheet:session.snapshotView().at("sheets"))sheetList.push_back({{"id",sheet.at("id")},{"name",sheet.at("name")}});const auto selected=range();Json selection={{"sheet",model->sheetId().toStdString()},{"row",selected.top()+1},{"col",selected.left()+1}};if(const auto* cell=session.cellAt(model->sheetId().toStdString(),selected.top()+1,selected.left()+1)){const auto raw=cell->at("input").get<std::string>();double number=0;const auto parsed=std::from_chars(raw.data(),raw.data()+raw.size(),number);if(raw.empty()){selection["type"]="blank";selection["value"]=nullptr;}else if(raw.starts_with('\'')){selection["type"]="string";selection["value"]=raw.substr(1);}else if(raw=="TRUE"||raw=="FALSE"){selection["type"]="boolean";selection["value"]=raw=="TRUE";}else if(parsed.ec==std::errc()&&parsed.ptr==raw.data()+raw.size()&&std::isfinite(number)){selection["type"]="number";selection["value"]=number;}else if(!raw.starts_with('=')){selection["type"]="string";selection["value"]=raw;}}financialSelection=selection;const auto definitions=session.snapshotView().find("financialModels");static const Json empty=Json::array();financialPane->setWorkbookContext(sheetList,model->sheetId(),selection,definitions==session.snapshotView().end()?empty:*definitions);financialPane->setIterationSettings(session.snapshotView().value("settings",Json::object()));}
@@ -159,7 +183,8 @@ MainWindow::MainWindow(QWidget* p):QMainWindow(p),state_(std::make_unique<State>
  auto* home=tab("Home");auto* clip=group(home,"Clipboard");add(clip,"Paste","paste");add(clip,"Copy","copy");add(clip,"Cut","cut");add(clip,"▾","paste.special");
  auto* fonts=group(home,"Font");auto* family=new QFontComboBox;family->setMaximumWidth(140);fonts->addWidget(family);auto* size=new QSpinBox;size->setRange(6,96);size->setValue(11);size->setMaximumWidth(60);fonts->addWidget(size);connect(family,&QFontComboBox::currentFontChanged,this,[&s](QFont f){s.format({{"fontFamily",f.family().toStdString()}});});connect(size,qOverload<int>(&QSpinBox::valueChanged),this,[&s](int v){s.format({{"fontSize",v}});});add(fonts,"B","style.bold");add(fonts,"I","style.italic");add(fonts,"U","style.underline");add(fonts,"A","style.color");add(fonts,"Fill","style.fill");
  auto* align=group(home,"Alignment");add(align,"Left","align.left");add(align,"Center","align.center");add(align,"Right","align.right");add(align,"Wrap","style.wrap");
- auto* number=group(home,"Number");auto* formats=new QComboBox;formats->addItems({"General","Number","Currency","Accounting","Percent","Date","Custom…"});number->addWidget(formats);add(number,"%","number.percent");connect(formats,qOverload<int>(&QComboBox::activated),this,[this,&s](int index){const char* fs[]={"General","#,##0.00","$#,##0.00","$#,##0.00;($#,##0.00);-","0.0%","m/d/yyyy"};if(index<6)s.format({{"numberFormat",fs[index]}});else{bool ok=false;auto f=QInputDialog::getText(this,"Custom number format","Format",QLineEdit::Normal,"#,##0.00",&ok);if(ok)s.format({{"numberFormat",f.toStdString()}});}});
+ auto* number=group(home,"Number");auto* formats=new QComboBox;s.numberFormats=formats;formats->setObjectName("ribbon.numberFormat");formats->setAccessibleName("Number format");formats->addItems({"General","Number","Currency","Accounting","Percent","Date","Text","Custom…"});number->addWidget(formats);add(number,"%","number.percent");connect(formats,qOverload<int>(&QComboBox::activated),this,[this,&s](int index){const char* fs[]={"General","#,##0.00","$#,##0.00","$#,##0.00;($#,##0.00);-","0.0%","m/d/yyyy","@"};if(index<7)s.format({{"numberFormat",fs[index]}});else executeCommand("cells.format",{{"category","Custom"}});s.syncNumberFormat();});
+ auto* formatOptions=makeButton(body,"Format…",[this]{executeCommand("cells.format");});formatOptions->setObjectName("ribbon.numberFormatOptions");formatOptions->setAccessibleName("Number format options");number->addWidget(formatOptions);
  auto* edit=group(home,"Editing");add(edit,"Σ","autosum");add(edit,"Fill ↓","fill.down");home->addStretch();
  auto* insert=tab("Insert");auto* cg=group(insert,"Charts");add(cg,"Insert chart","chart.insert");add(cg,"Remove charts","chart.clear");auto* sg=group(insert,"Sheets");add(sg,"New sheet","sheet.add");add(sg,"Rename","sheet.rename");insert->addStretch();
  auto* page=tab("Page Layout");auto* pg=group(page,"Print");add(pg,"Print settings","print.settings");add(pg,"Print","print");add(pg,"Export PDF","export.pdf");page->addStretch();
@@ -185,7 +210,9 @@ MainWindow::MainWindow(QWidget* p):QMainWindow(p),state_(std::make_unique<State>
  setCentralWidget(body);state_->grid->setCurrentIndex(state_->model->index(0,0));
  connect(state_->formula,&QLineEdit::returnPressed,this,[this]{state_->model->setData(state_->grid->currentIndex(),state_->formula->text(),Qt::EditRole);state_->formula->setModified(false);state_->grid->setFocus();});
  connect(state_->formula,&QLineEdit::editingFinished,this,[this]{if(state_->formula->isModified())commitEditor();});
- connect(state_->grid->selectionModel(),&QItemSelectionModel::currentChanged,this,[this](const QModelIndex&i){if(!i.isValid())return;state_->formula->setText(state_->model->raw(i.row(),i.column()));state_->name->setText(QString::fromStdString(columnName(i.column()+1))+QString::number(i.row()+1));});
+ connect(state_->grid->selectionModel(),&QItemSelectionModel::currentChanged,this,[this](const QModelIndex&i){if(!i.isValid())return;state_->formula->setText(state_->model->data(i,Qt::EditRole).toString());state_->name->setText(QString::fromStdString(columnName(i.column()+1))+QString::number(i.row()+1));state_->syncNumberFormat();});
+ connect(s.model,&QAbstractItemModel::dataChanged,this,[this]{state_->syncNumberFormat();state_->syncFormulaBar();});
+ connect(s.model,&QAbstractItemModel::modelReset,this,[this]{state_->syncNumberFormat();state_->syncFormulaBar();});
  connect(s.grid->selectionModel(),&QItemSelectionModel::selectionChanged,this,[this]{updateSelectionStatus();});
  connect(s.name,&QLineEdit::returnPressed,this,[&s]{auto text=s.name->text().split(':');QRegularExpression rx("^\\$?([A-Za-z]+)\\$?([1-9][0-9]*)$");auto a=rx.match(text[0]),b=rx.match(text.value(1,text[0]));if(!a.hasMatch()||!b.hasMatch())return;auto first=s.model->index(a.captured(2).toInt()-1,columnNumber(a.captured(1).toStdString())-1),last=s.model->index(b.captured(2).toInt()-1,columnNumber(b.captured(1).toStdString())-1);if(!first.isValid()||!last.isValid())return;s.grid->setCurrentIndex(first);s.grid->selectionModel()->select(QItemSelection(first,last),QItemSelectionModel::ClearAndSelect);s.grid->scrollTo(first);s.grid->setFocus();});
  connect(s.sheets,&QTabBar::currentChanged,this,[this](int i){

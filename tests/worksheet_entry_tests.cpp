@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QPointer>
 #include <QAccessible>
+#include <QPaintEvent>
 #include <iostream>
 #include <stdexcept>
 using namespace tigersheets;
@@ -19,6 +20,12 @@ struct Fixture {
  ~Fixture(){view.cancelEntry();}
  Fixture(){auto* layout=new QVBoxLayout(&window);layout->addWidget(&bar);layout->addWidget(&view);view.setModel(&model);view.setFormulaBar(&bar);window.resize(820,560);window.show();QApplication::processEvents();view.setCurrentIndex(model.index(0,0));}
 };
+class PaintObserver:public QObject {
+public:
+ QRegion painted;
+protected:
+ bool eventFilter(QObject*,QEvent* event)override{if(event->type()==QEvent::Paint)painted+=static_cast<QPaintEvent*>(event)->region();return false;}
+};
 void calculationPreservesDirtyEntry(){
  Fixture fixture;fixture.model.setData(fixture.model.index(0,0),"=1+2",Qt::EditRole);fixture.view.setFocus();fixture.view.edit(fixture.model.index(0,0));QApplication::processEvents();
  auto* editor=fixture.view.activeCellEditor();require(editor!=nullptr,"native in-cell editor opens");QTest::keyClick(editor,Qt::Key_End);QTest::keyClicks(editor,"+9");
@@ -29,6 +36,32 @@ void calculationPreservesDirtyEntry(){
  fixture.view.cancelEntry();
 }
 int blueEdge(const QImage& image,const QRect& first,const QRect& last){int pixels=0;for(int y=std::max(0,first.top()+2);y<std::min(image.height(),last.bottom()-2);++y)for(int x=std::max(0,first.left());x<=std::min(image.width()-1,first.left()+2);++x){const auto color=image.pixelColor(x,y);if(color.blue()>color.red()+40&&color.blue()>color.green()+20)++pixels;}return pixels;}
+void selectedFormulaHasReferenceOutline(){
+ Fixture fixture;const auto formula=fixture.model.index(0,3);require(fixture.model.setData(formula,"=SUM(B1:B3)",Qt::EditRole),"seed a committed formula for ordinary selection");fixture.view.setFocus();QApplication::processEvents();const auto before=fixture.session.snapshot();PaintObserver paint;fixture.view.viewport()->installEventFilter(&paint);
+ QTest::mouseClick(fixture.view.viewport(),Qt::LeftButton,Qt::NoModifier,fixture.view.visualRect(formula).center());QApplication::processEvents();
+ const auto first=fixture.view.visualRect(fixture.model.index(0,1)),last=fixture.view.visualRect(fixture.model.index(2,1));
+ const bool referencesRepainted=paint.painted.contains(first.united(last));
+ require(blueEdge(fixture.view.viewport()->grab().toImage(),first,last)>20,"clicking a formula cell must visibly outline its referenced range without entering edit mode");
+ require(referencesRepainted,"ordinary formula selection must repaint referenced cells outside the old and new selected cell rectangles");
+ require(!fixture.view.activeCellEditor()&&fixture.view.currentIndex()==formula&&fixture.session.snapshot()==before,"selected-formula outlines neither open an editor nor mutate or navigate the workbook");
+ paint.painted=QRegion();const auto plain=fixture.model.index(4,0);QTest::mouseClick(fixture.view.viewport(),Qt::LeftButton,Qt::NoModifier,fixture.view.visualRect(plain).center());QApplication::processEvents();const bool previousReferencesRepainted=paint.painted.contains(first.united(last));
+ require(blueEdge(fixture.view.viewport()->grab().toImage(),first,last)==0,"selecting a nonformula cell clears the previous formula's reference outlines");
+ require(previousReferencesRepainted,"nonformula selection must repaint and clear outlines outside the changed selection rectangles");
+ require(!fixture.view.activeCellEditor()&&fixture.session.snapshot()==before,"clearing selection outlines leaves the workbook and editor state unchanged");
+}
+void selectedFormulaChangeRefreshesReferenceOutlines(){
+ Fixture fixture;const auto formula=fixture.model.index(0,3);require(fixture.model.setData(formula,"=SUM(B1:B3)",Qt::EditRole),"seed selected-formula refresh fixture");fixture.view.setFocus();fixture.view.setCurrentIndex(formula);QApplication::processEvents();const auto first=fixture.view.visualRect(fixture.model.index(0,1)),last=fixture.view.visualRect(fixture.model.index(2,1)),nextFirst=fixture.view.visualRect(fixture.model.index(0,2)),nextLast=fixture.view.visualRect(fixture.model.index(2,2));PaintObserver paint;fixture.view.viewport()->installEventFilter(&paint);
+ require(fixture.model.setData(formula,"=SUM(C1:C3)",Qt::EditRole),"replace the current cell's committed formula");QApplication::processEvents();const bool referencesRepainted=paint.painted.contains(first.united(nextLast));
+ require(referencesRepainted,"changing a selected formula must repaint both old and new references outside the changed cell");const auto image=fixture.view.viewport()->grab().toImage();require(blueEdge(image,first,last)==0&&blueEdge(image,nextFirst,nextLast)>20,"selected-formula replacement clears the old references and outlines the new ones");
+ paint.painted=QRegion();require(fixture.model.setData(formula,"plain text",Qt::EditRole),"replace selected formula with plain text");QApplication::processEvents();const bool clearedReferencesRepainted=paint.painted.contains(nextFirst.united(nextLast));
+ require(clearedReferencesRepainted&&blueEdge(fixture.view.viewport()->grab().toImage(),nextFirst,nextLast)==0,"replacing a selected formula with plain text must repaint and clear its references");require(!fixture.view.activeCellEditor()&&fixture.view.currentIndex()==formula,"formula-change repaint preserves selection and does not open an editor");
+}
+void draftOutlinesOverrideSelectedFormula(){
+ Fixture fixture;const auto formula=fixture.model.index(0,3);require(fixture.model.setData(formula,"=SUM(B1:B3)",Qt::EditRole),"seed selected formula for draft precedence");fixture.view.setCurrentIndex(formula);const auto before=fixture.session.snapshot();const auto first=fixture.view.visualRect(fixture.model.index(0,1)),last=fixture.view.visualRect(fixture.model.index(2,1)),draftFirst=fixture.view.visualRect(fixture.model.index(0,2)),draftLast=fixture.view.visualRect(fixture.model.index(2,2));
+ fixture.bar.setFocus();fixture.bar.setText("=SUM(C1:C3)");QApplication::processEvents();const auto draft=fixture.view.viewport()->grab().toImage();require(blueEdge(draft,first,last)==0&&blueEdge(draft,draftFirst,draftLast)>20,"active formula-bar draft outlines replace the selected formula's committed references");
+ fixture.bar.setText("plain text draft");QApplication::processEvents();const auto plain=fixture.view.viewport()->grab().toImage();require(blueEdge(plain,first,last)==0&&blueEdge(plain,draftFirst,draftLast)==0,"an active nonformula draft suppresses committed selected-formula outlines");
+ fixture.view.cancelEntry();QApplication::processEvents();const auto cancelled=fixture.view.viewport()->grab().toImage();require(blueEdge(cancelled,first,last)>20&&blueEdge(cancelled,draftFirst,draftLast)==0,"cancelling a draft restores the selected formula's committed outlines");require(fixture.session.snapshot()==before&&!fixture.view.activeCellEditor()&&fixture.view.currentIndex()==formula,"outline precedence and cancellation preserve canonical data and selection");
+}
 void activeDraftHasReferenceOutline(){
  Fixture fixture;fixture.view.setCurrentIndex(fixture.model.index(0,3));fixture.bar.setFocus();const auto before=fixture.session.snapshot();QTest::keyClicks(&fixture.bar,"=SUM(B1:B3)");QApplication::processEvents();
  const auto first=fixture.view.visualRect(fixture.model.index(0,1)),last=fixture.view.visualRect(fixture.model.index(2,1));
@@ -108,4 +141,4 @@ void activeCellIsAccessible(){
  QTest::keyClick(editor,Qt::Key_End);QTest::keyClicks(editor,"+4");require(accessible->text(QAccessible::Value)=="=1+2+4","accessible value follows keyboard formula editing");
  fixture.view.cancelEntry();require(fixture.model.raw(0,0)=="=1+2","cancelling the accessible editor preserves the committed formula");
 }
-int main(int argc,char** argv){QApplication app(argc,argv);try{std::cout<<"Qt platform: "<<QApplication::platformName().toStdString()<<'\n';const auto selected=argc>1?std::string(argv[1]):std::string();for(auto test:{std::pair{"dirty",calculationPreservesDirtyEntry},std::pair{"outline",activeDraftHasReferenceOutline},std::pair{"keyboard",keyboardPointingIsUncommittedAndCompletionFirst},std::pair{"pivot_point",pivotPointingHook},std::pair{"teardown",standaloneViewCanCloseWithAnActiveDraft},std::pair{"border",activeCellHasSuiteBorder},std::pair{"bounds",outlinesRespectSheetAndViewportBounds},std::pair{"bar_first",formulaBarCanBeDestroyedBeforeTheView},std::pair{"clean_selection",calculationPreservesUnmodifiedEditorSelection},std::pair{"accessible",activeCellIsAccessible}})if(selected.empty()||selected==test.first)test.second();std::cout<<"worksheet entry tests passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}
+int main(int argc,char** argv){QApplication app(argc,argv);try{std::cout<<"Qt platform: "<<QApplication::platformName().toStdString()<<'\n';const auto selected=argc>1?std::string(argv[1]):std::string();for(auto test:{std::pair{"dirty",calculationPreservesDirtyEntry},std::pair{"selected_outline",selectedFormulaHasReferenceOutline},std::pair{"selected_refresh",selectedFormulaChangeRefreshesReferenceOutlines},std::pair{"selected_draft",draftOutlinesOverrideSelectedFormula},std::pair{"outline",activeDraftHasReferenceOutline},std::pair{"keyboard",keyboardPointingIsUncommittedAndCompletionFirst},std::pair{"pivot_point",pivotPointingHook},std::pair{"teardown",standaloneViewCanCloseWithAnActiveDraft},std::pair{"border",activeCellHasSuiteBorder},std::pair{"bounds",outlinesRespectSheetAndViewportBounds},std::pair{"bar_first",formulaBarCanBeDestroyedBeforeTheView},std::pair{"clean_selection",calculationPreservesUnmodifiedEditorSelection},std::pair{"accessible",activeCellIsAccessible}})if(selected.empty()||selected==test.first)test.second();std::cout<<"worksheet entry tests passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}

@@ -1,6 +1,7 @@
 #include "tigersheets/worksheet_view.hpp"
 #include "tigersheets/grid.hpp"
 #include "tigersheets/references.hpp"
+#include "tigersheets/calculation.hpp"
 #include <QApplication>
 #include <QHeaderView>
 #include <QMouseEvent>
@@ -8,6 +9,8 @@
 #include <QTest>
 #include <iostream>
 #include <stdexcept>
+#include <array>
+#include <vector>
 using namespace tigersheets;
 void require(bool value,const char* message){if(!value)throw std::runtime_error(message);}
 struct Fixture {
@@ -35,6 +38,24 @@ void verticalMixedReferences(){
  require(fixture.model.raw(5,2)=="=$B6*C$4+$B$2"&&fixture.model.raw(6,3).isEmpty(),"vertical fill preserves its source and neighboring cells");
  require(fixture.session.undo(),"one-row fill is undoable");fixture.model.refresh();require(fixture.session.snapshot().at("sheets")==before.at("sheets"),"one undo restores one-row fill");
 }
+void formattingFillsAcrossAndDown(){
+ struct FormatCase {const char* format;const char* seed;std::array<const char*,4> displays;bool date;};
+ const std::vector<FormatCase> formats={{"mmm-yy","45930",{"Oct-25","Nov-25","Dec-25","Jan-26"},true},{"0.00%","0.0625",{"12.50%","25.00%","50.00%","100.00%"},false},{"#,##0.000","617.25",{"1,234.500","2,469.000","4,938.000","9,876.000"},false},{"$#,##0.00;($#,##0.00);-","-617.25",{"($1,234.50)","($2,469.00)","($4,938.00)","($9,876.00)"},false}};
+ for(const auto& format:formats)for(const bool horizontal:{true,false}){
+  Fixture fixture;const auto sheet=fixture.model.sheetId().toStdString();const Json sourceStyle={{"numberFormat",format.format},{"bold",true},{"fill","#eaf4ee"},{"alignment","right"}};const auto sourceFormula=std::string(format.date?"=EOMONTH(":"=")+(horizontal?"B6":"C5")+(format.date?",1)":"*2");
+  Json operations=Json::array({{{"type","set_cell"},{"sheet",sheet},{"row",horizontal?6:5},{"col",horizontal?2:3},{"input",format.seed}},{{"type","set_cell"},{"sheet",sheet},{"row",6},{"col",3},{"input",sourceFormula},{"style",sourceStyle}}});
+  for(int offset=1;offset<=3;++offset)operations.push_back({{"type","set_cell"},{"sheet",sheet},{"row",6+(horizontal?0:offset)},{"col",3+(horizontal?offset:0)},{"input","999"},{"style",{{"numberFormat","0.0%"},{"italic",true},{"color","#ff0000"}}}});
+  require(fixture.model.apply(operations),"seed formatted source and conflicting populated destinations");fixture.model.setCalculated(CalculationEngine().calculate(fixture.session.snapshotView()));require(fixture.model.data(fixture.model.index(5,2)).toString()==format.displays[0],"source formula displays its selected date, percent, decimal or negative-currency format");const auto before=fixture.session.snapshot();
+  fixture.startDrag(5,2);fixture.moveDrag(5+(horizontal?0:3),2+(horizontal?3:0));require(fixture.session.snapshot()==before,"formatted fill remains a preview until the actual mouse release");fixture.releaseDrag(5+(horizontal?0:3),2+(horizontal?3:0));fixture.model.setCalculated(CalculationEngine().calculate(fixture.session.snapshotView()));
+  for(int offset=0;offset<=3;++offset){const int row=5+(horizontal?0:offset),col=2+(horizontal?offset:0);const auto previous=horizontal?columnName(2+offset)+"6":"C"+std::to_string(5+offset);const auto expected=std::string(format.date?"=EOMONTH(":"=")+previous+(format.date?",1)":"*2");require(fixture.model.raw(row,col).toStdString()==expected,"formatted fill shifts the formula in the dragged direction");require(fixture.model.cellStyle(row,col)==sourceStyle,"formatted fill replaces destination formatting with the complete source style");require(fixture.model.data(fixture.model.index(row,col)).toString()==format.displays[offset],"drag-filled formulas display the source date, percent, decimal and currency choices after real calculation");}
+  require(fixture.session.undo(),"formatted fill creates an undoable action");fixture.model.refresh();require(fixture.session.snapshot().at("sheets")==before.at("sheets"),"one Undo restores every destination formula, value and prior style after formatted fill");
+ }
+}
+void inferredDateFormulaFormatFills(){
+ Fixture fixture;require(fixture.model.setData(fixture.model.index(2,1),"9/30/2025",Qt::EditRole)&&fixture.model.setData(fixture.model.index(2,2),"=EOMONTH(B3,1)",Qt::EditRole),"enter a date and the next-month formula without manually setting a format");fixture.model.setCalculated(CalculationEngine().calculate(fixture.session.snapshotView()));require(fixture.model.data(fixture.model.index(2,2)).toString()=="10/31/2025","new EOMONTH formula must display a date before filling");const auto style=fixture.model.cellStyle(2,2),before=fixture.session.snapshot();fixture.startDrag(2,2);fixture.moveDrag(2,5);fixture.releaseDrag(2,5);fixture.model.setCalculated(CalculationEngine().calculate(fixture.session.snapshotView()));const std::array<const char*,4> displays={"10/31/2025","11/30/2025","12/31/2025","1/31/2026"};
+ for(int offset=0;offset<=3;++offset){require(fixture.model.raw(2,2+offset).toStdString()=="=EOMONTH("+columnName(2+offset)+"3,1)","inferred-date fill shifts each preceding-month reference");require(fixture.model.cellStyle(2,2+offset)==style&&fixture.model.data(fixture.model.index(2,2+offset)).toString()==displays[offset],"inferred source date format propagates through the filled monthly sequence");}
+ require(fixture.session.undo(),"inferred-date fill is undoable");fixture.model.refresh();require(fixture.session.snapshot().at("sheets")==before.at("sheets"),"one Undo restores the inferred-date sequence's original cells and formatting");
+}
 void escapeCancelsDrag(){
  Fixture fixture;require(fixture.model.setData(fixture.model.index(5,2),"=SUM(C3:C5)",Qt::EditRole),"seed cancel fixture");const auto before=fixture.session.snapshot();
  fixture.startDrag(5,2);fixture.moveDrag(5,8);QTest::keyClick(&fixture.view,Qt::Key_Escape);fixture.releaseDrag(5,8);
@@ -58,4 +79,4 @@ void edgeDragScrollsToMoreColumns(){
  require(fixture.session.snapshot()==before,"edge scrolling remains an uncommitted fill preview");const QPoint endpoint(fixture.view.viewport()->width()-8,y);const auto target=fixture.view.indexAt(endpoint);require(target.isValid()&&target.column()>2,"scrolled endpoint identifies a later column");QTest::mouseRelease(fixture.view.viewport(),Qt::LeftButton,Qt::NoModifier,endpoint);QApplication::processEvents();
  require(fixture.model.raw(5,target.column()).toStdString()==shiftFormula("=C3*C4",0,target.column()-2),"releasing after edge scrolling fills through the newly visible endpoint");
 }
-int main(int argc,char** argv){QApplication app(argc,argv);try{const auto selected=argc>1?std::string(argv[1]):std::string();for(auto test:{std::pair{"horizontal",horizontalFormulas},std::pair{"vertical",verticalMixedReferences},std::pair{"escape",escapeCancelsDrag},std::pair{"handle",visibleHandleAndClickWithoutDragging},std::pair{"protected",previewAndMergedDestinationRemainProtected},std::pair{"scroll",edgeDragScrollsToMoreColumns}})if(selected.empty()||selected==test.first)test.second();std::cout<<"Worksheet fill handle tests passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}
+int main(int argc,char** argv){QApplication app(argc,argv);try{const auto selected=argc>1?std::string(argv[1]):std::string();for(auto test:{std::pair{"horizontal",horizontalFormulas},std::pair{"vertical",verticalMixedReferences},std::pair{"formats",formattingFillsAcrossAndDown},std::pair{"inferred_date",inferredDateFormulaFormatFills},std::pair{"escape",escapeCancelsDrag},std::pair{"handle",visibleHandleAndClickWithoutDragging},std::pair{"protected",previewAndMergedDestinationRemainProtected},std::pair{"scroll",edgeDragScrollsToMoreColumns}})if(selected.empty()||selected==test.first)test.second();std::cout<<"Worksheet fill handle tests passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}

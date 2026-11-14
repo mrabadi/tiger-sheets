@@ -1,5 +1,10 @@
 # Financial-model video acceptance
 
+This records the original tutorial acceptance run. The video replay has since
+been removed from the automated test suite; focused regression tests cover the
+individual spreadsheet and UI behaviors. The commands and results below are
+historical evidence, rather than a replay test maintained by the current source.
+
 Reference: [Create a Financial Model in 10 Minutes!](https://www.youtube.com/watch?v=DBNVhmI6WtQ), The Financial Controller. The [source checklist](validation/video-financial-model/video-checklist.md) contains 49 observed action/checkpoint descriptions, including uncertainties in the source recording.
 
 ## Result

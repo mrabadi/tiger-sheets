@@ -1,5 +1,6 @@
 #include "tigersheets/worksheet_cell_format.hpp"
 #include "tigersheets/grid.hpp"
+#include "tigersheets/formatting.hpp"
 #include <QTableView>
 #include <QCheckBox>
 #include <QColorDialog>
@@ -12,6 +13,7 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QPushButton>
+#include <QRegularExpression>
 #include <QSpinBox>
 #include <QTabWidget>
 #include <QVBoxLayout>
@@ -45,14 +47,50 @@ QItemSelectionRange selectedRange(WorksheetModel& model,QTableView& view){
 bool applyStyle(WorksheetModel& model,const QItemSelectionRange& range,const Json& style){
  const auto validated=normalizedStyle(style);if(validated.empty())return true;Json operations=Json::array();for(int row=range.top();row<=range.bottom();++row)for(int col=range.left();col<=range.right();++col)operations.push_back({{"type","set_style"},{"sheet",model.sheetId().toStdString()},{"row",row+1},{"col",col+1},{"style",validated}});return model.apply(operations);
 }
+struct NumberOptions {
+ QString category="custom";
+ int decimals=2;
+ bool grouping=false;
+ bool parentheses=false;
+ QString symbol="$";
+};
+NumberOptions numberOptions(const QString& code){
+ NumberOptions options;
+ if(code.isEmpty()||code.compare("General",Qt::CaseInsensitive)==0){options.category="general";return options;}
+ if(code=="@"){options.category="text";return options;}
+ if(dateNumberFormat(code.toStdString())){options.category="date";return options;}
+ static const QRegularExpression percent("^0(?:\\.(0{1,30}))?%$");const auto percentage=percent.match(code);if(percentage.hasMatch()){options.category="percentage";options.decimals=percentage.captured(1).size();return options;}
+ const auto sections=code.split(';');
+ static const QRegularExpression numeric("^(\\$|€|£|¥|\"\\$\"|\"€\"|\"£\"|\"¥\")?(0|#,##0)(?:\\.(0{1,30}))?$");
+ const auto match=numeric.match(sections.front());
+ if(!match.hasMatch()||sections.size()>3||(sections.size()>1&&sections[1]!="("+sections[0]+")")||(sections.size()==3&&sections[2]!="-"))return options;
+ options.category=sections.size()==3?"accounting":match.captured(1).isEmpty()?"number":"currency";options.decimals=match.captured(3).size();options.grouping=match.captured(2).startsWith('#');options.parentheses=sections.size()>1;if(!match.captured(1).isEmpty()){options.symbol=match.captured(1);options.symbol.remove('"');}else if(options.category=="accounting")options.symbol="";return options;
+}
 }
 bool formatWorksheetCells(QWidget* parent,WorksheetModel& model,QTableView& view,const Json& arguments){
  const auto range=selectedRange(model,view);if(arguments.contains("style"))return applyStyle(model,range,arguments.at("style"));
  const QModelIndex current=view.currentIndex().isValid()?view.currentIndex():QModelIndex(range.topLeft());const auto initial=model.cellStyle(current.row(),current.column());
- QDialog dialog(parent);dialog.setObjectName("formatCells.dialog");dialog.setAccessibleName("Format Cells");dialog.setWindowTitle("Format Cells");dialog.resize(420,330);auto* layout=new QVBoxLayout(&dialog);layout->setContentsMargins(10,10,10,10);layout->setSpacing(6);auto* tabs=new QTabWidget(&dialog);tabs->setObjectName("formatCells.tabs");tabs->setAccessibleName("Cell formatting categories");layout->addWidget(tabs);
+ QDialog dialog(parent);dialog.setObjectName("formatCells.dialog");dialog.setAccessibleName("Format Cells");dialog.setWindowTitle("Format Cells");dialog.resize(500,430);auto* layout=new QVBoxLayout(&dialog);layout->setContentsMargins(10,10,10,10);layout->setSpacing(6);auto* tabs=new QTabWidget(&dialog);tabs->setObjectName("formatCells.tabs");tabs->setAccessibleName("Cell formatting categories");layout->addWidget(tabs);
  auto page=[&](const char* title){auto* widget=new QWidget(tabs);auto* form=new QFormLayout(widget);form->setContentsMargins(10,10,10,10);form->setSpacing(7);tabs->addTab(widget,QString::fromLatin1(title));return form;};
  auto identify=[](QWidget* widget,const char* key,const char* label){widget->setObjectName(QString("formatCells.")+QString::fromLatin1(key));widget->setAccessibleName(QString::fromLatin1(label));};
- auto* numberPage=page("Number");auto* number=new QComboBox(&dialog);identify(number,"numberFormat","Number format");number->setEditable(true);number->addItems({"General","0","0.00","#,##0","#,##0.00","$#,##0.00","$#,##0.00;($#,##0.00);-","0%","0.00%","0.00E+00","m/d/yyyy","yyyy-mm-dd","h:mm","@"});number->setEditText(QString::fromStdString(initial.value("numberFormat",std::string("General"))));numberPage->addRow("&Format code",number);auto* numberHelp=new QLabel("Choose a format or enter a custom Excel format code.",&dialog);numberHelp->setWordWrap(true);numberPage->addRow(numberHelp);
+ auto* numberPage=page("Number");
+ auto* category=new QComboBox(&dialog);identify(category,"category","Number format category");for(const auto& [label,value]:{std::pair{"General","general"},std::pair{"Number","number"},std::pair{"Currency","currency"},std::pair{"Accounting","accounting"},std::pair{"Percentage","percentage"},std::pair{"Date","date"},std::pair{"Text","text"},std::pair{"Custom","custom"}})category->addItem(QString::fromLatin1(label),QString::fromLatin1(value));numberPage->addRow("&Category",category);
+ auto* decimals=new QSpinBox(&dialog);identify(decimals,"decimalPlaces","Decimal places");decimals->setRange(0,30);numberPage->addRow("&Decimal places",decimals);
+ auto* grouping=new QCheckBox("Use 1000 separator (,)",&dialog);identify(grouping,"thousandsSeparator","Use 1000 separator");numberPage->addRow(grouping);
+ auto* symbol=new QComboBox(&dialog);identify(symbol,"currencySymbol","Currency symbol");symbol->addItem("None","");for(const auto* value:{"$","€","£","¥"})symbol->addItem(QString::fromUtf8(value),QString::fromUtf8(value));numberPage->addRow("&Symbol",symbol);
+ auto* negatives=new QComboBox(&dialog);identify(negatives,"negativeStyle","Negative numbers");negatives->addItem("Minus sign","minus");negatives->addItem("Parentheses","parentheses");numberPage->addRow("&Negative numbers",negatives);
+ auto* date=new QComboBox(&dialog);identify(date,"dateFormat","Date type");for(const auto* code:{"m/d/yyyy","mm/dd/yyyy","d/m/yyyy","dd/mm/yyyy","m/d/yy","d/m/yy","yyyy-mm-dd","d-mmm-yy","mmmm d, yyyy","dddd, mmmm d, yyyy"})date->addItem(QString::fromLatin1(code),QString::fromLatin1(code));numberPage->addRow("&Type",date);
+ auto* number=new QComboBox(&dialog);identify(number,"numberFormat","Number format");number->setEditable(true);number->addItems({"General","0","0.00","#,##0","#,##0.00","$#,##0.00","$#,##0.00;($#,##0.00);-","0%","0.00%","0.00E+00","m/d/yyyy","yyyy-mm-dd","h:mm","@"});number->setEditText(QString::fromStdString(initial.value("numberFormat",std::string("General"))));numberPage->addRow("&Format code",number);
+ auto* sample=new QLabel(&dialog);identify(sample,"sample","Sample");sample->setTextFormat(Qt::PlainText);sample->setTextInteractionFlags(Qt::TextSelectableByMouse);numberPage->addRow("Sample",sample);
+ auto* numberHelp=new QLabel("Choose display options or enter a custom Excel format code. The underlying value is preserved.",&dialog);numberHelp->setWordWrap(true);numberPage->addRow(numberHelp);
+ bool updatingNumber=false;
+ auto updateSample=[&]{const auto numeric=model.numericValue(current.row(),current.column());if(!numeric){sample->setText(model.data(current).toString());return;}const auto settings=model.workbookView().value("settings",Json::object());const bool date1904=settings.value("date1904",false);double value=*numeric;const auto code=number->currentText().toStdString();if(!date1904&&value>0&&value<60&&dateNumberFormat(code))value+=1;sample->setText(QString::fromStdString(formattedValue(value,{{"numberFormat",code}},date1904)));};
+ auto showNumberOptions=[&]{const auto kind=category->currentData().toString();const bool currency=kind=="currency"||kind=="accounting";auto show=[&](QWidget* field,bool visible){field->setVisible(visible);if(auto* label=numberPage->labelForField(field))label->setVisible(visible);};show(decimals,kind=="number"||currency||kind=="percentage");show(grouping,kind=="number");show(symbol,currency);show(negatives,kind=="number"||currency);show(date,kind=="date");negatives->setEnabled(kind!="accounting");};
+ auto syncFromCode=[&]{if(updatingNumber)return;updatingNumber=true;const auto options=numberOptions(number->currentText());category->setCurrentIndex(category->findData(options.category));decimals->setValue(options.decimals);grouping->setChecked(options.grouping);symbol->setCurrentIndex(symbol->findData(options.symbol));negatives->setCurrentIndex(options.parentheses?1:0);if(options.category=="date"){int index=date->findData(number->currentText());if(index<0){date->addItem(number->currentText(),number->currentText());index=date->count()-1;}date->setCurrentIndex(index);}showNumberOptions();updateSample();updatingNumber=false;};
+ auto syncFromOptions=[&]{if(updatingNumber)return;updatingNumber=true;const auto kind=category->currentData().toString();const bool currency=kind=="currency"||kind=="accounting";if(kind=="general")number->setEditText("General");else if(kind=="text")number->setEditText("@");else if(kind=="date")number->setEditText(date->currentData().toString());else if(kind=="percentage"){QString code="0";if(decimals->value())code+="."+QString(decimals->value(),'0');number->setEditText(code+"%");}else if(kind=="number"||currency){if(kind=="accounting")negatives->setCurrentIndex(negatives->findData("parentheses"));QString code=currency?symbol->currentData().toString():QString();code+=currency||grouping->isChecked()?"#,##0":"0";if(decimals->value())code+="."+QString(decimals->value(),'0');if(negatives->currentData()=="parentheses")code+=";("+code+")";if(kind=="accounting")code+=";-";number->setEditText(code);}showNumberOptions();updateSample();updatingNumber=false;};
+ syncFromCode();
+ if(arguments.contains("category")&&arguments.at("category").is_string()){const auto requested=QString::fromStdString(arguments.at("category").get<std::string>()).toLower();const int index=category->findData(requested);if(index>=0){category->setCurrentIndex(index);showNumberOptions();}}
+ QObject::connect(number,&QComboBox::currentTextChanged,&dialog,syncFromCode);QObject::connect(category,qOverload<int>(&QComboBox::currentIndexChanged),&dialog,syncFromOptions);QObject::connect(decimals,qOverload<int>(&QSpinBox::valueChanged),&dialog,syncFromOptions);QObject::connect(grouping,&QCheckBox::toggled,&dialog,syncFromOptions);QObject::connect(symbol,qOverload<int>(&QComboBox::currentIndexChanged),&dialog,syncFromOptions);QObject::connect(negatives,qOverload<int>(&QComboBox::currentIndexChanged),&dialog,syncFromOptions);QObject::connect(date,qOverload<int>(&QComboBox::currentIndexChanged),&dialog,syncFromOptions);
  auto* alignmentPage=page("Alignment");auto* alignment=new QComboBox(&dialog);identify(alignment,"alignment","Horizontal alignment");for(const auto& [label,value]:{std::pair{"General",""},std::pair{"Left","left"},std::pair{"Center","center"},std::pair{"Right","right"}})alignment->addItem(QString::fromLatin1(label),QString::fromLatin1(value));alignment->setCurrentIndex(std::max(0,alignment->findData(QString::fromStdString(initial.value("alignment",std::string())))));alignmentPage->addRow("&Horizontal",alignment);
  auto* fontPage=page("Font");auto* family=new QFontComboBox(&dialog);identify(family,"fontFamily","Font family");family->setCurrentFont(QFont(QString::fromStdString(initial.value("fontFamily",std::string("Calibri")))));fontPage->addRow("&Font",family);auto* size=new QSpinBox(&dialog);identify(size,"fontSize","Font size");size->setRange(1,400);size->setValue(static_cast<int>(initial.value("fontSize",11.0)));fontPage->addRow("&Size",size);
  auto flag=[&](const char* key,const char* title){auto* check=new QCheckBox(QString::fromLatin1(title),&dialog);identify(check,key,title);check->setChecked(initial.value(key,false));fontPage->addRow(check);return check;};auto* bold=flag("bold","Bold");auto* italic=flag("italic","Italic");auto* underline=flag("underline","Underline");
