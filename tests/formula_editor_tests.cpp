@@ -32,6 +32,38 @@ QStringList suggestions(const FormulaLineEdit& editor) {
     for(int i=0;i<popup->count();++i)result<<popup->item(i)->data(Qt::UserRole).toString();
     return result;
 }
+void sourceFunctionSuggestionsHaveGraphicalGlyphs() {
+    FormulaLineEdit editor;configure(editor);QSignalSpy finished(&editor,&QLineEdit::editingFinished);
+    QTest::keyClicks(&editor,"=-SUM(F$40:F$42)*F");QApplication::processEvents();
+    auto* popup=editor.completionPopup();require(popup->isVisible()&&popup->count()>4&&popup->currentItem()->data(Qt::UserRole).toString()=="F.DIST","source partial-column expression offers its real F function list");
+    for(int row=0;row<qMin(8,popup->count());++row){
+        const auto* item=popup->item(row);require(!item->icon().isNull(),"source function suggestions expose a graphical fx decoration rather than text-only rows");
+        const auto image=item->icon().pixmap(16,16).toImage();int ink=0;
+        for(int y=0;y<image.height();++y)for(int x=0;x<image.width();++x)if(image.pixelColor(x,y).alpha()>80&&image.pixelColor(x,y).lightness()<180)++ink;
+        require(ink>=20,"the actual function decoration has visible strokes at the source 16-pixel size");
+        bool leftRim=false;for(int y=6;y<=9;++y)for(int x=0;x<=2;++x)leftRim|=image.pixelColor(x,y).alpha()>80&&image.pixelColor(x,y).lightness()<180;
+        require(leftRim,"the source fx decoration includes its enclosing circular rim");
+    }
+    const auto selectedRect=popup->visualRect(popup->model()->index(0,0));const auto popupPixels=popup->viewport()->grab().toImage();
+    require(popupPixels.pixelColor(selectedRect.left()+1,selectedRect.center().y())==QColor(Qt::white),"the selected source row keeps its graphical icon column white beside the text highlight");
+    const auto before=editor.text();QTest::keyClick(&editor,Qt::Key_Down);QTest::keyClick(&editor,Qt::Key_Up);require(editor.text()==before&&finished.isEmpty(),"graphical suggestions retain native keyboard selection without committing the draft");
+    if(const auto path=qEnvironmentVariable("TIGERSHEETS_COMPLETION_ICON_CAPTURE");!path.isEmpty())require(popup->grab().save(path),"retain actual source-shaped function suggestion pixels");
+    QTest::keyClick(&editor,Qt::Key_Tab);require(editor.text()=="=-SUM(F$40:F$42)*F.DIST("&&finished.isEmpty(),"Tab accepts the selected decorated function without committing the formula");
+    editor.setWorkbookCompletions({"ForecastRate"},{});editor.setText("=ForecastR");require(popup->isVisible()&&popup->currentItem()->data(Qt::UserRole).toString()=="ForecastRate"&&popup->currentItem()->icon().isNull(),"a defined workbook name is not mislabeled as a function icon");
+}
+void sourceFunctionSuggestionColumnsStayWhite() {
+    FormulaLineEdit editor;configure(editor);QTest::keyClicks(&editor,"=F");QApplication::processEvents();
+    auto* popup=editor.completionPopup();require(popup->isVisible(),"open source function suggestions with the genuine editor");
+    const auto row=popup->visualRect(popup->model()->index(0,0));const auto image=popup->viewport()->grab().toImage();
+    require(image.pixelColor(row.left()+1,row.center().y())==QColor(Qt::white),"selected function rows retain the source white graphical decoration column");
+}
+void sourceFunctionDescriptionsUseActualMetadata() {
+    FormulaLineEdit editor;configure(editor);editor.setText("=F.DIST(");editor.setCursorPosition(editor.text().size());
+    require(editor.argumentHelpText().contains("Returns the (left-tailed) F probability distribution (degree of diversity) for two data sets."),"F.DIST assistance uses the actual source description instead of generic statistical catalog filler");
+    require(editor.argumentHelpText().contains("<b>x</b>")&&editor.argumentHelpText().contains("deg_freedom1")&&editor.argumentHelpText().contains("deg_freedom2")&&editor.argumentHelpText().contains("cumulative"),"the supported F distribution exposes its actual four required arguments");
+    editor.setText("=SUM(");require(editor.argumentHelpText().contains("Adds all the numbers in a range of cells"),"SUM help follows the description actually visible in the source popup");
+    editor.setText("=ABS(");require(editor.argumentHelpText().contains("Returns the absolute value of a number, a number without its sign"),"ABS help follows the description actually visible in the source popup");
+}
 void typingShowsAvailableCanonicalFunctions() {
     FormulaLineEdit editor;configure(editor);
     QTest::keyClicks(&editor,"=su");
@@ -176,6 +208,7 @@ void referencesAndEscapedTextSuppressCompletion() {
 void avgOffersAnExplicitCanonicalSuggestion() {
     FormulaLineEdit editor;configure(editor);QTest::keyClicks(&editor,"=AVG");
     require(editor.completionPopup()->isVisible(),"AVG must offer a did-you-mean canonical AVERAGE suggestion");
+    if(editor.text()!="=AVG"||!suggestions(editor).contains("AVERAGE")||suggestions(editor).contains("AVG"))std::cerr<<"AVG diagnostic text="<<editor.text().toStdString()<<" cursor="<<editor.cursorPosition()<<" suggestions="<<suggestions(editor).join(",").toStdString()<<"\n";
     require(editor.text()=="=AVG"&&suggestions(editor).contains("AVERAGE")&&!suggestions(editor).contains("AVG"),"the AVG convenience never rewrites text or invents a function before acceptance");
     require(editor.completionPopup()->currentItem()->text().contains("canonical")&&editor.argumentHelpText().contains("not an Excel function"),"the fallback visibly explains the canonical function name");
     QTest::keyClick(&editor,Qt::Key_Tab);
@@ -299,7 +332,8 @@ void wideEditorsKeepCompletionCompactAndElideLongNames() {
     QTest::keyClicks(&editor,"=SUM");auto* popup=editor.completionPopup();
     require(popup->isVisible(),"wide-editor fixture displays native completion suggestions");
     const auto available=editor.screen()->availableGeometry();
-    require(popup->width()>=qMin(280,available.width())&&popup->width()<=qMin(520,available.width()),"a wide formula bar must use a compact adaptive completion width rather than its full width");
+    require(popup->width()<=qMin(520,available.width())&&popup->width()<editor.width()/2,"a wide formula bar keeps source content-sized completion independent of its own width");
+    for(int row=0;row<popup->count();++row)if(popup->item(row)->data(Qt::UserRole).toString().startsWith("SUM"))require(popup->fontMetrics().horizontalAdvance(popup->item(row)->text())+popup->iconSize().width()+8<=popup->viewport()->width(),"the source-sized menu displays every complete prefix-matched canonical caption beside its graphical icon");
     const auto longName=QString("Long_")+QString(240,'n');editor.setWorkbookCompletions({longName});editor.setText("=Long_");
     require(popup->isVisible()&&popup->width()<=qMin(520,available.width()),"long workbook identifiers cannot make the native completion list excessively wide");
     require(popup->textElideMode()==Qt::ElideRight&&popup->horizontalScrollBarPolicy()==Qt::ScrollBarAlwaysOff,"long suggestion captions elide instead of adding a wide horizontal scrolling surface");
@@ -325,7 +359,7 @@ void popupAndHelpStayInsideTheAvailableScreen() {
 }
 int main(int argc,char**argv) {
     QApplication app(argc,argv);
-    try { typingShowsAvailableCanonicalFunctions();tabAcceptsCompletionWithoutCommitting();arrowsNavigateSuggestionsWithoutEditing();nestedCompletionPreservesSuffixAndExistingParenthesis();nestedArgumentsIgnoreStringsArraysAndCompletedCalls();escapeDismissesWithoutReopeningOnCursorMoves();assistanceRequiresAnEditableFocusedEditor();coreFunctionHintsUseRealSignatures();mouseAcceptanceKeepsEditing();referencesAndEscapedTextSuppressCompletion();delegateTabDoesNotCommitAndF4PassesThrough();avgOffersAnExplicitCanonicalSuggestion();workbookNamesInsertWithoutParentheses();workbookFunctionsInsertCallsAndKeepTheirKind();workbookEntriesCannotImpersonateBuiltins();workbookIdentifierBoundariesStayDistinctFromCells();workbookCompletionsDoNotWriteTheCellModel();wideEditorsKeepCompletionCompactAndElideLongNames();popupAndHelpStayInsideTheAvailableScreen(); }
+    try { if(qgetenv("TIGERSHEETS_FORMULA_EDITOR_TEST_CASE")=="source_help"){sourceFunctionDescriptionsUseActualMetadata();std::cout<<"Source function help metadata passed\n";return 0;}if(qgetenv("TIGERSHEETS_FORMULA_EDITOR_TEST_CASE")=="source_icon_column"){sourceFunctionSuggestionColumnsStayWhite();std::cout<<"Source function icon column passed\n";return 0;}if(qgetenv("TIGERSHEETS_FORMULA_EDITOR_TEST_CASE")=="source_icons"){sourceFunctionSuggestionsHaveGraphicalGlyphs();std::cout<<"Source function suggestion icons passed\n";return 0;}sourceFunctionSuggestionsHaveGraphicalGlyphs();sourceFunctionSuggestionColumnsStayWhite();sourceFunctionDescriptionsUseActualMetadata();typingShowsAvailableCanonicalFunctions();tabAcceptsCompletionWithoutCommitting();arrowsNavigateSuggestionsWithoutEditing();nestedCompletionPreservesSuffixAndExistingParenthesis();nestedArgumentsIgnoreStringsArraysAndCompletedCalls();escapeDismissesWithoutReopeningOnCursorMoves();assistanceRequiresAnEditableFocusedEditor();coreFunctionHintsUseRealSignatures();mouseAcceptanceKeepsEditing();referencesAndEscapedTextSuppressCompletion();delegateTabDoesNotCommitAndF4PassesThrough();avgOffersAnExplicitCanonicalSuggestion();workbookNamesInsertWithoutParentheses();workbookFunctionsInsertCallsAndKeepTheirKind();workbookEntriesCannotImpersonateBuiltins();workbookIdentifierBoundariesStayDistinctFromCells();workbookCompletionsDoNotWriteTheCellModel();wideEditorsKeepCompletionCompactAndElideLongNames();popupAndHelpStayInsideTheAvailableScreen(); }
     catch(const std::exception& e) { std::cerr<<"formula editor test failed: "<<e.what()<<'\n';return 1; }
     std::cout<<"formula editor tests passed\n";
 }

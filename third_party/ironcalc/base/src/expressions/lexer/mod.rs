@@ -712,7 +712,10 @@ impl<'a> Lexer<'a> {
     fn consume_error(&mut self) -> TokenType {
         let errors = &self.language.errors;
         let rest_of_formula: String = self.chars[self.position - 1..self.len].iter().collect();
-        if rest_of_formula.starts_with(&errors.r#ref) {
+        if rest_of_formula.starts_with("#FIELD!") {
+            self.position += "#FIELD!".chars().count() - 1;
+            return TokenType::Error(Error::FIELD);
+        } else if rest_of_formula.starts_with(&errors.r#ref) {
             self.position += errors.r#ref.chars().count() - 1;
             return TokenType::Error(Error::REF);
         } else if rest_of_formula.starts_with(&errors.name) {

@@ -29,6 +29,57 @@ pub(crate) fn bcast_idx(len: usize, i: usize) -> Option<usize> {
 /// the other side is an error too, the one on the left comes first.
 static MISSING: ArrayNode = ArrayNode::Error(Error::NA);
 
+/// Whether a pair of parentheses encloses the entire formula. Grouping is
+/// significant for Excel's final-operation cancellation, even though the AST
+/// does not otherwise need a node for redundant parentheses.
+pub(crate) fn root_is_grouped(formula: &str) -> bool {
+    let formula = formula.trim().strip_prefix('=').unwrap_or(formula.trim()).trim();
+    if !formula.starts_with('(') { return false; }
+    let bytes = formula.as_bytes();
+    let (mut depth, mut index) = (0_i32, 0);
+    while index < bytes.len() {
+        match bytes[index] {
+            quote @ (b'"' | b'\'') => {
+                index += 1;
+                while index < bytes.len() {
+                    if bytes[index] == quote {
+                        index += 1;
+                        if index < bytes.len() && bytes[index] == quote { index += 1; }
+                        else { break; }
+                    } else { index += 1; }
+                }
+                continue;
+            }
+            b'(' => depth += 1,
+            b')' => {
+                depth -= 1;
+                if depth == 0 { return index + 1 == bytes.len(); }
+            }
+            _ => {}
+        }
+        index += 1;
+    }
+    false
+}
+
+/// Excel's final + / - operation compensates a result whose binary exponent
+/// is at least 50 below the LEFT operand. This boundary is independently
+/// measured at docs.grid.is/apiary/explain/excel-floating-point-arithmetic/;
+/// it is not decimal rounding or a tolerance applied to stored results.
+pub(crate) fn final_sum(left: f64, right: f64, subtract: bool) -> f64 {
+    let result = if subtract { left - right } else { left + right };
+    if result == 0.0 || left == 0.0 || right == 0.0 || !left.is_finite() || !result.is_finite() {
+        return result;
+    }
+    let exponent = |value: f64| -> i32 {
+        let bits = value.abs().to_bits();
+        let encoded = ((bits >> 52) & 0x7ff) as i32;
+        if encoded == 0 { 63 - bits.leading_zeros() as i32 - 1074 }
+        else { encoded - 1023 }
+    };
+    if exponent(left) - exponent(result) >= 50 { 0.0 } else { result }
+}
+
 /// Unify how we map booleans/strings to f64
 fn to_f64(value: &ArrayNode) -> Result<f64, Error> {
     match value {

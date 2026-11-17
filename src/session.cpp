@@ -6,6 +6,7 @@
 #include "tigersheets/worksheet_validation.hpp"
 #include "prepared_native_transaction.hpp"
 #include <algorithm>
+#include <atomic>
 #include <cmath>
 #include <limits>
 #include <set>
@@ -13,8 +14,10 @@
 namespace tigersheets {
 namespace {
 constexpr int maxRows=1048576,maxColumns=16384;
+std::atomic<std::uint64_t> historyToken{1};
 void address(int row,int col){if(row<1||row>maxRows||col<1||col>maxColumns)throw std::runtime_error("Cell address is out of bounds");}
 std::string lower(std::string text){for(auto& c:text)if(c>='A'&&c<='Z')c=static_cast<char>(c-'A'+'a');return text;}
+std::string_view calculationInput(const Json& cell){return cell.is_object()?std::string_view(cell.at("input").get_ref<const std::string&>()):std::string_view();}
 void sheetName(const std::string& name){for(unsigned char c:name)if(c<32||c==127)throw std::runtime_error("Worksheet names cannot contain control characters");if(name.empty()||name.size()>124||name.find_first_of("[]:*?/\\")!=std::string::npos||name.front()=='\''||name.back()=='\'')throw std::runtime_error("Invalid worksheet name");std::size_t count=0;for(const auto c:name)if((static_cast<unsigned char>(c)&0xc0U)!=0x80U)++count;if(count>31)throw std::runtime_error("Worksheet names are limited to 31 characters");}
 int metadataInteger(const Json& value,int low,int high,const std::string& field){
  if(!value.is_number_integer())throw std::runtime_error(field+" must be an integer");
@@ -60,8 +63,21 @@ void validateVba(const Json& book){
 }
 void validateCellStyle(const Json& style){
  if(!style.is_object())throw std::runtime_error("Cell style must be an object");
- for(const auto* key:{"bold","italic","underline"})if(style.contains(key)&&!style[key].is_boolean())throw std::runtime_error(std::string("Cell style ")+key+" must be a boolean");
- for(const auto* key:{"fontFamily","fill","color","alignment","numberFormat","note"})if(style.contains(key)&&!style[key].is_string())throw std::runtime_error(std::string("Cell style ")+key+" must be text");
+ for(const auto* key:{"bold","italic","underline","wrap","shrinkToFit","justifyLastLine","locked","hidden","quotePrefix"})if(style.contains(key)&&!style[key].is_boolean())throw std::runtime_error(std::string("Cell style ")+key+" must be a boolean");
+ for(const auto* key:{"fontFamily","fill","color","alignment","numberFormat","note","verticalAlignment"})if(style.contains(key)&&!style[key].is_string())throw std::runtime_error(std::string("Cell style ")+key+" must be text");
+ if(style.contains("indent")&&(!style.at("indent").is_number_integer()||style.at("indent")<0||style.at("indent")>250))throw std::runtime_error("Cell style indent must be an integer between 0 and 250");
+ if(style.contains("textRotation")&&(!style.at("textRotation").is_number_integer()||style.at("textRotation")<0||(style.at("textRotation")>180&&style.at("textRotation")!=255)))throw std::runtime_error("Cell style textRotation must be an integer from 0 to 180, or 255");
+ if(style.contains("readingOrder")&&(!style.at("readingOrder").is_number_integer()||style.at("readingOrder")<0||style.at("readingOrder")>2))throw std::runtime_error("Cell style readingOrder must be an integer from 0 to 2");
+ if(style.contains("verticalAlignment")){static const std::set<std::string> vertical{"top","center","bottom","justify","distributed"};if(!vertical.contains(style.at("verticalAlignment").get<std::string>()))throw std::runtime_error("Cell style verticalAlignment is unsupported");}
+ if(style.contains("border")){
+  const auto& borders=style.at("border");if(!borders.is_object())throw std::runtime_error("Cell style border must be an object");
+  static const std::set<std::string> sides{"left","right","top","bottom","diagonalUp","diagonalDown"},lines{"none","thin","medium","dashed","dotted","thick","double","hair","mediumDashed","dashDot","mediumDashDot","dashDotDot","mediumDashDotDot","slantDashDot"};
+  for(const auto& [side,edge]:borders.items()){
+   if(!sides.contains(side)||!edge.is_object()||edge.size()!=2||!edge.contains("style")||!edge.at("style").is_string()||!lines.contains(edge.at("style").get<std::string>())||!edge.contains("color")||!edge.at("color").is_string())throw std::runtime_error("Cell style border requires a valid side, line style and RGB color");
+   const auto& color=edge.at("color").get_ref<const std::string&>();if(color.size()!=7||color.front()!='#'||!std::all_of(color.begin()+1,color.end(),[](char c){return (c>='0'&&c<='9')||(c>='a'&&c<='f')||(c>='A'&&c<='F');}))throw std::runtime_error("Cell style border color must be opaque #RRGGBB text");
+  }
+  if(borders.contains("diagonalUp")&&borders.contains("diagonalDown")){const auto& up=borders.at("diagonalUp");const auto& down=borders.at("diagonalDown");if(up.at("style")!="none"&&down.at("style")!="none"&&(up.at("style")!=down.at("style")||lower(up.at("color"))!=lower(down.at("color"))))throw std::runtime_error("Both diagonal borders must share one line style and color");}
+ }
  if(style.contains("fontSize")){
   if(!style["fontSize"].is_number())throw std::runtime_error("Cell style fontSize must be numeric");
   const auto size=style["fontSize"].get<double>();if(!std::isfinite(size)||size<1||size>400)throw std::runtime_error("Cell style fontSize must be between 1 and 400");
@@ -75,6 +91,7 @@ void canonicalize(Json& book){
  for(auto& sheet:book["sheets"]){
   const auto id=sheet.at("id").get<std::string>(),name=sheet.at("name").get<std::string>();sheetName(name);
   if(id.empty()||!ids.insert(id).second||!names.insert(lower(name)).second)throw std::runtime_error("Duplicate worksheet identity or name");
+  if(sheet.contains("defaultStyle"))validateCellStyle(sheet.at("defaultStyle"));
   if(!sheet.contains("cells"))sheet["cells"]=Json::array();
   auto& cells=sheet["cells"];if(!cells.is_array())throw std::runtime_error("Cells must be an array");
   bool ordered=true,first=true;std::pair<int,int> previous;
@@ -113,9 +130,11 @@ void editWorksheetStructure(Json& book,const Json& operation){
  if(target.contains("filteredRows")&&!target.at("filteredRows").empty())throw std::runtime_error("Clear the worksheet filter before inserting or deleting rows or columns");
  const auto revision=target.value("structuralRevision",std::uint64_t{});if(revision>=static_cast<std::uint64_t>(std::numeric_limits<std::int64_t>::max()))throw std::runtime_error("Worksheet structural revision is exhausted");
  auto& cells=target["cells"];const auto coordinate=rows?"row":"col";
+ Json inherited=Json::array();if(!rows&&!remove){const int neighbor=index>1?index-1:1;for(const auto& cell:cells)if(cell.at("col")==neighbor&&cell.contains("style")){auto style=cell.at("style");style.erase("note");if(style.empty())continue;if(inherited.size()+static_cast<std::size_t>(count)>1000000)throw std::runtime_error("Inserted column formatting exceeds one million stored cells");for(int offset=0;offset<count;++offset)inherited.push_back({{"row",cell.at("row")},{"col",index+offset},{"input",""},{"style",style}});}}
  if(!remove)for(const auto& cell:cells)if(cell.at(coordinate).get<int>()>=index&&cell.at(coordinate).get<int>()>limit-count)throw std::runtime_error("Insertion would move populated or formatted cells beyond the worksheet boundary");
  if(remove)cells.erase(std::remove_if(cells.begin(),cells.end(),[&](const Json& cell){const int value=cell.at(coordinate);return value>=index&&value<index+count;}),cells.end());
  for(auto& cell:cells)if(cell.at(coordinate).get<int>()>=index)cell[coordinate]=cell.at(coordinate).get<int>()+(remove?-count:count);
+ for(auto& cell:inherited)cells.push_back(std::move(cell));
  for(auto& sheet:book["sheets"])for(auto& cell:sheet["cells"]){const auto input=cell.at("input").get<std::string>();if(input.starts_with('='))cell["input"]=editFormulaReferences(input,sheet.at("name").get<std::string>(),name,rows,index,count,remove);}
  if(book.contains("names"))for(auto& [key,value]:book["names"].items())if(value.is_string()){
   const auto formula=value.get<std::string>();for(const auto& reference:formulaReferences(formula))if(!reference.external&&reference.sheet.empty())throw std::runtime_error("Qualify the worksheet reference in defined name "+key+" before structural editing");
@@ -218,7 +237,7 @@ void WorkbookSession::remember(HistoryEntry entry){
  for(const auto& redo:redo_)historyBytes_-=redo.bytes;redo_.clear();
  while(!undo_.empty()&&(undo_.size()>=256||historyBytes_+entry.bytes>limit)){historyBytes_-=undo_.front().bytes;undo_.erase(undo_.begin());}
  recoveryDeltas_.push_back({{"version",1},{"baseRevision",workbook_.at("revision")},{"revision",nextRevision(workbook_)},{"patch",entry.patch},{"changes",entry.redo}});
- historyBytes_+=entry.bytes;undo_.push_back(std::move(entry));
+ entry.token=historyToken.fetch_add(1,std::memory_order_relaxed);historyBytes_+=entry.bytes;undo_.push_back(std::move(entry));
 }
 WorkbookSession::HistoryEntry WorkbookSession::difference(const Json& before,const Json& after)const{
  HistoryEntry entry;entry.change={{"structure",false},{"metadata",false},{"sheets",Json::array()}};
@@ -253,8 +272,8 @@ bool WorkbookSession::applyCells(const Json& operations,std::string* error){
    if(op.contains("style")){validateCellStyle(op.at("style"));if(op.value("replace",false)||op.value("replaceStyle",false)||!cell.contains("style"))cell["style"]=Json::object();cell["style"].update(op.at("style"));}
   }
  }
- HistoryEntry entry;entry.undo={{"cells",Json::array()},{"stale",staleStates(workbook_)}};entry.redo={{"cells",Json::array()}};entry.change={{"structure",false},{"metadata",false},{"sheets",Json::array()}};
- for(const auto& [id,cells]:staged){int r1=maxRows,c1=maxColumns,r2=0,c2=0;for(const auto& [key,cell]:cells)if(cell.before!=cell.after){entry.undo["cells"].push_back({{"sheet",id},{"row",key.first},{"col",key.second},{"cell",cell.before}});entry.redo["cells"].push_back({{"sheet",id},{"row",key.first},{"col",key.second},{"cell",cell.after}});r1=std::min(r1,key.first);r2=std::max(r2,key.first);c1=std::min(c1,key.second);c2=std::max(c2,key.second);}if(r2)entry.change["sheets"].push_back({{"sheet",id},{"row1",r1},{"col1",c1},{"row2",r2},{"col2",c2}});}
+ HistoryEntry entry;entry.undo={{"cells",Json::array()},{"stale",staleStates(workbook_)}};entry.redo={{"cells",Json::array()}};entry.change={{"structure",false},{"metadata",false},{"calculationInputsChanged",false},{"sheets",Json::array()}};
+ for(const auto& [id,cells]:staged){int r1=maxRows,c1=maxColumns,r2=0,c2=0;for(const auto& [key,cell]:cells)if(cell.before!=cell.after){if(calculationInput(cell.before)!=calculationInput(cell.after))entry.change["calculationInputsChanged"]=true;entry.undo["cells"].push_back({{"sheet",id},{"row",key.first},{"col",key.second},{"cell",cell.before}});entry.redo["cells"].push_back({{"sheet",id},{"row",key.first},{"col",key.second},{"cell",cell.after}});r1=std::min(r1,key.first);r2=std::max(r2,key.first);c1=std::min(c1,key.second);c2=std::max(c2,key.second);}if(r2)entry.change["sheets"].push_back({{"sheet",id},{"row1",r1},{"col1",c1},{"row2",r2},{"col2",c2}});}
  if(entry.redo["cells"].empty()){lastChange_={{"structure",false},{"metadata",false},{"sheets",Json::array()}};if(error)error->clear();return true;}
  const auto revision=nextRevision(workbook_);entry.bytes=3*(entry.undo.dump().size()+entry.redo.dump().size())+4096;if(entry.bytes>512ULL*1024*1024)throw std::runtime_error("This transaction exceeds the 512 MiB undo budget; use a smaller transaction.");
  writeCellDeltas(workbook_,entry.redo["cells"]);for(const auto& op:operations){invalidatePivots(workbook_,op);invalidateFinancialModels(workbook_,op);}entry.redo["stale"]=staleStates(workbook_);entry.change["metadata"]=entry.undo["stale"]!=entry.redo["stale"];lastChange_=entry.change;remember(std::move(entry));workbook_["revision"]=revision;if(error)error->clear();return true;
@@ -331,6 +350,12 @@ bool WorkbookSession::apply(std::uint64_t expected,const Json& operations,std::s
 }
 bool WorkbookSession::canUndo() const{return !undo_.empty();}
 bool WorkbookSession::canRedo() const{return !redo_.empty();}
+std::uint64_t WorkbookSession::undoToken() const noexcept{return undo_.empty()?0:undo_.back().token;}
+std::uint64_t WorkbookSession::redoToken() const noexcept{return redo_.empty()?0:redo_.back().token;}
+bool WorkbookSession::hasHistoryToken(std::uint64_t token) const noexcept{
+ const auto contains=[token](const HistoryEntry& entry){return entry.token==token;};
+ return token&&(std::any_of(undo_.begin(),undo_.end(),contains)||std::any_of(redo_.begin(),redo_.end(),contains));
+}
 bool WorkbookSession::hasPreview() const{return preview_.has_value()||static_cast<bool>(preparedPreview_);}
 bool WorkbookSession::undo(std::string* error){
  if(undo_.empty()){if(error)*error="Nothing to undo";return false;}

@@ -18,6 +18,9 @@ int main(){try{
   {{"columns",Json::array({{{"index",3},{"hidden",true}},{{"index",3},{"size",12.0}}})}},
   {{"rows",Json::array({{{"index",1},{"hidden","yes"}}})}},
   {{"rows",Json::array({{{"index",1},{"unrelated",99}}})}},
+  {{"defaultColumnWidth",0.0}},
+  {{"defaultColumnWidth",256.0}},
+  {{"defaultColumnWidth","wide"}},
   {{"unrelated",42}}
  }){auto operation=patch;operation["type"]="set_sheet_layout";operation["sheet"]="s";bool invalid=false;try{applyWorksheetLayout(book,operation);}catch(const std::exception&){invalid=true;}require(invalid&&book==before,"invalid or unknown layout properties reject atomically");}
  for(const auto* collection:{"pivots","financialModels","tables"}){auto owned=before;owned[collection]=Json::array({{{"id","owned"},{"source",{{"sheet","s"},{"row1",5},{"col1",1},{"row2",7},{"col2",4}}},{"output",{{"sheet","s"},{"row1",10},{"col1",1},{"row2",12},{"col2",4}}}}});const auto original=owned;bool protectedRange=false;try{applyWorksheetLayout(owned,{{"type","set_sheet_layout"},{"sheet","s"},{"mergedRanges",Json::array({{{"row1",5},{"col1",1},{"row2",5},{"col2",2}}})}});}catch(const std::exception&){protectedRange=true;}require(protectedRange&&owned==original,"merge cannot destroy report/table source semantics");}

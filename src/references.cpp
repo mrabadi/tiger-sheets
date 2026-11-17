@@ -196,6 +196,17 @@ std::string cycleReference(std::string_view formula,std::size_t caret){
  }
  return std::string(formula);
 }
+ReferenceCycleEdit cycleReferenceEdit(std::string_view formula,std::size_t caret,std::size_t selectionStart,std::size_t selectionLength){
+ for(const auto& reference:parsedReferences(formula)){
+  if(reference.first.kind!='a')continue;
+  const auto end=selectionStart+selectionLength;
+  if(selectionLength?end<=reference.first.start||selectionStart>=reference.last.end:caret<reference.first.start||caret>reference.last.end)continue;
+  if(reference.range&&selectionLength&&selectionStart<=reference.first.start&&end>=reference.last.end){auto result=cycleReference(formula,reference.first.start);const auto length=reference.last.end-reference.first.start+result.size()-formula.size();return {std::move(result),reference.first.start,length};}
+  const auto& endpoint=reference.range&&(selectionLength?selectionStart>=reference.last.start:caret>=reference.last.start)?reference.last:reference.first;
+  const auto token=formula.substr(endpoint.start,endpoint.end-endpoint.start);const auto updated=cycleReference("="+std::string(token),token.size()+1).substr(1);auto result=std::string(formula.substr(0,endpoint.start))+updated+std::string(formula.substr(endpoint.end));return {std::move(result),endpoint.start,updated.size()};
+ }
+ return {std::string(formula),caret,0};
+}
 std::string renameSheetReferences(std::string_view formula,std::string_view oldName,std::string_view newName){
  auto equal=[](std::string_view a,std::string_view b){return a.size()==b.size()&&std::equal(a.begin(),a.end(),b.begin(),[](unsigned char x,unsigned char y){return std::tolower(x)==std::tolower(y);});};
  std::string quoted="'";for(char c:newName){quoted+=c;if(c=='\'')quoted+='\'';}quoted+='\'';

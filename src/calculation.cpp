@@ -1,5 +1,6 @@
 #include "tigersheets/calculation.hpp"
 #include "tigersheets/pivot.hpp"
+#include "tigersheets/formula_error_checks.hpp"
 
 #include <memory>
 #include <optional>
@@ -10,7 +11,7 @@ bool CalculationContext::current() const { return !generationIsCurrent || genera
 Json CalculationContext::calculate(const Json& candidate) const {
     if (!current() || candidate.value("revision", Json()) != snapshot.value("revision", Json()))
         throw std::runtime_error("The calculation context changed while analysis was running. Run it again.");
-    if(!allowCachedLinks)for(const auto& link:snapshot.value("links",Json::array())){const auto state=link.value("state",std::string());if(!state.empty()&&state!="retained"&&state!="refreshed")throw std::runtime_error("Linked inputs are saved or unavailable. Refresh the source, or explicitly allow saved linked values for this analysis.");}
+    if(!allowCachedLinks)for(const auto& link:snapshot.value("links",Json::array())){const auto state=link.value("state",std::string());if(!state.empty()&&state!="retained"&&state!="refreshed"&&state!="open")throw std::runtime_error("Linked inputs are saved or unavailable. Refresh the source, or explicitly allow saved linked values for this analysis.");}
     auto result = evaluator ? evaluator(candidate) : CalculationEngine().calculate(candidate);
     if (!current() || result.value("revision", Json()) != snapshot.value("revision", Json()))
         throw std::runtime_error("The calculation context or result revision changed during analysis. Run it again.");
@@ -70,7 +71,9 @@ Json CalculationEngine::calculate(const Json& snapshot, const FunctionEvaluator&
         tigersheets_calc_calculate_with_references(handle_, input.c_str(),evaluator?evaluateFunction:nullptr,evaluateFunction,&context),
         &tigersheets_calc_free);
     if (!response) throw std::runtime_error("Calculation engine returned no result");
-    return Json::parse(response.get());
+    auto result=Json::parse(response.get());
+    result["errorChecks"]=formulaErrorChecks(snapshot,result);
+    return result;
 }
 
 Json CalculationEngine::functions() const {

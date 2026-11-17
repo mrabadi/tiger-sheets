@@ -17,6 +17,12 @@ Right-click cells or row/column headers for [worksheet context menus](docs/CONTE
 
 The current source build also supports draggable fill handles, persistent column auto-fit, repeated Paste into selected cells, and **Data → Data Validation** range-backed list dropdowns. The original financial-model tutorial walkthrough is retained as [historical evidence](docs/VIDEO_FINANCIAL_MODEL_VALIDATION.md); its replay test has been removed.
 
+The [Otis tutorial exercise](docs/OTIS_TUTORIAL_VALIDATION.md) completed 9,952 top-level / 10,514 recursive actions as a standalone feature exercise. Full video replication remains outside built-in regression tests.
+
+All three follow-up areas are complete: native UI behavior, workbook formatting and audit consistency. The local artifact `output/otis-90-minute/Otis-TigerSheets-Corrected.zip` contains the repaired model, linked Raw source and compact results; generated packages are excluded from Git. Four saved-file audits and both native reopen/refresh phases passed, preserving all 891 stored cell contents and 611 formulas/caches. Before cleanup, validation recorded 273 Python passes and passing evidence for 280 native tests: 279 initial passes plus the unchanged timed-out driver's serial pass. These suites were not rerun after cleanup. See the [results summary](docs/validation/otis-90-minute/RESULTS.json).
+
+Generated replay outputs, screenshots, logs, raw audit inventories and obsolete packages were removed at the user's request. Source and required input fixtures remain; installers exclude `docs/validation`. Helvetica display is accepted. No fresh full-video rerun or exhaustive pixel identity is claimed; `sourceReviewComplete` and `verifiedReplica` remain false.
+
 Then launch **TigerSheets** from the application menu, or run `tiger-sheets --demo`.
 APT installs the required Qt platform packages and other runtime dependencies.
 This is a development app; complete Excel/VBA compatibility remains unfinished.

@@ -228,6 +228,7 @@ impl<'a> Model<'a> {
                     Error::NA => CalcResult::Number(7.0),
                     Error::SPILL => CalcResult::Number(9.0),
                     Error::CALC => CalcResult::Number(14.0),
+                    Error::FIELD => CalcResult::Number(13.0),
                     // IronCalc specific
                     Error::ERROR => CalcResult::Number(101.0),
                     Error::NIMPL => CalcResult::Number(102.0),
@@ -237,7 +238,6 @@ impl<'a> Model<'a> {
                     // #CONNECT => 10
                     // #BLOCKED => 11
                     // #UNKNOWN => 12
-                    // #FIELD => 13
                     // #EXTERNAL => 19
                 }
             }

@@ -4,6 +4,7 @@
 #include "tigersheets/grid.hpp"
 #include <QApplication>
 #include <QLineEdit>
+#include <QLabel>
 #include <QListWidget>
 #include <QPointer>
 #include <QTableView>
@@ -26,6 +27,21 @@ FormulaLineEdit* formulaBar(MainWindow& window){
 void prepareWindow(MainWindow& window){
     window.show();QApplication::processEvents();auto* grid=worksheet(window);
     grid->setCurrentIndex(grid->model()->index(0,0));
+}
+void bareEqualsShowsFunctionSelector() {
+    for(const bool inCell:{false,true}) {
+        MainWindow window;prepareWindow(window);auto* grid=worksheet(window);auto* bar=formulaBar(window);
+        const auto origin=grid->model()->index(6,3);grid->setCurrentIndex(origin);grid->setFocus();
+        auto* name=window.findChild<QLineEdit*>("formula.name");auto* state=window.findChild<QLabel*>("status.saveState");
+        const auto before=window.currentSession().snapshot();const auto history=window.currentSession().historyBytes();
+        if(!inCell)bar->setFocus();QTest::keyClicks(inCell?static_cast<QWidget*>(grid):static_cast<QWidget*>(bar),"=");
+        auto* editor=inCell?grid->activeCellEditor():bar;require(editor&&editor->text()=="=","typing equals opens the actual uncommitted formula buffer");
+        require(name->text()=="SUM"&&state->text()=="Enter"&&grid->property("worksheet.entryMode").toString()=="Enter","a fresh bare equals draft shows the SUM function selector in Enter mode");
+        QTest::keyClicks(editor,"1");require(name->text()=="D7"&&editor->text()=="=1","ordinary formula entry retains its cell address after the bare-equals selector");
+        QTest::keyClick(editor,Qt::Key_Backspace);require(name->text()=="SUM"&&editor->text()=="=","returning to a bare equals buffer restores its function selector");
+        grid->cancelEntry();require(name->text()=="D7"&&state->text()=="Ready"&&!grid->activeCellEditor()&&!bar->isModified(),"cancelling restores the origin address and Ready state");
+        require(grid->currentIndex()==origin&&window.currentSession().snapshot()==before&&window.currentSession().historyBytes()==history,"function-selector feedback and cancellation preserve the workbook, history and active cell");
+    }
 }
 void cellCompletionTabDoesNotCommitOrMove() {
     MainWindow window;window.show();QApplication::processEvents();auto* grid=worksheet(window);
@@ -120,9 +136,9 @@ void f4CyclesUnicodeQualifiedRangesInBarAndCell() {
         require(model&&model->apply(Json::array({{{"type","add_sheet"},{"id","unicode"},{"name","FY'26 虎"}}})),"F4 fixture supplies an actual Unicode-named worksheet");
         grid->setCurrentIndex(grid->model()->index(0,0));const auto before=window.currentSession().snapshot();auto* bar=formulaBar(window);FormulaLineEdit* editor=bar;
         if(inCell){grid->setFocus();QTest::keyClick(grid,Qt::Key_F2);QApplication::processEvents();editor=dynamic_cast<FormulaLineEdit*>(grid->activeCellEditor());}
-        require(editor,"F4 fixture uses a native formula editor");editor->setFocus();editor->setText(original);editor->setCursorPosition(original.indexOf(")+10"));
+        require(editor,"F4 fixture uses a native formula editor");editor->setFocus();editor->setText(original);editor->setSelection(original.indexOf("a1"),original.indexOf(")+10")-original.indexOf("a1"));
         QTest::keyClick(editor,Qt::Key_F4);
-        require(editor->text()==absolute&&editor->text().mid(editor->cursorPosition())==")+10","F4 locks both range endpoints while preserving Unicode qualifier, apostrophes, case, spaces and cursor suffix");
+        require(editor->text()==absolute&&editor->text().mid(editor->cursorPosition())==")+10","F4 on the selected whole range locks both endpoints while preserving Unicode qualifier, apostrophes, case, spaces and cursor suffix");
         QTest::keyClick(editor,Qt::Key_F4);
         require(editor->text()==rowLocked&&editor->text().mid(editor->cursorPosition())==")+10","a second F4 cycles the same Unicode-qualified range to row locks");
         if(inCell)require(bar->text()==editor->text(),"F4 changes in a cell editor synchronize to the formula bar");
@@ -137,6 +153,7 @@ int main(int argc,char**argv) {
         const QString selected=argc>1?QString::fromLocal8Bit(argv[1]):QString();
         bool ran=false;
         for(const auto& [name,test]:std::initializer_list<std::pair<const char*,void(*)()>>{
+            {"bare_equals",bareEqualsShowsFunctionSelector},
             {"cell_completion",cellCompletionTabDoesNotCommitOrMove},
             {"workbook_context",workbookMetadataSuppliesNamesAndEnabledFunctions},
             {"bar_keyboard",formulaBarKeyboardSelectionPreservesTheEdit},

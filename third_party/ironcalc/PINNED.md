@@ -36,3 +36,22 @@ values do not count as convergence. Ordinary `evaluate()` retains circular
 errors and the upstream behavior when this opt-in method is not called.
 The application uses no upstream UI or office application. See
 `base/THIRD-PARTY-NOTICES.md` for Unicode CLDR data attribution.
+
+An owned arithmetic extension in `base/src/arithmetic.rs`, `evaluation.rs`
+and `model.rs` implements final cell-formula addition/subtraction cancellation
+before the value is stored, so dependents consume the same corrected value.
+Its binary-exponent boundary follows the primary experiments in
+https://docs.grid.is/apiary/explain/excel-floating-point-arithmetic/ and is
+tested with Microsoft's documented example, published boundary fixtures and
+the original Otis Excel caches. Explicit root grouping remains distinct in
+shared-formula storage; nested arithmetic and genuine small values retain their
+raw results. No canonical workbook formulas or exported caches are rewritten.
+
+`base/src/formatter/lexer.rs` corrects named number-format colors to the same
+one-based indices used by `[Color N]` and includes the missing Cyan name.
+The native bridge regression checks all eight names against their indexed form;
+the C++ display layer consumes the existing formatter color metadata so a
+source `[RED]` negative section can override the cell's base black font.
+Restored compiler provenance and executed RED/GREEN evidence are recorded in
+`docs/validation/otis-90-minute/restored-rust-toolchain.json` and
+`cancellation-engine-evidence.json`.

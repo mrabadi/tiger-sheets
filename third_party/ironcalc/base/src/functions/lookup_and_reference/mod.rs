@@ -14,6 +14,7 @@ mod address_areas;
 mod choosecols_chooserows;
 mod drop_take;
 mod expand;
+mod fieldvalue;
 mod hstack_vstack;
 mod tocol_torow;
 mod transpose;

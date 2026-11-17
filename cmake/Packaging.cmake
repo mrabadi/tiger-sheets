@@ -14,7 +14,8 @@ install(DIRECTORY "${TIGERSHEETS_SOLVER_PREFIX}/share/tiger-sheets/" DESTINATION
 install(DIRECTORY third_party/licenses/ DESTINATION share/doc/tiger-sheets/licenses OPTIONAL)
 install(DIRECTORY third_party/rust-vendor/ DESTINATION share/tiger-sheets/dependencies/rust-vendor)
 install(FILES README.md DESTINATION share/doc/tiger-sheets)
-install(DIRECTORY docs DESTINATION share/doc/tiger-sheets)
+install(DIRECTORY docs DESTINATION share/doc/tiger-sheets
+        PATTERN "docs/validation" EXCLUDE)
 set(TIGERSHEETS_RELEASE_REPORT "${CMAKE_BINARY_DIR}/release-evidence.json" CACHE FILEPATH "Executed compatibility acceptance report")
 set(TIGERSHEETS_SOURCE_DIR "${CMAKE_SOURCE_DIR}")
 configure_file("${CMAKE_SOURCE_DIR}/cmake/CPackGate.cmake.in" "${CMAKE_BINARY_DIR}/CPackGate.cmake" @ONLY)

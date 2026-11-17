@@ -2,12 +2,18 @@
 
 #include <nlohmann/json.hpp>
 #include <functional>
+#include <optional>
 #include "tigersheets/calc_bridge.h"
 
 namespace tigersheets {
 
 using Json = nlohmann::json;
 using FunctionEvaluator = std::function<Json(const std::string&, const Json&)>;
+struct FormattedNumber {
+    std::string text;
+    std::optional<unsigned> colorIndex;
+};
+FormattedNumber formatCellNumber(double value,const std::string& format,const std::string& locale="en");
 std::string formatCellValue(double value,const std::string& format,const std::string& locale="en");
 
 // Immutable prepared inputs for one calculation/analysis generation. The host

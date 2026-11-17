@@ -4,13 +4,21 @@
 #include <cstddef>
 #include <cstdint>
 #include <map>
+#include <memory>
 
 namespace tigersheets {
+
+struct LiveWorkbookSnapshot {
+    std::string name,path;
+    std::shared_ptr<const Json> workbook;
+};
 
 struct WorkbookLinkOptions {
     bool refresh = false;
     // Previous resolution.snapshot["links"], kept only in memory by the host.
     Json retainedLinks = Json::array();
+    // Captured on the host UI thread. Workers only read these immutable roots.
+    std::vector<LiveWorkbookSnapshot> liveWorkbooks;
     std::map<std::string, std::string> relocatedPaths;
     std::size_t maxWorkbooks = 16;
     std::size_t maxDepth = 4;

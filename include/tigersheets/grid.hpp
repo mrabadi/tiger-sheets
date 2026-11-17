@@ -7,6 +7,8 @@
 namespace tigersheets {
 class WorksheetModel : public QAbstractTableModel {
 public:
+ // Fresh grid typing replaces a value; F2 edits preserve imported literal text.
+ static constexpr int ReplacementEditRole=Qt::UserRole+1;
  explicit WorksheetModel(WorkbookSession& session,QObject* parent=nullptr);
  ~WorksheetModel() override;
  int rowCount(const QModelIndex& parent={}) const override;
@@ -16,6 +18,9 @@ public:
  Qt::ItemFlags flags(const QModelIndex& index) const override;
  bool setData(const QModelIndex& index,const QVariant& value,int role=Qt::EditRole) override;
  void refresh();
+ // Publish a single Session edit/Undo/Redo without discarding a proven current
+ // calculation when only cell presentation changed. Loads still use refresh().
+ void refreshAfterChange();
  QString sheetId() const;
  void setSheetId(QString id);
  QString raw(int row,int col) const;
@@ -30,6 +35,9 @@ public:
  const Json& workbookView() const noexcept;
  Json calculatedSnapshot() const;
  Json cellStyle(int row,int col) const;
+ // Presentation-only formula inference. The caller commits this optional
+ // number format with its cell edit; querying never changes model/history.
+ std::optional<std::string> inferredFormulaNumberFormat(const QModelIndex& target,const QString& input) const;
  void showPreview(const Json& candidate);
  // Caller retains this immutable candidate until refresh or replacement.
  void showPreviewView(const Json& candidate);
@@ -38,6 +46,7 @@ private:
  friend class SelectionStatistics;
  WorkbookSession& session_;
  QString sheet_;
+ Json defaultStyle_=Json::object();
  std::map<std::pair<int,int>,Json> cells_;
  std::map<std::pair<int,int>,Json> values_;
  std::map<std::pair<int,int>,std::string> valueTypes_;

@@ -5,14 +5,17 @@
 #include <iostream>
 #include <tuple>
 #include <vector>
+bool referencedNumericFormatEntry(){
+ using namespace tigersheets;WorkbookSession session;WorksheetModel model(session);const std::string accounting="$#,##0;($#,##0);-";if(!model.apply(Json::array({{{"type","set_cell"},{"sheet","sheet-1"},{"row",19},{"col",3},{"input","5648"},{"style",{{"numberFormat",accounting},{"bold",true}}}},{{"type","set_cell"},{"sheet","sheet-1"},{"row",7},{"col",3},{"input","0.16"},{"style",{{"numberFormat","0%"}}}},{{"type","set_style"},{"sheet","sheet-1"},{"row",4},{"col",3},{"style",{{"color","#0000ff"}}}}})))return false;const auto before=session.snapshot();if(!model.setData(model.index(3,2),"=C19/C7",Qt::EditRole))return false;model.setCalculated(CalculationEngine().calculate(session.snapshotView()));if(model.data(model.index(3,2)).toString()!="$35,300"||model.cellStyle(3,2).value("numberFormat",std::string())!=accounting){std::cerr<<"FAILED: an ordinary arithmetic formula entered into General inherits its first referenced numeric display format, as observed at39:00\n";return false;}if(model.cellStyle(3,2).value("bold",false)||model.cellStyle(3,2).at("color")!="#0000ff"||model.raw(3,2)!="=C19/C7"){std::cerr<<"FAILED: formula format inference retains its input and independent target emphasis/color\n";return false;}if(!session.undo()||session.snapshotView().at("sheets")!=before.at("sheets")){std::cerr<<"FAILED: inferred formula input and number format require one Undo\n";return false;}model.refresh();if(!model.apply(Json::array({{{"type","set_style"},{"sheet","sheet-1"},{"row",54},{"col",3},{"style",{{"numberFormat","0%"}}}}})))return false;if(!model.setData(model.index(53,2),"=C19",Qt::EditRole)||model.cellStyle(53,2).at("numberFormat")!="0%")return false;if(!model.setData(model.index(54,2),"=C19",Qt::EditRole)||model.cellStyle(54,2).value("numberFormat",std::string())!=accounting){std::cerr<<"FAILED: a simple numeric reference inherits Accounting while an explicit target percentage is preserved\n";return false;}return true;
+}
 bool dateFormulaEntry(){
  using namespace tigersheets;WorkbookSession session;WorksheetModel model(session);
  model.apply(Json::array({{{"type","set_cell"},{"sheet","sheet-1"},{"row",3},{"col",3},{"input","45930"},{"style",{{"numberFormat","m/d/yyyy"}}}},{{"type","set_style"},{"sheet","sheet-1"},{"row",3},{"col",4},{"style",{{"bold",true}}}}}));
  const auto before=session.snapshot();if(!model.setData(model.index(2,3),"=EOMONTH(C3,1)",Qt::EditRole))return false;
  model.setCalculated(CalculationEngine().calculate(session.snapshotView()));
- if(model.data(model.index(2,3)).toString()!="10/31/2025"){std::cerr<<"FAILED: entering EOMONTH beside a date must display 10/31/2025 instead of serial "<<model.data(model.index(2,3)).toString().toStdString()<<'\n';return false;}
- if(model.raw(2,3)!="=EOMONTH(C3,1)"||model.numericValue(2,3).value_or(-1)!=45961||!model.cellStyle(2,3).value("bold",false)){std::cerr<<"FAILED: inferred date format preserves the formula, numeric result and unrelated formatting\n";return false;}
- if(!session.undo()||session.snapshotView().at("sheets")!=before.at("sheets")){std::cerr<<"FAILED: one undo must restore both the date formula and inferred format\n";return false;}
+ if(model.data(model.index(2,3)).toString()!="45961"){std::cerr<<"FAILED: EOMONTH initially retains General and displays its serial until separately formatted, as in the source tutorial\n";return false;}
+ if(model.raw(2,3)!="=EOMONTH(C3,1)"||model.numericValue(2,3).value_or(-1)!=45961||!model.cellStyle(2,3).value("bold",false)||model.cellStyle(2,3).contains("numberFormat")){std::cerr<<"FAILED: EOMONTH preserves its formula, numeric result and unrelated formatting without introducing a date format\n";return false;}
+ if(!session.undo()||session.snapshotView().at("sheets")!=before.at("sheets")){std::cerr<<"FAILED: one undo must restore the previous cell before EOMONTH entry\n";return false;}
  return true;
 }
 bool dateFormulaBoundaries(){
@@ -26,7 +29,7 @@ bool dateLiteralEntry(){
  using namespace tigersheets;WorkbookSession session;WorksheetModel model(session);const auto before=session.snapshot();
  if(!model.setData(model.index(2,2),"9/30/2025",Qt::EditRole)||model.raw(2,2)!="45930"||model.numericValue(2,2).value_or(-1)!=45930||model.data(model.index(2,2)).toString()!="9/30/2025"){std::cerr<<"FAILED: unambiguous 9/30/2025 entry must store date serial45930 and display the entered date\n";return false;}
  if(!session.undo()||session.snapshotView().at("sheets")!=before.at("sheets")||!session.redo()){std::cerr<<"FAILED: typed date value and inferred format require one Undo/Redo transaction\n";return false;}model.refresh();
- if(!model.setData(model.index(2,3),"=EOMONTH(C3,1)",Qt::EditRole))return false;model.setCalculated(CalculationEngine().calculate(session.snapshotView()));if(model.data(model.index(2,3)).toString()!="10/31/2025"){std::cerr<<"FAILED: EOMONTH of a typed date must show the next month end\n";return false;}
+ if(!model.setData(model.index(2,3),"=EOMONTH(C3,1)",Qt::EditRole))return false;model.setCalculated(CalculationEngine().calculate(session.snapshotView()));if(model.data(model.index(2,3)).toString()!="45961"){std::cerr<<"FAILED: EOMONTH of a typed date retains the next month-end serial until explicitly formatted\n";return false;}
  int row=4;for(const auto& [input,raw,display]:std::vector<std::tuple<const char*,const char*,const char*>>{{"2025-09-30","45930","2025-09-30"},{"30/9/2025","45930","30/9/2025"},{"1900-02-28","59","1900-02-28"},{"1900-03-01","61","1900-03-01"}}){if(!model.setData(model.index(row,0),input,Qt::EditRole)||model.raw(row,0)!=raw||model.data(model.index(row,0)).toString()!=display){std::cerr<<"FAILED: typed date normalization must preserve date order and Excel epoch: "<<input<<'\n';return false;}++row;}
  for(const auto* text:{"'9/30/2025","2025-02-30"}){if(!model.setData(model.index(row,0),text,Qt::EditRole))return false;model.setCalculated(CalculationEngine().calculate(session.snapshotView()));if(model.numericValue(row,0).has_value()||model.cellStyle(row,0).contains("numberFormat")){std::cerr<<"FAILED: escaped or invalid date entry must remain text: "<<text<<'\n';return false;}++row;}
  for(const auto& [format,display,numeric]:std::vector<std::tuple<const char*,const char*,bool>>{{"0.00","45930.00",true},{"@","9/30/2025",false}}){if(!model.apply(Json::array({{{"type","set_style"},{"sheet","sheet-1"},{"row",row+1},{"col",1},{"style",{{"numberFormat",format}}}}}))||!model.setData(model.index(row,0),"9/30/2025",Qt::EditRole))return false;model.setCalculated(CalculationEngine().calculate(session.snapshotView()));if(model.cellStyle(row,0).at("numberFormat")!=format||model.data(model.index(row,0)).toString()!=display||model.numericValue(row,0).has_value()!=numeric){std::cerr<<"FAILED: typed dates must respect explicit numeric and Text formats\n";return false;}++row;}
@@ -36,16 +39,19 @@ bool dateLiteralEntry(){
 bool dateEditRole(){
  using namespace tigersheets;WorkbookSession session;WorksheetModel model(session);const auto empty=session.snapshot();
  const std::vector<std::tuple<const char*,const char*,const char*>> cases={
-  {"45930","m/d/yyyy","2025-09-30"},{"45659","m/d/yy","2025-01-02"},{"45930.0","dd-mmm-yy","2025-09-30"},
-  {"59","yyyy-mm-dd","1900-02-28"},{"61","m/d/yyyy","1900-03-01"},
+  {"45930","m/d/yyyy","9/30/2025"},{"45659","m/d/yy","1/2/2025"},{"45930.0","dd-mmm-yy","9/30/2025"},
+  {"59","yyyy-mm-dd","1900-02-28"},{"61","m/d/yyyy","3/1/1900"},
+  {"45930","yyyy/mm/dd","2025-09-30"},{"45930","yyyy-m-d","2025-09-30"},{"45930","[Red]yyyy-mm-dd","2025-09-30"},
+  {"43830","\"FY\"\\ yy","12/31/2019"},{"43830","mm/dd/yy","12/31/2019"},
   {"45930.5","m/d/yyyy","45930.5"},{"45930.50000000001","m/d/yyyy h:mm","45930.50000000001"},
+  {"2958466","m/d/yyyy","2958466"},{"-1","m/d/yyyy","-1"},{"0","m/d/yyyy","0"},
   {"60","m/d/yyyy","60"},{"45930","General","45930"},{"45930.0","0.00","45930.0"},{"45930","@","45930"},
   {"'45930","m/d/yyyy","'45930"},{"=EOMONTH(45930,1)","m/d/yyyy","=EOMONTH(45930,1)"}};
  Json operations=Json::array();for(std::size_t row=0;row<cases.size();++row)operations.push_back({{"type","set_cell"},{"sheet","sheet-1"},{"row",row+1},{"col",1},{"input",std::get<0>(cases[row])},{"style",{{"numberFormat",std::get<1>(cases[row])}}}});if(!model.apply(operations))return false;
  const auto original=session.snapshot();for(std::size_t row=0;row<cases.size();++row){const auto index=model.index(static_cast<int>(row),0);const auto edit=model.data(index,Qt::EditRole).toString();if(edit!=std::get<2>(cases[row])){std::cerr<<"FAILED: date EditRole must expose a lossless full-year date for whole literals and preserve formulas, fractions and nondate input: "<<std::get<0>(cases[row])<<'\n';return false;}
   if(!model.setData(index,edit,Qt::EditRole)||session.snapshot()!=original){std::cerr<<"FAILED: committing unchanged date edit text must preserve exact workbook input, revision and history\n";return false;}}
  if(!session.undo()||session.snapshotView().at("sheets")!=empty.at("sheets")||session.canUndo()){std::cerr<<"FAILED: unchanged F2 edits must not add an undo transaction\n";return false;}
- WorkbookSession alternative;WorksheetModel epoch(alternative);if(!epoch.apply(Json::array({{{"type","set_metadata"},{"key","settings"},{"value",{{"date1904",true}}}},{{"type","set_cell"},{"sheet","sheet-1"},{"row",1},{"col",1},{"input","0"},{"style",{{"numberFormat","m/d/yyyy"}}}}})))return false;const auto epochBefore=alternative.snapshot();const auto edit=epoch.data(epoch.index(0,0),Qt::EditRole);if(edit.toString()!="1904-01-01"||!epoch.setData(epoch.index(0,0),edit,Qt::EditRole)||alternative.snapshot()!=epochBefore){std::cerr<<"FAILED: 1904 date EditRole must use its epoch and preserve no-op edits\n";return false;}
+ WorkbookSession alternative;WorksheetModel epoch(alternative);if(!epoch.apply(Json::array({{{"type","set_metadata"},{"key","settings"},{"value",{{"date1904",true}}}},{{"type","set_cell"},{"sheet","sheet-1"},{"row",1},{"col",1},{"input","0"},{"style",{{"numberFormat","m/d/yyyy"}}}}})))return false;const auto epochBefore=alternative.snapshot();const auto edit=epoch.data(epoch.index(0,0),Qt::EditRole);if(edit.toString()!="1/1/1904"||!epoch.setData(epoch.index(0,0),edit,Qt::EditRole)||alternative.snapshot()!=epochBefore){std::cerr<<"FAILED: 1904 date EditRole must use its epoch and preserve no-op edits\n";return false;}
  return true;
 }
 bool dateEntryPatterns(){
@@ -60,7 +66,7 @@ bool dateEntryPatterns(){
 }
 bool dateEntryLocale(){
  using namespace tigersheets;WorkbookSession session;WorksheetModel model(session);int row=0;
- for(const auto& [input,serial,edit]:std::vector<std::tuple<const char*,const char*,const char*>>{{"1/2/2025","45659","2025-01-02"},{"01/02/25","45659","2025-01-02"},{"01/01/29","47119","2029-01-01"},{"01/01/30","10959","1930-01-01"}}){const auto index=model.index(row,0);if(!model.setData(index,input,Qt::EditRole)||model.raw(row,0)!=serial||model.data(index).toString()!=input||model.data(index,Qt::EditRole).toString()!=edit){std::cerr<<"FAILED: numeric dates must use the app's English-US month order and two-digit year convention: "<<input<<'\n';return false;}++row;}
+ for(const auto& [input,serial,edit]:std::vector<std::tuple<const char*,const char*,const char*>>{{"1/2/2025","45659","1/2/2025"},{"01/02/25","45659","1/2/2025"},{"01/01/29","47119","1/1/2029"},{"01/01/30","10959","1/1/1930"}}){const auto index=model.index(row,0);if(!model.setData(index,input,Qt::EditRole)||model.raw(row,0)!=serial||model.data(index).toString()!=input||model.data(index,Qt::EditRole).toString()!=edit){std::cerr<<"FAILED: numeric dates must use the app's English-US month order and two-digit year convention: "<<input<<'\n';return false;}++row;}
  return true;
 }
 bool dateEntryGeneral(){
@@ -89,6 +95,7 @@ bool borrowedPreviewView(){using namespace tigersheets;WorkbookSession session;W
 bool removedSheetFallsBackToLiveSheet(){using namespace tigersheets;WorkbookSession session;WorksheetModel model(session);model.setData(model.index(0,0),"Live",Qt::EditRole);auto preview=session.snapshot();preview["sheets"].push_back({{"id","converted"},{"name","Converted"},{"cells",Json::array({{{"row",1},{"col",1},{"input","Preview"}}})}});model.showPreviewView(preview);model.setSheetId("converted");if(model.raw(0,0)!="Preview")return false;model.refresh();if(model.sheetId()!="sheet-1"||model.raw(0,0)!="Live"){std::cerr<<"FAILED: discarded preview worksheet must fall back to an existing live worksheet\n";return false;}if(!session.apply(session.snapshotView().at("revision"),Json::array({{{"type","add_sheet"},{"id","added"},{"name","Added"}}})))return false;model.refresh();model.setSheetId("added");if(!session.undo())return false;model.refresh();if(model.sheetId()!="sheet-1"||model.raw(0,0)!="Live"){std::cerr<<"FAILED: undo removing the selected worksheet must fall back to an existing live worksheet\n";return false;}return true;}
 int main(int argc,char**argv){
  QApplication app(argc,argv);
+ if(argc>1&&std::string(argv[1])=="formula_format")return referencedNumericFormatEntry()?0:1;
  if(argc>1&&std::string(argv[1])=="date_formula")return dateFormulaEntry()?0:1;
  if(argc>1&&std::string(argv[1])=="date_kinds")return dateFormulaBoundaries()?0:1;
  if(argc>1&&std::string(argv[1])=="date_literal")return dateLiteralEntry()?0:1;
@@ -97,7 +104,7 @@ int main(int argc,char**argv){
  if(argc>1&&std::string(argv[1])=="date_locale")return dateEntryLocale()?0:1;
  if(argc>1&&std::string(argv[1])=="date_general")return dateEntryGeneral()?0:1;
  if(argc>1&&std::string(argv[1])=="text_entry")return textFormattedEntry()?0:1;
- if(!dateFormulaEntry()||!dateFormulaBoundaries()||!dateLiteralEntry()||!dateEditRole()||!dateEntryPatterns()||!dateEntryLocale()||!dateEntryGeneral()||!textFormattedEntry())return 1;
+ if(!referencedNumericFormatEntry()||!dateFormulaEntry()||!dateFormulaBoundaries()||!dateLiteralEntry()||!dateEditRole()||!dateEntryPatterns()||!dateEntryLocale()||!dateEntryGeneral()||!textFormattedEntry())return 1;
  if(!rejectedCalculationsClearOldDisplay()||!borrowedPreviewView()||!removedSheetFallsBackToLiveSheet())return 1;
  tigersheets::WorkbookSession session;
  tigersheets::WorksheetModel model(session);

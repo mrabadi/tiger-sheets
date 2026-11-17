@@ -16,3 +16,7 @@
 /.agents/
 *.swp
 *.swo
+
+# The manual tutorial exercise corpus remains local. Publish its compact summary only.
+/docs/validation/otis-90-minute/*
+!/docs/validation/otis-90-minute/RESULTS.json

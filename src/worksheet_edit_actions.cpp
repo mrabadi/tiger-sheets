@@ -3,6 +3,7 @@
 #include "tigersheets/grid.hpp"
 #include "tigersheets/ooxml.hpp"
 #include "tigersheets/worksheet_layout.hpp"
+#include "tigersheets/worksheet_view.hpp"
 #include <QItemSelectionModel>
 #include <QTableView>
 #include <QMessageBox>
@@ -14,7 +15,7 @@
 #include <stdexcept>
 namespace tigersheets {
 namespace {
-int normalDigitWidth(const QTableView& view){const QFontMetrics metrics(QFont("Calibri",11),view.viewport());int width=1;for(char digit='0';digit<='9';++digit)width=std::max(width,metrics.horizontalAdvance(QChar(digit)));return width;}
+int normalDigitWidth(const QTableView&){return SpreadsheetNormalDigitWidth;}
 QItemSelectionRange selectedRange(QTableView& view){
  const auto ranges=view.selectionModel()->selection();if(ranges.size()>1)throw std::runtime_error("Select one contiguous rectangular range.");
  if(ranges.isEmpty()){if(!view.currentIndex().isValid())throw std::runtime_error("Select a worksheet cell first.");return {view.currentIndex(),view.currentIndex()};}return ranges.front();
@@ -27,6 +28,15 @@ bool executeWorksheetEdit(QWidget* parent,WorksheetModel& model,QTableView& view
  if(!(model.flags(view.currentIndex())&Qt::ItemIsEditable))throw std::runtime_error("Accept or discard the preview before editing the worksheet.");
  if(command=="cells.format")return formatWorksheetCells(parent,model,view,arguments);
  if(command=="cells.clearFormats")return clearWorksheetFormats(model,view);
+ if(command=="columns.autofit"){
+  const auto range=selectedRange(view);if(range.width()>10000)throw std::runtime_error("Select at most 10,000 columns to auto-fit.");
+  for(const auto& sheet:model.workbookView().at("sheets"))if(sheet.at("id")==model.sheetId().toStdString()){
+   std::map<int,Json> columns;for(const auto& item:sheet.value("columnLayout",Json::array()))columns[item.at("index")]=item;for(const auto& index:sheet.value("hiddenColumns",Json::array())){const int column=index.get<int>();if(!columns.contains(column))columns[column]={{"index",column}};columns[column]["hidden"]=true;}
+   const int digitWidth=normalDigitWidth(view);for(int column=range.left();column<=range.right();++column){if(auto* worksheetView=dynamic_cast<WorksheetView*>(&view))view.setColumnWidth(column,worksheetView->autoFitColumnPixels(column));else view.resizeColumnToContents(column);const auto characters=std::clamp((view.columnWidth(column)-5.0)/digitWidth,0.0,spreadsheetColumnCharacters(255.0,digitWidth));auto& entry=columns[column+1];if(entry.is_null())entry={{"index",column+1}};entry["size"]=spreadsheetColumnWidth(characters,digitWidth);entry["bestFit"]=true;}
+   Json layout=Json::array();for(const auto& [index,item]:columns)layout.push_back(item);return applyOperations(model,Json::array({{{"type","set_sheet_layout"},{"sheet",model.sheetId().toStdString()},{"columns",std::move(layout)}}}));
+  }
+  return false;
+ }
  if(command=="cells.merge"||command=="cells.mergeCenter"||command=="cells.unmerge"){
   const auto selection=selectedRange(view);const bool unmerge=command=="cells.unmerge";
   if(!unmerge&&(static_cast<std::int64_t>(selection.height())*selection.width()>100000||selection.height()*selection.width()==1))throw std::runtime_error("Select between two and 100,000 cells to merge.");
@@ -59,6 +69,7 @@ bool executeWorksheetEdit(QWidget* parent,WorksheetModel& model,QTableView& view
   for(int at=first;at<=last;++at){
    if(!resize&&command.endsWith("unhide")&&!layout.contains(at))continue;
    auto& entry=layout[at];if(entry.is_null())entry={{"index",at}};
+   if(resize&&!rows)entry.erase("bestFit");
    if((resize&&size==0)||command.endsWith(".hide"))entry["hidden"]=true;
    else{entry.erase("hidden");if(resize)entry["size"]=rows?size:spreadsheetColumnWidth(size,digitWidth);else if(!entry.contains("size"))layout.erase(at);}
   }

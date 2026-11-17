@@ -1,6 +1,9 @@
 #pragma once
 #include "tigersheets/session.hpp"
 namespace tigersheets {
+// Excel's Calibri 11 Normal style at 96dpi. Preserve spreadsheet dimensions
+// across metric-compatible substitutes with different pixel hinting.
+inline constexpr int SpreadsheetNormalDigitWidth=7;
 // Convert dialog character counts, raw SpreadsheetML col/@width and logical
 // pixels using the Normal-style maximum digit width. Authored raw widths cap at 255.
 double spreadsheetColumnWidth(double characters,int maxDigitWidth);

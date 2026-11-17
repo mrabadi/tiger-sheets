@@ -94,6 +94,7 @@ pub enum Error {
     CALC,
     CIRC,
     NULL,
+    FIELD,
 }
 
 impl fmt::Display for Error {
@@ -111,6 +112,7 @@ impl fmt::Display for Error {
             Error::SPILL => write!(fmt, "#SPILL!"),
             Error::CALC => write!(fmt, "#CALC!"),
             Error::CIRC => write!(fmt, "#CIRC!"),
+            Error::FIELD => write!(fmt, "#FIELD!"),
         }
     }
 }
@@ -129,13 +131,17 @@ impl Error {
             Error::SPILL => language.errors.spill.to_string(),
             Error::CALC => language.errors.calc.to_string(),
             Error::CIRC => language.errors.circ.to_string(),
+            // Linked-data errors postdate the frozen localized language table.
+            Error::FIELD => "#FIELD!".to_string(),
         }
     }
 }
 
 pub fn get_error_by_name(name: &str, language: &Language) -> Option<Error> {
     let errors = &language.errors;
-    if name == errors.r#ref {
+    if name == "#FIELD!" {
+        return Some(Error::FIELD);
+    } else if name == errors.r#ref {
         return Some(Error::REF);
     } else if name == errors.name {
         return Some(Error::NAME);
@@ -164,7 +170,9 @@ pub fn get_error_by_name(name: &str, language: &Language) -> Option<Error> {
 }
 
 pub fn get_error_by_english_name(name: &str) -> Option<Error> {
-    if name == "#REF!" {
+    if name == "#FIELD!" {
+        return Some(Error::FIELD);
+    } else if name == "#REF!" {
         return Some(Error::REF);
     } else if name == "#NAME?" {
         return Some(Error::NAME);
@@ -195,7 +203,7 @@ pub fn get_error_by_english_name(name: &str) -> Option<Error> {
 pub fn is_english_error_string(name: &str) -> bool {
     let names = [
         "#REF!", "#NAME?", "#VALUE!", "#DIV/0!", "#N/A", "#NUM!", "#ERROR!", "#N/IMPL!", "#SPILL!",
-        "#CALC!", "#CIRC!", "#NULL!",
+        "#CALC!", "#CIRC!", "#NULL!", "#FIELD!",
     ];
     names.contains(&name)
 }

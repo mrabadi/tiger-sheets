@@ -38,7 +38,7 @@ void showMenu(QTableView& view,WorksheetModel& model,Surface surface,const QPoin
  const bool editable=!model.workbookView().is_null()&&(model.flags(view.currentIndex())&Qt::ItemIsEditable);
  const bool rectangle=view.selectionModel()->selection().size()==1;
  const auto selectedCells=rectangle?static_cast<qint64>(selection.front().width())*selection.front().height():0;
- const bool clipboardBounded=rectangle&&selectedCells<=1000000;
+ const bool clipboardBounded=rectangle&&(selectedCells<=1000000||(selection.front().top()==0&&selection.front().height()==model.rowCount())||(selection.front().left()==0&&selection.front().width()==model.columnCount()));
  const bool formatBounded=rectangle&&selectedCells<=100000;
  const auto clipboard=QApplication::clipboard()->mimeData();const bool pasteable=clipboard&&(clipboard->hasText()||clipboard->hasFormat("application/x-tigersheets-cells+json"));
  auto add=[&](QMenu* parent,const QString& text,const QString& command,const Json& args=Json::object(),bool enabled=true,const QString& shortcut=QString()){

@@ -49,8 +49,11 @@ public:
  bool hasPreview() const;
  bool canUndo() const;
  bool canRedo() const;
+ std::uint64_t undoToken() const noexcept;
+ std::uint64_t redoToken() const noexcept;
+ bool hasHistoryToken(std::uint64_t token) const noexcept;
 private:
- struct HistoryEntry {Json undo,redo,change;std::size_t bytes=0;bool patch=false;};
+ struct HistoryEntry {Json undo,redo,change;std::size_t bytes=0;bool patch=false;std::uint64_t token=0;};
  Json workbook_;
  Json recoveryDeltas_=Json::array();
  std::vector<HistoryEntry> undo_,redo_;

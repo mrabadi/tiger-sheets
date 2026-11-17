@@ -225,8 +225,8 @@ def verify_package(package, report, expected_version):
         installed = run(['dpkg-query', '-W', '-f=${Version}', fields['Package']], allowed=(0, 1))
         report['installed_version'] = installed.stdout.strip() if installed.returncode == 0 else None
         if report['installed_version']:
-            run(['dpkg', '--compare-versions', fields['Version'], 'gt', report['installed_version']])
-        simulation = run(['apt-get', '--simulate', '-o', 'Debug::NoLocking=1', 'install', package],
+            run(['dpkg', '--compare-versions', fields['Version'], 'ge', report['installed_version']])
+        simulation = run(['apt-get', '--simulate', '--reinstall', '-o', 'Debug::NoLocking=1', 'install', package],
                          env=runtime_env)
         if any(line.startswith('Remv ') for line in simulation.stdout.splitlines()):
             raise ValidationError('Read-only upgrade simulation proposed removing installed packages')

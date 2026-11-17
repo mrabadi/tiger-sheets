@@ -1,0 +1,59 @@
+#include "tigersheets/main_window.hpp"
+#include "tigersheets/grid.hpp"
+#include "tigersheets/ooxml.hpp"
+#include "tigersheets/references.hpp"
+#include <QApplication>
+#include <QHeaderView>
+#include <QDir>
+#include <QFileInfo>
+#include <QLineEdit>
+#include <QScrollBar>
+#include <QSlider>
+#include <QTabBar>
+#include <QTableView>
+#include <QTemporaryDir>
+#include <QTest>
+#include <iostream>
+#include <stdexcept>
+using namespace tigersheets;
+void require(bool yes,const char* message){if(!yes)throw std::runtime_error(message);}
+void mergedRawDragRetainsAnchorAndDimensionHeader(){
+ MainWindow window;window.resize(1280,720);window.show();QApplication::processEvents();
+ const auto source=QFileInfo(QString::fromUtf8(__FILE__)).absoluteDir().absoluteFilePath("../tests/fixtures/biff/financial-source.xls");
+ require(window.openWorkbook(source),"open the actual untouched120-tab BIFF source");
+ auto* grid=window.findChild<QTableView*>("worksheet.grid");auto* model=dynamic_cast<WorksheetModel*>(grid->model());auto* tabs=window.findChild<QTabBar*>("workspace.sheets");auto* name=window.findChild<QLineEdit*>("formula.name");auto* formula=window.findChild<QLineEdit*>("formula.input");
+ require(grid&&model&&tabs&&name&&formula&&tabs->count()==120,"actual BIFF import exposes all source sheets and native headers");grid->setFocus();
+ for(int index=0;index<32;++index)QTest::keyClick(grid,Qt::Key_PageDown,Qt::ControlModifier);
+ QTest::keyClick(grid,Qt::Key_F1,Qt::ControlModifier);QApplication::processEvents();require(tabs->tabText(tabs->currentIndex())=="operations","native sheet navigation reaches source operations#33");
+ const auto before=window.currentSession().snapshot();const auto historyBytes=window.currentSession().historyBytes();const bool canUndo=window.currentSession().canUndo(),canRedo=window.currentSession().canRedo();
+ auto position=[&](int row,int col){const auto rect=grid->visualRect(model->index(row-1,col-1));require(grid->viewport()->rect().contains(rect.center()),"actual source drag cell is visible");return rect.center();};
+ auto move=[&](int row,int col,const QString& expected,const QModelIndex& anchor,const QString& text){const auto point=position(row,col);QMouseEvent event(QEvent::MouseMove,QPointF(point),QPointF(grid->viewport()->mapToGlobal(point)),Qt::NoButton,Qt::LeftButton,Qt::NoModifier);QApplication::sendEvent(grid->viewport(),&event);QApplication::processEvents();require(name->text()==expected,"merged source drag shows its union row/column dimensions rather than the endpoint address");require(grid->currentIndex()==anchor&&formula->text()==text,"merged drag retains the active anchor and its formula-bar contents throughout the gesture");require(window.currentSession().snapshot()==before,"live merged drag creates no workbook mutation or history");};
+ const auto title=model->index(1,0);QTest::mousePress(grid->viewport(),Qt::LeftButton,Qt::NoModifier,position(2,1));
+ const auto heading=QString("CONSOLIDATED STATEMENTS OF OPERATIONS");require(formula->text()==heading,"real title anchor begins with source formula-bar contents");
+ move(4,6,"3R x 6C",title,heading);move(7,6,"6R x 6C",title,heading);move(8,6,"7R x 6C",title,heading);move(8,9,"7R x 9C",title,heading);
+ QTest::mouseRelease(grid->viewport(),Qt::LeftButton,Qt::NoModifier,position(8,9));QApplication::processEvents();require(grid->currentIndex()==title&&name->text()=="A2"&&formula->text()==heading,"release restores title anchor header while retaining its selected range");
+ const auto product=model->index(7,6);QTest::mousePress(grid->viewport(),Qt::LeftButton,Qt::NoModifier,position(8,7));require(formula->text()=="6428","real numeric source anchor begins with its unformatted value");
+ move(12,9,"5R x 3C",product,"6428");move(16,9,"9R x 3C",product,"6428");move(20,9,"13R x 3C",product,"6428");move(22,9,"15R x 3C",product,"6428");move(23,9,"16R x 3C",product,"6428");
+ QTest::mouseRelease(grid->viewport(),Qt::LeftButton,Qt::NoModifier,position(23,9));QApplication::processEvents();require(grid->currentIndex()==product&&name->text()=="G8"&&formula->text()=="6428","numeric release preserves G8anchor and raw value");require(window.currentSession().snapshot()==before&&window.currentSession().historyBytes()==historyBytes&&window.currentSession().canUndo()==canUndo&&window.currentSession().canRedo()==canRedo,"complete actual source drag preserves values, formatting and history");
+}
+void pressingTheCurrentMergedAnchorRefreshesItsName(){
+ MainWindow window;window.resize(1280,720);window.show();QApplication::processEvents();
+ const auto source=QFileInfo(QString::fromUtf8(__FILE__)).absoluteDir().absoluteFilePath("../tests/fixtures/biff/financial-source.xls");
+ require(window.openWorkbook(source),"open the actual BIFF source for the already-selected merged-anchor regression");
+ auto* grid=window.findChild<QTableView*>("worksheet.grid");auto* model=dynamic_cast<WorksheetModel*>(grid->model());auto* name=window.findChild<QLineEdit*>("formula.name");auto* formula=window.findChild<QLineEdit*>("formula.input");require(grid&&model&&name&&formula,"native source selection controls exist");
+ grid->setFocus();for(int index=0;index<32;++index)QTest::keyClick(grid,Qt::Key_PageDown,Qt::ControlModifier);QTest::keyClick(grid,Qt::Key_F1,Qt::ControlModifier);QApplication::processEvents();
+ auto select=[&](const char* address){name->setFocus();QTest::keyClick(name,Qt::Key_A,Qt::ControlModifier);QTest::keyClicks(name,address);QTest::keyClick(name,Qt::Key_Return);QApplication::processEvents();};
+ select("A19:C19");select("A19:I19");const auto anchor=model->index(18,0);const auto label=QString("Non-service pension cost (benefit)");
+ require(grid->currentIndex()==anchor&&name->text()=="A19:I19"&&formula->text()==label&&grid->columnSpan(18,0)==3,"reproduce the actual unchanged-current-index range-label precondition around a merged source anchor");
+ const auto before=window.currentSession().snapshot();const auto history=window.currentSession().historyBytes();const bool undo=window.currentSession().canUndo(),redo=window.currentSession().canRedo();
+ auto position=[&](int row,int column){const auto center=grid->visualRect(model->index(row-1,column-1)).center();require(grid->viewport()->rect().contains(center),"source gesture remains on screen");return center;};
+ QTest::mousePress(grid->viewport(),Qt::LeftButton,Qt::NoModifier,position(19,1));QApplication::processEvents();
+ require(name->text()=="A19","pressing an already-current merged anchor refreshes its active address instead of leaving a typed range label");
+ require(grid->currentIndex()==anchor&&formula->text()==label,"pressing the selected merged anchor preserves its formula-bar contents");
+ auto move=[&](int row,int column,const char* dimensions){const auto point=position(row,column);QMouseEvent event(QEvent::MouseMove,point,grid->viewport()->mapToGlobal(point),Qt::NoButton,Qt::LeftButton,Qt::NoModifier);QApplication::sendEvent(grid->viewport(),&event);QApplication::processEvents();require(name->text()==dimensions&&grid->currentIndex()==anchor&&formula->text()==label,"the following held drag reports the observed dimensions while preserving its source anchor and formula");};
+ move(19,9,"1R x 9C");move(20,9,"2R x 9C");move(21,9,"3R x 9C");move(20,5,"2R x 6C");move(20,9,"2R x 9C");
+ QTest::mouseRelease(grid->viewport(),Qt::LeftButton,Qt::NoModifier,position(20,9));QApplication::processEvents();
+ require(name->text()=="A19"&&grid->currentIndex()==anchor&&formula->text()==label,"release restores the active anchor header after the held merged drag");
+ require(window.currentSession().snapshot()==before&&window.currentSession().historyBytes()==history&&window.currentSession().canUndo()==undo&&window.currentSession().canRedo()==redo,"restarting this selection preserves source values, formatting and undo history");
+}
+int main(int argc,char** argv){QApplication app(argc,argv);QTemporaryDir state;qputenv("TIGERSHEETS_STATE_DIR",state.path().toUtf8());try{if(argc==1||std::string(argv[1])=="selected_press"){pressingTheCurrentMergedAnchorRefreshesItsName();if(argc>1){std::cout<<"selected merged anchor press passed\n";return 0;}}if(argc==1||std::string(argv[1])=="merged_drag"){mergedRawDragRetainsAnchorAndDimensionHeader();if(argc>1){std::cout<<"merged BIFF drag passed\n";return 0;}}MainWindow window;window.resize(1280,720);window.show();QApplication::processEvents();auto* grid=window.findChild<QTableView*>("worksheet.grid");auto* model=dynamic_cast<WorksheetModel*>(grid->model());auto* tabs=window.findChild<QTabBar*>("workspace.sheets");require(window.executeCommand("sheet.add"),"create a separate native source worksheet");QTest::mouseClick(tabs,Qt::LeftButton,Qt::NoModifier,tabs->tabRect(1).center());grid->setCurrentIndex(model->index(50,4));grid->selectionModel()->select(QItemSelection(model->index(50,4),model->index(52,6)),QItemSelectionModel::ClearAndSelect);auto* zoom=window.findChild<QSlider*>("worksheet.zoom");zoom->setValue(125);grid->verticalScrollBar()->setValue(grid->verticalHeader()->sectionPosition(36));grid->horizontalScrollBar()->setValue(grid->horizontalScrollMode()==QAbstractItemView::ScrollPerItem?1:grid->horizontalHeader()->sectionPosition(1));QApplication::processEvents();const auto top=QString::fromStdString(columnName(grid->columnAt(0)+1))+QString::number(grid->rowAt(0)+1);require(top=="B37","source view fixture begins at actual B37 in either scrollbar mode");const auto before=window.currentSession().snapshot();const auto path=state.filePath("Otis-10-K-Raw.xls");require(window.saveWorkbook(path),"save native BIFF through the actual MainWindow path");require(window.currentSession().snapshot()==before,"saving native view state creates no authored cell edit or history");const auto book=readWorkbook(path.toStdString()).workbook;require(book.value("activeSheetIndex",-1)==1&&book.at("sheets")[1].value("nativeView",Json::object()).value("activeCell",std::string())=="E51","MainWindow sends the actual active sheet and source E51 selection into native BIFF serialization");const auto& view=book.at("sheets")[1].at("nativeView");require(view.at("selection")=="E51:G53"&&view.at("topLeftCell")==top.toStdString()&&view.at("zoomScale")==125,"MainWindow sends real selection, scroll and zoom to the XLS writer");require(window.openWorkbook(path),"reopen saved legacy source");QApplication::processEvents();require(tabs->currentIndex()==1&&grid->currentIndex()==model->index(50,4)&&zoom->value()==125,"native source reopens on its saved active sheet, E51 and zoom");const auto selected=grid->selectionModel()->selection();require(selected.size()==1&&selected.front().top()==50&&selected.front().bottom()==52&&selected.front().left()==4&&selected.front().right()==6,"native source reopens with its full selected range");const auto reopenedTop=QString::fromStdString(columnName(grid->columnAt(0)+1))+QString::number(grid->rowAt(0)+1);require(reopenedTop==top,"native source reopens at its saved visible scroll origin");require(model->apply(Json::array({{{"type","set_sheet_layout"},{"sheet",model->sheetId().toStdString()},{"columns",Json::array({{{"index",1},{"hidden",true}},{{"index",3},{"hidden",true}}})}}})),"hide columns before the saved scroll origin");grid->horizontalScrollBar()->setValue(0);grid->horizontalScrollBar()->setValue(1);QApplication::processEvents();require(grid->columnAt(0)==3,"per-item scrollbar ordinal skips hidden A and C to show D");require(window.saveWorkbook(path)&&window.openWorkbook(path),"native source saves and reopens its view with preceding hidden columns");QApplication::processEvents();require(grid->columnAt(0)==3,"native logical top-left column converts to visible per-item ordinal when earlier columns are hidden");std::cout<<"MainWindow native XLS views passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}

@@ -1174,6 +1174,13 @@
       "tests": []
     },
     {
+      "name": "FIELDVALUE",
+      "category": "Lookup and reference",
+      "scope": "required",
+      "reason": "Ordinary cell values return typed #FIELD!; linked data types are not supported.",
+      "tests": ["fieldvalue_tests"]
+    },
+    {
       "name": "FILTER",
       "category": "Lookup and reference",
       "scope": "required",

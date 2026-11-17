@@ -23,5 +23,8 @@ std::string editFormulaReferences(std::string_view formula,std::string_view form
 // Refuses partially intersected ranges instead of silently changing their meaning.
 std::string moveFormulaReferences(std::string_view formula,std::string_view formulaSheet,std::string_view sourceSheet,std::string_view destinationSheet,int row1,int col1,int row2,int col2,int deltaRow,int deltaColumn,bool formulaMoved=false);
 std::string cycleReference(std::string_view formula,std::size_t caret);
+struct ReferenceCycleEdit {std::string formula;std::size_t selectionStart=0,selectionLength=0;};
+// Direct editing cycles the endpoint under the caret, or the selected reference.
+ReferenceCycleEdit cycleReferenceEdit(std::string_view formula,std::size_t caret,std::size_t selectionStart,std::size_t selectionLength);
 std::string renameSheetReferences(std::string_view formula,std::string_view oldName,std::string_view newName);
 }

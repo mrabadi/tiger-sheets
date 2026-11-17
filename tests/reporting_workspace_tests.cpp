@@ -7,6 +7,7 @@
 #include <QTableView>
 #include <QTemporaryDir>
 #include <QDockWidget>
+#include <QStatusBar>
 #include <iostream>
 using namespace tigersheets;
 int main(int argc,char** argv){QApplication app(argc,argv);QTemporaryDir directory;qputenv("TIGERSHEETS_STATE_DIR",directory.path().toUtf8());MainWindow window;auto& session=window.currentSession();
@@ -28,5 +29,12 @@ int main(int argc,char** argv){QApplication app(argc,argv);QTemporaryDir directo
  if(!window.saveWorkbook(directory.filePath("relocated.xlsx"))||window.property("reportBusy").toBool()){std::cerr<<"Save As must invalidate report jobs bound to the previous workbook location\n";return 1;}
  if(!window.executeCommand("pivot.refresh",{{"id","p1"}})||!window.property("reportBusy").toBool())return 1;
  if(!window.executeCommand("links.refresh")||window.property("reportBusy").toBool()){std::cerr<<"refreshing calculation context cancels an in-flight report immediately\n";return 1;}
+ const auto beforeCancel=session.snapshot();
+ if(!window.executeCommand("pivot.refresh",{{"id","p1"}})||!window.property("reportBusy").toBool())return 1;
+ if(!window.executeCommand("pivot.cancel")||window.property("reportBusy").toBool()||window.statusBar()->currentMessage()!="Report stopped; workbook changes were discarded"||session.snapshot()!=beforeCancel){std::cerr<<"explicit active report cancellation retains its feedback without committing a candidate\n";return 1;}
+ timer.restart();while(timer.elapsed()<150)app.processEvents();
+ if(session.snapshot()!=beforeCancel){std::cerr<<"a cancelled worker cannot publish a late workbook change\n";return 1;}
+ window.statusBar()->clearMessage();
+ if(!window.executeCommand("pivot.cancel")||!window.statusBar()->currentMessage().isEmpty()||session.snapshot()!=beforeCancel){std::cerr<<"allocated but idle reporting resources do not announce another discarded report\n";return 1;}
  std::cout<<"reporting workspace tests passed\n";
 }

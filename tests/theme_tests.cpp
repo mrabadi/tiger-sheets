@@ -5,6 +5,9 @@
 #include <QApplication>
 #include <QComboBox>
 #include <QDoubleSpinBox>
+#include <QFontComboBox>
+#include <QFontDatabase>
+#include <QFontInfo>
 #include <QHBoxLayout>
 #include <QImage>
 #include <QLabel>
@@ -27,6 +30,42 @@ namespace {
 void require(bool result,const char* message){if(!result)throw std::runtime_error(message);}
 double luminance(const QColor& color){const auto channel=[](double value){return value<=0.04045?value/12.92:std::pow((value+0.055)/1.055,2.4);};return 0.2126*channel(color.redF())+0.7152*channel(color.greenF())+0.0722*channel(color.blueF());}
 double contrast(const QColor& first,const QColor& second){const auto a=luminance(first),b=luminance(second);return (std::max(a,b)+0.05)/(std::min(a,b)+0.05);}
+void missingCalibriUsesPreferredPresentationFallback(){
+ const bool calibriInstalled=QFontDatabase::families().contains(QStringLiteral("Calibri"),Qt::CaseInsensitive);
+ const auto helveticaFamily=QFontInfo(QFont(QStringLiteral("Helvetica"),12)).family();
+ const auto cambriaBefore=QFontInfo(QFont(QStringLiteral("Cambria"),12)).family();
+ const auto otherFamily=QFontDatabase::systemFont(QFontDatabase::FixedFont).family();
+ const auto otherBefore=QFontInfo(QFont(otherFamily,12)).family();
+ const auto priorCalibriSubstitutions=QFont::substitutes(QStringLiteral("Calibri"));
+ QTemporaryDir state;qputenv("TIGERSHEETS_STATE_DIR",state.path().toUtf8());tigersheets::MainWindow window;window.resize(1280,720);window.show();window.activateWindow();QApplication::processEvents();
+ auto* view=dynamic_cast<tigersheets::WorksheetView*>(window.findChild<QTableView*>("worksheet.grid"));require(view,"font fallback uses the actual native worksheet");auto* model=dynamic_cast<tigersheets::WorksheetModel*>(view->model());require(model,"font fallback reads the real worksheet model");
+ const auto id=model->sheetId().toStdString();
+ require(model->apply(tigersheets::Json::array({
+  {{"type","set_cell"},{"sheet",id},{"row",1},{"col",1},{"input","Helvetica fallback 0123456789"}},
+  {{"type","set_style"},{"sheet",id},{"row",1},{"col",1},{"style",{{"fontFamily","Calibri"},{"fontSize",12},{"color","#000000"}}}},
+  {{"type","set_cell"},{"sheet",id},{"row",1},{"col",2},{"input","Helvetica fallback 0123456789"}},
+  {{"type","set_style"},{"sheet",id},{"row",1},{"col",2},{"style",{{"fontFamily","Helvetica"},{"fontSize",12},{"color","#000000"}}}},
+  {{"type","set_cell"},{"sheet",id},{"row",1},{"col",3},{"input","Other explicit font"}},
+  {{"type","set_style"},{"sheet",id},{"row",1},{"col",3},{"style",{{"fontFamily",otherFamily.toStdString()},{"fontSize",12}}}},
+  {{"type","set_cell"},{"sheet",id},{"row",1},{"col",4},{"input","Other missing font"}},
+  {{"type","set_style"},{"sheet",id},{"row",1},{"col",4},{"style",{{"fontFamily","Cambria"},{"fontSize",12}}}}
+ })),"prepare independent native presentation controls");
+ view->setShowGrid(false);view->setColumnWidth(0,320);view->setColumnWidth(1,320);view->setRowHeight(0,40);view->setCurrentIndex(model->index(0,0));QApplication::processEvents();
+ const auto before=window.currentSession().snapshot();
+ const auto calibri=qvariant_cast<QFont>(model->data(model->index(0,0),Qt::FontRole));
+ require(model->cellStyle(0,0).at("fontFamily")=="Calibri","presentation fallback preserves the stored explicit Calibri declaration");
+ auto* family=window.findChild<QFontComboBox*>("ribbon.fontFamily");require(family&&family->currentText()==QStringLiteral("Calibri"),"the native font control still shows declared Calibri rather than its rendering substitute");
+ const auto actualFamily=QFontInfo(calibri).family();
+ require(QFontInfo(qvariant_cast<QFont>(model->data(model->index(0,3),Qt::FontRole))).family()==cambriaBefore&&QFontInfo(qvariant_cast<QFont>(model->data(model->index(0,2),Qt::FontRole))).family()==otherBefore,"Calibri substitution leaves other explicit missing and installed fonts unchanged");
+ view->setCurrentIndex(model->index(2,3));QApplication::processEvents();
+ const auto first=view->viewport()->grab(view->visualRect(model->index(0,0)).adjusted(3,3,-3,-3)).toImage().convertToFormat(QImage::Format_RGB32);
+ const auto second=view->viewport()->grab(view->visualRect(model->index(0,1)).adjusted(3,3,-3,-3)).toImage().convertToFormat(QImage::Format_RGB32);
+ const bool samePixels=first==second;
+ if(const auto path=qEnvironmentVariable("TIGERSHEETS_FONT_FALLBACK_CAPTURE");!path.isEmpty()){first.save(path+"-calibri.png");second.save(path+"-helvetica.png");window.grab().save(path+"-window.png");}
+ require(window.currentSession().snapshot()==before,"reading resolved fonts and rendering their cells changes neither workbook metadata nor history");
+ if(calibriInstalled){require(actualFamily.compare(QStringLiteral("Calibri"),Qt::CaseInsensitive)==0&&QFont::substitutes(QStringLiteral("Calibri"))==priorCalibriSubstitutions,"an installed real Calibri keeps its own face and substitution policy");}
+ else{const auto message=QString("missing Calibri must resolve and render exactly as the preferred Helvetica match: actual=%1 preferred=%2 equalPixels=%3").arg(actualFamily,helveticaFamily).arg(samePixels).toStdString();require(actualFamily==helveticaFamily&&samePixels,message.c_str());}
+}
 void worksheetEditorStaysInsideItsCell(){
  QTemporaryDir state;qputenv("TIGERSHEETS_STATE_DIR",state.path().toUtf8());tigersheets::MainWindow window;window.resize(1100,720);window.show();QApplication::processEvents();
  auto* view=dynamic_cast<tigersheets::WorksheetView*>(window.findChild<QTableView*>("worksheet.grid"));require(view!=nullptr,"themed worksheet exposes its native cell view");auto* model=dynamic_cast<tigersheets::WorksheetModel*>(view->model());require(model!=nullptr,"themed worksheet exposes its cell model");
@@ -43,6 +82,7 @@ void worksheetEditorStaysInsideItsCell(){
 }
 }
 int main(int argc,char** argv){
+ if(argc>1&&std::string(argv[1])=="font_fallback"){QApplication app(argc,argv);try{missingCalibriUsesPreferredPresentationFallback();std::cout<<"native Calibri presentation fallback tests passed\n";return 0;}catch(const std::exception& error){std::cerr<<"theme test failed: "<<error.what()<<'\n';return 1;}}
  QApplication app(argc,argv);if(argc>1&&std::string(argv[1])=="worksheet_editor"){try{worksheetEditorStaysInsideItsCell();std::cout<<"worksheet editor geometry tests passed\n";return 0;}catch(const std::exception& error){std::cerr<<"theme test failed: "<<error.what()<<'\n';return 1;}}
  QWidget root;root.setWindowTitle("Compact suite controls");root.setMinimumWidth(760);auto* layout=new QVBoxLayout(&root);layout->setContentsMargins(8,4,8,4);layout->setSpacing(4);
  auto* suiteMenu=new QMenuBar;suiteMenu->setNativeMenuBar(false);suiteMenu->setObjectName("workspace.menubar");auto* fileAction=suiteMenu->addMenu("File")->menuAction();auto* identity=new QWidget(suiteMenu);identity->setObjectName("workspace.identity");auto* identityLayout=new QHBoxLayout(identity);identityLayout->setContentsMargins(10,4,10,4);identityLayout->setSpacing(7);auto* mark=new QLabel("T");mark->setFixedSize(28,28);identityLayout->addWidget(mark);auto* brand=new QLabel("TigerSheets");brand->setObjectName("workspace.brand");identityLayout->addWidget(brand);suiteMenu->setCornerWidget(identity,Qt::TopLeftCorner);layout->addWidget(suiteMenu);
@@ -65,6 +105,7 @@ int main(int argc,char** argv){
   require(formula->hasFocus()&&contrast(focusedBorder,palette.color(QPalette::Base))>=3&&contrast(focusedBorder,idleBorder)>=1.5,"keyboard focus must remain visibly distinct on the flat formula field");
   require(formula->sizeHint()==inputHint,"keyboard focus must not resize dense input controls");
   worksheetEditorStaysInsideItsCell();
+  missingCalibriUsesPreferredPresentationFallback();
   std::cout<<"theme tests passed\n";
  }catch(const std::exception& error){std::cerr<<"theme test failed: "<<error.what()<<'\n';return 1;}
 }

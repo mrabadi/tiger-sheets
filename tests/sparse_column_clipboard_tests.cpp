@@ -1,0 +1,13 @@
+#include "tigersheets/grid.hpp"
+#include "tigersheets/references.hpp"
+#include <QApplication>
+#include <iostream>
+#include <stdexcept>
+using namespace tigersheets;
+namespace {
+void require(bool condition,const char* message){if(!condition)throw std::runtime_error(message);}
+Json fixture(){return {{"revision",0},{"sheets",Json::array({{{"id","source"},{"name","Source"},{"defaultStyle",{{"fontFamily","Arial"},{"fontSize",10}}},{"cells",Json::array({{{"row",1},{"col",3},{"input","=G16*2"}},{{"row",6},{"col",7},{"input",""},{"style",{{"fill","#123456"}}}},{{"row",16},{"col",7},{"input","12112"},{"style",{{"numberFormat","#,##0"},{"bold",true}}}},{{"row",20},{"col",7},{"input","=G16+1"}},{{"row",500},{"col",11},{"input","old destination"},{"style",{{"italic",true}}}},{{"row",MaxRows},{"col",7},{"input","42"}}})}}})}};}
+}
+int main(int argc,char** argv){QApplication app(argc,argv);try{
+ WorkbookSession session(fixture());WorksheetModel model(session);const auto before=session.snapshot();const auto clip=model.cutRange(0,6,MaxRows-1,6);require(!clip.is_null(),"Cut accepts a whole worksheet column without materializing a million cells");require(clip.dump().size()<20000,"Whole-column clipboard storage scales with stored cells");require(session.snapshot()==before&&!session.canUndo(),"Cut defers all workbook mutation");require(!model.pasteRange(1,10,clip)&&session.snapshot()==before,"A full column cannot be pasted one row below its true worksheet boundary");require(model.pasteRange(0,10,clip),"Sparse G-to-K whole-column move succeeds");require(model.raw(15,6).isEmpty()&&model.raw(15,10)=="12112"&&model.raw(MaxRows-1,10)=="42","Whole-column move preserves source values including the actual last worksheet row");require(model.raw(499,10).isEmpty()&&model.cellStyle(499,10).value("italic",false)==false,"Source blanks clear stored destination content and formatting");require(model.cellStyle(5,10).at("fill")=="#123456"&&model.cellStyle(15,10).at("bold")==true&&model.cellStyle(15,10).at("fontFamily")=="Arial","Sparse whole-column move preserves formatted blanks and effective inherited fonts");require(model.raw(0,2)=="=K16*2"&&model.raw(19,10)=="=K16+1","Whole-column cut rewrites dependent and moved formula references");require(session.snapshotView().at("sheets")[0].at("cells").size()<20,"A sparse move does not expand the worksheet into a dense million-cell grid");require(session.undo()&&session.snapshotView().at("sheets")==before.at("sheets")&&!session.canUndo(),"One Undo restores the complete source, destination, formatting and formula changes");std::cout<<"Sparse whole-column clipboard passed\n";
+ }catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}

@@ -996,7 +996,17 @@ impl<'a> Model<'a> {
         // Shares the formula, it does not copy it.
         let node =
             Arc::clone(&self.parsed_formulas[cell_reference.sheet as usize][formula as usize].0);
-        match self.evaluate_node_in_context(&node, cell_reference) {
+        let grouped = crate::arithmetic::root_is_grouped(
+            &self.workbook.worksheets[cell_reference.sheet as usize].shared_formulas[formula as usize]);
+        let result = match node.as_ref() {
+            crate::expressions::parser::Node::OpSumKind { kind, left, right } if !grouped => {
+                let subtract = matches!(kind, crate::expressions::token::OpSum::Minus);
+                self.handle_arithmetic(left, right, cell_reference,
+                    &|left, right| Ok(crate::arithmetic::final_sum(left, right, subtract)))
+            }
+            _ => self.evaluate_node_in_context(&node, cell_reference),
+        };
+        match result {
             CalcResult::Range { left, right } => {
                 if left == right {
                     self.evaluate_cell(left)

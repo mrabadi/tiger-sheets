@@ -784,6 +784,9 @@ impl<'a> Model<'a> {
                 if id.is_none() && name.trim_start_matches("_xlfn.").eq_ignore_ascii_case("AGGREGATE") {
                     return self.fn_aggregate(args, cell);
                 }
+                if id.is_none() && name.trim_start_matches("_xlfn.").eq_ignore_ascii_case("FIELDVALUE") {
+                    return self.fn_fieldvalue(args, cell);
+                }
                 let lambda_result = if let Some(var_id) = id {
                     // Bound by LET — look up the variable, which should be a Lambda.
                     match self.variable_stack.get(&(*var_id as usize)) {
@@ -2807,8 +2810,12 @@ impl<'a> Model<'a> {
         sheet: u32,
         parsed_formula: Node,
         static_result: StaticResult,
+        grouped_root: bool,
     ) -> Result<i32, String> {
         let text = to_rc_format(&parsed_formula);
+        // Keep the grouping distinction in the shared-formula key so grouped
+        // and ungrouped final arithmetic do not accidentally share semantics.
+        let text = if grouped_root { format!("({text})") } else { text };
         let sheet_index = sheet as usize;
         let shared_formulas = &mut self.workbook.worksheet_mut(sheet)?.shared_formulas;
         if self.shared_formula_lookup.len() <= sheet_index {
@@ -2866,7 +2873,7 @@ impl<'a> Model<'a> {
         let static_result = run_static_analysis_on_node(&parsed_formula);
         let is_dynamic = !matches!(static_result, StaticResult::Scalar);
 
-        let formula_index = self.shared_formula_index(sheet, parsed_formula, static_result)?;
+        let formula_index = self.shared_formula_index(sheet, parsed_formula, static_result, crate::arithmetic::root_is_grouped(formula))?;
         let worksheet = self.workbook.worksheet_mut(sheet)?;
         if is_dynamic {
             worksheet.set_cell_with_dynamic_formula(row, column, formula_index, style, 1, 1)?;
@@ -2906,7 +2913,7 @@ impl<'a> Model<'a> {
         }
         let static_result = run_static_analysis_on_node(&parsed_formula);
 
-        let formula_index = self.shared_formula_index(sheet, parsed_formula, static_result)?;
+        let formula_index = self.shared_formula_index(sheet, parsed_formula, static_result, crate::arithmetic::root_is_grouped(formula))?;
         let worksheet = self.workbook.worksheet_mut(sheet)?;
         worksheet.set_cell_with_array_formula(row, column, formula_index, style, width, height)?;
         Ok(formula_index)

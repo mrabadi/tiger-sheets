@@ -6,6 +6,7 @@
 #include <memory>
 
 class QKeyEvent;
+class QMouseEvent;
 class QListWidget;
 
 namespace tigersheets {
@@ -28,11 +29,17 @@ public:
     bool acceptCompletion();
 protected:
     bool event(QEvent* event) override;
+    void paintEvent(QPaintEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
+    void mouseDoubleClickEvent(QMouseEvent* event) override;
 private:
     struct State;
     std::unique_ptr<State> state_;
     void refreshFormulaHelp();
     void updateHelpPresentation();
     void positionHelpWindows();
+    void resetWrappedCaret();
 };
 } // namespace tigersheets

@@ -1,4 +1,5 @@
 #include "tigersheets/workbook_links.hpp"
+#include "tigersheets/biff.hpp"
 
 #include <pugixml.hpp>
 #include <zip.h>
@@ -7,6 +8,7 @@
 #include <cmath>
 #include <filesystem>
 #include <functional>
+#include <fstream>
 #include <memory>
 #include <set>
 #include <stdexcept>
@@ -59,6 +61,14 @@ std::string localTarget(std::string target, bool escapedUri) {
     return target;
 }
 std::uintmax_t expandedSize(const fs::path& path, std::uintmax_t remaining) {
+    std::ifstream input(path,std::ios::binary);char signature[8]{};input.read(signature,sizeof(signature));
+    if(input.gcount()==sizeof(signature)&&isCompoundWorkbook(std::string_view(signature,sizeof(signature)))){
+        // Compound BIFF streams are uncompressed; native import separately bounds
+        // stream bytes and the parser's rectangular allocation before reading cells.
+        const auto size=fs::file_size(path);
+        if(size>remaining)throw LinkFailure("external_link_limit","limited","Linked workbook expanded-data budget was exceeded");
+        return size;
+    }
     int error = 0;
     auto* archive = zip_open(path.c_str(), ZIP_RDONLY, &error);
     if (!archive) throw LinkFailure("external_link_invalid", "invalid", "Linked workbook is not a valid ZIP package");
@@ -140,7 +150,7 @@ Json readCache(pugi::xml_node book) {
                         throw std::runtime_error("Invalid cached number");
                 }
             } else if (type == "e") {
-                const std::set<std::string> errors{"#NULL!", "#DIV/0!", "#VALUE!", "#REF!", "#NAME?", "#NUM!", "#N/A", "#SPILL!", "#CALC!"};
+                const std::set<std::string> errors{"#NULL!", "#DIV/0!", "#VALUE!", "#REF!", "#NAME?", "#NUM!", "#N/A", "#SPILL!", "#CALC!", "#FIELD!"};
                 if (!errors.contains(input)) throw std::runtime_error("Unsupported cached error value");
             } else throw std::runtime_error("Unsupported external cache cell type");
             cached["sheets"][static_cast<std::size_t>(index)]["cells"].push_back({{"row", r}, {"col", c}, {"input", input}});
@@ -258,6 +268,20 @@ void normalizeWorkbook(Json& workbook, const Json& links) {
         if (input.starts_with('=')) cell["input"] = normalizeIndexes(input, names);
     }
 }
+const LiveWorkbookSnapshot* matchingLiveWorkbook(const Json& link,const fs::path& directory,const WorkbookLinkOptions& options){
+    const auto original=link.value("path",std::string());const auto relocated=options.relocatedPaths.find(original);
+    const auto target=localTarget(relocated==options.relocatedPaths.end()?original:relocated->second,relocated==options.relocatedPaths.end()&&link.value("uriEncoded",false));
+    const fs::path requested(target);const auto resolved=fs::weakly_canonical(requested.is_absolute()?requested:directory/requested);
+    std::vector<const LiveWorkbookSnapshot*> exact,named;
+    for(const auto& source:options.liveWorkbooks){if(!source.workbook)continue;
+        if(!source.path.empty()&&fs::weakly_canonical(source.path)==resolved)exact.push_back(&source);
+        if(source.name==link.value("name",std::string()))named.push_back(&source);
+    }
+    const auto& matches=!exact.empty()?exact:named;
+    if(exact.empty()&&requested.has_parent_path())return nullptr;
+    if(matches.size()>1)throw LinkFailure("external_link_ambiguous","ambiguous","More than one open workbook matches this link; choose its exact source path");
+    return matches.empty()?nullptr:matches.front();
+}
 }
 
 WorkbookLinkResolution prepareWorkbookLinksOwned(Json workbook, const WorkbookPackage* source, const WorkbookLinkOptions& options) {
@@ -278,8 +302,12 @@ WorkbookLinkResolution prepareWorkbookLinksOwned(Json workbook, const WorkbookPa
         for (auto& link : links) {
             link.erase("workbook");
             if (link.value("name", "").empty()) link["name"] = fs::path(link.at("path").get<std::string>()).filename().string();
+            const LiveWorkbookSnapshot* live=nullptr;
+            if(link.value("enabled",true)&&!options.liveWorkbooks.empty())try{live=matchingLiveWorkbook(link,directory,options);}catch(const LinkFailure& error){
+                link["enabled"]=false;link["state"]=error.state;result.diagnostics.push_back({{"code",error.code},{"path",link.at("path")},{"message",error.what()}});continue;
+            }
             bool retained = false;
-            if (!options.refresh && link.value("enabled", true) && options.retainedLinks.is_array()) {
+            if (!live && !options.refresh && link.value("enabled", true) && options.retainedLinks.is_array()) {
                 for (const auto& previous : options.retainedLinks) {
                     if (!previous.is_object() || !previous.contains("workbook") || !previous.value("enabled", false)) continue;
                     const auto previousPath = previous.value("originalPath", previous.value("path", ""));
@@ -293,7 +321,7 @@ WorkbookLinkResolution prepareWorkbookLinksOwned(Json workbook, const WorkbookPa
                 }
             }
             if (retained) continue;
-            if (options.refresh && link.value("enabled", true)) {
+            if ((options.refresh || live) && link.value("enabled", true)) {
                 try {
                     if (depth >= options.maxDepth)
                         throw LinkFailure("external_link_limit", "limited", "Linked workbook depth limit was reached");
@@ -307,12 +335,19 @@ WorkbookLinkResolution prepareWorkbookLinksOwned(Json workbook, const WorkbookPa
                         throw LinkFailure("external_link_cycle", "cycle", "A linked workbook dependency returns to an active workbook");
                     if (const auto cached = preparedWorkbooks.find(path.string()); cached != preparedWorkbooks.end()) {
                         link["workbook"] = cached->second;
-                        link["enabled"] = true; link["state"] = "refreshed";
+                        link["enabled"] = true; link["state"] = live?"open":"refreshed";
                         link["originalPath"] = original; link["path"] = path.string(); link["resolvedPath"] = path.string();
                         continue;
                     }
                     if (attemptedFiles >= options.maxWorkbooks)
                         throw LinkFailure("external_link_limit", "limited", "Linked workbook source-file limit was reached");
+                    if(live){
+                        ++attemptedFiles;WorkbookPackage livePackage;livePackage.sourcePath=live->path;
+                        activePaths.insert(path.string());
+                        try{link["workbook"]=resolve(*live->workbook,&livePackage,depth+1);}catch(...){activePaths.erase(path.string());throw;}
+                        activePaths.erase(path.string());preparedWorkbooks[path.string()]=link["workbook"];
+                        link["enabled"]=true;link["state"]="open";link["originalPath"]=original;link["path"]=path.string();link["resolvedPath"]=path.string();link["sourceRevision"]=live->workbook->at("revision");continue;
+                    }
                     if (!fs::is_regular_file(path)) throw LinkFailure("external_link_missing", "missing", "Linked workbook file was not found");
                     const auto length = fs::file_size(path);
                     if (length > options.maxTotalBytes - chargedBytes)

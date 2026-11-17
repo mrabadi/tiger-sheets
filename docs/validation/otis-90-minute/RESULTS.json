@@ -1,0 +1,142 @@
+{
+  "requestedFixesCompleted": true,
+  "requestedFollowUpGroupsCompleted": 3,
+  "groups": [
+    {
+      "name": "Native UI behavior",
+      "status": "fixed",
+      "changes": [
+        "F12 opens Save As",
+        "Bare equals shows SUM in Name Box",
+        "AutoSum uses genuine Point mode with mouse, arrows and F4",
+        "Short bold inline formulas keep the closing parenthesis on one line",
+        "Long drags retain viewport and active anchor, show floating dimensions when the anchor is offscreen",
+        "Quick Analysis follows the eligible completed range as the viewport scrolls"
+      ]
+    },
+    {
+      "name": "Formatting",
+      "status": "fixed",
+      "changes": [
+        "Increase Indent gives general-aligned literal text the source Left (Indent) alignment",
+        "Native UI repair corrects column B to 256px and 59 approved style cells: indentation/alignment, boldness, colors, Accounting and blank-cell borders/formats"
+      ],
+      "savedFileFailuresBefore": 65,
+      "savedFileFailuresAfter": 0,
+      "formulasAndCachesUnchanged": 611,
+      "storedCellContentsAndTypesUnchanged": 891
+    },
+    {
+      "name": "Audit authority consistency",
+      "status": "fixed",
+      "changes": [
+        "Source-entered percent Custom code remains a directional explicit equivalent; other formats still fail",
+        "Source nonformula literal override also governs its own literal cache without global whitespace normalization",
+        "Versioned E37 source override preserves the video-visible black text instead of the conflicting published blue"
+      ]
+    }
+  ],
+  "validation": {
+    "nativeTestsPassed": 280,
+    "nativeQualification": "279 passed initially; the generic native replay driver timed out at300 seconds and passed unchanged on a serial retry in240.17 seconds with900-second timeout. Both actual results are preserved.",
+    "standalonePythonTestsPassed": 273,
+    "savedWorkbookAudits": {
+      "canonical-before": "PASS",
+      "canonical-after-reopen": "PASS",
+      "relocated-before-refresh": "PASS",
+      "relocated-after-refresh": "PASS"
+    },
+    "formulasAndCachedValuesUnchanged": 611,
+    "storedCellContentsAndTypesUnchanged": 891,
+    "rawSourceCachesAndLinkBindings": "PASS"
+  },
+  "fullVideoReplicationInBuiltInTests": false,
+  "sourceReviewComplete": false,
+  "verifiedReplica": false,
+  "artifactRetention": "Generated screenshots, raw audit inventories, replay traces, failed-run copies and scratch archives removed at the user's request. This compact summary retains actual completed results; removed raw evidence is no longer locally available.",
+  "application": {
+    "path": "/home/rabadi/Documents/ChatGPT/spreadsheets/build-release/tiger-sheets",
+    "sha256": "cbbe17da65c881601d834cf87242dc0ed80a975b5ac2618472262cf3962dddce"
+  },
+  "workbooks": {
+    "101-01-90-Minute-Case-Study-Otis-Blank.xlsx": {
+      "sha256": "7f88ee4ec52862df0aac480ce4158dcc37489b8aecb2669a93bdd2d3c733d05e",
+      "bytes": 129720
+    },
+    "Otis-10-K-Raw.xls": {
+      "sha256": "aab51b307e0c7869557c5cfd8a2a75078c89280ee319f9b283cb92fdc3cda34a",
+      "bytes": 902656
+    }
+  },
+  "cleanup": {
+    "removedBytesApprox": 79763150413,
+    "removedGiBApprox": 74.29,
+    "oldInstallersRemoved": [
+      {
+        "path": "build-release/tiger-sheets_0.3.0~dev.2_amd64.deb",
+        "bytes": 82766148
+      },
+      {
+        "path": "build-release/tiger-sheets_0.2.0~dev.1_amd64.deb",
+        "bytes": 73491324
+      },
+      {
+        "path": "build-release/tiger-sheets_0.3.0~dev.4_amd64.deb.sha256",
+        "bytes": 101
+      },
+      {
+        "path": "build-release/tiger-sheets_0.3.0~dev.3_amd64.deb",
+        "bytes": 82766194
+      },
+      {
+        "path": "build-release/tiger-sheets_0.3.0~dev.3_amd64.deb.validation.json",
+        "bytes": 44937
+      },
+      {
+        "path": "build-release/tiger-sheets_0.3.0~dev.3_amd64.deb.sha256",
+        "bytes": 115
+      },
+      {
+        "path": "dist/tiger-sheets_0.3.0~dev.2_amd64.deb",
+        "bytes": 81485604
+      },
+      {
+        "path": "dist/tiger-sheets_0.1.0~dev.1_amd64.deb",
+        "bytes": 49937330
+      },
+      {
+        "path": "dist/tiger-sheets_0.2.0~dev.1_amd64.deb",
+        "bytes": 73491324
+      },
+      {
+        "path": "dist/tiger-sheets_0.1.0~dev.2_amd64.deb",
+        "bytes": 50338322
+      },
+      {
+        "path": "dist/tiger-sheets_0.3.0~dev.2_amd64.deb.validation.json",
+        "bytes": 44883
+      },
+      {
+        "path": "dist/tiger-sheets_0.3.0~dev.1_amd64.deb",
+        "bytes": 81126880
+      },
+      {
+        "path": "dist/tiger-sheets_0.3.0~dev.1_amd64.deb.validation.json",
+        "bytes": 44912
+      }
+    ],
+    "validationArchiveFilesRemoved": 100592,
+    "scratchFilesRemoved": 95601,
+    "retainedFixtureBytes": 1799567035,
+    "installerBytes": 66325616,
+    "installerContainsValidationArchives": false,
+    "packagingRegressionTestsPassed": 19,
+    "applicationBinaryUnchanged": true,
+    "retained": "Corrected workbook/source, application/source/test code, necessary original reference fixtures and compact results",
+    "noFullSuiteRerunAfterCleanup": true,
+    "installerVerification": "PASS: private extraction, ELF/runtime checks, application/worker/solver probes and read-only same-version reinstall simulation",
+    "installerSha256": "a3a8d748d98a012ed4b6c756cbd8298ffb2c178b964c7669851431c1c895fd52",
+    "installerValidationReport": "build-release/tiger-sheets_0.3.0~dev.4_amd64.deb.validation.json"
+  },
+  "sourceFirstPostfixOracle": "docs/validation/otis-90-minute/final-native-acceptance-oracle.postfix.json"
+}

@@ -399,11 +399,12 @@ pub extern "C" fn tigersheets_calc_abi_version() -> u32 { 1 }
 pub extern "C" fn tigersheets_calc_functions() -> *mut c_char {
     let catalog = catch_unwind(|| {
       let mut functions = registered_functions();
-      functions.push("AGGREGATE".into()); functions.push("GETPIVOTDATA".into()); functions.sort(); functions.dedup();
+      functions.push("AGGREGATE".into()); functions.push("GETPIVOTDATA".into()); functions.push("FIELDVALUE".into()); functions.sort(); functions.dedup();
       json!({
         "engine":"IronCalc", "version":"v0.9.1",
         "commit":"eb9ca75bd99160c17902359d2d87225c4571c468",
-        "availability_only":true, "functions":functions,"extensions":["AGGREGATE","GETPIVOTDATA"]
+        "availability_only":true, "functions":functions,"extensions":["AGGREGATE","GETPIVOTDATA","FIELDVALUE"],
+        "bounded_functions":{"FIELDVALUE":{"linked_data_types":false,"non_rich_values":"#FIELD!"}}
       })
     });
     output(catalog.unwrap_or_else(|_| error_result(Value::Null, "internal_error", "Function catalog panicked")))
@@ -571,6 +572,118 @@ mod computed_result_tests {
     }
 
     #[test]
+    fn fieldvalue_non_rich_values_and_error_identity() {
+        // Microsoft explicitly specifies #FIELD! for a value which is not a
+        // linked data type. This fixture contains only native scalar cells.
+        let document = json!({"revision": 91, "sheets": [{"id":"s", "name":"Sheet1", "cells":[
+            {"row":1,"col":1,"input":"42"},
+            {"row":2,"col":1,"input":"'Otis"},
+            {"row":3,"col":1,"input":"TRUE"},
+            {"row":1,"col":2,"input":"=FIELDVALUE(A1,\"Name\")"},
+            {"row":2,"col":2,"input":"=FIELDVALUE(A2,\"Name\")"},
+            {"row":3,"col":2,"input":"=FIELDVALUE(A3,\"Name\")"},
+            {"row":4,"col":2,"input":"=FIELDVALUE(A4,\"Name\")"},
+            {"row":5,"col":2,"input":"=_xlfn.FIELDVALUE(A1,\"Name\")"},
+            {"row":6,"col":2,"input":"=IFERROR(B1,\"fallback\")"},
+            {"row":7,"col":2,"input":"=ISERROR(B1)"},
+            {"row":8,"col":2,"input":"=ERROR.TYPE(B1)"},
+            {"row":9,"col":2,"input":"=TYPE(B1)"},
+            {"row":10,"col":2,"input":"=B1+1"},
+            {"row":11,"col":2,"input":"#FIELD!"},
+            {"row":12,"col":2,"input":"=ERROR.TYPE(B11)"},
+            {"row":13,"col":2,"input":"=ISERROR(#FIELD!)"},
+            {"row":14,"col":2,"input":"=FIELDVALUE(1/0,\"Name\")"}
+        ]}]});
+        let result = calculate(&document);
+        assert_eq!(result["status"], "ok");
+        let at = |row: i64| result["values"].as_array().unwrap().iter()
+            .find(|value| value["sheet"] == "s" && value["row"] == row && value["col"] == 2).unwrap();
+        for row in [1, 2, 3, 4, 5, 10, 11] {
+            assert_eq!(at(row)["type"], "error", "row {row} is an actual typed error");
+            assert_eq!(at(row)["value"], "#FIELD!", "row {row} uses the distinct FIELD error");
+        }
+        assert_eq!(at(6)["value"], "fallback");
+        assert_eq!(at(7)["value"], true);
+        assert_eq!(at(8)["value"].as_f64(), Some(13.0));
+        assert_eq!(at(9)["value"].as_f64(), Some(16.0));
+        assert_eq!(at(12)["value"].as_f64(), Some(13.0));
+        assert_eq!(at(13)["value"], true);
+        assert_eq!(at(14)["value"], "#DIV/0!");
+    }
+
+    #[test]
+    fn excel_final_subtraction_compensation() {
+        // Microsoft documents the first expression as exact zero. The
+        // independent 0.1+2.7+0.8 / 3.6 context examples are recorded at
+        // learn.microsoft.com/answers/questions/5039407 and /5073937.
+        let formulas = [
+            "=1.333+1.225-1.333-1.225",
+            "=A1*10000000000000000+5",
+            "=(1.333+1.225-1.333-1.225)",
+            "=SUM(1.333+1.225-1.333-1.225)",
+            "=1.333+1.225-1.333-1.225-0",
+            "=(43.1-43.2)+1",
+            "=1E-12",
+            "=1E-100",
+            "=1E-16-0",
+            "=0-1E-16",
+            "=1E-16+1E-16",
+            "=1.23456789-1.23456788",
+        ];
+        let mut cells: Vec<Value> = formulas.iter().enumerate().map(|(index, input)|
+            json!({"row":index+1,"col":1,"input":input})).collect();
+        for (column, input) in ["=0.1+2.7+0.8", "3.6", "=A20-B20", "=(A20-B20)",
+            "=SUM(A20-B20)", "=IF(TRUE,A20-B20)", "=A20-B20-0", "=A20+-B20"].iter().enumerate() {
+            cells.push(json!({"row":20,"col":column+1,"input":input}));
+        }
+        // Independently published Excel bit-level sweep and power-of-two
+        // boundary: docs.grid.is/apiary/explain/excel-floating-point-arithmetic/.
+        let boundaries = [
+            ("=1+2^-49-1", 2.0_f64.powi(-49)),
+            ("=1+2^-50-1", 0.0),
+            ("=3300+2^-38-3300", 2.0_f64.powi(-38)),
+            ("=3300+2^-39-3300", 0.0),
+            ("=(2^53-9)-(2^53-10)", 0.0),
+            ("=70368744177664-0.1-70368744177664", -0.1015625),
+            ("=140737488355328+0.1-140737488355328", 0.0),
+            ("=(140737488355328+0.1-140737488355328)", 0.09375),
+            ("=SUM(1+2^-52-1)", 2.0_f64.powi(-52)),
+            ("=LET(x,1+2^-52-1,x)", 2.0_f64.powi(-52)),
+        ];
+        for (index, (input, _)) in boundaries.iter().enumerate() {
+            cells.push(json!({"row":30+index,"col":1,"input":input}));
+        }
+        let book = json!({"revision":75,"sheets":[{"id":"s","name":"Precision","cells":cells}]});
+        let result = calculate(&book);
+        assert_eq!(result["status"], "ok");
+        let number = |row: u64, column: u64| -> f64 {
+            result["values"].as_array().unwrap().iter().find(|cell|
+                cell["row"] == row && cell["col"] == column).unwrap()["value"].as_f64().unwrap()
+        };
+        assert_eq!(number(1, 1), 0.0, "Microsoft's near-zero final-subtraction example must be exact zero");
+        assert_eq!(number(2, 1), 5.0, "dependent formulas must consume the corrected stored value");
+        let raw = ((1.333_f64 + 1.225) - 1.333) - 1.225;
+        assert_ne!(raw, 0.0);
+        for row in [3, 4, 5] {
+            assert_eq!(number(row, 1).to_bits(), raw.to_bits(), "grouped, nested and final-zero-operand expressions retain raw arithmetic");
+        }
+        assert_eq!(number(6, 1).to_bits(), ((43.1_f64 - 43.2) + 1.0).to_bits());
+        for (row, expected) in [(7, 1e-12_f64), (8, 1e-100), (9, 1e-16), (10, -1e-16), (11, 2e-16), (12, 1.23456789_f64-1.23456788)] {
+            assert_eq!(number(row, 1).to_bits(), expected.to_bits(), "genuine small values must not be globally rounded or clamped");
+        }
+        let independent = (0.1_f64 + 2.7 + 0.8) - 3.6;
+        assert_eq!(number(20, 3), 0.0);
+        assert_eq!(number(20, 8), 0.0, "root addition with an opposite-sign operand shares cancellation semantics");
+        for column in [4, 5, 6, 7] {
+            assert_eq!(number(20, column).to_bits(), independent.to_bits(), "only the final arithmetic operation receives compensation");
+        }
+        for (index, (_, expected)) in boundaries.iter().enumerate() {
+            assert_eq!(number((30+index) as u64, 1).to_bits(), expected.to_bits(), "published Excel exponent-boundary case {}", index);
+        }
+        assert_eq!(book["sheets"][0]["cells"][0]["input"], formulas[0], "calculation does not rewrite canonical formulas");
+    }
+
+    #[test]
     fn typed_input_retains_revision_and_ignores_noncalculation_metadata() {
         let base=json!({"revision":73,"sheets":[{"id":"s","name":"Data","cells":[{"row":1,"col":1,"input":"=2+3"}]}]});
         let mut decorated=base.clone();decorated["sheets"][0]["cells"][0]["style"]=json!({"numberFormat":"$#,##0.00"});decorated["charts"]=json!([{"opaque":true}]);
@@ -618,6 +731,19 @@ mod computed_result_tests {
         assert_eq!(sparse["status"], full["status"]);
         book["_tigersheetsComputedResults"] = json!(false);
         assert_eq!(calculate(&book), full, "default/full response remains unchanged");
+    }
+
+    #[test]
+    fn number_format_named_colors_use_the_same_palette_indices_as_color_n() {
+        let locale = ironcalc_base::locale::get_locale("en").unwrap();
+        for (index, name) in ["Black", "White", "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan"].iter().enumerate() {
+            let named = ironcalc_base::formatter::format::format_number(-5.0, &format!("0;[{name}](0)"), locale);
+            let indexed = ironcalc_base::formatter::format::format_number(-5.0, &format!("0;[Color {}](0)", index + 1), locale);
+            assert_eq!(named.error, None, "named numeric color {name} is valid");
+            assert_eq!(named.text, "(5)");
+            assert_eq!(named.color, Some((index + 1) as i32), "named color {name} uses its one-based spreadsheet palette index");
+            assert_eq!(named.color, indexed.color, "named and indexed forms choose the same numeric color");
+        }
     }
 
     #[test]

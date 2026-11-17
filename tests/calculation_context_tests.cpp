@@ -6,6 +6,7 @@ void require(bool condition,const char* message){if(!condition)throw std::runtim
 int main(){try{
  CalculationContext context;context.snapshot={{"revision",7},{"links",Json::array({{{"name","Assumptions.xlsx"},{"enabled",true},{"state","cached"}}})}};
  context.evaluator=[](const Json& book){return Json{{"revision",book.at("revision")},{"status","ok"},{"values",Json::array()}};};
+ auto live=context;live.snapshot["links"][0]["state"]="open";require(live.calculate(live.snapshot).at("status")=="ok","Live open workbook inputs are fresh and do not require cached-value consent");
  bool refused=false;try{context.calculate(context.snapshot);}catch(const std::exception& e){refused=std::string(e.what()).find("saved")!=std::string::npos;}require(refused,"analysis requires explicit consent before using cached linked inputs");
  context.snapshot["links"][0]["enabled"]=false;refused=false;try{context.calculate(context.snapshot);}catch(const std::exception&){refused=true;}require(refused,"normalized disabled saved sources still require explicit analysis consent");
  context.allowCachedLinks=true;require(context.calculate(context.snapshot).at("status")=="ok","explicit saved-value permission remains functional");

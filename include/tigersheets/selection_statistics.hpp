@@ -3,9 +3,10 @@
 #include <cstdint>
 #include <functional>
 #include <memory>
+#include <string>
 namespace tigersheets {
 class WorksheetModel;
-struct SelectionTotals {double sum=0;std::uint64_t count=0;};
+struct SelectionTotals {double sum=0;std::uint64_t count=0,populated=0;std::string numberFormat="General";};
 // GUI-thread cooperative scan: no workbook copy or blank rectangle enumeration.
 class SelectionStatistics : public QObject {
 public:

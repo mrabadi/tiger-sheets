@@ -143,9 +143,9 @@ void registeredFunctionCatalogIsAuditable() {
     require(catalog.at("commit") == "eb9ca75bd99160c17902359d2d87225c4571c468", "Catalog must identify its audited source");
     require(catalog.at("availability_only").get<bool>(), "Registry availability must not claim conformance");
     const auto names = catalog.at("functions").get<std::vector<std::string>>();
-    require(names.size() == 499, "Catalog must include the pinned registry and owned AGGREGATE/GETPIVOTDATA extensions");
+    require(names.size() == 500, "Catalog must include the pinned registry and owned AGGREGATE/GETPIVOTDATA/FIELDVALUE extensions");
     require(std::is_sorted(names.begin(), names.end()), "Function catalog must have stable ordering");
-    for (const std::string name : {"XIRR", "XNPV", "INDEX", "MATCH", "XLOOKUP", "LET", "LAMBDA", "FILTER", "GETPIVOTDATA"})
+    for (const std::string name : {"XIRR", "XNPV", "INDEX", "MATCH", "XLOOKUP", "LET", "LAMBDA", "FILTER", "GETPIVOTDATA", "FIELDVALUE"})
         require(std::find(names.begin(), names.end(), name) != names.end(), "Expected financial-model function missing");
 }
 
