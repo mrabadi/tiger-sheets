@@ -63,7 +63,11 @@ bool executeWorksheetEdit(QWidget* parent,WorksheetModel& model,QTableView& view
   for(const auto& index:sheet->value(rows?"hiddenRows":"hiddenColumns",Json::array())){const int at=index.get<int>();if(!layout.contains(at))layout[at]={{"index",at}};layout[at]["hidden"]=true;}const auto original=layout;
   const int digitWidth=normalDigitWidth(view);double size=0;const bool resize=command.endsWith("size");if(resize){
    if(arguments.contains("size"))size=arguments.at("size").get<double>();
-   else{bool accepted=false;const double fallback=rows?view.verticalHeader()->defaultSectionSize()*72.0/view.logicalDpiY():std::max(0.0,(view.horizontalHeader()->defaultSectionSize()-5.0)/digitWidth);const auto found=layout.find(first);double current=fallback;if(found!=layout.end()&&found->second.contains("size"))current=rows?found->second.at("size").get<double>():spreadsheetColumnCharacters(found->second.at("size").get<double>(),digitWidth);size=QInputDialog::getDouble(parent,rows?"Row Height":"Column Width",rows?"Height (points)":"Width (characters)",current,0,rows?409.5:spreadsheetColumnCharacters(255.0,digitWidth),2,&accepted);if(!accepted)return false;}
+   else{bool accepted=false;const double fallback=rows?view.verticalHeader()->defaultSectionSize()*72.0/view.logicalDpiY():std::max(0.0,(view.horizontalHeader()->defaultSectionSize()-5.0)/digitWidth);const auto found=layout.find(first);double current=fallback;if(found!=layout.end()&&found->second.contains("size"))current=rows?found->second.at("size").get<double>():spreadsheetColumnCharacters(found->second.at("size").get<double>(),digitWidth);size=QInputDialog::getDouble(parent,rows?"Row Height":"Column Width",rows?"Height (points)":"Width (characters)",current,0,rows?409.5:spreadsheetColumnCharacters(255.0,digitWidth),2,&accepted);
+    // A modal opened from a popup can leave its worksheet window inactive.
+    view.window()->activateWindow();view.setFocus(Qt::ShortcutFocusReason);
+    if(!accepted)return false;
+   }
    if(!std::isfinite(size)||size<0||size>(rows?409.5:255.0))throw std::runtime_error("The dimension is outside Excel's row height or column width limits.");
   }
   for(int at=first;at<=last;++at){

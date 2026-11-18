@@ -7,6 +7,7 @@
 #include <QFrame>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QMenu>
 #include <QPainter>
 #include <QSpinBox>
 #include <QToolButton>
@@ -49,7 +50,18 @@ void arrangeSourceHomeRibbon(MainWindow& window,RibbonPage& page){
  auto* alignment=group("alignment","Alignment",182);created(alignment,"verticalTop","Top Align",{4,11,24,24},"AT");created(alignment,"verticalCenter","Middle Align",{28,11,24,24},"AM");auto* bottom=created(alignment,"verticalBottom","Bottom Align",{52,11,24,24},"AB");bottom->setCheckable(true);bottom->setChecked(true);created(alignment,"orientation","Orientation",{80,11,27,24},"FQ");place(existing("","Wrap"),alignment,{127,9,28,28},"W");place(existing("","Left"),alignment,{4,42,24,25},"AL");place(existing("","Center"),alignment,{28,42,24,25},"AC");place(existing("","Right"),alignment,{52,42,24,25},"AR");place(existing("tutorial.home.decreaseIndent"),alignment,{77,42,24,25},"5");place(existing("tutorial.home.increaseIndent"),alignment,{101,42,24,25},"6");created(alignment,"mergeCenter","Merge & Center",{129,42,30,25},"M");launcher(alignment,"alignmentDialog","Alignment dialog",{170,84,11,13},"FA",1);
  auto* number=group("number","Number",156);auto* formats=qobject_cast<QComboBox*>(existing("ribbon.numberFormat"));place(formats,number,{8,12,144,24},"N");if(formats)formats->setItemText(4,"Percentage");auto* accounting=existing("tutorial.home.accounting");place(accounting,number,{4,42,34,25},"AN");if(accounting)accounting->setObjectName("home.accounting");place(existing("","%"),number,{47,42,24,25},"P");created(number,"comma","Comma Style",{71,42,24,25},"K");place(existing("tutorial.home.increaseDecimals"),number,{101,42,24,25},"0");place(existing("tutorial.home.decreaseDecimals"),number,{125,42,24,25},"9");place(existing("ribbon.numberFormatOptions"),number,{144,84,11,13},"FM");if(auto* numberLauncher=qobject_cast<QToolButton*>(existing("ribbon.numberFormatOptions"))){numberLauncher->setIcon(homeIcon("numberDialog"));numberLauncher->setIconSize(QSize(8,8));QObject::disconnect(numberLauncher,&QToolButton::clicked,&window,nullptr);QObject::connect(numberLauncher,&QToolButton::clicked,&window,[&window]{window.executeCommand("view.ribbon.close");window.executeCommand("cells.format",{{"initialTab",0}});});}
  auto* styles=group("styles","Styles",194);large(created(styles,"conditionalFormatting","Conditional\nFormatting",{2,6,75,74},"L"));large(created(styles,"formatAsTable","Format as\nTable",{77,6,58,74},"T"));large(created(styles,"cellStyles","Cell\nStyles",{135,6,58,74},"J"));
- auto* cells=group("cells","Cells",94);for(const auto& command:{std::tuple{"insert","Insert","I",5},std::tuple{"delete","Delete","D",30},std::tuple{"format","Format","O",55}}){auto* button=created(cells,std::get<0>(command),std::get<1>(command),{7,std::get<3>(command),86,24},std::get<2>(command));button->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);}
+ auto* cells=group("cells","Cells",94);for(const auto& command:{std::tuple{"insert","Insert","I",5},std::tuple{"delete","Delete","D",30},std::tuple{"format","Format","O",55}}){
+  const bool format=QString::fromLatin1(std::get<0>(command))=="format";
+  auto* button=created(cells,std::get<0>(command),std::get<1>(command),{7,std::get<3>(command),86,24},std::get<2>(command),format);button->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+  if(format){
+   auto* menu=new QMenu(button);menu->setObjectName("home.formatMenu");menu->setToolTipsVisible(true);
+   auto* width=menu->addAction("Column &Width...");width->setToolTip("Set the selected column widths in characters (Alt, H, O, W)");
+   QObject::connect(width,&QAction::triggered,&window,[&window]{window.executeCommand("view.ribbon.close");window.executeCommand("columns.size");});
+   auto* autoFit=menu->addAction("AutoF&it Column Width");autoFit->setToolTip("Fit the selected columns to their contents (Alt, H, O, I)");
+   QObject::connect(autoFit,&QAction::triggered,&window,[&window]{window.executeCommand("view.ribbon.close");window.executeCommand("columns.autofit");});
+   button->setMenu(menu);button->setPopupMode(QToolButton::InstantPopup);
+  }
+ }
  auto* editing=group("editing","Editing",143);auto* sum=existing("","Σ");place(sum,editing,{4,5,36,24},"U");place(existing("","Fill ↓"),editing,{4,30,36,24},"FI");created(editing,"clear","Clear",{4,55,36,24},"E");large(created(editing,"sortFilter","Sort &\nFilter",{41,6,53,74},"S"));large(created(editing,"findSelect","Find &\nSelect",{89,6,52,74},"FD"));auto* analysis=group("analysis","Analysis",62);large(created(analysis,"analyzeData","Analyze\nData",{3,6,56,74},"Y1"));row->addStretch();
 }
 }

@@ -8,6 +8,8 @@ Merge Cells preserves the upper-left value. TigerSheets asks before removing oth
 
 Format Cells has Number, Alignment, Font and Fill tabs. It preserves mixed formatting for controls you leave unchanged. Clear Formats retains notes and values. Wrap Text uses the available row height; Row Height lets you make additional lines visible. Column Width accepts character units; XLSX uses the native SpreadsheetML width representation.
 
+Home → Format also provides column sizing. Press **Alt, H, O, I** to AutoFit the selected columns to their contents, or **Alt, H, O, W** to enter a Column Width. Press the keys in sequence; Escape cancels the menu or dialog. The legacy **Alt, O, C, A** and **Alt, O, C, W** sequences remain available. Each resize is one Undo action.
+
 Structural edits rebase ordinary, absolute, mixed, whole-row/column, cross-sheet references and supported defined names. Saved merge regions, dimensions and visibility move with inserted/deleted rows/columns. XLSX stores these properties natively; CSV export explains that XLSX is needed to retain them.
 
 ## Development limits
