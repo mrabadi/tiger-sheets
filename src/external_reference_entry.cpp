@@ -55,25 +55,31 @@ class ExternalReferenceEntry final:public QObject {
  void restoreSourceDrafts(){for(const auto& surface:windows())if(surface&&surface!=entry().origin){surface->hideRangeHint();surface->dragAnchor_=QPersistentModelIndex();surface->pointAnchor_=QPersistentModelIndex();surface->pointExtent_=QPersistentModelIndex();surface->view_.setProperty("worksheet.externalPointing",false);surface->view_.setProperty("worksheet.externalPointRange",QVariant());surface->view_.setProperty("worksheet.entryFontSize",QVariant());surface->view_.setProperty("worksheet.entryMode","Ready");surface->view_.selectionModel()->select(surface->view_.currentIndex(),QItemSelectionModel::ClearAndSelect);surface->bar_.setModified(false);surface->bar_.setText(surface->view_.model()->data(surface->view_.currentIndex(),Qt::EditRole).toString());if(auto* status=surface->window_.findChild<QLabel*>("status.saveState"))status->setText("Ready");if(auto* name=surface->window_.findChild<QLineEdit*>("formula.name")){const auto index=surface->view_.currentIndex();name->setText(QString::fromStdString(columnName(index.column()+1))+QString::number(index.row()+1));}}}
  void releaseDraftFocus(){const bool modified=bar_.isModified();bar_.setModified(false);bar_.clearFocus();bar_.setModified(modified);}
  void activate(bool editing=false){window_.raise();window_.activateWindow();if(editing)bar_.setFocus();else view_.setFocus();}
+ bool prepareWindowChange(){
+  const bool wasInline=view_.activeCellEditor();
+  const auto originIndex=view_.currentIndex();const auto* model=dynamic_cast<WorksheetModel*>(view_.model());const auto originSheet=model?model->sheetId():QString();
+  if(!entry().origin&&view_.prepareReferenceWorkbookChange()){
+   entry().origin=this;entry().originIndex=originIndex;entry().originSheet=originSheet;
+   entry().originWasInline=wasInline;
+   view_.selectionModel()->setCurrentIndex(originIndex,QItemSelectionModel::NoUpdate);
+  }else if(entry().origin==this&&wasInline)view_.prepareReferenceWorkbookChange();
+  return entry().origin==this;
+ }
  void switchWindow(bool reverse){
   hideRangeHint();dragAnchor_=QPersistentModelIndex();
   auto& registry=windows();registry.removeIf([](const auto& item){return !item;});
   QList<ExternalReferenceEntry*> visible;for(const auto& item:registry)if(item->window_.isVisible())visible.push_back(item);
   if(visible.size()<2)return;const auto index=visible.indexOf(this);if(index<0)return;
-  const bool wasInline=view_.activeCellEditor();
-  if(!entry().origin&&view_.prepareReferenceWorkbookChange()){
-   entry().origin=this;entry().originIndex=view_.currentIndex();if(auto* model=dynamic_cast<WorksheetModel*>(view_.model()))entry().originSheet=model->sheetId();
-   entry().originWasInline=wasInline;
-  }
-  else if(entry().origin==this&&wasInline)view_.prepareReferenceWorkbookChange();
+  prepareWindowChange();
   if(auto* origin=entry().origin.data())origin->releaseDraftFocus();
   const auto next=(index+(reverse?-1:1)+visible.size())%visible.size();auto* destination=visible[next];entry().activeSurface=destination;if(entry().origin&&destination!=entry().origin)destination->mirrorDraft();destination->activate(bool(entry().origin));
  }
  void point(const QModelIndex& index,const QModelIndex& end=QModelIndex()){
   auto* origin=entry().origin.data();if(!origin)return;auto* model=dynamic_cast<WorksheetModel*>(view_.model());if(!model)return;
+  const auto path=window_.property("workbook.path").toString().toStdString();
+  if(path.empty()){mirrorDraft();window_.statusBar()->showMessage("Save this source workbook before linking to it.");return;}
   QString sheet;for(const auto& item:model->workbookView().at("sheets"))if(item.at("id")==model->sheetId().toStdString()){sheet=QString::fromStdString(item.at("name").get<std::string>());break;}
   auto name=window_.property("workbook.name").toString();if(name.isEmpty())name=QFileInfo(window_.property("workbook.path").toString()).fileName();if(name.isEmpty())if(auto* label=window_.findChild<QLabel*>("workspace.documentName"))name=label->text();
-  const auto path=window_.property("workbook.path").toString().toStdString();
   if(!path.empty()&&std::none_of(entry().sources.begin(),entry().sources.end(),[&](const Json& source){return source.at("path")==path;}))entry().sources.push_back({{"name",name.toStdString()},{"path",path},{"enabled",true}});
   const auto other=end.isValid()?end:index;const auto first=model->index(std::min(index.row(),other.row()),std::min(index.column(),other.column())),last=model->index(std::max(index.row(),other.row()),std::max(index.column(),other.column()));
   entry().pointedNumberFormat=model->cellStyle(first.row(),first.column()).value("numberFormat",std::string("General"));
@@ -127,6 +133,12 @@ class ExternalReferenceEntry final:public QObject {
  }
  bool eventFilter(QObject* object,QEvent* event)override {
   auto* widget=qobject_cast<QWidget*>(object);if(!widget||widget->window()!=&window_||entry().forwarding)return false;
+  if(object==&window_&&event->type()==QEvent::WindowDeactivate&&!view_.property("worksheet.draftWarning").toBool()&&!QApplication::activeModalWidget()&&!QApplication::activePopupWidget()){
+   if(prepareWindowChange())releaseDraftFocus();
+  }
+  if(object==&window_&&event->type()==QEvent::WindowActivate&&entry().origin&&entry().origin!=this){
+   entry().activeSurface=this;mirrorDraft();
+  }
   if(event->type()==QEvent::KeyPress){auto* key=static_cast<QKeyEvent*>(event);
    if((key->modifiers()&Qt::ControlModifier)&&!(key->modifiers()&(Qt::AltModifier|Qt::MetaModifier))&&(key->key()==Qt::Key_Tab||key->key()==Qt::Key_F6)){switchWindow(key->modifiers()&Qt::ShiftModifier);return true;}
    if(qobject_cast<QScrollBar*>(widget))return false;

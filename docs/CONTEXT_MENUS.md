@@ -10,6 +10,8 @@ Format Cells has Number, Alignment, Font and Fill tabs. It preserves mixed forma
 
 Home → Format also provides column sizing. Press **Alt, H, O, I** to AutoFit the selected columns to their contents, or **Alt, H, O, W** to enter a Column Width. Press the keys in sequence; Escape cancels the menu or dialog. The legacy **Alt, O, C, A** and **Alt, O, C, W** sequences remain available. Each resize is one Undo action.
 
+AutoFit measures the displayed font and formatted values, including dates, explicit line breaks, indentation and calculated spill results. A selection spanning multiple cells uses the selected rows in each column; a single active cell or a whole-column selection fits the whole column. Each column fits its own longest selected value. Separate selected areas are supported, and unselected gaps retain their widths. Double-clicking a selected column-header boundary fits all selected whole columns together. Row Height, Column Width, Hide and Unhide also support separate selected areas.
+
 Structural edits rebase ordinary, absolute, mixed, whole-row/column, cross-sheet references and supported defined names. Saved merge regions, dimensions and visibility move with inserted/deleted rows/columns. XLSX stores these properties natively; CSV export explains that XLSX is needed to retain them.
 
 ## Development limits
@@ -18,7 +20,7 @@ This implements common Excel-style context commands, not the complete Excel menu
 
 - Formatting and merging operate on one rectangular selection of at most 100,000 cells. Each sheet supports at most 10,000 merged rectangles.
 - Dense clipboard transfer is limited to one million cells. Oversized Copy/Cut entries are disabled with an explanation; a complete Excel column exceeds this bound. Clear Contents uses the sparse workbook and remains available for complete rows/columns.
-- One resize/hide/unhide action covers at most 10,000 selected rows/columns.
+- One resize/hide/unhide action covers at most 10,000 selected rows or all 16,384 columns. Column AutoFit supports whole-row and whole-sheet selections without expanding blank columns into stored layout entries.
 - Moving merged cells, copying their merge geometry, and sorting through merges are not supported in this build. Unmerge first. Values/Formats paste is allowed where it cannot overwrite a merge incorrectly; other unsupported intersections are refused with an explanation.
 - Unsupported imported table/chart/pivot/link structures, native scoped names, special cell representations or formula forms can prevent row/column edits. TigerSheets reports the reason instead of changing their meaning.
 

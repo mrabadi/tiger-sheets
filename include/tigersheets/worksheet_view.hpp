@@ -33,6 +33,8 @@ public:
  void finishSelectionExtension();
  void updateSelectionDimensions(bool held);
  int autoFitColumnPixels(int column) const;
+ // Only nonblank columns within the selected row intervals are returned.
+ std::map<int,int> autoFitColumnPixels(const QItemSelection& ranges) const;
  QLineEdit* createCellEditor(QWidget* parent,const QModelIndex& index);
  std::function<QLineEdit*(QWidget*)> editorFactory;
  std::function<QString(QModelIndex,QModelIndex)> pointedReference;

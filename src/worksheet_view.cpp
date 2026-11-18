@@ -523,24 +523,81 @@ void WorksheetView::scrollFillViewport(){
  if(bar->value()==before){fillScrollTimer_->stop();return;}updateFillTarget(fillPosition_);viewport()->update();
 }
 int WorksheetView::autoFitColumnPixels(int column) const{
- // Display-only font substitutions must not change authored workbook geometry.
- const auto* worksheet=dynamic_cast<const WorksheetModel*>(model());if(!worksheet||column<0||column>=model()->columnCount())return columnWidth(column);int width=0;
+ if(!dynamic_cast<const WorksheetModel*>(model())||column<0||column>=model()->columnCount())return columnWidth(column);
+ const auto widths=autoFitColumnPixels(QItemSelection(model()->index(0,column),model()->index(model()->rowCount()-1,column)));
+ const auto found=widths.find(column);return found==widths.end()?horizontalHeader()->defaultSectionSize():found->second;
+}
+std::map<int,int> WorksheetView::autoFitColumnPixels(const QItemSelection& ranges) const{
+ const auto* worksheet=dynamic_cast<const WorksheetModel*>(model());if(!worksheet)return {};
+ using Interval=std::pair<int,int>;
+ std::map<int,std::vector<Interval>> rowsByColumn;
+ for(const auto& range:ranges){
+  if(!range.isValid()||range.model()!=model())continue;
+  for(int column=range.left();column<=range.right();++column)rowsByColumn[column].emplace_back(range.top(),range.bottom());
+ }
+ if(rowsByColumn.empty())return {};
+ for(auto& [column,rows]:rowsByColumn){
+  std::sort(rows.begin(),rows.end());std::size_t count=0;
+  for(const auto& interval:rows){
+   if(count&&interval.first<=rows[count-1].second+1)rows[count-1].second=std::max(rows[count-1].second,interval.second);
+   else rows[count++]=interval;
+  }
+  rows.resize(count);
+ }
+ auto selected=[&](int row,int column){
+  const auto found=rowsByColumn.find(column);if(found==rowsByColumn.end())return false;
+  const auto& rows=found->second;
+  const auto after=std::upper_bound(rows.begin(),rows.end(),row,[](int value,const Interval& interval){return value<interval.first;});
+  return after!=rows.begin()&&row<=std::prev(after)->second;
+ };
+ std::map<int,int> widths;
  for(const auto& sheet:worksheet->workbookView().at("sheets"))if(sheet.at("id")==worksheet->sheetId().toStdString()){
-  const auto merges=sheet.value("mergedRanges",Json::array());for(const auto& cell:sheet.at("cells")){if(cell.at("col").get<int>()!=column+1||cell.at("input")=="")continue;const int row=cell.at("row").get<int>()-1;if(std::any_of(merges.begin(),merges.end(),[&](const Json& range){return row+1>=range.at("row1")&&row+1<=range.at("row2")&&column+1>=range.at("col1")&&column+1<=range.at("col2");}))continue;const auto index=worksheet->index(row,column);const auto text=worksheet->data(index,Qt::DisplayRole).toString();const auto style=worksheet->cellStyle(row,column);auto authoredFont=worksheet->data(index,Qt::FontRole).value<QFont>();authoredFont.setFamily(QString::fromStdString(style.value("fontFamily",std::string("Calibri"))));const QFontMetrics metrics(authoredFont);const int margin=worksheet->numericValue(row,column)?6:13;int content=0;for(const auto& line:text.split('\n'))content=std::max(content,metrics.horizontalAdvance(line));width=std::max(width,content+margin+style.value("indent",0)*metrics.horizontalAdvance("   "));}
-  return width?std::clamp(width,1,spreadsheetColumnPixels(255.0,SpreadsheetNormalDigitWidth)):horizontalHeader()->defaultSectionSize();
- }return columnWidth(column);
+  const auto merges=sheet.find("mergedRanges");
+  auto measure=[&](int row,int column){
+   if(!selected(row,column))return;
+   if(merges!=sheet.end()&&std::any_of(merges->begin(),merges->end(),[&](const Json& range){return row+1>=range.at("row1")&&row+1<=range.at("row2")&&column+1>=range.at("col1")&&column+1<=range.at("col2");}))return;
+   const auto index=worksheet->index(row,column);const auto text=worksheet->data(index,Qt::DisplayRole).toString();if(text.isEmpty())return;
+   const auto style=worksheet->cellStyle(row,column);
+   // Use the delegate's presentation font, including platform substitutions.
+   const QFontMetricsF metrics(worksheet->data(index,Qt::FontRole).value<QFont>());
+   qreal content=0;for(const auto& line:text.split('\n'))content=std::max(content,metrics.horizontalAdvance(line));
+   const int margin=worksheet->numericValue(row,column)?6:13;
+   const int width=qCeil(content+style.value("indent",0)*metrics.horizontalAdvance("   "))+margin;
+   widths[column]=std::max(widths[column],std::clamp(width,1,spreadsheetColumnPixels(255.0,SpreadsheetNormalDigitWidth)));
+  };
+  // Scan sparse stored inputs once for the entire selection, never once per column.
+  for(const auto& cell:sheet.at("cells"))if(cell.at("input")!="")measure(cell.at("row").get<int>()-1,cell.at("col").get<int>()-1);
+  // Current spill destinations can have no stored input or style record.
+  const auto calculated=worksheet->calculatedSnapshot();
+  if(calculated.value("status",std::string())=="ok")for(const auto& cell:calculated.at("values")){
+   const int row=cell.at("row").get<int>()-1,column=cell.at("col").get<int>()-1;
+   if(selected(row,column)&&worksheet->raw(row,column).isEmpty())measure(row,column);
+  }
+  break;
+ }
+ return widths;
 }
 void WorksheetView::persistAutoFitColumn(int column){
  auto* worksheet=dynamic_cast<WorksheetModel*>(model());if(!worksheet||column<0||column>=model()->columnCount()||!(model()->flags(model()->index(0,column))&Qt::ItemIsEditable))return;
- setColumnWidth(column,autoFitColumnPixels(column));const int digitWidth=normalDigitWidth(*this);
- const double characters=std::clamp((columnWidth(column)-5.0)/digitWidth,0.0,spreadsheetColumnCharacters(255.0,digitWidth));
- const double width=spreadsheetColumnWidth(characters,digitWidth);if(width<=0)return;
+ const auto selected=selectionModel()->selection();QItemSelection fitting;
+ const auto fullColumn=[this](const QItemSelectionRange& range){return range.top()==0&&range.bottom()==model()->rowCount()-1;};
+ const bool clickedSelected=std::any_of(selected.begin(),selected.end(),[&](const QItemSelectionRange& range){return fullColumn(range)&&column>=range.left()&&column<=range.right();});
+ if(clickedSelected){for(const auto& range:selected)if(fullColumn(range))fitting.push_back(range);}
+ else fitting.select(model()->index(0,column),model()->index(model()->rowCount()-1,column));
+ const auto widths=autoFitColumnPixels(fitting);const int digitWidth=normalDigitWidth(*this);
  for(const auto& sheet:worksheet->workbookView().at("sheets"))if(sheet.at("id")==worksheet->sheetId().toStdString()){
-  auto columns=sheet.value("columnLayout",Json::array());
-  for(const auto& hidden:sheet.value("hiddenColumns",Json::array())){const int index=hidden.get<int>();auto existing=std::find_if(columns.begin(),columns.end(),[index](const Json& value){return value.at("index")==index;});if(existing==columns.end())columns.push_back({{"index",index},{"hidden",true}});else (*existing)["hidden"]=true;}
-  auto entry=std::find_if(columns.begin(),columns.end(),[column](const Json& value){return value.at("index")==column+1;});
-  if(entry==columns.end())columns.push_back({{"index",column+1},{"size",width},{"bestFit",true}});else{(*entry)["size"]=width;(*entry)["bestFit"]=true;}
-  worksheet->apply(Json::array({{{"type","set_sheet_layout"},{"sheet",worksheet->sheetId().toStdString()},{"columns",std::move(columns)}}}));return;
+  std::map<int,Json> columns;for(const auto& item:sheet.value("columnLayout",Json::array()))columns[item.at("index").get<int>()]=item;
+  for(const auto& hidden:sheet.value("hiddenColumns",Json::array())){const int index=hidden.get<int>();if(!columns.contains(index))columns[index]={{"index",index}};columns[index]["hidden"]=true;}
+  const auto original=columns;
+  for(const auto& range:fitting)for(int at=range.left();at<=range.right();++at){
+   const auto measured=widths.find(at);if(measured==widths.end()&&!columns.contains(at+1))continue;
+   const int pixels=measured==widths.end()?horizontalHeader()->defaultSectionSize():measured->second;
+   const double characters=std::clamp((pixels-5.0)/digitWidth,0.0,spreadsheetColumnCharacters(255.0,digitWidth));
+   const double width=spreadsheetColumnWidth(characters,digitWidth);if(width<=0)continue;
+   auto& entry=columns[at+1];if(entry.is_null())entry={{"index",at+1}};entry["size"]=width;entry["bestFit"]=true;
+  }
+  if(columns==original)return;Json layout=Json::array();for(const auto& [index,item]:columns)layout.push_back(item);
+  worksheet->apply(Json::array({{{"type","set_sheet_layout"},{"sheet",worksheet->sheetId().toStdString()},{"columns",std::move(layout)}}}));return;
  }
 }
 void WorksheetView::mouseMoveEvent(QMouseEvent* event){

@@ -104,7 +104,8 @@ void centerUncenter(){
 void modernAutoFit(){
  Fixture f;const auto sheet=f.model->sheetId().toStdString();
  require(f.model->apply(Json::array({
-  {{"type","set_cell"},{"sheet",sheet},{"row",1},{"col",1},{"input","Cash and cash equivalents and restricted cash"},{"style",{{"bold",true},{"note","keep"}}}},
+  {{"type","set_cell"},{"sheet",sheet},{"row",1},{"col",1},{"input",std::string(140,'W')},{"style",{{"bold",true},{"note","keep"}}}},
+  {{"type","set_cell"},{"sheet",sheet},{"row",2},{"col",1},{"input","Cash and cash equivalents and restricted cash"}},
   {{"type","set_cell"},{"sheet",sheet},{"row",2},{"col",2},{"input","Long second-column operating forecast assumptions and adjustments"}},
   {{"type","set_cell"},{"sheet",sheet},{"row",3},{"col",1},{"input","=1+2"}},
   {{"type","set_cell"},{"sheet",sheet},{"row",3},{"col",2},{"input","0.125"},{"style",{{"numberFormat","0.0%"}}}},
@@ -112,7 +113,7 @@ void modernAutoFit(){
  })),"prepare distinct selected-column labels, a formula, styles and an unrelated column");
  f.window.recalculateNow();QApplication::processEvents();const auto current=f.model->index(1,0);f.view->setCurrentIndex(current);f.view->selectionModel()->select(QItemSelection(current,f.model->index(2,1)),QItemSelectionModel::ClearAndSelect);const auto selection=f.view->selectionModel()->selection();
  f.key(Qt::Key_F1,Qt::ControlModifier);QTest::keyRelease(f.view,Qt::Key_Control);require(!f.ribbon->currentWidget()->isVisible(),"modern column commands are reachable from the collapsed ribbon");
- const auto before=f.window.currentSession().snapshot();const auto history=f.window.currentSession().historyBytes();const int firstWidth=f.view->columnWidth(0),secondWidth=f.view->columnWidth(1),otherWidth=f.view->columnWidth(2);const auto body=f.view->viewport()->mapTo(&f.window,QPoint());
+ const auto before=f.window.currentSession().snapshot();const auto history=f.window.currentSession().historyBytes();const int firstWidth=f.view->columnWidth(0),secondWidth=f.view->columnWidth(1),otherWidth=f.view->columnWidth(2),wholeColumnWidth=f.view->autoFitColumnPixels(0);const auto body=f.view->viewport()->mapTo(&f.window,QPoint());
  f.key(Qt::Key_Alt);f.key(Qt::Key_H);f.key(Qt::Key_Escape);require(f.window.currentSession().snapshot()==before&&f.window.currentSession().historyBytes()==history&&f.view->selectionModel()->selection()==selection,"Escape cancels partial Alt H access without edits or selection loss");
  auto open=[&]{
   f.key(Qt::Key_Alt);f.key(Qt::Key_H);f.key(Qt::Key_O);auto* format=f.window.findChild<QToolButton*>("home.format");auto* menu=format?format->menu():nullptr;
@@ -123,11 +124,13 @@ void modernAutoFit(){
  auto* menu=open();QTest::keyClick(menu,Qt::Key_Escape);QApplication::processEvents();require(!menu->isVisible()&&f.window.currentSession().snapshot()==before&&f.window.currentSession().historyBytes()==history&&f.view->currentIndex()==current&&f.view->selectionModel()->selection()==selection,"Escape from Format cancels without changing cells, widths, selection or history");require(f.view->hasFocus(),"Escape from Format returns typing focus to the worksheet");
  menu=open();QTest::keyClick(menu,Qt::Key_I);QApplication::processEvents();
  require(!menu->isVisible()&&f.view->columnWidth(0)>firstWidth+100&&f.view->columnWidth(1)>secondWidth+100,"Alt H O I auto-fits both selected columns using their actual contents");
+ require(f.view->columnWidth(0)<wholeColumnWidth-100,"partial-selection AutoFit ignores the much longer text outside its selected rows");
  require(f.view->hasFocus(),"AutoFit returns typing focus to the worksheet");
  require(f.view->columnWidth(2)==otherWidth&&f.view->currentIndex()==current&&f.view->selectionModel()->selection()==selection&&f.view->viewport()->mapTo(&f.window,QPoint())==body,"modern auto-fit preserves the unrelated column, active cell, selection and collapsed worksheet position");
  const auto& beforeSheet=before.at("sheets")[0];const auto& afterSheet=f.window.currentSession().snapshotView().at("sheets")[0];
  require(afterSheet.at("cells")==beforeSheet.at("cells"),"auto-fit preserves all inputs, formulas and cell styles");const auto columns=afterSheet.value("columnLayout",Json::array());require(columns.size()==2&&columns[0].at("index")==1&&columns[1].at("index")==2&&columns[0].value("bestFit",false)&&columns[1].value("bestFit",false),"auto-fit stores only the two selected native column widths");
  require(f.window.executeCommand("undo")&&f.window.currentSession().snapshotView().at("sheets")==before.at("sheets")&&f.view->columnWidth(0)==firstWidth&&f.view->columnWidth(1)==secondWidth&&f.view->columnWidth(2)==otherWidth&&f.view->selectionModel()->selection()==selection,"modern multi-column auto-fit is exactly one undoable layout change");
+ QItemSelection areas;areas.select(current,f.model->index(2,0));areas.select(f.model->index(0,2),f.model->index(0,2));f.view->selectionModel()->select(areas,QItemSelectionModel::ClearAndSelect);const auto disjoint=f.view->selectionModel()->selection();menu=open();QTest::keyClick(menu,Qt::Key_I);QApplication::processEvents();const auto& disjointSheet=f.window.currentSession().snapshotView().at("sheets")[0];const auto disjointColumns=disjointSheet.value("columnLayout",Json::array());require(disjointColumns.size()==2&&disjointColumns[0].at("index")==1&&disjointColumns[1].at("index")==3&&f.view->columnWidth(1)==secondWidth&&f.view->columnWidth(0)<wholeColumnWidth-100,"actual Alt H O I fits separate selected column areas without including their gap or outside rows");require(disjointSheet.at("cells")==beforeSheet.at("cells")&&f.view->selectionModel()->selection()==disjoint&&f.view->currentIndex()==current,"keyboard AutoFit retains disjoint selection, active cell and every input/formula/style");require(f.window.executeCommand("undo")&&f.window.currentSession().snapshotView().at("sheets")==before.at("sheets"),"keyboard AutoFit of disjoint areas remains one Undo");
 }
 void modernColumnWidth(){
  Fixture f;const auto sheet=f.model->sheetId().toStdString();require(f.model->apply(Json::array({
