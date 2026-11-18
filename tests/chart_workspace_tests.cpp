@@ -1,6 +1,8 @@
 #include "tigersheets/main_window.hpp"
 #include "tigersheets/chart.hpp"
 #include "tigersheets/ooxml.hpp"
+#include "tigersheets/grid.hpp"
+#include "tigersheets/worksheet_cell_format.hpp"
 #include <QApplication>
 #include <QDialog>
 #include <QDialogButtonBox>
@@ -11,6 +13,9 @@
 #include <QTemporaryDir>
 #include <QTimer>
 #include <QTest>
+#include <QElapsedTimer>
+#include <QTabBar>
+#include <QImage>
 #include <iostream>
 #include <stdexcept>
 using namespace tigersheets;
@@ -27,4 +32,39 @@ void moveFigure(){MainWindow window;window.loadFinancialExample();window.show();
 void preserveSelection(){MainWindow window;window.loadFinancialExample();window.show();QApplication::processEvents();QPointer<ChartWidget> chart=firstChart(window);QTest::mouseClick(chart,Qt::LeftButton,Qt::NoModifier,QPoint(120,25));require(chart&&chart->isSelected(),"a chart can be selected");window.recalculateNow();require(chart&&chart->isSelected()&&firstChart(window)==chart,"recalculation must preserve the selected chart and its active widget");}
 void anchoredColumnResize(){MainWindow window;window.loadFinancialExample();window.show();QApplication::processEvents();auto* grid=window.findChild<QTableView*>("worksheet.grid");auto* chart=firstChart(window);const auto before=window.currentSession().snapshot();const auto anchor=before["charts"][0]["anchor"];const auto oldPosition=chart->pos();grid->setColumnWidth(0,grid->columnWidth(0)+47);QApplication::processEvents();const auto cell=grid->visualRect(grid->model()->index(anchor.value("row",12)-1,anchor.value("col",4)-1));const QPoint expected(cell.x()+anchor.value("offsetX",0),cell.y()+anchor.value("offsetY",0));require(chart->pos()==expected&&chart->pos().x()==oldPosition.x()+47,"resizing a worksheet column must immediately keep the chart on its anchored cell");require(window.currentSession().snapshot()==before,"layout-only chart positioning must not create workbook transactions");}
 void workbookSwitchClearsCharts(){MainWindow window;window.loadFinancialExample();window.show();QApplication::processEvents();require(firstChart(window),"first workbook has a chart");QTemporaryDir directory;const auto path=directory.filePath("empty.xlsx");writeWorkbook(path.toStdString(),WorkbookSession().snapshot());require(window.openWorkbook(path),"second workbook opens");require(firstChart(window)==nullptr,"changing workbooks must immediately remove the previous workbook's interactive charts");}
-int main(int argc,char** argv){QApplication app(argc,argv);QTemporaryDir state;qputenv("TIGERSHEETS_STATE_DIR",state.path().toUtf8());try{const auto selected=argc>1?std::string(argv[1]):std::string();for(auto test:{std::pair{"edit",editFigure},std::pair{"delete",deleteFigure},std::pair{"move",moveFigure},std::pair{"selection",preserveSelection},std::pair{"anchor",anchoredColumnResize},std::pair{"switch",workbookSwitchClearsCharts}})if(selected.empty()||selected==test.first)test.second();std::cout<<"chart workspace tests passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}
+QTimer* calculationDelay(MainWindow& window){for(auto* timer:window.findChildren<QTimer*>())if(timer->isSingleShot()&&timer->interval()==35)return timer;throw std::runtime_error("native calculation delay exists");}
+QImage currentChartImage(MainWindow& window,ChartWidget& actual,WorksheetModel& model){
+ const auto& book=window.currentSession().snapshotView();for(const auto& spec:book.at("charts"))if("chart."+QString::fromStdString(spec.at("id").get<std::string>())==actual.objectName()){
+  ChartWidget expected;expected.resize(actual.size());expected.setFont(actual.font());expected.setSelected(actual.isSelected());expected.setChart(spec,chartData(book,model.calculatedSnapshot(),spec));return expected.grab().toImage();
+ }throw std::runtime_error("native chart has a source specification");
+}
+void formattedChartContinuity(bool automatic){
+ Json book={{"revision",0},{"sheets",Json::array()},{"charts",Json::array()}};
+ for(const auto* id:{"dates","other"}){
+  book["sheets"].push_back({{"id",id},{"name",id},{"cells",Json::array({{{"row",1},{"col",1},{"input","Year"}},{{"row",1},{"col",2},{"input","=\"Return\""}},{{"row",2},{"col",1},{"input","=DATE(2024,1,1)"}},{{"row",3},{"col",1},{"input","=DATE(2025,1,1)"}},{{"row",2},{"col",2},{"input","=1/4"}},{{"row",3},{"col",2},{"input","=1/2"}}})}});
+  book["charts"].push_back({{"id",id},{"sheet",id},{"type","column"},{"title","Formula dates and returns"},{"range",{{"row1",1},{"col1",1},{"row2",3},{"col2",2}}},{"anchor",{{"row",5},{"col",4},{"width",560},{"height",300}}}});
+ }
+ QTemporaryDir directory;const auto path=directory.filePath("chart-formats.xlsx");writeWorkbook(path.toStdString(),book);MainWindow window;require(window.openWorkbook(path),"open a native two-sheet formula chart workbook");window.show();
+ auto* grid=window.findChild<QTableView*>("worksheet.grid");auto* model=dynamic_cast<WorksheetModel*>(grid->model());
+ if(automatic){QElapsedTimer wait;wait.start();while(!firstChart(window)&&wait.elapsed()<5000)QApplication::processEvents();require(firstChart(window)&&model->numericValue(1,1)==.25,"automatic calculation supplies prepared chart data and numeric formulas");}
+ else{window.recalculateNow();QApplication::processEvents();}
+ auto* delay=calculationDelay(window);delay->stop();QPointer<ChartWidget> chart=firstChart(window);require(chart,"calculated chart is visible");chart->setSelected(true);const auto original=chart->grab().toImage();require(original==currentChartImage(window,*chart,*model),"original chart pixels agree with genuinely calculated formulas");const auto geometry=chart->geometry();
+ const auto formats=[](const std::string& id){Json ops=Json::array();for(int row=2;row<=3;++row){ops.push_back({{"type","set_style"},{"sheet",id},{"row",row},{"col",1},{"style",{{"numberFormat","yyyy"}}}});ops.push_back({{"type","set_style"},{"sheet",id},{"row",row},{"col",2},{"style",{{"numberFormat","0%"}}}});}return ops;};
+ require(model->apply(formats("dates")),"format formula categories as years and numeric series as percentages");
+ // No event processing: a background calculation cannot hide stale chart data.
+ const auto formatted=chart->grab().toImage();require(formatted!=original&&formatted==currentChartImage(window,*chart,*model),"source formatting immediately refreshes chart category and value-axis pixels");require(!delay->isActive()&&chart->isSelected()&&firstChart(window)==chart&&chart->geometry()==geometry&&model->numericValue(1,1)==.25,"chart formatting reuses numeric values and preserves the selected widget without queuing calculation");
+ require(window.executeCommand("undo")&&chart->grab().toImage()==original&&chart->isSelected()&&!delay->isActive(),"format Undo immediately restores chart labels and preserves selection without calculation");require(window.executeCommand("redo")&&chart->grab().toImage()==formatted&&chart->isSelected()&&!delay->isActive(),"format Redo immediately restores chart labels without calculation");
+ grid->setCurrentIndex(model->index(0,0));require(window.executeCommand("columns.size",{{"size",20.0}})&&chart->grab().toImage()==formatted&&!delay->isActive(),"column width only repositions the same chart and does not queue calculation");
+ require(model->apply(formats("other"))&&chart->grab().toImage()==formatted&&!delay->isActive(),"formatting another sheet leaves the visible chart current");auto* tabs=window.findChild<QTabBar*>("workspace.sheets");require(tabs&&tabs->count()==2,"native chart sheet tabs exist");tabs->setCurrentIndex(1);auto* other=firstChart(window);require(other&&other->objectName()=="chart.other"&&other->grab().toImage()==currentChartImage(window,*other,*model)&&!delay->isActive(),"switching sheets uses refreshed prepared chart labels without recalculation");tabs->setCurrentIndex(0);require(firstChart(window)&&firstChart(window)->grab().toImage()==currentChartImage(window,*firstChart(window),*model)&&!delay->isActive(),"returning to the first sheet retains current chart presentation caches");
+}
+void manualChartFormats(){formattedChartContinuity(false);}
+void automaticChartFormats(){formattedChartContinuity(true);}
+void formattingWithInvalidChart(){
+ MainWindow window;window.loadFinancialExample();auto* model=dynamic_cast<WorksheetModel*>(window.findChild<QTableView*>("worksheet.grid")->model());auto charts=window.currentSession().snapshotView().at("charts");for(const auto* field:{"range","id","sheet"}){auto unsupported=charts[0];unsupported["id"]="invalid-"+std::string(field);unsupported.erase(field);charts.push_back(std::move(unsupported));}require(model->apply(Json::array({{{"type","set_metadata"},{"key","charts"},{"value",charts}}})),"retain malformed charts alongside the valid one");window.recalculateNow();QPointer<ChartWidget> valid=firstChart(window);require(valid&&!window.lastError().isEmpty(),"calculation reports invalid chart data while retaining valid charts");
+ require(model->apply(Json::array({{{"type","set_style"},{"sheet",model->sheetId().toStdString()},{"row",21},{"col",2},{"style",{{"numberFormat","0.00"}}}}}))&&valid&&firstChart(window)==valid,"formatting valid chart data must not throw because an unrelated chart lacks its range");
+}
+void anchoredDefaultFont(){
+ MainWindow window;window.loadFinancialExample();window.show();QApplication::processEvents();auto* grid=window.findChild<QTableView*>("worksheet.grid");auto* model=dynamic_cast<WorksheetModel*>(grid->model());QPointer<ChartWidget> chart=firstChart(window);const auto before=chart->pos();const auto anchor=window.currentSession().snapshotView().at("charts")[0].at("anchor");auto* delay=calculationDelay(window);delay->stop();grid->selectAll();
+ require(formatWorksheetCells(&window,*model,*grid,{{"style",{{"fontSize",22}}}}),"resize the default font for the entire native worksheet");const auto cell=grid->visualRect(model->index(anchor.at("row").get<int>()-1,anchor.at("col").get<int>()-1));require(chart&&chart->pos()==QPoint(cell.x()+anchor.value("offsetX",0),cell.y()+anchor.value("offsetY",0))&&chart->pos()!=before&&!delay->isActive(),"batched default-height change immediately repositions the existing chart without calculation");require(window.executeCommand("undo")&&chart&&chart->pos()==before&&!delay->isActive(),"default-font Undo restores the existing chart anchor without calculation");
+}
+int main(int argc,char** argv){QApplication app(argc,argv);QTemporaryDir state;qputenv("TIGERSHEETS_STATE_DIR",state.path().toUtf8());try{const auto selected=argc>1?std::string(argv[1]):std::string();for(auto test:{std::pair{"edit",editFigure},std::pair{"delete",deleteFigure},std::pair{"move",moveFigure},std::pair{"selection",preserveSelection},std::pair{"anchor",anchoredColumnResize},std::pair{"switch",workbookSwitchClearsCharts},std::pair{"formats",manualChartFormats},std::pair{"prepared_formats",automaticChartFormats},std::pair{"format_errors",formattingWithInvalidChart},std::pair{"default_anchor",anchoredDefaultFont}})if(selected.empty()||selected==test.first)test.second();std::cout<<"chart workspace tests passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}

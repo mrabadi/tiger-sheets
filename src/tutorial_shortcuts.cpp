@@ -162,7 +162,7 @@ class TutorialShortcuts final : public QObject {
  bool formattingReady()const{const auto mode=view_.property("worksheet.entryMode").toString();return mode.isEmpty()||mode=="Ready";}
  void syncEntryChrome(){
   const bool ready=formattingReady();for(auto* control:{fontColor_,fontMenu_,accounting_,center_,fill_,borders_,increaseDecimals_,decreaseDecimals_})if(control)control->setEnabled(ready);
-  if(fontSize_){const QSignalBlocker blocked(fontSize_);const auto pointSize=view_.property("worksheet.entryFontSize");fontSize_->setValue(qRound(pointSize.isValid()?pointSize.toDouble():model_.cellStyle(view_.currentIndex().row(),view_.currentIndex().column()).value("fontSize",11.0)));fontSize_->setEnabled(ready);}
+  if(fontSize_){const QSignalBlocker blocked(fontSize_);const auto pointSize=view_.property("worksheet.entryFontSize");const auto* editor=fontSize_->findChild<QLineEdit*>();const bool sizeDraft=editor&&(fontSize_->hasFocus()||editor->hasFocus())&&editor->isModified()&&fontSize_->cleanText()!=QString::number(fontSize_->value());if(!sizeDraft)fontSize_->setValue(qRound(pointSize.isValid()?pointSize.toDouble():model_.cellStyle(view_.currentIndex().row(),view_.currentIndex().column()).value("fontSize",11.0)));fontSize_->setEnabled(ready);}
  }
  QLabel* legacyBanner_=nullptr;
  void showLegacyAccess(const QString& keys){

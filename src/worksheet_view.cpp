@@ -228,21 +228,47 @@ void WorksheetView::synchronizeLayout(){
   if(layoutSheet_==worksheet->sheetId()&&mergedDefinition_==definition)return;
   layoutSheet_=worksheet->sheetId();mergedDefinition_=definition;clearSpans();
   setShowGrid(sheet.value("showGridLines",true));
+  const int previousDefaultRow=verticalHeader()->defaultSectionSize(),previousDefaultColumn=horizontalHeader()->defaultSectionSize();
+  const int nextDefaultRow=std::max(verticalHeader()->minimumSectionSize(),sheet.contains("defaultRowHeight")?qRound(sheet.at("defaultRowHeight").get<double>()*logicalDpiY()/72.0):property("worksheet.baseRowHeight").isValid()?property("worksheet.baseRowHeight").toInt():previousDefaultRow);
+  const int nextDefaultColumn=sheet.contains("defaultColumnWidth")?std::max(1,spreadsheetColumnPixels(sheet.at("defaultColumnWidth").get<double>(),normalDigitWidth(*this))):property("worksheet.baseColumnWidth").isValid()?property("worksheet.baseColumnWidth").toInt():previousDefaultColumn;
+  const bool rowDefaultChanged=nextDefaultRow!=previousDefaultRow,columnDefaultChanged=nextDefaultColumn!=previousDefaultColumn;
+  // Qt emits sectionResized for every row when a default changes. Publish the
+  // completed geometry once, after custom and hidden sections are restored.
+  QSignalBlocker rowSignals(verticalHeader()),columnSignals(horizontalHeader());
+  if(!rowDefaultChanged)rowSignals.unblock();if(!columnDefaultChanged)columnSignals.unblock();
+  // With updates enabled, Qt resolves all section positions after each custom
+  // resize. Defer that work until the sparse overrides have been restored.
+  const bool resumeRowUpdates=rowDefaultChanged&&verticalHeader()->updatesEnabled(),resumeColumnUpdates=columnDefaultChanged&&horizontalHeader()->updatesEnabled();
+  if(resumeRowUpdates)verticalHeader()->setUpdatesEnabled(false);if(resumeColumnUpdates)horizontalHeader()->setUpdatesEnabled(false);
   if(sheet.contains("defaultRowHeight")){
    if(!property("worksheet.baseRowHeight").isValid())setProperty("worksheet.baseRowHeight",verticalHeader()->defaultSectionSize());
-   verticalHeader()->setDefaultSectionSize(qRound(sheet.at("defaultRowHeight").get<double>()*logicalDpiY()/72.0));
-  }else if(property("worksheet.baseRowHeight").isValid()){verticalHeader()->setDefaultSectionSize(property("worksheet.baseRowHeight").toInt());setProperty("worksheet.baseRowHeight",QVariant());}
+   if(rowDefaultChanged)verticalHeader()->setDefaultSectionSize(nextDefaultRow);
+  }else if(property("worksheet.baseRowHeight").isValid()){if(rowDefaultChanged)verticalHeader()->setDefaultSectionSize(nextDefaultRow);setProperty("worksheet.baseRowHeight",QVariant());}
   if(sheet.contains("defaultColumnWidth")){
    if(!property("worksheet.baseColumnWidth").isValid())setProperty("worksheet.baseColumnWidth",horizontalHeader()->defaultSectionSize());
-   horizontalHeader()->setDefaultSectionSize(std::max(1,spreadsheetColumnPixels(sheet.at("defaultColumnWidth").get<double>(),normalDigitWidth(*this))));
-  }else if(property("worksheet.baseColumnWidth").isValid()){horizontalHeader()->setDefaultSectionSize(property("worksheet.baseColumnWidth").toInt());setProperty("worksheet.baseColumnWidth",QVariant());}
+   if(columnDefaultChanged)horizontalHeader()->setDefaultSectionSize(nextDefaultColumn);
+  }else if(property("worksheet.baseColumnWidth").isValid()){if(columnDefaultChanged)horizontalHeader()->setDefaultSectionSize(nextDefaultColumn);setProperty("worksheet.baseColumnWidth",QVariant());}
   for(const auto& range:merges)setSpan(range.at("row1").get<int>()-1,range.at("col1").get<int>()-1,range.at("row2").get<int>()-range.at("row1").get<int>()+1,range.at("col2").get<int>()-range.at("col1").get<int>()+1);
-  for(const int row:layoutRows_){setRowHidden(row,false);setRowHeight(row,verticalHeader()->defaultSectionSize());}layoutRows_.clear();
-  for(const int col:layoutColumns_){setColumnHidden(col,false);setColumnWidth(col,horizontalHeader()->defaultSectionSize());}layoutColumns_.clear();
-  for(const auto& entry:rows){const int row=entry.at("index").get<int>()-1;layoutRows_.push_back(row);if(entry.contains("size"))setRowHeight(row,qRound(entry.at("size").get<double>()*logicalDpiY()/72.0));setRowHidden(row,entry.value("hidden",false));}
-  for(const auto& entry:columns){const int col=entry.at("index").get<int>()-1;layoutColumns_.push_back(col);if(entry.contains("size"))setColumnWidth(col,std::max(1,spreadsheetColumnPixels(entry.at("size").get<double>(),normalDigitWidth(*this))));setColumnHidden(col,entry.value("hidden",false));}
-  for(const auto& entry:hiddenRows){const int row=entry.get<int>()-1;setRowHidden(row,true);layoutRows_.push_back(row);}
-  for(const auto& entry:hiddenColumns){const int col=entry.get<int>()-1;setColumnHidden(col,true);layoutColumns_.push_back(col);}
+  SectionLayouts nextRows,nextColumns;
+  for(const auto& entry:rows)nextRows[entry.at("index").get<int>()-1]={entry.contains("size")?qRound(entry.at("size").get<double>()*logicalDpiY()/72.0):verticalHeader()->defaultSectionSize(),entry.value("hidden",false)};
+  for(const auto& entry:columns)nextColumns[entry.at("index").get<int>()-1]={entry.contains("size")?std::max(1,spreadsheetColumnPixels(entry.at("size").get<double>(),normalDigitWidth(*this))):horizontalHeader()->defaultSectionSize(),entry.value("hidden",false)};
+  for(const auto& entry:hiddenRows){const int row=entry.get<int>()-1;if(!nextRows.contains(row))nextRows[row]={verticalHeader()->defaultSectionSize(),true};else nextRows[row].second=true;}
+  for(const auto& entry:hiddenColumns){const int col=entry.get<int>()-1;if(!nextColumns.contains(col))nextColumns[col]={horizontalHeader()->defaultSectionSize(),true};else nextColumns[col].second=true;}
+  auto applySections=[](QHeaderView* header,SectionLayouts& previous,SectionLayouts next,bool defaultChanged){
+   for(const auto& [index,layout]:previous)if(!next.contains(index)){if(header->isSectionHidden(index))header->setSectionHidden(index,false);if(header->sectionSize(index)!=header->defaultSectionSize())header->resizeSection(index,header->defaultSectionSize());}
+   for(const auto& [index,layout]:next){
+    const auto old=previous.find(index);const bool hidden=header->isSectionHidden(index);
+    // Hidden sections report zero pixels, so compare their retained target size.
+    if(defaultChanged||old==previous.end()||old->second.first!=layout.first||(!hidden&&header->sectionSize(index)!=layout.first))header->resizeSection(index,layout.first);
+    if(hidden!=layout.second)header->setSectionHidden(index,layout.second);
+   }
+   previous=std::move(next);
+  };
+  applySections(verticalHeader(),layoutRows_,std::move(nextRows),previousDefaultRow!=verticalHeader()->defaultSectionSize());
+  applySections(horizontalHeader(),layoutColumns_,std::move(nextColumns),previousDefaultColumn!=horizontalHeader()->defaultSectionSize());
+  if(resumeRowUpdates)verticalHeader()->setUpdatesEnabled(true);if(resumeColumnUpdates)horizontalHeader()->setUpdatesEnabled(true);
+  rowSignals.unblock();columnSignals.unblock();
+  if(rowDefaultChanged||columnDefaultChanged){updateGeometries();if(rowDefaultChanged)verticalHeader()->geometriesChanged();if(columnDefaultChanged)horizontalHeader()->geometriesChanged();}
   viewport()->update();return;
  }
 }

@@ -109,6 +109,7 @@ void canonicalize(Json& book){
  validateFinancialModels(book);
 }
 Json& findSheet(Json& book,const Json& op){auto& sheets=book.at("sheets");auto it=std::find_if(sheets.begin(),sheets.end(),[&](const auto& s){return s.at("id")==op.at("sheet");});if(it==sheets.end())throw std::runtime_error("Worksheet was not found");return *it;}
+const Json& findSheet(const Json& book,const Json& op){const auto& sheets=book.at("sheets");auto it=std::find_if(sheets.begin(),sheets.end(),[&](const auto& s){return s.at("id")==op.at("sheet");});if(it==sheets.end())throw std::runtime_error("Worksheet was not found");return *it;}
 void validateMergedCellWrite(const Json& sheet,int row,int col,const std::string& input){
  if(input.empty()||!sheet.contains("mergedRanges"))return;
  for(const auto& range:sheet.at("mergedRanges"))if(row>=range.at("row1")&&row<=range.at("row2")&&col>=range.at("col1")&&col<=range.at("col2")&&(row!=range.at("row1")||col!=range.at("col1")))throw std::runtime_error("Cannot write inside a merged cell. Edit its upper-left cell or unmerge it first.");
@@ -240,9 +241,9 @@ void WorkbookSession::remember(HistoryEntry entry){
  entry.token=historyToken.fetch_add(1,std::memory_order_relaxed);historyBytes_+=entry.bytes;undo_.push_back(std::move(entry));
 }
 WorkbookSession::HistoryEntry WorkbookSession::difference(const Json& before,const Json& after)const{
- HistoryEntry entry;entry.change={{"structure",false},{"metadata",false},{"sheets",Json::array()}};
+ HistoryEntry entry;entry.change={{"structure",false},{"metadata",false},{"calculationInputsChanged",false},{"sheets",Json::array()},{"layoutSheets",Json::array()}};
  bool sameSheets=before.at("sheets").size()==after.at("sheets").size();if(sameSheets)for(std::size_t i=0;i<before["sheets"].size();++i)sameSheets&=before["sheets"][i]["id"]==after["sheets"][i]["id"];
- if(!sameSheets){entry.patch=true;entry.undo=Json::diff(after,before);entry.redo=Json::diff(before,after);entry.change["structure"]=true;entry.change["metadata"]=true;}
+ if(!sameSheets){entry.patch=true;entry.undo=Json::diff(after,before);entry.redo=Json::diff(before,after);entry.change["structure"]=true;entry.change["metadata"]=true;entry.change["calculationInputsChanged"]=true;}
  else{
   entry.undo={{"cells",Json::array()},{"stale",Json::array()},{"metadata",Json::array()},{"sheetMetadata",Json::array()}};entry.redo=entry.undo;
   auto fields=[&](const Json& old,const Json& value,const std::string& target,const std::string& sheet){std::set<std::string> keys;for(const auto& [key,field]:old.items()){static_cast<void>(field);if(key!="revision"&&key!="sheets"&&key!="cells"&&key!="id")keys.insert(key);}for(const auto& [key,field]:value.items()){static_cast<void>(field);if(key!="revision"&&key!="sheets"&&key!="cells"&&key!="id")keys.insert(key);}
@@ -252,12 +253,24 @@ WorkbookSession::HistoryEntry WorkbookSession::difference(const Json& before,con
   for(std::size_t index=0;index<before["sheets"].size();++index){const auto& oldSheet=before["sheets"][index];const auto& newSheet=after["sheets"][index];const auto id=oldSheet["id"].get<std::string>();fields(oldSheet,newSheet,"sheetMetadata",id);
    const auto& oldCells=oldSheet["cells"];const auto& newCells=newSheet["cells"];std::size_t a=0,b=0;int r1=maxRows,c1=maxColumns,r2=0,c2=0;
    while(a<oldCells.size()||b<newCells.size()){const auto oldKey=a<oldCells.size()?cellKey(oldCells[a]):CellKey{maxRows+1,maxColumns+1},newKey=b<newCells.size()?cellKey(newCells[b]):CellKey{maxRows+1,maxColumns+1};const auto key=std::min(oldKey,newKey);const Json* previous=oldKey==key?&oldCells[a]:nullptr;const Json* next=newKey==key?&newCells[b]:nullptr;
-    if(!previous||!next||*previous!=*next){entry.undo["cells"].push_back({{"sheet",id},{"row",key.first},{"col",key.second},{"cell",previous?*previous:Json()}});entry.redo["cells"].push_back({{"sheet",id},{"row",key.first},{"col",key.second},{"cell",next?*next:Json()}});r1=std::min(r1,key.first);r2=std::max(r2,key.first);c1=std::min(c1,key.second);c2=std::max(c2,key.second);}
+    if(!previous||!next||*previous!=*next){if((previous?calculationInput(*previous):std::string_view())!=(next?calculationInput(*next):std::string_view()))entry.change["calculationInputsChanged"]=true;entry.undo["cells"].push_back({{"sheet",id},{"row",key.first},{"col",key.second},{"cell",previous?*previous:Json()}});entry.redo["cells"].push_back({{"sheet",id},{"row",key.first},{"col",key.second},{"cell",next?*next:Json()}});r1=std::min(r1,key.first);r2=std::max(r2,key.first);c1=std::min(c1,key.second);c2=std::max(c2,key.second);}
     if(previous)++a;if(next)++b;
    }
    if(r2)entry.change["sheets"].push_back({{"sheet",id},{"row1",r1},{"col1",c1},{"row2",r2},{"col2",c2}});
   }
-  entry.change["metadata"]=!entry.redo["metadata"].empty();entry.change["structure"]=!entry.redo["sheetMetadata"].empty();
+  entry.change["metadata"]=!entry.redo["metadata"].empty();
+  const std::set<std::string> presentation{"rowLayout","columnLayout","defaultStyle","defaultRowHeight","defaultColumnWidth","showGridLines"};
+  std::set<std::string> layouts;
+  for(const auto& change:entry.redo["sheetMetadata"]){
+   const auto key=change.at("key").get<std::string>(),id=change.at("sheet").get<std::string>();
+   // Layout operations materialize empty hidden lists. Their presence alone
+   // changes no calculation semantics; actual visibility edits stay conservative.
+   bool cosmetic=presentation.contains(key);
+   if(key=="hiddenRows"||key=="hiddenColumns")cosmetic=findSheet(before,change).value(key,Json::array())==findSheet(after,change).value(key,Json::array());
+   if(cosmetic)layouts.insert(id);else entry.change["structure"]=true;
+  }
+  for(const auto& id:layouts)entry.change["layoutSheets"].push_back(id);
+  if(entry.change.at("metadata").get<bool>()||entry.change.at("structure").get<bool>())entry.change["calculationInputsChanged"]=true;
  }
  entry.bytes=3*(entry.undo.dump().size()+entry.redo.dump().size());return entry;
 }

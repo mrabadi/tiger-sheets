@@ -2,9 +2,12 @@
 #include "tigersheets/grid.hpp"
 #include "tigersheets/formula_error_checks.hpp"
 #include "tigersheets/main_window.hpp"
+#include "tigersheets/worksheet_cell_format.hpp"
 #include <QApplication>
 #include <QColor>
 #include <QEvent>
+#include <QFont>
+#include <QHeaderView>
 #include <QTableView>
 #include <QTemporaryDir>
 #include <iostream>
@@ -88,5 +91,32 @@ void changedExternalContextCannotCarryStyleCache(){
  origin.recalculateNow();require(model->numericValue(0,0)==50,"real recalculation uses the changed live source");
  require(model->apply(Json::array({{{"type","set_style"},{"sheet","sheet-1"},{"row",1},{"col",1},{"style",{{"italic",true}}}}}))&&model->numericValue(0,0)==50,"a newly current result remains reusable across subsequent formatting");
 }
+void nativeLayoutRetainsCalculation(){
+ MainWindow window;auto* view=window.findChild<QTableView*>("worksheet.grid");auto* model=dynamic_cast<WorksheetModel*>(view->model());
+ require(model->setData(model->index(0,0),"42",Qt::EditRole)&&model->setData(model->index(0,1),"=A1*2",Qt::EditRole),"prepare native layout formula");window.recalculateNow();
+ const auto before=window.currentSession().snapshot();view->setCurrentIndex(model->index(0,1));const int originalWidth=view->columnWidth(1);
+ const auto current=[&]{require(model->data(model->index(0,1)).toString()=="84"&&model->numericValue(0,1)==84&&model->copyRange(0,1,0,1).at("cells")[0][0].at("value")==84,"presentation-only layout preserves immediate formula display, numeric value and clipboard cache");};
+ require(window.executeCommand("columns.size",{{"size",22.0}}),"resize a native column");current();
+ require(window.currentSession().lastChange().at("structure")==false&&window.currentSession().lastChange().at("calculationInputsChanged")==false,"width metadata is classified as presentation-only");
+ require(view->columnWidth(1)!=originalWidth,"width-only edit updates the visible layout without changed cells");
+ require(window.executeCommand("undo"),"undo column width");current();require(view->columnWidth(1)==originalWidth,"width Undo updates the visible layout");
+ require(window.executeCommand("redo"),"redo column width");current();
+ view->selectAll();require(formatWorksheetCells(&window,*model,*view,{{"style",{{"fontSize",18},{"fontFamily","Arial"}}}}),"format the whole native worksheet");current();
+ require(model->cellStyle(90,9).at("fontSize")==18&&model->data(model->index(90,9),Qt::FontRole).value<QFont>().pointSize()==18,"default font refresh reaches unstored blank cells");
+ require(window.executeCommand("undo"),"undo whole-sheet font");current();require(!model->cellStyle(90,9).contains("fontSize"),"font Undo refreshes the cached worksheet default style");
+ require(window.executeCommand("redo"),"redo whole-sheet font");current();require(model->cellStyle(90,9).at("fontSize")==18,"font Redo refreshes blank defaults");
+ require(model->raw(0,1)=="=A1*2"&&window.currentSession().snapshotView().at("revision")==before.at("revision").get<std::uint64_t>()+6,"layout edit Undo/Redo preserves formula and exactly one revision per transaction");
 }
-int main(int argc,char** argv){QApplication app(argc,argv);QTemporaryDir state;qputenv("TIGERSHEETS_STATE_DIR",state.path().toUtf8());try{const std::string mode=argc>1?argv[1]:"all";if(mode=="all"||mode=="formats")formatsPasteRetainsCalculatedDates();if(mode=="all"||mode=="undo")nativeStyleUndoRetainsCalculation();if(mode=="all"||mode=="boundaries")typedValuesAndInvalidationBoundaries();if(mode=="all"||mode=="warnings")nativeExternalWarningContinuity();if(mode=="all"||mode=="context")changedExternalContextCannotCarryStyleCache();std::cout<<"worksheet format-only calculation cache tests passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}
+void layoutInvalidationBoundaries(){
+ WorkbookSession session;WorksheetModel model(session);require(model.setData(model.index(0,0),"42",Qt::EditRole)&&model.setData(model.index(1,0),"8",Qt::EditRole)&&model.setData(model.index(2,0),"=SUBTOTAL(109,A1:A2)",Qt::EditRole),"prepare SUBTOTAL hidden-row control");
+ const auto calculate=[&]{model.setCalculated(CalculationEngine().calculate(session.snapshotView()));};calculate();require(model.numericValue(2,0)==50,"initial subtotal is current");
+ require(model.apply(Json::array({{{"type","set_sheet_layout"},{"sheet","sheet-1"},{"rows",Json::array({{{"index",1},{"size",30.0}}})},{"showGridLines",false}}})),"change only row height and gridlines");require(model.numericValue(2,0)==50,"row dimensions and gridlines preserve calculated values");
+ require(model.apply(Json::array({{{"type","set_sheet_layout"},{"sheet","sheet-1"},{"columns",Json::array({{{"index",2},{"size",20.0}}})}},{{"type","set_cell"},{"sheet","sheet-1"},{"row",1},{"col",1},{"input","50"}}})),"mix dimensions with a real input edit");require(session.lastChange().at("calculationInputsChanged")==true&&!model.numericValue(2,0).has_value(),"real input changes in layout batches invalidate formula caches");calculate();require(model.numericValue(2,0)==58,"changed subtotal recalculates");
+ require(model.apply(Json::array({{{"type","set_sheet_layout"},{"sheet","sheet-1"},{"rows",Json::array({{{"index",1},{"size",30.0},{"hidden",true}}})}}})),"hide a subtotal source row");require(session.lastChange().value("calculationInputsChanged",true)&&!model.numericValue(2,0).has_value(),"hidden rows retain conservative invalidation");calculate();require(model.numericValue(2,0)==8,"real hidden-row calculation changes SUBTOTAL");
+ require(model.apply(Json::array({{{"type","set_sheet_layout"},{"sheet","sheet-1"},{"mergedRanges",Json::array({{{"row1",6},{"row2",6},{"col1",1},{"col2",2}}})}}}))&&!model.numericValue(2,0).has_value(),"merge metadata stays conservative");calculate();
+ require(model.apply(Json::array({{{"type","set_metadata"},{"key","names"},{"value",{{"Rate","Sheet1!$A$1"}}}}}))&&!model.numericValue(2,0).has_value(),"names stay conservative after layout classification");
+ WorkbookSession blank;WorksheetModel empty(blank);int notifications=0;QObject::connect(&empty,&QAbstractItemModel::dataChanged,&empty,[&](const QModelIndex& first,const QModelIndex& last){require(first.isValid()&&last.isValid()&&last.row()<empty.rowCount()&&last.column()<empty.columnCount(),"layout notifications use valid model bounds");++notifications;});
+ require(empty.apply(Json::array({{{"type","set_sheet_layout"},{"sheet","sheet-1"},{"defaultStyle",{{"fontSize",20}}}}}))&&notifications==1&&empty.cellStyle(500,50).at("fontSize")==20,"default-only edit of an empty sheet notifies once and refreshes blank styles");
+}
+}
+int main(int argc,char** argv){QApplication app(argc,argv);QTemporaryDir state;qputenv("TIGERSHEETS_STATE_DIR",state.path().toUtf8());try{const std::string mode=argc>1?argv[1]:"all";if(mode=="all"||mode=="formats")formatsPasteRetainsCalculatedDates();if(mode=="all"||mode=="undo")nativeStyleUndoRetainsCalculation();if(mode=="all"||mode=="boundaries")typedValuesAndInvalidationBoundaries();if(mode=="all"||mode=="warnings")nativeExternalWarningContinuity();if(mode=="all"||mode=="context")changedExternalContextCannotCarryStyleCache();if(mode=="all"||mode=="layout")nativeLayoutRetainsCalculation();if(mode=="all"||mode=="layout_boundaries")layoutInvalidationBoundaries();std::cout<<"worksheet format-only calculation cache tests passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}

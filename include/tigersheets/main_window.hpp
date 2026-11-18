@@ -25,6 +25,7 @@ private:
  void updateSelectionStatus();
  void displayCalculation(Json result);
  void positionCharts();
+ void refreshChartPresentation(const Json& change);
  void commitEditor();
  Json calculationSnapshot() const;
  CalculationContext calculationContext(bool allowCachedLinks=false) const;

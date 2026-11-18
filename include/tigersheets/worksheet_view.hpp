@@ -3,6 +3,7 @@
 #include <QPointer>
 #include <QPersistentModelIndex>
 #include <functional>
+#include <map>
 #include <vector>
 class QLineEdit;
 class QKeyEvent;
@@ -58,7 +59,8 @@ private:
  void alignHorizontalEnd();
  QString layoutSheet_,mergedDefinition_;
  QMetaObject::Connection layoutChanged_;
- std::vector<int> layoutRows_,layoutColumns_;
+ using SectionLayouts=std::map<int,std::pair<int,bool>>;
+ SectionLayouts layoutRows_,layoutColumns_;
  void synchronizeLayout();
  QPointer<QLineEdit> formulaBar_,cellEditor_;
  QPersistentModelIndex editIndex_;
