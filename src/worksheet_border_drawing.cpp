@@ -1,6 +1,7 @@
 #include "tigersheets/worksheet_border_drawing.hpp"
 #include "tigersheets/worksheet_view.hpp"
 #include "tigersheets/grid.hpp"
+#include "tigersheets/worksheet_cell_format.hpp"
 #include <QApplication>
 #include <QColor>
 #include <QCursor>
@@ -23,14 +24,14 @@ class BorderDrawing final:public QObject {
   if(static_cast<qint64>(bottom-top+1)*(right-left+1)>100000)return;
   const Json edge={{"style",style_.toStdString()},{"color",color_.toStdString()}};Json operations=Json::array();
   for(int row=top;row<=bottom;++row)for(int col=left;col<=right;++col){
-   auto border=model_.cellStyle(row,col).value("border",Json::object());bool changed=false;
+   Json border=Json::object();bool changed=false;
    for(const auto& side:{"top","bottom","left","right"}){
     const bool boundary=mode_=="grid"||mode_=="erase"||(std::string_view(side)=="top"&&row==top)||(std::string_view(side)=="bottom"&&row==bottom)||(std::string_view(side)=="left"&&col==left)||(std::string_view(side)=="right"&&col==right);
-    if(boundary){if(mode_=="erase"||style_=="none")border.erase(side);else border[side]=edge;changed=true;}
+    if(boundary){if(mode_=="erase"||style_=="none")border[side]=nullptr;else border[side]=edge;changed=true;}
    }
    if(changed)operations.push_back({{"type","set_style"},{"sheet",sheet_.toStdString()},{"row",row+1},{"col",col+1},{"style",{{"border",border}}}});
   }
-  applying_=true;model_.apply(operations);applying_=false;
+  operations=worksheetBorderPatchOperations(model_,operations);applying_=true;if(!operations.empty())model_.apply(operations);applying_=false;
  }
  bool eventFilter(QObject* object,QEvent* event)override{
   if(!active_)return false;

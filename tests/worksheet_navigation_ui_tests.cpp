@@ -12,6 +12,7 @@
 #include <QMouseEvent>
 #include <QTabBar>
 #include <QTableView>
+#include <QToolButton>
 #include <QTemporaryDir>
 #include <QtTest/QTest>
 #include <iostream>
@@ -20,6 +21,27 @@
 using namespace tigersheets;
 namespace {
 void require(bool value,const char* message){if(!value)throw std::runtime_error(message);}
+void sheetTabNavigationHasOneArrowPair(){
+ MainWindow window;window.resize(1000,720);window.show();QApplication::processEvents();
+ auto* grid=window.findChild<QTableView*>("worksheet.grid");auto* tabs=window.findChild<QTabBar*>("workspace.sheets");auto* bar=window.findChild<QWidget*>("workspace.sheetBar");auto* model=dynamic_cast<WorksheetModel*>(grid->model());
+ Json operations=Json::array();for(int i=0;i<9;++i)operations.push_back({{"type","add_sheet"},{"id","navigation-"+std::to_string(i)},{"name","Quarterly Forecast "+std::to_string(i+1)}});
+ require(model->apply(operations),"prepare enough worksheet tabs to overflow the available tab strip");QApplication::processEvents();tabs->setCurrentIndex(tabs->count()-1);tabs->setCurrentIndex(0);QApplication::processEvents();
+ QToolButton* previous=window.findChild<QToolButton*>("worksheet.previousSheetTabs");QToolButton* next=window.findChild<QToolButton*>("worksheet.nextSheetTabs");for(auto* button:tabs->findChildren<QToolButton*>()){if(!previous&&button->arrowType()==Qt::LeftArrow)previous=button;if(!next&&button->arrowType()==Qt::RightArrow)next=button;}require(bar&&previous&&next,"the worksheet tab navigation pair exists");
+ int visibleArrows=0;for(auto* button:bar->findChildren<QToolButton*>())if(button->isVisible()&&(button==previous||button==next||button->arrowType()==Qt::LeftArrow||button->arrowType()==Qt::RightArrow))++visibleArrows;
+ require(visibleArrows==2,"overflowing worksheet tabs show exactly one left/right navigation pair");
+ const auto before=window.currentSession().snapshot();const int selected=tabs->currentIndex(),first=tabs->tabRect(0).left();
+ require(!previous->isEnabled()&&next->isEnabled(),"the single pair correctly reflects the beginning of the tab strip");
+ QTest::mouseClick(next,Qt::LeftButton);QApplication::processEvents();require(tabs->tabRect(0).left()<first&&previous->isEnabled(),"the visible right arrow scrolls tabs without choosing another worksheet");
+ for(int i=0;i<tabs->count()+2&&next->isEnabled();++i){QTest::mouseClick(next,Qt::LeftButton);QApplication::processEvents();}
+ require(!next->isEnabled()&&tabs->tabRect(tabs->count()-1).right()<tabs->width(),"the single pair reaches the last worksheet tab");
+ for(int i=0;i<tabs->count()+2&&previous->isEnabled();++i){QTest::mouseClick(previous,Qt::LeftButton);QApplication::processEvents();}
+ require(!previous->isEnabled()&&tabs->tabRect(0).left()==first,"the left arrow returns to the first worksheet tab");
+ require(tabs->currentIndex()==selected&&window.currentSession().snapshot()==before,"scrolling tabs preserves the selected worksheet and workbook history");
+ window.resize(1400,720);QApplication::processEvents();visibleArrows=0;for(auto* button:bar->findChildren<QToolButton*>())if(button->isVisible()&&(button==previous||button==next||button->arrowType()==Qt::LeftArrow||button->arrowType()==Qt::RightArrow))++visibleArrows;require(visibleArrows==2,"resizing the window does not bring back duplicate tab arrows");
+ require(!previous->toolTip().isEmpty()&&!next->accessibleName().isEmpty(),"the single navigation pair retains hover help and accessible names");
+ window.resize(4000,720);QApplication::processEvents();require(!previous->isVisible()&&!next->isVisible(),"tab navigation arrows disappear when every worksheet tab fits");
+ auto* add=window.findChild<QToolButton*>("worksheet.addSheet");const int count=tabs->count();require(add&&add->isVisible(),"the New Sheet button stays available beside the compact tab strip");QTest::mouseClick(add,Qt::LeftButton);QApplication::processEvents();require(tabs->count()==count+1&&window.executeCommand("undo")&&window.currentSession().snapshotView().at("sheets")==before.at("sheets"),"New Sheet still works and remains one undoable change");
+}
 struct Fixture {
  MainWindow window;QTableView* grid;QTabBar* tabs;WorksheetModel* model;
  Fixture(){window.resize(1400,850);window.show();QApplication::processEvents();grid=window.findChild<QTableView*>("worksheet.grid");tabs=window.findChild<QTabBar*>("workspace.sheets");model=dynamic_cast<WorksheetModel*>(grid->model());require(grid&&tabs&&model,"worksheet navigation controls exist");require(window.executeCommand("sheet.add")&&window.executeCommand("sheet.add"),"create three worksheets");clickTab(0);}
@@ -160,4 +182,4 @@ void openingWorkbookClearsPreviousViewPositions(){
  f.clickTab(1);require(f.grid->currentIndex()==f.model->index(0,0)&&f.grid->horizontalScrollBar()->value()==0&&f.grid->verticalScrollBar()->value()==0,"opening a workbook clears view positions from the previous workbook context");
 }
 }
-int main(int argc,char** argv){QApplication app(argc,argv);QTemporaryDir state;qputenv("TIGERSHEETS_STATE_DIR",state.path().toUtf8());try{if(argc>1&&std::string(argv[1])=="range_return"){returnTraversesSelectedRectangle();std::cout<<"rectangle Return tests passed\n";return 0;}if(argc>1&&std::string(argv[1])=="range_tab"){tabTraversesSelectedRectangle();std::cout<<"rectangle Tab tests passed\n";return 0;}returnTraversesSelectedRectangle();tabTraversesSelectedRectangle();sourceFarRightViewport();keyboardRangeKeepsActiveAnchor();nativeWorkbookViewSurvivesSave();nativeEntryContextIndicators();draggedSelectionKeepsActiveAnchor();keyboardSwitchesAdjacentSheets();sheetsRememberTheirSelectionAndScroll();addingSheetRetainsThePreviousView();openingWorkbookClearsPreviousViewPositions();std::cout<<"worksheet navigation UI tests passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}
+int main(int argc,char** argv){QApplication app(argc,argv);QTemporaryDir state;qputenv("TIGERSHEETS_STATE_DIR",state.path().toUtf8());try{if(argc>1&&std::string(argv[1])=="sheet_arrows"){sheetTabNavigationHasOneArrowPair();std::cout<<"sheet navigation arrows passed\n";return 0;}if(argc==1)sheetTabNavigationHasOneArrowPair();if(argc>1&&std::string(argv[1])=="range_return"){returnTraversesSelectedRectangle();std::cout<<"rectangle Return tests passed\n";return 0;}if(argc>1&&std::string(argv[1])=="range_tab"){tabTraversesSelectedRectangle();std::cout<<"rectangle Tab tests passed\n";return 0;}returnTraversesSelectedRectangle();tabTraversesSelectedRectangle();sourceFarRightViewport();keyboardRangeKeepsActiveAnchor();nativeWorkbookViewSurvivesSave();nativeEntryContextIndicators();draggedSelectionKeepsActiveAnchor();keyboardSwitchesAdjacentSheets();sheetsRememberTheirSelectionAndScroll();addingSheetRetainsThePreviousView();openingWorkbookClearsPreviousViewPositions();std::cout<<"worksheet navigation UI tests passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}

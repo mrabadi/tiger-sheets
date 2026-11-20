@@ -40,6 +40,7 @@ void showMenu(QTableView& view,WorksheetModel& model,Surface surface,const QPoin
  const auto selectedCells=rectangle?static_cast<qint64>(selection.front().width())*selection.front().height():0;
  const bool clipboardBounded=rectangle&&(selectedCells<=1000000||(selection.front().top()==0&&selection.front().height()==model.rowCount())||(selection.front().left()==0&&selection.front().width()==model.columnCount()));
  const bool formatBounded=rectangle&&selectedCells<=100000;
+ qint64 borderCells=0;for(const auto& range:selection)borderCells+=static_cast<qint64>(range.width())*range.height();const bool formatDialogBounded=!selection.isEmpty()&&borderCells<=100000;
  const auto clipboard=QApplication::clipboard()->mimeData();const bool pasteable=clipboard&&(clipboard->hasText()||clipboard->hasFormat("application/x-tigersheets-cells+json"));
  auto add=[&](QMenu* parent,const QString& text,const QString& command,const Json& args=Json::object(),bool enabled=true,const QString& shortcut=QString()){
   auto* action=parent->addAction(text);action->setObjectName("context."+command);action->setEnabled(enabled);
@@ -75,7 +76,7 @@ void showMenu(QTableView& view,WorksheetModel& model,Surface surface,const QPoin
   add(menu,"Hide",rows?"rows.hide":"columns.hide",Json::object(),editable&&rectangle);
   add(menu,"Unhide",rows?"rows.unhide":"columns.unhide",Json::object(),editable&&rectangle);
  }
- menu->addSeparator();add(menu,"&Format Cells…","cells.format",Json::object(),editable&&formatBounded,"Ctrl+1");
+ menu->addSeparator();add(menu,"&Format Cells…","cells.format",Json::object(),editable&&formatDialogBounded,"Ctrl+1");
  if(rectangle&&!formatBounded)for(auto* action:menu->findChildren<QAction*>())if(action->objectName()=="context.cells.format"||action->objectName()=="context.cells.clearFormats"||action->objectName()=="context.cells.merge"||action->objectName()=="context.cells.mergeCenter"||action->objectName()=="context.note.edit")action->setToolTip("Select at most 100,000 cells for formatting, notes or merging.");
  auto* target=surface==Surface::Cells?view.viewport():(surface==Surface::Rows?view.verticalHeader()->viewport():view.horizontalHeader()->viewport());
  menu->popup(target->mapToGlobal(point));

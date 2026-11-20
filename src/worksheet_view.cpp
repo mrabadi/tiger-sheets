@@ -28,6 +28,9 @@
 #include <QTextLayout>
 #include <QtMath>
 #include <algorithm>
+#include <array>
+#include <set>
+#include <tuple>
 namespace tigersheets {
 namespace {
 QItemSelection selectionRectangles(const QItemSelection& selected){
@@ -157,6 +160,73 @@ public:
    const auto index=model->index(row,column);QStyleOptionViewItem option;option.initFrom(view_);option.widget=view_;option.features.setFlag(QStyleOptionViewItem::WrapText,view_->wordWrap());initStyleOption(&option,index);const auto expanded=textOverflowRect(index,option);if(expanded.isEmpty())continue;const int indent=model->cellStyle(row,column).value("indent",0)*option.fontMetrics.horizontalAdvance("   ");option.rect=expanded.adjusted(indent,0,0,0);option.textElideMode=Qt::ElideNone;option.backgroundBrush=Qt::NoBrush;option.features.setFlag(QStyleOptionViewItem::Alternate,false);option.state&=~(QStyle::State_Selected|QStyle::State_HasFocus);painter.save();painter.setClipRect(expanded,Qt::IntersectClip);view_->style()->drawControl(QStyle::CE_ItemViewItem,&option,&painter,view_);painter.restore();
   }
  }
+ void paintBorders(QPainter& painter)const{
+  const auto* model=dynamic_cast<const WorksheetModel*>(view_->model());if(!model)return;
+  auto visibleSections=[&](bool columns){
+   std::vector<int> result;const int extent=columns?view_->viewport()->width():view_->viewport()->height();
+   for(int at=0;at<extent;){const int section=columns?view_->columnAt(at):view_->rowAt(at);if(section<0)break;result.push_back(section);const int next=columns?view_->columnViewportPosition(section)+view_->columnWidth(section):view_->rowViewportPosition(section)+view_->rowHeight(section);at=std::max(at+1,next);}
+   return result;
+  };
+  const auto rows=visibleSections(false),columns=visibleSections(true);if(rows.empty()||columns.empty())return;
+  using Span=std::array<int,4>;std::vector<Span> spans;
+  for(const auto& sheet:model->workbookView().at("sheets"))if(sheet.at("id")==model->sheetId().toStdString()){
+   if(const auto merges=sheet.find("mergedRanges");merges!=sheet.end())for(const auto& range:*merges){
+    const Span span{range.at("row1").get<int>()-1,range.at("row2").get<int>()-1,range.at("col1").get<int>()-1,range.at("col2").get<int>()-1};
+    const int top=view_->rowViewportPosition(span[0]),bottom=view_->rowViewportPosition(span[1])+view_->rowHeight(span[1]),left=view_->columnViewportPosition(span[2]),right=view_->columnViewportPosition(span[3])+view_->columnWidth(span[3]);
+    if(bottom>top&&right>left&&bottom>=-4&&top<=view_->viewport()->height()+4&&right>=-4&&left<=view_->viewport()->width()+4)spans.push_back(span);
+   }break;
+  }
+  auto spanAt=[&](int row,int column){for(const auto& span:spans)if(row>=span[0]&&row<=span[1]&&column>=span[2]&&column<=span[3])return span;return Span{row,row,column,column};};
+  const Json emptyStyle=Json::object(),noEdge;std::map<std::pair<int,int>,Json> styles;
+  auto styleAt=[&](int row,int column)->const Json&{
+   if(row<0||column<0||row>=model->rowCount()||column>=model->columnCount())return emptyStyle;
+   const auto key=std::pair{row,column};const auto found=styles.find(key);if(found!=styles.end())return found->second;
+   return styles.emplace(key,model->cellStyle(key.first,key.second)).first->second;
+  };
+  auto edgeAt=[&](int row,int column,const char* side)->const Json&{const auto& style=styleAt(row,column);const auto border=style.find("border");if(border==style.end()||!border->is_object())return noEdge;const auto edge=border->find(side);return edge==border->end()?noEdge:*edge;};
+  auto mergedEdgeAt=[&](int row,int column,const char* side){
+   const auto span=spanAt(row,column);return effectiveWorksheetBorderEdge(edgeAt(row,column,side),edgeAt(span[0],span[2],side));
+  };
+  auto opposingEdgeAt=[&](int row,int column,const char* side){
+   if(row<0||column<0||row>=model->rowCount()||column>=model->columnCount()||view_->isRowHidden(row)||view_->isColumnHidden(column))return Json();
+   return mergedEdgeAt(row,column,side);
+  };
+  // Resolve each physical edge once, then join equal collinear segments so
+  // grid separators and per-cell dash restarts cannot interrupt a border.
+  using Line=std::pair<bool,int>;using Segment=std::pair<int,int>;
+  std::map<Line,std::map<Segment,Json>> edges;
+  auto add=[&](bool horizontal,int fixed,int start,int end,const Json& edge){
+   if(edge.is_null()||start>end||fixed<-4||fixed>(horizontal?view_->viewport()->height():view_->viewport()->width())+4)return;
+   auto& segments=edges[{horizontal,fixed}];const Segment segment{start,end};const auto prior=segments.find(segment);if(prior==segments.end())segments.emplace(segment,edge);else prior->second=effectiveWorksheetBorderEdge(edge,prior->second);
+  };
+  std::set<std::pair<int,int>> visited;std::vector<std::pair<QRect,Json>> diagonals;
+  for(int row:rows)for(int column:columns){
+   const auto span=spanAt(row,column);if(!visited.emplace(span[0],span[2]).second)continue;
+   const auto& style=styleAt(span[0],span[2]);if(const auto border=style.find("border");border!=style.end()&&(border->contains("diagonalUp")||border->contains("diagonalDown")))diagonals.emplace_back(view_->visualRect(model->index(span[0],span[2])),*border);
+   auto horizontalEdges=[&](int at){
+    const int start=view_->columnViewportPosition(at)-(at?1:0),end=view_->columnViewportPosition(at)+view_->columnWidth(at)-1;
+    add(true,view_->rowViewportPosition(span[0])-(span[0]?1:0),start,end,effectiveWorksheetBorderEdge(mergedEdgeAt(span[0],at,"top"),opposingEdgeAt(span[0]-1,at,"bottom")));
+    add(true,view_->rowViewportPosition(span[1])+view_->rowHeight(span[1])-1,start,end,effectiveWorksheetBorderEdge(opposingEdgeAt(span[1]+1,at,"top"),mergedEdgeAt(span[1],at,"bottom")));
+   };
+   auto verticalEdges=[&](int at){
+    const int start=view_->rowViewportPosition(at)-(at?1:0),end=view_->rowViewportPosition(at)+view_->rowHeight(at)-1;
+    add(false,view_->columnViewportPosition(span[2])-(span[2]?1:0),start,end,effectiveWorksheetBorderEdge(mergedEdgeAt(at,span[2],"left"),opposingEdgeAt(at,span[2]-1,"right")));
+    add(false,view_->columnViewportPosition(span[3])+view_->columnWidth(span[3])-1,start,end,effectiveWorksheetBorderEdge(opposingEdgeAt(at,span[3]+1,"left"),mergedEdgeAt(at,span[3],"right")));
+   };
+   if(span[2]==span[3])horizontalEdges(span[2]);else for(int at:columns)if(at>=span[2]&&at<=span[3])horizontalEdges(at);
+   if(span[0]==span[1])verticalEdges(span[0]);else for(int at:rows)if(at>=span[0]&&at<=span[1])verticalEdges(at);
+  }
+  struct Run{bool horizontal;int fixed,start,end;Json edge;};std::vector<Run> runs;
+  auto same=[](const Json& a,const Json& b){return a.at("style")==b.at("style")&&QColor(QString::fromStdString(a.at("color")))==QColor(QString::fromStdString(b.at("color")));};
+  for(const auto& [line,segments]:edges){
+   std::optional<Run> run;
+   for(const auto& [segment,edge]:segments){if(run&&segment.first<=run->end+1&&same(run->edge,edge))run->end=std::max(run->end,segment.second);else{if(run)runs.push_back(std::move(*run));run=Run{line.first,line.second,segment.first,segment.second,edge};}}
+   if(run)runs.push_back(std::move(*run));
+  }
+  std::stable_sort(runs.begin(),runs.end(),[](const Run& a,const Run& b){return worksheetBorderStrength(a.edge.at("style").get_ref<const std::string&>())<worksheetBorderStrength(b.edge.at("style").get_ref<const std::string&>());});
+  for(const auto& run:runs)paintWorksheetBorderLine(painter,run.horizontal?QLineF(run.start,run.fixed,run.end,run.fixed):QLineF(run.fixed,run.start,run.fixed,run.end),run.edge.at("style").get_ref<const std::string&>(),QColor(QString::fromStdString(run.edge.at("color"))));
+  for(const auto& [rect,borders]:diagonals)for(const auto* side:{"diagonalUp","diagonalDown"})if(const auto edge=borders.find(side);edge!=borders.end())paintWorksheetBorder(painter,rect,side,edge->value("style",std::string()),QColor(QString::fromStdString(edge->value("color",std::string("#000000")))));
+ }
  void paint(QPainter* painter,const QStyleOptionViewItem& option,const QModelIndex& index)const override{
   const auto* model=dynamic_cast<const WorksheetModel*>(index.model());if(!model)return;const auto style=model->cellStyle(index.row(),index.column());
   auto content=option;const int indent=style.value("indent",0);
@@ -172,14 +242,7 @@ public:
    const auto left=filled->text.left(fillAt),right=filled->text.mid(fillAt+1);auto width=[&](const QString& text){qreal value=0;QString run;for(const auto ch:text){if(ch.unicode()>=0xe100&&ch.unicode()<0xe100+filled->padding.size()){value+=metrics.horizontalAdvance(run)+metrics.horizontalAdvance(filled->padding[ch.unicode()-0xe100]);run.clear();}else run+=ch;}return value+metrics.horizontalAdvance(run);};const qreal leftWidth=width(left),rightWidth=width(right),gap=std::max(qreal(0),rect.width()-leftWidth-rightWidth);qreal y=rect.bottom()-metrics.descent()+1;if(native.displayAlignment&Qt::AlignTop)y=rect.top()+metrics.ascent();else if(native.displayAlignment&Qt::AlignVCenter)y=rect.top()+(rect.height()-metrics.height())/2+metrics.ascent();auto draw=[&](const QString& text,qreal x){QString run;auto flush=[&]{if(!run.isEmpty()){painter->drawText(QPointF(x,y),run);x+=metrics.horizontalAdvance(run);run.clear();}};for(const auto ch:text){if(ch.unicode()>=0xe100&&ch.unicode()<0xe100+filled->padding.size()){flush();x+=metrics.horizontalAdvance(filled->padding[ch.unicode()-0xe100]);}else run+=ch;}flush();};draw(left,rect.left());if(fillChar!=' '){const qreal advance=metrics.horizontalAdvance(fillChar);if(advance>0)draw(QString(std::min(10000,static_cast<int>(gap/advance)),fillChar),rect.left()+leftWidth);}draw(right,rect.left()+leftWidth+gap);painter->restore();
   }else{QStyleOptionViewItem native(content);initStyleOption(&native,index);if(!textOverflowRect(index,native).isEmpty()){native.text.clear();const auto* widget=option.widget;const auto* nativeStyle=widget?widget->style():QApplication::style();nativeStyle->drawControl(QStyle::CE_ItemViewItem,&native,painter,widget);}else QStyledItemDelegate::paint(painter,content,index);}
   if(index.data(FormulaErrorCheckRole).toBool()){painter->save();painter->setClipRect(option.rect);painter->setPen(Qt::NoPen);painter->setBrush(QColor("#008000"));const auto corner=option.rect.topLeft();painter->drawPolygon(QPolygon({corner,corner+QPoint(6,0),corner+QPoint(0,6)}));painter->restore();}
-  const auto borders=style.value("border",Json::object());if(!borders.is_object()||borders.empty())return;
-  painter->save();painter->setClipRect(option.rect);
-  const auto rect=option.rect;
-  for(const auto* side:{"top","bottom","left","right","diagonalUp","diagonalDown"}){
-   if(!borders.contains(side)||!borders.at(side).is_object())continue;const auto& border=borders.at(side);const auto kind=border.value("style",std::string());if(kind.empty()||kind=="none")continue;
-   paintWorksheetBorder(*painter,rect,side,kind,QColor(QString::fromStdString(border.value("color",std::string("#000000")))));
-  }
-  painter->restore();
+
  }
 
 protected:
@@ -291,7 +354,7 @@ void WorksheetView::paintEvent(QPaintEvent* event){
  QVariantList fills;if(!externalPointing)for(std::size_t i=0;i<references.size();++i)if(referenceHere(references[i])){const auto& reference=references[i];fills.push_back(QVariantMap{{"range",QRect(reference.col1-1,reference.row1-1,reference.col2-reference.col1+1,reference.row2-reference.row1+1)},{"color",formulaReferenceColor(colors[i])}});}if(property("worksheet.referenceFills")!=QVariant(fills))setProperty("worksheet.referenceFills",fills);
  QTableView::paintEvent(event);
  QPainter painter(viewport());painter.setClipRect(event->rect());
- if(const auto* delegate=dynamic_cast<const CellDelegate*>(itemDelegate()))delegate->paintTextOverflow(painter);
+ if(const auto* delegate=dynamic_cast<const CellDelegate*>(itemDelegate())){delegate->paintTextOverflow(painter);delegate->paintBorders(painter);}
  if(externalPointing){const auto range=property("worksheet.externalPointRange").toRect();if(range.isValid()){const QRect bounds(columnViewportPosition(range.left()),rowViewportPosition(range.top()),columnViewportPosition(range.right())+columnWidth(range.right())-columnViewportPosition(range.left()),rowViewportPosition(range.bottom())+rowHeight(range.bottom())-rowViewportPosition(range.top()));QPen pen(QColor("#217346"),2);pen.setDashPattern({3,1.5});painter.setPen(pen);painter.setBrush(Qt::NoBrush);painter.drawRect(bounds);}return;}
  if(selectionModel()){
   painter.setPen(QPen(QColor("#217346"),2));painter.setBrush(Qt::NoBrush);
