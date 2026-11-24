@@ -22,7 +22,7 @@ void RecentWorkbooks::refresh(){
  for(int i=0;i<paths.size();++i){
   const auto path=paths[i];const QFileInfo file(path);auto label=file.fileName()+" — "+QDir::toNativeSeparators(file.absolutePath());label.replace("&","&&");
   auto* action=menu_->addAction(QString("&%1 %2").arg((i+1)%10).arg(label));action->setObjectName("file.recent."+QString::number(i));action->setData(path);action->setToolTip(path);action->setStatusTip(path);action->setEnabled(file.isFile()&&file.isReadable());
-  connect(action,&QAction::triggered,this,[this,path]{if(!window_.executeCommand("open",{{"path",path.toStdString()}}))QMessageBox::warning(&window_,"Cannot open workbook",window_.lastError());});
+  connect(action,&QAction::triggered,this,[this,path]{if(!window_.executeCommand("open",{{"path",path.toStdString()}})&&!window_.lastError().isEmpty())QMessageBox::warning(&window_,"Cannot open workbook",window_.lastError());});
  }
  if(paths.isEmpty())menu_->addAction("No recent workbooks")->setEnabled(false);
 }

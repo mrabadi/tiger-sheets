@@ -736,7 +736,20 @@ bool MainWindow::executeCommand(const QString& command,const Json& arguments){
   if(path.isEmpty()){const auto suggestion=legacy?QFileInfo(s.path).dir().filePath(QFileInfo(s.path).completeBaseName()+".xlsx"):QString("Book1.xlsx");path=QFileDialog::getSaveFileName(this,"Save workbook",suggestion,"Excel workbook (*.xlsx);;Legacy Excel workbook (*.xls);;Macro-enabled workbook (*.xlsm);;CSV (*.csv)");}
   if(path.isEmpty())return false;if(QFileInfo(path).suffix().isEmpty())path+=".xlsx";bool ok=saveWorkbook(path);if(!ok)QMessageBox::warning(this,"Cannot save workbook",s.error);return ok;
  }
- if(command=="open"){auto path=QString::fromStdString(arguments.value("path",std::string()));if(path.isEmpty())path=QFileDialog::getOpenFileName(this,"Open workbook",{},"Workbooks (*.xlsx *.xlsm *.xls *.csv)");if(path.isEmpty())return false;if(s.dirty){auto* other=new MainWindow;other->setAttribute(Qt::WA_DeleteOnClose);if(other->openWorkbook(path)){other->show();return true;}s.error=other->lastError();other->deleteLater();return false;}return openWorkbook(path);}
+ if(command=="open"){
+  s.error.clear();auto path=QString::fromStdString(arguments.value("path",std::string()));if(path.isEmpty())path=QFileDialog::getOpenFileName(this,"Open workbook",{},"Workbooks (*.xlsx *.xlsm *.xls *.csv)");if(path.isEmpty())return false;
+  bool newWindow=false;const bool blank=s.path.isEmpty()&&!s.dirty&&!s.session.hasPreview();
+  if(!blank){
+   QMessageBox choice(QMessageBox::Question,"Open workbook",QString("Where would you like to open %1?").arg(QFileInfo(path).fileName()),QMessageBox::NoButton,this);choice.setObjectName("workbook.openLocation");
+   auto* current=choice.addButton("This window",QMessageBox::AcceptRole);current->setObjectName("open.currentWindow");auto* separate=choice.addButton("New window",QMessageBox::ActionRole);separate->setObjectName("open.newWindow");auto* cancel=choice.addButton(QMessageBox::Cancel);cancel->setObjectName("open.cancel");choice.setDefaultButton(current);choice.setEscapeButton(cancel);choice.exec();
+   if(choice.clickedButton()==separate)newWindow=true;else if(choice.clickedButton()!=current)return false;
+  }
+  if(!newWindow&&s.dirty){
+   QMessageBox changes(QMessageBox::Question,"Unsaved changes",QString("Save changes to %1 before opening another workbook?").arg(s.filename->text()),QMessageBox::Save|QMessageBox::Discard|QMessageBox::Cancel,this);changes.setObjectName("workbook.openUnsaved");changes.setDefaultButton(QMessageBox::Save);const auto result=changes.exec();
+   if(result!=QMessageBox::Save&&result!=QMessageBox::Discard)return false;if(result==QMessageBox::Save){if(!executeCommand("save")){s.error.clear();return false;}if(s.dirty)return false;}
+  }
+  if(newWindow){auto* other=new MainWindow;other->setAttribute(Qt::WA_DeleteOnClose);if(other->openWorkbook(path)){other->show();other->raise();other->activateWindow();other->state_->grid->setFocus(Qt::ShortcutFocusReason);return true;}s.error=other->lastError();other->deleteLater();return false;}return openWorkbook(path);
+ }
  if(command=="close")return close();
  if(command=="new"){auto* other=new MainWindow;other->setAttribute(Qt::WA_DeleteOnClose);other->show();other->raise();other->activateWindow();other->state_->grid->setFocus(Qt::ShortcutFocusReason);return true;}
  if(command=="template.financial"){if(s.dirty){auto* other=new MainWindow;other->setAttribute(Qt::WA_DeleteOnClose);other->loadFinancialExample();other->show();}else loadFinancialExample();return true;}

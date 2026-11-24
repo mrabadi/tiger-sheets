@@ -1,6 +1,7 @@
 #include "tigersheets/main_window.hpp"
 #include "tigersheets/grid.hpp"
 #include <QApplication>
+#include <QAbstractButton>
 #include <QFile>
 #include <QFileInfo>
 #include <QMenu>
@@ -21,7 +22,23 @@ QMenu* recentMenu(MainWindow& window){auto* file=fileMenu(window);const auto act
 void emptyMenu(){MainWindow window;auto* recent=recentMenu(window);require(recent->actions().size()==1&&!recent->actions().front()->isEnabled()&&recent->actions().front()->text()=="No recent workbooks","an empty recent menu explains that no workbooks are available");require(!window.currentSession().canUndo(),"displaying Open Recent never edits the workbook");}
 QString csv(QTemporaryDir& files,const QString& name,const QByteArray& contents){const auto path=files.filePath(name);QFile file(path);require(file.open(QIODevice::WriteOnly)&&file.write(contents)==contents.size(),"create a synthetic recent workbook");return path;}
 QStringList recentPaths(MainWindow& window){auto* menu=recentMenu(window);QMetaObject::invokeMethod(menu,"aboutToShow",Qt::DirectConnection);QStringList paths;for(auto* action:menu->actions())if(action->data().isValid())paths<<action->data().toString();return paths;}
-void chooseRecent(MainWindow& window,const QString& path){auto* menu=recentMenu(window);menu->popup({100,100});QApplication::processEvents();QAction* chosen=nullptr;for(auto* action:menu->actions())if(action->data().toString()==path)chosen=action;require(chosen&&chosen->isEnabled(),"recent workbook has an enabled native menu entry");require(chosen->toolTip().contains(path),"recent entry exposes the full path in its tooltip");QTest::mouseClick(menu,Qt::LeftButton,Qt::NoModifier,menu->actionGeometry(chosen).center());QApplication::processEvents();}
+enum class OpenChoice {Current,New,Cancel};
+void chooseRecent(MainWindow& window,const QString& path,OpenChoice choice=OpenChoice::Current,bool expectChooser=true){
+ auto* menu=recentMenu(window);menu->popup({100,100});QApplication::processEvents();QAction* chosen=nullptr;for(auto* action:menu->actions())if(action->data().toString()==path)chosen=action;
+ require(chosen&&chosen->isEnabled(),"recent workbook has an enabled native menu entry");require(chosen->toolTip().contains(path),"recent entry exposes the full path in its tooltip");
+ bool chooserShown=false;std::exception_ptr error;QTimer choose;choose.setInterval(0);
+ QObject::connect(&choose,&QTimer::timeout,[&]{auto* dialog=qobject_cast<QDialog*>(QApplication::activeModalWidget());if(!dialog||dialog->objectName()!="workbook.openLocation")return;choose.stop();chooserShown=true;
+  try{const auto* name=choice==OpenChoice::Current?"open.currentWindow":choice==OpenChoice::New?"open.newWindow":"open.cancel";auto* button=dialog->findChild<QAbstractButton*>(QString::fromLatin1(name));require(button&&button->isEnabled(),"the shared Open destination chooser exposes the requested current/new/cancel action");QTest::mouseClick(button,Qt::LeftButton);}catch(...){error=std::current_exception();dialog->reject();}
+ });choose.start();QTest::mouseClick(menu,Qt::LeftButton,Qt::NoModifier,menu->actionGeometry(chosen).center());QApplication::processEvents();choose.stop();if(error)std::rethrow_exception(error);
+ require(chooserShown==expectChooser,expectChooser?"Open Recent asks whether to use this window or a new window when the current workbook is not a fresh blank":"Open Recent reuses a fresh untouched blank window without asking for a destination");
+}
+void reusesFreshBlank(){
+ QTemporaryDir files;const auto target=csv(files,"Recent.csv","22\n");MainWindow prior;require(prior.openWorkbook(target),"record a genuine recent workbook before creating a fresh window");MainWindow blank;blank.show();
+ require(blank.windowFilePath().isEmpty()&&!blank.currentSession().canUndo(),"the new target window is a fresh untouched blank");
+ auto windowCount=[](){int count=0;for(auto* widget:QApplication::topLevelWidgets())count+=dynamic_cast<MainWindow*>(widget)!=nullptr;return count;};const auto before=windowCount();
+ chooseRecent(blank,target,OpenChoice::Current,false);auto* model=dynamic_cast<WorksheetModel*>(blank.findChild<QTableView*>("worksheet.grid")->model());
+ require(blank.windowFilePath()==target&&model->raw(0,0)=="22"&&!blank.isWindowModified()&&!blank.currentSession().canUndo()&&windowCount()==before,"Open Recent loads the actual file into the existing fresh blank without creating another window");
+}
 void remembersAndReopens(){
  QTemporaryDir files;const auto first=csv(files,"Budget & forecast.csv","11\n"),second=csv(files,"Other.csv","22\n");QString saved;
  {
@@ -43,16 +60,26 @@ void preservesEditsAndHandlesErrors(){
  MainWindow window;window.show();require(window.openWorkbook(target)&&window.saveWorkbook(broken)&&window.openWorkbook(first),"prepare successful recent entries before stale-file checks");
  {QFile corrupt(broken);require(corrupt.open(QIODevice::WriteOnly|QIODevice::Truncate)&&corrupt.write("not an Excel workbook")>0,"replace only a synthetic test workbook with corrupt bytes");}
  auto* model=dynamic_cast<WorksheetModel*>(window.findChild<QTableView*>("worksheet.grid")->model());require(model->setData(model->index(0,0),"99",Qt::EditRole),"make an unsaved current edit before opening a recent file");const auto before=window.currentSession().snapshot();
- chooseRecent(window,target);MainWindow* other=nullptr;for(auto* widget:QApplication::topLevelWidgets())if(auto* candidate=dynamic_cast<MainWindow*>(widget);candidate&&candidate!=&window&&candidate->windowFilePath()==target)other=candidate;
+ chooseRecent(window,target,OpenChoice::New);MainWindow* other=nullptr;for(auto* widget:QApplication::topLevelWidgets())if(auto* candidate=dynamic_cast<MainWindow*>(widget);candidate&&candidate!=&window&&candidate->windowFilePath()==target)other=candidate;
  require(other&&window.currentSession().snapshot()==before&&window.windowFilePath()==first&&window.isWindowModified()&&window.currentSession().canUndo(),"Open Recent preserves unsaved data, identity and Undo by opening another window");
  auto* opened=dynamic_cast<WorksheetModel*>(other->findChild<QTableView*>("worksheet.grid")->model());require(opened->raw(0,0)=="22","the separate recent window contains the requested file");require(other->close(),"close the clean temporary recent window");QApplication::sendPostedEvents(nullptr,QEvent::DeferredDelete);
- const auto history=recentPaths(window);QString failure;bool warned=false;QTimer dismiss;dismiss.setInterval(0);QObject::connect(&dismiss,&QTimer::timeout,[&]{if(auto* warning=qobject_cast<QMessageBox*>(QApplication::activeModalWidget())){dismiss.stop();warned=true;failure=warning->text();warning->accept();}else if(auto* dialog=qobject_cast<QDialog*>(QApplication::activeModalWidget())){dismiss.stop();dialog->reject();}});dismiss.start();
- chooseRecent(window,broken);require(warned&&!failure.trimmed().isEmpty()&&window.lastError()==failure,"a failed recent open from a dirty window displays the actual workbook error");
+ const auto history=recentPaths(window);QString failure;bool warned=false;QTimer dismiss;dismiss.setInterval(0);QObject::connect(&dismiss,&QTimer::timeout,[&]{auto* active=QApplication::activeModalWidget();if(active&&active->objectName()=="workbook.openLocation")return;if(auto* warning=qobject_cast<QMessageBox*>(active)){dismiss.stop();warned=true;failure=warning->text();warning->accept();}else if(auto* dialog=qobject_cast<QDialog*>(active)){dismiss.stop();dialog->reject();}});dismiss.start();
+ chooseRecent(window,broken,OpenChoice::New);require(warned&&!failure.trimmed().isEmpty()&&window.lastError()==failure,"a failed recent open from a dirty window displays the actual workbook error");
  require(window.currentSession().snapshot()==before&&window.windowFilePath()==first&&window.isWindowModified()&&recentPaths(window)==history,"a corrupt recent file preserves unsaved work and does not promote itself in history");
  require(QFile::remove(target),"remove only a synthetic recent file");recentPaths(window);QAction* missing=nullptr;for(auto* action:recentMenu(window)->actions())if(action->data().toString()==target)missing=action;require(missing&&!missing->isEnabled(),"a deleted recent workbook stays identifiable but cannot be opened");
  require(!window.openWorkbook(files.filePath("Never opened.xlsx"))&&!window.saveWorkbook(files.filePath("missing/Not saved.xlsx"))&&recentPaths(window)==history,"failed opens and saves do not add or reorder recent entries");
  bool cancelled=false;QTimer::singleShot(0,[&]{if(auto* dialog=qobject_cast<QFileDialog*>(QApplication::activeModalWidget())){cancelled=true;dialog->reject();}});require(!window.executeCommand("save.as")&&cancelled&&recentPaths(window)==history,"cancelling Save As leaves recent history unchanged");
  const auto exported=files.filePath("Export.csv");require(window.saveWorkbook(exported)&&recentPaths(window)==history&&window.windowFilePath()==first&&window.isWindowModified(),"a CSV-only export does not become the current or most recent workbook");
 }
+void cancelsRecentDestination(){
+ QTemporaryDir files;const auto first=csv(files,"Current.csv","11\n"),target=csv(files,"Target.csv","22\n");MainWindow window;window.show();
+ require(window.openWorkbook(target)&&window.openWorkbook(first),"prepare current and recent workbooks for cancellation");auto* model=dynamic_cast<WorksheetModel*>(window.findChild<QTableView*>("worksheet.grid")->model());require(model->setData(model->index(0,0),"99",Qt::EditRole),"prepare an unsaved edit before cancelling a recent open");
+ const auto before=window.currentSession().snapshot();const auto history=recentPaths(window);const auto undoBytes=window.currentSession().historyBytes();const bool canUndo=window.currentSession().canUndo();
+ auto windowCount=[](){int count=0;for(auto* widget:QApplication::topLevelWidgets())count+=dynamic_cast<MainWindow*>(widget)!=nullptr;return count;};const auto countBefore=windowCount();
+ bool warned=false;QTimer dismissWarning;dismissWarning.setInterval(0);QObject::connect(&dismissWarning,&QTimer::timeout,[&]{auto* warning=qobject_cast<QMessageBox*>(QApplication::activeModalWidget());if(warning&&warning->objectName()!="workbook.openLocation"){warned=true;warning->accept();}});dismissWarning.start();
+ chooseRecent(window,target,OpenChoice::Cancel);dismissWarning.stop();QApplication::sendPostedEvents(nullptr,QEvent::DeferredDelete);
+ require(!warned,"cancelling the Open Recent destination chooser does not report an error warning");
+ require(window.currentSession().snapshot()==before&&window.windowFilePath()==first&&window.isWindowModified()&&window.currentSession().historyBytes()==undoBytes&&window.currentSession().canUndo()==canUndo&&recentPaths(window)==history&&windowCount()==countBefore,"cancelling a recent open preserves workbook data, identity, dirty state, Undo, recent order, and window count");
 }
-int main(int argc,char** argv){QApplication app(argc,argv);try{const std::string mode=argc>1?argv[1]:"all";for(const auto& test:{std::pair{"empty",emptyMenu},std::pair{"history",remembersAndReopens},std::pair{"safety",preservesEditsAndHandlesErrors}})if(mode=="all"||mode==test.first){QTemporaryDir state;qputenv("TIGERSHEETS_STATE_DIR",state.path().toUtf8());test.second();}std::cout<<"recent workbook tests passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}
+}
+int main(int argc,char** argv){QApplication app(argc,argv);try{const std::string mode=argc>1?argv[1]:"all";for(const auto& test:{std::pair{"empty",emptyMenu},std::pair{"fresh",reusesFreshBlank},std::pair{"history",remembersAndReopens},std::pair{"safety",preservesEditsAndHandlesErrors},std::pair{"cancel",cancelsRecentDestination}})if(mode=="all"||mode==test.first){QTemporaryDir state;qputenv("TIGERSHEETS_STATE_DIR",state.path().toUtf8());test.second();}std::cout<<"recent workbook tests passed\n";}catch(const std::exception& error){std::cerr<<"FAILED: "<<error.what()<<'\n';return 1;}}
