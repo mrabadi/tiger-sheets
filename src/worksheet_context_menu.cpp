@@ -1,5 +1,6 @@
 #include "tigersheets/worksheet_context_menu.hpp"
 #include "tigersheets/grid.hpp"
+#include "tigersheets/worksheet_selection.hpp"
 #include <QAction>
 #include <QApplication>
 #include <QClipboard>
@@ -11,6 +12,7 @@
 #include <QPointer>
 #include <QScrollBar>
 #include <QTableView>
+#include <algorithm>
 namespace tigersheets {
 namespace {
 enum class Surface {Cells,Rows,Columns};
@@ -18,7 +20,11 @@ void showMenu(QTableView& view,WorksheetModel& model,Surface surface,const QPoin
  const std::function<bool(const QString&,const Json&)>& execute){
  if(surface==Surface::Cells){
   const auto clicked=view.indexAt(point);if(!clicked.isValid())return;
-  if(!view.selectionModel()->isSelected(clicked))view.setCurrentIndex(clicked);
+  bool selected=view.selectionModel()->isSelected(clicked);
+  if(!selected&&(view.rowSpan(clicked.row(),clicked.column())>1||view.columnSpan(clicked.row(),clicked.column())>1)){
+   const QItemSelectionRange span(clicked,model.index(clicked.row()+view.rowSpan(clicked.row(),clicked.column())-1,clicked.column()+view.columnSpan(clicked.row(),clicked.column())-1));for(const auto& area:view.selectionModel()->selection())if(area.intersects(span)){selected=true;break;}
+  }
+  if(!selected)view.setCurrentIndex(clicked);
  }else{
   auto* header=surface==Surface::Rows?view.verticalHeader():view.horizontalHeader();
   const int section=header->logicalIndexAt(point);if(section<0)return;
@@ -40,7 +46,10 @@ void showMenu(QTableView& view,WorksheetModel& model,Surface surface,const QPoin
  const auto selectedCells=rectangle?static_cast<qint64>(selection.front().width())*selection.front().height():0;
  const bool clipboardBounded=rectangle&&(selectedCells<=1000000||(selection.front().top()==0&&selection.front().height()==model.rowCount())||(selection.front().left()==0&&selection.front().width()==model.columnCount()));
  const bool formatBounded=rectangle&&selectedCells<=100000;
- qint64 borderCells=0;for(const auto& range:selection)borderCells+=static_cast<qint64>(range.width())*range.height();const bool formatDialogBounded=!selection.isEmpty()&&borderCells<=100000;
+ qint64 borderCells=0;for(const auto& range:selection)borderCells+=static_cast<qint64>(range.width())*range.height();bool formatDialogBounded=!selection.isEmpty()&&borderCells<=100000;
+ if(!formatDialogBounded&&!selection.isEmpty())for(const auto& entry:model.workbookView().at("sheets"))if(entry.at("id")==model.sheetId().toStdString()){
+  for(const auto& merged:entry.value("mergedRanges",Json::array()))if(std::any_of(selection.begin(),selection.end(),[&](const QItemSelectionRange& area){return area.top()+1<=merged.at("row2")&&area.bottom()+1>=merged.at("row1")&&area.left()+1<=merged.at("col2")&&area.right()+1>=merged.at("col1");})){formatDialogBounded=true;break;}break;
+ }
  const auto clipboard=QApplication::clipboard()->mimeData();const bool pasteable=clipboard&&(clipboard->hasText()||clipboard->hasFormat("application/x-tigersheets-cells+json"));
  auto add=[&](QMenu* parent,const QString& text,const QString& command,const Json& args=Json::object(),bool enabled=true,const QString& shortcut=QString()){
   auto* action=parent->addAction(text);action->setObjectName("context."+command);action->setEnabled(enabled);
@@ -65,9 +74,9 @@ void showMenu(QTableView& view,WorksheetModel& model,Surface surface,const QPoin
  add(menu,"Clear Contents","clear",Json::object(),editable&&rectangle,"Del");add(menu,"Clear Formats","cells.clearFormats",Json::object(),editable&&formatBounded);
  if(surface==Surface::Cells){
   menu->addSeparator();auto* merge=menu->addMenu("&Merge Cells");
-  const auto ranges=view.selectionModel()->selection();const bool multiple=rectangle&&(ranges.front().width()>1||ranges.front().height()>1);
-  add(merge,"Merge && Center","cells.mergeCenter",Json::object(),editable&&multiple&&formatBounded);
-  add(merge,"Merge Cells","cells.merge",Json::object(),editable&&multiple&&formatBounded);add(merge,"Unmerge Cells","cells.unmerge",Json::object(),editable&&rectangle);
+  const auto ranges=coalescedWorksheetSelection(selection);const bool mergeRectangle=ranges.size()==1;const bool multiple=mergeRectangle&&(ranges.front().width()>1||ranges.front().height()>1);const bool mergeBounded=mergeRectangle&&static_cast<qint64>(ranges.front().width())*ranges.front().height()<=100000;
+  add(merge,"Merge && Center","cells.mergeCenter",Json::object(),editable&&multiple&&mergeBounded);
+  add(merge,"Merge Cells","cells.merge",Json::object(),editable&&multiple&&mergeBounded);add(merge,"Unmerge Cells","cells.unmerge",Json::object(),editable&&!selection.isEmpty());
   auto* sort=menu->addMenu("S&ort");add(sort,"Sort Smallest to Largest / A to Z","sort.ascending",Json::object(),editable&&rectangle);add(sort,"Sort Largest to Smallest / Z to A","sort.descending",Json::object(),editable&&rectangle);
   add(menu,"Edit Note…","note.edit",Json::object(),editable&&formatBounded);
  }else{
@@ -77,7 +86,7 @@ void showMenu(QTableView& view,WorksheetModel& model,Surface surface,const QPoin
   add(menu,"Unhide",rows?"rows.unhide":"columns.unhide",Json::object(),editable&&rectangle);
  }
  menu->addSeparator();add(menu,"&Format Cells…","cells.format",Json::object(),editable&&formatDialogBounded,"Ctrl+1");
- if(rectangle&&!formatBounded)for(auto* action:menu->findChildren<QAction*>())if(action->objectName()=="context.cells.format"||action->objectName()=="context.cells.clearFormats"||action->objectName()=="context.cells.merge"||action->objectName()=="context.cells.mergeCenter"||action->objectName()=="context.note.edit")action->setToolTip("Select at most 100,000 cells for formatting, notes or merging.");
+ if(rectangle&&!formatBounded)for(auto* action:menu->findChildren<QAction*>())if(!action->isEnabled()&&(action->objectName()=="context.cells.format"||action->objectName()=="context.cells.clearFormats"||action->objectName()=="context.cells.merge"||action->objectName()=="context.cells.mergeCenter"||action->objectName()=="context.note.edit"))action->setToolTip("Select at most 100,000 cells for formatting, notes or merging.");
  auto* target=surface==Surface::Cells?view.viewport():(surface==Surface::Rows?view.verticalHeader()->viewport():view.horizontalHeader()->viewport());
  menu->popup(target->mapToGlobal(point));
 }

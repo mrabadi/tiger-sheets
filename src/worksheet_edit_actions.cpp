@@ -3,6 +3,7 @@
 #include "tigersheets/grid.hpp"
 #include "tigersheets/ooxml.hpp"
 #include "tigersheets/worksheet_layout.hpp"
+#include "tigersheets/worksheet_selection.hpp"
 #include "tigersheets/worksheet_view.hpp"
 #include <QItemSelectionModel>
 #include <QTableView>
@@ -23,7 +24,7 @@ QItemSelection selectedRanges(QTableView& view){
  auto ranges=view.selectionModel()->selection();if(ranges.isEmpty()){if(!view.currentIndex().isValid())throw std::runtime_error("Select a worksheet cell first.");ranges.select(view.currentIndex(),view.currentIndex());}return ranges;
 }
 QItemSelectionRange selectedRange(QTableView& view){
- const auto ranges=selectedRanges(view);if(ranges.size()>1)throw std::runtime_error("Select one contiguous rectangular range.");return ranges.front();
+ const auto ranges=coalescedWorksheetSelection(selectedRanges(view));if(ranges.size()>1)throw std::runtime_error("Select one contiguous rectangular range.");return ranges.front();
 }
 using AxisIntervals=std::vector<std::pair<int,int>>;
 AxisIntervals selectedAxes(const QItemSelection& ranges,bool rows){
@@ -53,11 +54,12 @@ bool executeWorksheetEdit(QWidget* parent,WorksheetModel& model,QTableView& view
   return false;
  }
  if(command=="cells.merge"||command=="cells.mergeCenter"||command=="cells.unmerge"){
-  const auto selection=selectedRange(view);const bool unmerge=command=="cells.unmerge";
+  const bool unmerge=command=="cells.unmerge";const auto ranges=selectedRanges(view);const auto selection=unmerge?ranges.front():selectedRange(view);
   if(!unmerge&&(static_cast<std::int64_t>(selection.height())*selection.width()>100000||selection.height()*selection.width()==1))throw std::runtime_error("Select between two and 100,000 cells to merge.");
   const Json rectangle={{"row1",selection.top()+1},{"col1",selection.left()+1},{"row2",selection.bottom()+1},{"col2",selection.right()+1}};
   const Json* sheet=nullptr;for(const auto& entry:model.workbookView().at("sheets"))if(entry.at("id")==model.sheetId().toStdString())sheet=&entry;if(!sheet)throw std::runtime_error("The worksheet is no longer available.");
-  Json merged=Json::array();for(const auto& range:sheet->value("mergedRanges",Json::array())){if(!overlaps(rectangle,range)){merged.push_back(range);continue;}if(!unmerge&&!contains(rectangle,range))throw std::runtime_error("Select the whole existing merged cell before merging this range.");}
+  Json merged=Json::array();for(const auto& range:sheet->value("mergedRanges",Json::array())){const bool selected=unmerge?std::any_of(ranges.begin(),ranges.end(),[&](const QItemSelectionRange& area){return area.top()+1<=range.at("row2")&&area.bottom()+1>=range.at("row1")&&area.left()+1<=range.at("col2")&&area.right()+1>=range.at("col1");}):overlaps(rectangle,range);if(!selected){merged.push_back(range);continue;}if(!unmerge&&!contains(rectangle,range))throw std::runtime_error("Select the whole existing merged cell before merging this range.");}
+  if(unmerge&&merged==sheet->value("mergedRanges",Json::array()))return true;
   if(!unmerge)merged.push_back(rectangle);if(package)preflightWorksheetLayout(*package,model.sheetId().toStdString(),merged);
   Json operations=Json::array();if(!unmerge){
    for(const auto& cell:sheet->at("cells"))if(cell.at("row")>=rectangle.at("row1")&&cell.at("row")<=rectangle.at("row2")&&cell.at("col")>=rectangle.at("col1")&&cell.at("col")<=rectangle.at("col2")&&(cell.at("row")!=rectangle.at("row1")||cell.at("col")!=rectangle.at("col1"))&&cell.at("input")!="")operations.push_back({{"type","set_cell"},{"sheet",model.sheetId().toStdString()},{"row",cell.at("row")},{"col",cell.at("col")},{"input",""}});
