@@ -57,12 +57,15 @@ class ExternalReferenceEntry final:public QObject {
  void activate(bool editing=false){window_.raise();window_.activateWindow();if(editing)bar_.setFocus();else view_.setFocus();}
  bool prepareWindowChange(){
   const bool wasInline=view_.activeCellEditor();
-  const auto originIndex=view_.currentIndex();const auto* model=dynamic_cast<WorksheetModel*>(view_.model());const auto originSheet=model?model->sheetId():QString();
+  const auto originIndex=view_.currentIndex();const auto originSelection=view_.selectionModel()->selection();const auto* model=dynamic_cast<WorksheetModel*>(view_.model());const auto originSheet=model?model->sheetId():QString();
   if(!entry().origin&&view_.prepareReferenceWorkbookChange()){
    entry().origin=this;entry().originIndex=originIndex;entry().originSheet=originSheet;
    entry().originWasInline=wasInline;
-   view_.selectionModel()->setCurrentIndex(originIndex,QItemSelectionModel::NoUpdate);
   }else if(entry().origin==this&&wasInline)view_.prepareReferenceWorkbookChange();
+  if(entry().origin==this){
+   view_.selectionModel()->setCurrentIndex(originIndex,QItemSelectionModel::NoUpdate);
+   view_.selectionModel()->select(originSelection,QItemSelectionModel::ClearAndSelect);
+  }
   return entry().origin==this;
  }
  void switchWindow(bool reverse){

@@ -116,16 +116,18 @@ void expandFormulaEditor(QLineEdit& editor,const WorksheetView& view){
  const auto base=editor.property("worksheet.editorBaseRect").toRect();if(!base.isValid())return;auto bounds=base;
  const auto index=editor.property("worksheet.editorIndex").value<QPersistentModelIndex>();if(index.isValid()&&index.model()==view.model()){const auto original=editor.property("worksheet.editorCellRect").toRect(),current=view.visualRect(index);if(original.isValid()&&current.isValid())bounds.translate(current.topLeft()-original.topLeft());}
  const auto anchored=bounds;bool wrap=false;
+ Qt::Alignment alignment=Qt::AlignLeft;int indent=0;
+ if(index.isValid())if(const auto* model=dynamic_cast<const WorksheetModel*>(index.model())){alignment=Qt::Alignment(index.data(Qt::TextAlignmentRole).toInt())&Qt::AlignHorizontal_Mask;indent=model->cellStyle(index.row(),index.column()).value("indent",0)*editor.fontMetrics().horizontalAdvance("   ");}
+ if(editor.text().startsWith('='))alignment=Qt::AlignLeft;editor.setAlignment(alignment|Qt::AlignVCenter);editor.setTextMargins(alignment&Qt::AlignRight?0:indent,0,alignment&Qt::AlignRight?indent:0,0);
  if(editor.text().startsWith('=')){
-  editor.setAlignment(Qt::AlignLeft|Qt::AlignVCenter);
   // Use the same fractional glyph layout as wrapping. Integer font metrics
   // can round a bold formula down and strand its closing parenthesis.
   QTextLayout unwrapped(editor.text(),editor.font());unwrapped.beginLayout();auto fullLine=unwrapped.createLine();fullLine.setLineWidth(100000000);unwrapped.endLayout();
-  const int required=qCeil(fullLine.naturalTextWidth())+4;
+  const int horizontalMargins=editor.textMargins().left()+editor.textMargins().right();const int required=qCeil(fullLine.naturalTextWidth())+horizontalMargins+4;
   bounds.setWidth(std::max(anchored.width(),std::min(required,view.viewport()->width()-anchored.left())));
   if(editor.property("formula.supportsSoftWrap").toBool()){
    QTextLayout layout(editor.text(),editor.font());QTextOption option;option.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);layout.setTextOption(option);int rows=0;
-   layout.beginLayout();for(;;){auto line=layout.createLine();if(!line.isValid())break;line.setLineWidth(std::max(1,bounds.width()-4));++rows;}layout.endLayout();
+   layout.beginLayout();for(;;){auto line=layout.createLine();if(!line.isValid())break;line.setLineWidth(std::max(1,bounds.width()-horizontalMargins-4));++rows;}layout.endLayout();
    wrap=rows>1;const int pitch=std::max(anchored.height(),editor.fontMetrics().height()+2);editor.setProperty("formula.linePitch",pitch);
    if(wrap)bounds.setHeight(std::max(anchored.height(),std::min(rows*pitch,view.viewport()->height()-anchored.top())));
   }
@@ -143,7 +145,7 @@ public:
  explicit CellDelegate(WorksheetView* view):QStyledItemDelegate(view),view_(view){}
  void setFormulaBar(QLineEdit* bar,std::function<bool()> transfer){bar_=bar;transferToBar_=std::move(transfer);}
  QWidget* createEditor(QWidget* parent,const QStyleOptionViewItem&,const QModelIndex& index)const override{return view_->createCellEditor(parent,index);}
- void updateEditorGeometry(QWidget* editor,const QStyleOptionViewItem& option,const QModelIndex& index)const override{QStyledItemDelegate::updateEditorGeometry(editor,option,index);if(auto* line=qobject_cast<QLineEdit*>(editor)){line->setProperty("worksheet.editorBaseRect",line->geometry());line->setProperty("worksheet.editorCellRect",option.rect);line->setProperty("worksheet.editorIndex",QVariant::fromValue(QPersistentModelIndex(index)));expandFormulaEditor(*line,*view_);}}
+ void updateEditorGeometry(QWidget* editor,const QStyleOptionViewItem& option,const QModelIndex& index)const override{QStyledItemDelegate::updateEditorGeometry(editor,option,index);if(auto* line=qobject_cast<QLineEdit*>(editor)){line->setGeometry(option.rect);line->setProperty("worksheet.editorBaseRect",line->geometry());line->setProperty("worksheet.editorCellRect",option.rect);line->setProperty("worksheet.editorIndex",QVariant::fromValue(QPersistentModelIndex(index)));expandFormulaEditor(*line,*view_);}}
  void setEditorData(QWidget* editor,const QModelIndex& index)const override{if(auto* line=qobject_cast<QLineEdit*>(editor);line&&(line->isModified()||line->text()==index.data(Qt::EditRole).toString()))return;QStyledItemDelegate::setEditorData(editor,index);}
  void setModelData(QWidget* editor,QAbstractItemModel* model,const QModelIndex& index)const override{if(auto* line=qobject_cast<QLineEdit*>(editor);line&&line->property("worksheet.replaceInput").toBool()&&dynamic_cast<WorksheetModel*>(model)){model->setData(index,line->text(),WorksheetModel::ReplacementEditRole);return;}QStyledItemDelegate::setModelData(editor,model,index);}
  QRect textOverflowRect(const QModelIndex& index,const QStyleOptionViewItem& option)const{
@@ -516,8 +518,8 @@ QLineEdit* WorksheetView::activeCellEditor()const{return cellEditor_;}
 QLineEdit* WorksheetView::createCellEditor(QWidget* parent,const QModelIndex& index){
  pointMode_=true;referenceStart_=-1;referenceLength_=0;referenceCursor_={};
  auto* editor=editorFactory?editorFactory(parent):new QLineEdit(parent);cellEditor_=editor;editIndex_=index;editor->setObjectName("worksheet.cellEditor");editor->setAccessibleName(QString("Cell %1%2").arg(QString::fromStdString(columnName(index.column()+1))).arg(index.row()+1));editor->setFont(index.data(Qt::FontRole).value<QFont>());
- // The delegate already supplies the cell's padded content rectangle. Toolbar
- // line-edit minimums and chrome would make a compact-row editor protrude.
+ // Cover the cell with an opaque editor; text margins carry its indentation.
+ // Toolbar minimums and chrome would make a compact-row editor protrude.
  editor->setFrame(false);editor->setStyleSheet("QLineEdit { min-height: 0px; min-width: 0px; padding: 0px; border: 0px; border-radius: 0px; }");
  connect(editor,&QLineEdit::textChanged,this,[this](const QString& text){if(formulaBar_){formulaBar_->setText(text);formulaBar_->setModified(false);}});
  connect(editor,&QLineEdit::textChanged,this,[this]{if(!insertingReference_){referenceStart_=-1;referenceLength_=0;}viewport()->update();});
