@@ -75,10 +75,11 @@ private:
  QModelIndex referenceAnchor_,referenceCursor_;
  int referenceStart_=-1,referenceLength_=0;
  bool picking_=false,insertingReference_=false,pointMode_=true;
- QPersistentModelIndex fillSource_,fillTarget_;
+ QItemSelectionRange fillSource_;
+ QPersistentModelIndex fillTarget_;
  QTimer* fillScrollTimer_=nullptr;
  QPoint fillPosition_;
- bool filling_=false;
+ bool filling_=false,fillVertical_=false;
  bool headerSelectionActive_=false;
  QRect fillHandleRect() const;
  void cancelFill();

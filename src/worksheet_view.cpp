@@ -363,7 +363,7 @@ void WorksheetView::paintEvent(QPaintEvent* event){
   for(const auto& range:selectionRectangles(selectionModel()->selection())){QRect bounds(columnViewportPosition(range.left()),rowViewportPosition(range.top()),columnViewportPosition(range.right())+columnWidth(range.right())-columnViewportPosition(range.left())-1,rowViewportPosition(range.bottom())+rowHeight(range.bottom())-rowViewportPosition(range.top())-1);bounds=bounds.united(cellBoundaryRect(*this,range.topLeft())).united(cellBoundaryRect(*this,range.bottomRight())).adjusted(-1,-1,1,1);if(property("worksheet.frozenBody").toBool()&&range.top()==0&&isRowHidden(0))bounds.setTop(-2);if(bounds.intersects(viewport()->rect()))painter.drawRect(bounds);}
  }
  if(filling_&&fillSource_.isValid()&&fillTarget_.isValid()){
-  painter.setPen(QPen(QColor("#217346"),1,Qt::DashLine));painter.setBrush(Qt::NoBrush);painter.drawRect(visualRect(fillSource_).united(visualRect(fillTarget_)).adjusted(1,1,-1,-1));
+  painter.setPen(QPen(QColor("#217346"),1,Qt::DashLine));painter.setBrush(Qt::NoBrush);painter.drawRect(visualRect(fillSource_.topLeft()).united(visualRect(fillSource_.bottomRight())).united(visualRect(fillTarget_)).adjusted(1,1,-1,-1));
  }
  const auto handle=fillHandleRect();if(!handle.isEmpty()){painter.setPen(Qt::NoPen);painter.setBrush(QColor("#217346"));painter.drawRect(handle);}
  if(!model()||references.empty())return;
@@ -554,7 +554,7 @@ void WorksheetView::mousePressEvent(QMouseEvent* event){
   referenceEditor_=editor;referenceAnchor_=index;picking_=true;insertPointedRange(index);event->accept();return;
  }
  if(event->button()==Qt::LeftButton&&fillHandleRect().adjusted(-2,-2,2,2).contains(event->pos())&&!fillHandleRect().isEmpty()){
-  if(commitPendingEditor()){fillSource_=currentIndex();fillTarget_=fillSource_;filling_=true;fillPosition_=event->pos();setProperty("worksheet.fillDragged",false);setFocus(Qt::MouseFocusReason);viewport()->update();}event->accept();return;
+  if(commitPendingEditor()){fillSource_=selectionRectangles(selectionModel()->selection()).front();fillTarget_=fillSource_.bottomRight();filling_=true;fillVertical_=false;fillPosition_=event->pos();setProperty("worksheet.fillDragged",false);setFocus(Qt::MouseFocusReason);viewport()->update();}event->accept();return;
  }
  if(event->button()==Qt::LeftButton&&index.isValid()){setProperty("worksheet.selectionExtensionActive",true);setProperty("worksheet.dragAnchor",QVariant::fromValue(event->modifiers()&Qt::ShiftModifier?currentIndex():index));}
  setFocus(Qt::MouseFocusReason);QTableView::mousePressEvent(event);
@@ -566,22 +566,29 @@ QRect WorksheetView::fillHandleRect()const{
  const auto rect=cellBoundaryRect(*this,range.bottomRight());if(rect.isEmpty())return {};return QRect(rect.bottomRight()-QPoint(1,1),QSize(5,5));
 }
 
-void WorksheetView::cancelFill(){if(fillScrollTimer_)fillScrollTimer_->stop();filling_=false;fillSource_=QModelIndex();fillTarget_=QModelIndex();viewport()->unsetCursor();viewport()->update();}
+void WorksheetView::cancelFill(){if(fillScrollTimer_)fillScrollTimer_->stop();filling_=false;fillSource_=QItemSelectionRange();fillTarget_=QModelIndex();viewport()->unsetCursor();viewport()->update();}
 void WorksheetView::finishFill(){
- auto* worksheet=dynamic_cast<WorksheetModel*>(model());if(!worksheet||!fillSource_.isValid()||!fillTarget_.isValid()||fillSource_==fillTarget_)return;
- const int sourceRow=fillSource_.row(),sourceColumn=fillSource_.column();const auto input=worksheet->raw(sourceRow,sourceColumn).toStdString();const auto style=worksheet->cellStyle(sourceRow,sourceColumn);Json operations=Json::array();
- for(int row=std::min(sourceRow,fillTarget_.row());row<=std::max(sourceRow,fillTarget_.row());++row)for(int col=std::min(sourceColumn,fillTarget_.column());col<=std::max(sourceColumn,fillTarget_.column());++col){if(row==sourceRow&&col==sourceColumn)continue;auto copied=input;if(!copied.empty()&&copied[0]=='=')copied=shiftFormula(copied,row-sourceRow,col-sourceColumn);operations.push_back({{"type","set_cell"},{"sheet",worksheet->sheetId().toStdString()},{"row",row+1},{"col",col+1},{"input",copied},{"style",style},{"replaceStyle",true}});}
+ auto* worksheet=dynamic_cast<WorksheetModel*>(model());if(!worksheet||!fillSource_.isValid()||!fillTarget_.isValid()||fillSource_.contains(fillTarget_))return;
+ const int top=fillSource_.top(),left=fillSource_.left(),bottom=fillSource_.bottom(),right=fillSource_.right(),height=fillSource_.height(),width=fillSource_.width();Json operations=Json::array();
+ const int firstRow=std::min(top,fillTarget_.row()),lastRow=std::max(bottom,fillTarget_.row()),firstColumn=std::min(left,fillTarget_.column()),lastColumn=std::max(right,fillTarget_.column());
+ // Filling copies cell data and styles, not merge layouts. Refuse the whole drag.
+ for(const auto& sheet:worksheet->workbookView().at("sheets"))if(sheet.at("id")==worksheet->sheetId().toStdString()&&sheet.contains("mergedRanges"))for(const auto& merge:sheet.at("mergedRanges"))if(merge.at("row1")<=lastRow+1&&merge.at("row2")>=firstRow+1&&merge.at("col1")<=lastColumn+1&&merge.at("col2")>=firstColumn+1)return;
+ for(int row=firstRow;row<=lastRow;++row)for(int col=firstColumn;col<=lastColumn;++col){
+  if(row>=top&&row<=bottom&&col>=left&&col<=right)continue;
+  const int sourceRow=top+((row-top)%height+height)%height,sourceColumn=left+((col-left)%width+width)%width;auto copied=worksheet->raw(sourceRow,sourceColumn).toStdString();if(!copied.empty()&&copied[0]=='=')copied=shiftFormula(copied,row-sourceRow,col-sourceColumn);operations.push_back({{"type","set_cell"},{"sheet",worksheet->sheetId().toStdString()},{"row",row+1},{"col",col+1},{"input",copied},{"style",worksheet->cellStyle(sourceRow,sourceColumn)},{"replaceStyle",true}});
+ }
  worksheet->apply(operations);
 }
 void WorksheetView::updateFillTarget(const QPoint& position){
  fillPosition_=position;const auto index=indexAt(QPoint(std::clamp(position.x(),0,std::max(0,viewport()->width()-1)),std::clamp(position.y(),0,std::max(0,viewport()->height()-1))));if(!index.isValid()||!fillSource_.isValid())return;
- const bool vertical=std::abs(index.row()-fillSource_.row())>std::abs(index.column()-fillSource_.column());fillTarget_=model()->index(vertical?index.row():fillSource_.row(),vertical?fillSource_.column():index.column());
+ // Measure extension outside the source, independent of its active cell or aspect ratio.
+ const int rows=std::max({fillSource_.top()-index.row(),index.row()-fillSource_.bottom(),0}),columns=std::max({fillSource_.left()-index.column(),index.column()-fillSource_.right(),0});const bool vertical=rows>columns;fillVertical_=vertical;fillTarget_=model()->index(vertical?index.row():fillSource_.bottom(),vertical?fillSource_.right():index.column());
  const int coordinate=vertical?position.y():position.x(),extent=vertical?viewport()->height():viewport()->width();
  if(filling_&&hasAutoScroll()&&(coordinate<autoScrollMargin()||coordinate>=extent-autoScrollMargin())){if(!fillScrollTimer_->isActive())fillScrollTimer_->start();}else fillScrollTimer_->stop();
 }
 void WorksheetView::scrollFillViewport(){
  if(!filling_||!fillSource_.isValid()||!fillTarget_.isValid()){cancelFill();return;}
- const bool vertical=fillSource_.row()!=fillTarget_.row();const int coordinate=vertical?fillPosition_.y():fillPosition_.x(),extent=vertical?viewport()->height():viewport()->width();
+ const bool vertical=fillVertical_;const int coordinate=vertical?fillPosition_.y():fillPosition_.x(),extent=vertical?viewport()->height():viewport()->width();
  const int direction=coordinate<autoScrollMargin()?-1:coordinate>=extent-autoScrollMargin()?1:0;if(!direction){fillScrollTimer_->stop();return;}
  auto* bar=vertical?verticalScrollBar():horizontalScrollBar();const bool pixels=(vertical?verticalScrollMode():horizontalScrollMode())==ScrollPerPixel;
  const int step=pixels?std::max(1,(vertical?rowHeight(fillTarget_.row()):columnWidth(fillTarget_.column()))/3):1;const int before=bar->value();bar->setValue(before+direction*step);
